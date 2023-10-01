@@ -1,67 +1,123 @@
 // Puzzle Stage
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
-import useCarrier, { defaultStatus as defaultCarrierStatus } from '@/composable/use-carrier'
-import useCast, { defaultStatus as defaultCastStatus } from '@/composable/use-cast'
-import { Scene } from '@/types/scene'
+import { useStorage, useWindowSize } from '@vueuse/core'
+import type { UseSwipeDirection } from '@vueuse/core'
+import useCarrier from '@/composable/use-carrier'
+import useCast from '@/composable/use-cast'
+import type { Scene } from '@/types/scene'
+import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
+const { width, height } = useWindowSize()
 export const useSceneStore = defineStore('scene', () => {
   const state = useStorage<Scene>('RIVER_CROSSING_SCENE', {
+    id: 0,
+    title: '',
+    landscape: '',
     carriers: [],
     casts: [],
   }, sessionStorage)
+  /**
+   * ステージのサイズ
+   */
+  const stageSize = computed(() => Math.min(width.value, height.value))
+  /**
+   * 登場人物のサイズ
+   */
+  const castSize = computed(() => Math.min(stageSize.value / state.value.casts.length, stageSize.value / 10))
+  /**
+   * 川幅（乗り物が往復する距離）
+   */
+  const riverSize = computed(() => Math.min(stageSize.value * 0.2))
+  /**
+   * 出発地点のキャラクター
+   */
+  const originCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'origin'))
+  /**
+   * 到着地点のキャラクター
+   */
+  const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
+  /**
+   * すべての登場人物が対岸にいるかどうか
+   */
+  const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
+  /**
+   *  パズルの状態を初期化
+   */
   const init = async (
     config: Scene
   ) => {
     state.value = config
   }
-  // 初期化
+  /**
+   * 乗り物と登場人物の状態を初期化
+   */
   const start = async () => {
     state.value.carriers.forEach(carrier => {
-      Object.assign(carrier.status, {...defaultCarrierStatus})
+      useCarrier(carrier).init()
     })
     state.value.casts.forEach(cast => {
-      Object.assign(cast.status, {...defaultCastStatus})
+      useCast(cast).init()
     })
   }
-  // 登場人物をスワイプ後の行動
+  /**
+   * 登場人物をスワイプした時の行動
+   */
   const action = async(
     cast: Cast,
-    request: 'getOff' | 'getOn' | null
+    direction: UseSwipeDirection
   ) => {
-    console.log('scene: request', request, 'from cast', cast.id)  ////
-    const { getOff, getOn } = useCast(cast)
+    console.log(`scene: swipe ${direction} by cast ${cast.id}`)
+    const request = await useCast(cast).getRequest(direction)
     if(request === 'getOff') {
       // 登場人物を船から降ろす
-      getOff()
-      state.value.carriers.forEach(carrier =>
-        carrier.status.passengers = carrier.status.passengers.filter(passenger => passenger !== cast)
-      )
+      await useCast(cast).getOff()
+      state.value.carriers.forEach(async carrier => {
+        await useCarrier(carrier).dropOff(cast)
+      })
     } else if(request === 'getOn'){
       // 搭乗可能な乗り物があれば登場人物を船に乗せる
-      if (boardableCarrier.value !== undefined) {
-        boardableCarrier.value.status.passengers.push(cast)
-        getOn()
-      }
+      const carrier = state.value.carriers.find(carrier => useCarrier(carrier).isBoardable.value)
+      if (carrier === undefined) return
+      await useCast(cast).getOn()
+      await useCarrier(carrier).pickUp(cast)
     }
   }
-  // 搭乗可能な乗り物
-  const boardableCarrier = computed(() => state.value.carriers.find(carrier => useCarrier(carrier).isBoardable.value))
-  // 出発地点のキャラクター
-  const originCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'origin'))
-  // 到着地点のキャラクター
-  const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
-  // すべての登場人物が対岸にいるかどうか
-  const isCompleted = computed((): boolean => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
+  /**
+   * 乗り物が出発した時の行動
+   */
+  const leave = async (
+    carrier: Carrier,
+  ) => {
+    console.log(`scene: leave by carrier ${carrier.id}`)
+  }
+  /**
+   * 乗り物が到着した時の行動
+   */
+  const arrive = async (
+    carrier: Carrier,
+  ) => {
+    console.log(`scene: arrive by carrier ${carrier.id}`)
+    await useCarrier(carrier).arrive()
+    carrier.status.passengers.forEach(async cast => {
+      // 登場人物を船から降ろす
+      await useCast(cast).crossed()
+      await useCast(cast).getOff()
+      await useCarrier(carrier).dropOff(cast)
+    })
+  }
   return {
     state,
-    init,
-    start,
-    action,
-    boardableCarrier,
+    stageSize,
+    riverSize,
+    castSize,
     originCasts,
     destinationCasts,
     isCompleted,
+    init,
+    start,
+    action,
+    leave,
+    arrive,
   }
 })

@@ -9,6 +9,7 @@ export interface Carrier {
 
 // 川渡りパズルの乗り物の状態
 export interface Status {
-  isCrossed: boolean      // 開始地点の対岸にいる
+  isCrossed: boolean  // 開始地点の対岸にいるかどうか
+  isSailing: boolean  // 進行中かどうか
   passengers: Cast[]  // 乗員
 }

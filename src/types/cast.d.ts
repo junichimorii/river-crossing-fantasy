@@ -1,6 +1,7 @@
 // 川渡りパズルの登場人物
 export interface Cast {
   id: number
+  avatar: string
   role: Role
   status: Status
 }
