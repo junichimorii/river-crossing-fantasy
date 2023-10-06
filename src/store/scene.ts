@@ -13,6 +13,10 @@ export const useSceneStore = defineStore('scene', () => {
   const state = useStorage<Scene>('RIVER_CROSSING_SCENE', {
     id: 0,
     title: '',
+    description: {
+      conditions: '',
+      transportation: '',
+    },
     landscape: '',
     carriers: [],
     casts: [],
@@ -20,7 +24,7 @@ export const useSceneStore = defineStore('scene', () => {
   /**
    * ステージのサイズ
    */
-  const stageSize = computed(() => Math.min(width.value, height.value))
+  const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
   /**
    * 登場人物のサイズ
    */
@@ -68,7 +72,8 @@ export const useSceneStore = defineStore('scene', () => {
     direction: UseSwipeDirection
   ) => {
     console.log(`scene: swipe ${direction} by cast ${cast.id}`)
-    const request = await useCast(cast).getRequest(direction)
+    if(cast.status.disabled) return
+    const request = await useCast(cast).request(direction)
     if(request === 'getOff') {
       // 登場人物を船から降ろす
       await useCast(cast).getOff()
@@ -90,6 +95,9 @@ export const useSceneStore = defineStore('scene', () => {
     carrier: Carrier,
   ) => {
     console.log(`scene: leave by carrier ${carrier.id}`)
+    state.value.casts.forEach(cast => {
+      useCast(cast).deactivate()
+    })
   }
   /**
    * 乗り物が到着した時の行動
@@ -98,6 +106,9 @@ export const useSceneStore = defineStore('scene', () => {
     carrier: Carrier,
   ) => {
     console.log(`scene: arrive by carrier ${carrier.id}`)
+    state.value.casts.forEach(cast => {
+      useCast(cast).activate()
+    })
     await useCarrier(carrier).arrive()
     carrier.status.passengers.forEach(async cast => {
       // 登場人物を船から降ろす

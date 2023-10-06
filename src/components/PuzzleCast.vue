@@ -27,18 +27,32 @@ const { direction: directionSwipe, isSwiping } = useSwipe(
 /**
  * ポインターイベントの検知
  */
- const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerSwipe(
+const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerSwipe(
   target, {
     onSwipe(e: PointerEvent) {
     },
     onSwipeEnd(e: PointerEvent, direction: UseSwipeDirection) {
       scene.action(state, direction)
     },
-  })
+})
+/**
+ * 適用するスタイル（transformプロパティ）
+ */
+const transformProperty = computed(() => `scale(${state.status.isCrossed ? -1 : 1}, 1)`)
 const width = computed(() => scene.castSize) 
 const height = computed(() => scene.castSize * 2)
-const modelUp = computed(() => (isSwiping.value || isPointerSwiping.value) && enableArrowUp.value)
-const modelDown = computed(() => (isSwiping.value || isPointerSwiping.value) && enableArrowDown.value)
+const direction = computed(() => {
+  return {
+    up: {
+      enabled: !state.status.disabled && (isSwiping.value || isPointerSwiping.value) && enableArrowUp.value,
+      isActive: directionSwipe.value === 'up' ||  directionPointer.value === 'up',
+    },
+    down: {
+      enabled: !state.status.disabled && (isSwiping.value || isPointerSwiping.value) && enableArrowDown.value,
+      isActive: directionSwipe.value === 'down' ||  directionPointer.value === 'down',
+    }
+  }
+})
 </script>
 
 <template>
@@ -49,12 +63,15 @@ const modelDown = computed(() => (isSwiping.value || isPointerSwiping.value) && 
     :height="height"
     class="bg-transparent"
   >
-    <v-img :src="state.avatar">
-      {{ state.id }}
+    <v-img
+      :src="state.avatar"
+      :style="{ transform: transformProperty }"
+    >
+      <div class="d-flex align-center justify-center fill-height"></div>
     </v-img>
     <v-menu
       activator="parent"
-      v-model="modelUp"
+      v-model="direction.up.enabled"
       disabled
       location="top"
       transition="scroll-y-reverse-transition"
@@ -64,13 +81,14 @@ const modelDown = computed(() => (isSwiping.value || isPointerSwiping.value) && 
           <v-icon
             size="x-large"
             icon="mdi-arrow-up"
+            :color="direction.up.isActive ? 'orange' : 'grey'"
           ></v-icon>
         </div>
       </v-expand-transition>
     </v-menu>
     <v-menu
       activator="parent"
-      v-model="modelDown"
+      v-model="direction.down.enabled"
       disabled
       location="bottom"
       transition="scroll-y-transition"
@@ -80,6 +98,7 @@ const modelDown = computed(() => (isSwiping.value || isPointerSwiping.value) && 
           <v-icon
             size="x-large"
             icon="mdi-arrow-down"
+            :color="direction.down.isActive ? 'orange' : 'grey'"
           ></v-icon>
         </div>
       </v-expand-transition>

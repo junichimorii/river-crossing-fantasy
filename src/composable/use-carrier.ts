@@ -1,5 +1,5 @@
 // 川渡りパズルの乗り物
-import { computed, ref, Ref } from 'vue'
+import { computed, Ref } from 'vue'
 import type { Carrier, Status } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 export const defaultStatus: Status = Object.freeze({
@@ -8,85 +8,83 @@ export const defaultStatus: Status = Object.freeze({
   passengers: [] as Cast[],
 })
 interface UseCarrierReturn {
-  source: Ref<number>
+  /**
+   * useTransitionで変化させるY軸の数値
+   */
+  y: Ref<number>
+  /**
+   * 乗り物に空席があるどうか
+   */
   isBoardable: Ref<boolean>
+  /**
+   * 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない）
+   */
   canLeave: Ref<boolean>
+  /**
+   * 乗り物の行先が上方向かどうか
+   */
   isUpbound: Ref<boolean>
+  /**
+   * 乗り物の行先が下方向かどうか
+   */
   isDownbound: Ref<boolean>
-init: () => Promise<void>
+  /**
+   * 乗り物のステータスを初期化
+   */
+  init: () => Promise<void>
+  /**
+   * 乗客を乗せる
+   */
   pickUp: (cast: Cast) => Promise<void>
+  /**
+   * 乗客を降ろす
+   */
   dropOff: (cast: Cast) => Promise<void>
+  /**
+   * 発進する
+   */
   leave: () => Promise<void>
+  /**
+   * 到着する
+   */
   arrive: () => Promise<void>
 }
 const useCarrier = (
   state: Carrier
 ): UseCarrierReturn => {
-  /**
-   * useTransitionで変化させる数値
-   */
-  const source = ref(0)
-  /**
-   * 乗り物に空席があるどうか
-   */
+  const y = computed(() => state.status.isCrossed ? -1 : 0)
   const isBoardable = computed(() => state.status.passengers.length < state.capacity)
-  // 
-  /**
-   * 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない）
-   */
   const canLeave = computed(() => !state.status.isSailing && state.status.passengers.some(cast => cast.role.canRow))
-  /**
-   * 乗り物の行先が上方向かどうか
-   */
   const isUpbound = computed(() => !state.status.isCrossed)
-  /**
-   * 乗り物の行先が下方向かどうか
-   */
   const isDownbound = computed(() => state.status.isCrossed)
-  /**
-   * 初期化
-   */
   const init = async () => {
     console.log(`useCarrier: init carrier ${state.id}`)
-    Object.assign(state.status, {...defaultStatus})
-    source.value = 0
+    state.status = {...defaultStatus}
+    state.status.passengers = []
   }
-  /**
-   * 乗客を乗せる
-   */
   const pickUp = async (
     cast: Cast
   ) => {
     console.log(`useCarrier: pickUp cast ${cast.id}`)
     state.status.passengers.push(cast)
   }
-  /**
-   * 乗客を降ろす
-   */
   const dropOff = async (
     cast: Cast
   ) => {
     console.log(`useCarrier: dropOff cast ${cast.id}`)
     state.status.passengers = state.status.passengers.filter(passenger => passenger.id !== cast.id)
   }
-  /**
-   * 発進する
-   */
   const leave = async () => {
     console.log(`useCarrier: leave carrier ${state.id}`)
     state.status.isSailing = true
-    source.value = source.value === 0 ? -1 : 0
+    state.status.isCrossed = !state.status.isCrossed
   }
-  /**
-   * 到着する
-   */
   const arrive = async () => {
     console.log(`useCarrier: arrive carrier ${state.id}`)
     state.status.isSailing = false
-    state.status.isCrossed = !state.status.isCrossed
   }
   return {
-    source,
+    y,
     isBoardable,
     canLeave,
     isUpbound,

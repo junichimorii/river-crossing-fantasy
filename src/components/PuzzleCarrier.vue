@@ -9,11 +9,11 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { source, canLeave, isUpbound, isDownbound, leave } = useCarrier(state)
+const { y, canLeave, isUpbound, isDownbound, leave } = useCarrier(state)
 /**
  * 垂直方向の位置を変化させる
  */
-const amount = useTransition(source, {
+const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
@@ -47,14 +47,16 @@ const modelDown = computed(() => canLeave.value && isDownbound.value)
     :height="height"
     color="blue"
   >
-    {{ state.id }}
-    <div class="d-flex justify-center align-end">
+    <v-sheet
+      class="d-flex justify-center align-end bg-transparent"
+      :height="height"
+    >
       <PuzzleCast
         v-for="cast in state.status.passengers"
         :key="cast.id"
         :state="cast"
       ></PuzzleCast>
-    </div>
+    </v-sheet>
     <v-menu
       activator="parent"
       v-model="modelUp"
@@ -65,10 +67,10 @@ const modelDown = computed(() => canLeave.value && isDownbound.value)
       <div class="d-flex justify-center bg-transparent">
         <v-expand-transition mode="out-in">
           <v-btn
-            size="x-large"
+            size="large"
             icon="mdi-arrow-up"
-            color="blue"
-            @click="leave()"
+            color="orange"
+            @click="leave"
           ></v-btn>
         </v-expand-transition>
       </div>
@@ -83,10 +85,10 @@ const modelDown = computed(() => canLeave.value && isDownbound.value)
       <div class="d-flex justify-center bg-transparent">
         <v-expand-transition mode="in-out">
           <v-btn
-            size="x-large"
+            size="large"
             icon="mdi-arrow-down"
-            color="blue"
-            @click="leave()"
+            color="orange"
+            @click="leave"
           ></v-btn>
         </v-expand-transition>
       </div>
