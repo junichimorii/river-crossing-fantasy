@@ -9,10 +9,6 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-/** 上方向の矢印が有効かどうか */
-const modelUp = ref(false)
-/** 下方向の矢印が有効かどうか */
-const modelDown = ref(false)
 const { y, canLeave, isUpbound, isDownbound, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
@@ -29,22 +25,9 @@ const amount = useTransition(y, {
 const transformProperty = computed(() => `translate(0, ${amount.value * scene.riverSize}px)`)
 /** サイズ（登場人物の幅 * 登場人物の人数 + 登場人物の幅） */
 const size = computed(() => scene.castSize * state.capacity + scene.castSize)
-watch(
-  () => (canLeave.value && isUpbound.value),
-  (value) => {
-    modelUp.value = value
-    console.log(`Carrier: modelUp ${modelUp.value}`)
-  }
-)
-watch(
-  () => (canLeave.value && isDownbound.value),
-  (value) => {
-    modelDown.value = value
-    console.log(`Carrier: modelDown ${modelDown.value}`)
-  }
-)
+const upbound = computed(() => canLeave.value && isUpbound.value)
+const downbound = computed(() => canLeave.value && isDownbound.value)
 </script>
-
 <template>
   <v-card
     variant="outlined"
@@ -67,12 +50,12 @@ watch(
     </v-img>
     <v-menu
       activator="parent"
-      v-model="modelUp"
+      v-model="upbound"
       disabled
       location="top"
       transition="scroll-y-reverse-transition"
     >
-      <div class="d-flex justify-center bg-transparent">
+      <div class="d-flex justify-center">
         <v-expand-transition mode="out-in">
           <v-btn
             size="default"
@@ -86,12 +69,12 @@ watch(
     </v-menu>
     <v-menu
       activator="parent"
-      v-model="modelDown"
+      v-model="downbound"
       disabled
       location="bottom"
       transition="scroll-y-transition"
     >
-      <div class="d-flex justify-center bg-transparent">
+      <div class="d-flex justify-center">
         <v-expand-transition mode="in-out">
           <v-btn
             size="default"
