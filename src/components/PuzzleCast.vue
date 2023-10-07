@@ -54,7 +54,7 @@ const direction = computed(() => {
     ref="target"
     :width="scene.castSize"
     :height="scene.castSize * 2"
-    class="bg-transparent"
+    class="d-flex justify-center align-end bg-transparent"
   >
     <v-img
       :src="state.avatar"

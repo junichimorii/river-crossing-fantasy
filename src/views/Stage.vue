@@ -8,11 +8,11 @@ import { BottomNavigation, PuzzleStage } from '@/components'
 const route = useRoute()
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
-const { play } = useRecordsStore()
+const { load } = useRecordsStore()
 const scene = useSceneStore()
 /** パラメータで渡されたIDのシーンを開始する */
 const init = async (id: string|string[]) => {
-  await play(id)
+  await load(id)
   .then(config => {
     scene.init(config)
   }).catch(() => {

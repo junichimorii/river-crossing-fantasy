@@ -1,4 +1,3 @@
-// Puzzle Stage
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
@@ -9,6 +8,9 @@ import type { Scene } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 const { width, height } = useWindowSize()
+/**
+ * シーン（ステージ）管理
+ */
 export const useSceneStore = defineStore('scene', () => {
   const state = useStorage<Scene>('RIVER_CROSSING_SCENE', {
     id: 0,
@@ -33,7 +35,7 @@ export const useSceneStore = defineStore('scene', () => {
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
-  /**  パズルの状態を初期化 */
+  /**  パズルを準備する */
   const init = async (
     config: Scene
   ) => {

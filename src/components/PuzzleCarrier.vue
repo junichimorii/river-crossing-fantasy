@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, toRefs, ref, watch } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
 import useCarrier from '@/composable/use-carrier'
@@ -9,6 +9,10 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
+/** 上方向の矢印が有効かどうか */
+const modelUp = ref(false)
+/** 下方向の矢印が有効かどうか */
+const modelDown = ref(false)
 const { y, canLeave, isUpbound, isDownbound, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
@@ -25,10 +29,20 @@ const amount = useTransition(y, {
 const transformProperty = computed(() => `translate(0, ${amount.value * scene.riverSize}px)`)
 /** サイズ（登場人物の幅 * 登場人物の人数 + 登場人物の幅） */
 const size = computed(() => scene.castSize * state.capacity + scene.castSize)
-/** 上方向の矢印が有効かどうか */
-const modelUp = computed(() => canLeave.value && isUpbound.value)
-/** 下方向の矢印が有効かどうか */
-const modelDown = computed(() => canLeave.value && isDownbound.value)
+watch(
+  () => (canLeave.value && isUpbound.value),
+  (value) => {
+    modelUp.value = value
+    console.log(`Carrier: modelUp ${modelUp.value}`)
+  }
+)
+watch(
+  () => (canLeave.value && isDownbound.value),
+  (value) => {
+    modelDown.value = value
+    console.log(`Carrier: modelDown ${modelDown.value}`)
+  }
+)
 </script>
 
 <template>
@@ -36,12 +50,12 @@ const modelDown = computed(() => canLeave.value && isDownbound.value)
     variant="outlined"
     :style="{ transform: transformProperty }"
     :width="size"
-    :height="size"
+    :height="size * 1.25"
     class="d-flex justify-center align-end bg-transparent"
   >
     <v-img :src="state.appearance">
       <v-sheet
-        class="d-flex justify-center align-center bg-transparent"
+        class="d-flex justify-center align-end bg-transparent"
         :height="size"
       >
         <PuzzleCast
@@ -61,9 +75,10 @@ const modelDown = computed(() => canLeave.value && isDownbound.value)
       <div class="d-flex justify-center bg-transparent">
         <v-expand-transition mode="out-in">
           <v-btn
-            size="large"
+            size="default"
             icon="mdi-arrow-up"
             color="orange"
+            class="ma-1"
             @click="leave"
           ></v-btn>
         </v-expand-transition>
@@ -79,9 +94,10 @@ const modelDown = computed(() => canLeave.value && isDownbound.value)
       <div class="d-flex justify-center bg-transparent">
         <v-expand-transition mode="in-out">
           <v-btn
-            size="large"
+            size="default"
             icon="mdi-arrow-down"
             color="orange"
+            class="ma-1"
             @click="leave"
           ></v-btn>
         </v-expand-transition>
