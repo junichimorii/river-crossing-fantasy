@@ -10,9 +10,7 @@ const { state } = defineProps<{
 }>()
 const scene = useSceneStore()
 const { y, canLeave, isUpbound, isDownbound, leave } = useCarrier(state)
-/**
- * 垂直方向の位置を変化させる
- */
+/** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
@@ -23,40 +21,36 @@ const amount = useTransition(y, {
     scene.arrive(state)
   },
 })
-/**
- * 適用するスタイル（transformプロパティ）
- */
+/** 適用するスタイル（transformプロパティ） */
 const transformProperty = computed(() => `translate(0, ${amount.value * scene.riverSize}px)`)
-/**
- * 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅）
- */
-const width = computed(() => scene.castSize * state.capacity + scene.castSize)
-/**
- * 高さ（登場人物の幅 * 2）
- */
-const height = computed(() => scene.castSize * 2.5)
+/** サイズ（登場人物の幅 * 登場人物の人数 + 登場人物の幅） */
+const size = computed(() => scene.castSize * state.capacity + scene.castSize)
+/** 上方向の矢印が有効かどうか */
 const modelUp = computed(() => canLeave.value && isUpbound.value)
+/** 下方向の矢印が有効かどうか */
 const modelDown = computed(() => canLeave.value && isDownbound.value)
 </script>
 
 <template>
   <v-card
-    flat
+    variant="outlined"
     :style="{ transform: transformProperty }"
-    :width="width"
-    :height="height"
-    color="blue"
+    :width="size"
+    :height="size"
+    class="d-flex justify-center align-end bg-transparent"
   >
-    <v-sheet
-      class="d-flex justify-center align-end bg-transparent"
-      :height="height"
-    >
-      <PuzzleCast
-        v-for="cast in state.status.passengers"
-        :key="cast.id"
-        :state="cast"
-      ></PuzzleCast>
-    </v-sheet>
+    <v-img :src="state.appearance">
+      <v-sheet
+        class="d-flex justify-center align-center bg-transparent"
+        :height="size"
+      >
+        <PuzzleCast
+          v-for="cast in state.status.passengers"
+          :key="cast.id"
+          :state="cast"
+        ></PuzzleCast>
+      </v-sheet>
+    </v-img>
     <v-menu
       activator="parent"
       v-model="modelUp"

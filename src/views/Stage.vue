@@ -1,20 +1,32 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
+import { onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useScreenOrientation } from '@vueuse/core'
-import { useSettingStore } from '@/store/setting'
+import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import { BottomNavigation, PuzzleStage } from '@/components'
-const { id } = defineProps<{
-  id: string
-}>()
+const route = useRoute()
+const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
-const { load } = useSettingStore()
+const { play } = useRecordsStore()
 const scene = useSceneStore()
-await load(id)
-.then(setting => {
-  scene.init(setting)
-}).catch(() => {
-  useRouter().push({ path: '/home' })
+/** パラメータで渡されたIDのシーンを開始する */
+const init = async (id: string|string[]) => {
+  await play(id)
+  .then(config => {
+    scene.init(config)
+  }).catch(() => {
+    router.push({ path: '/home' })
+  })
+}
+watch(
+  () => route.params.id,
+  async newId => {
+    init(newId)
+  }
+)
+onMounted(() => {
+  init(route.params.id)
 })
 </script>
 

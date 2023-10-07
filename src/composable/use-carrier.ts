@@ -1,52 +1,37 @@
-// 川渡りパズルの乗り物
 import { computed, Ref } from 'vue'
 import type { Carrier, Status } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
+/**
+ * 川渡りパズルの乗り物の初期ステータス
+ */
 export const defaultStatus: Status = Object.freeze({
   isCrossed: false,
   isSailing: false,
   passengers: [] as Cast[],
 })
+/**
+ * 川渡りパズルの乗り物
+ */
 interface UseCarrierReturn {
-  /**
-   * useTransitionで変化させるY軸の数値
-   */
+  /** useTransitionで変化させるY軸の数値 */
   y: Ref<number>
-  /**
-   * 乗り物に空席があるどうか
-   */
+  /** 乗り物に空席があるどうか */
   isBoardable: Ref<boolean>
-  /**
-   * 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない）
-   */
+  /** 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない） */
   canLeave: Ref<boolean>
-  /**
-   * 乗り物の行先が上方向かどうか
-   */
+  /** 乗り物の行先が上方向かどうか */
   isUpbound: Ref<boolean>
-  /**
-   * 乗り物の行先が下方向かどうか
-   */
+  /** 乗り物の行先が下方向かどうか */
   isDownbound: Ref<boolean>
-  /**
-   * 乗り物のステータスを初期化
-   */
+  /** 乗り物のステータスを初期化 */
   init: () => Promise<void>
-  /**
-   * 乗客を乗せる
-   */
+  /** 乗客を乗せる */
   pickUp: (cast: Cast) => Promise<void>
-  /**
-   * 乗客を降ろす
-   */
+  /** 乗客を降ろす */
   dropOff: (cast: Cast) => Promise<void>
-  /**
-   * 発進する
-   */
+  /** 発進する */
   leave: () => Promise<void>
-  /**
-   * 到着する
-   */
+  /** 到着する */
   arrive: () => Promise<void>
 }
 const useCarrier = (

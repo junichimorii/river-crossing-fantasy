@@ -10,8 +10,7 @@ const routes: Array<RouteRecordRaw> = [{
     path: 'home',
     component: Home,
   }, {
-    path: '/stage/:id',
-    props: true,
+    path: ':id',
     component: Stage,
   }]
 }]

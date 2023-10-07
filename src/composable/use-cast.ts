@@ -1,53 +1,38 @@
-// 川渡りパズルの登場人物
 import { computed, Ref } from 'vue'
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { Cast, Status } from '@/types/cast'
+/**
+ * 川渡りパズルの登場人物の初期ステータス
+ */
 export const defaultStatus: Status = Object.freeze({
   disabled: false,
   isCrossed: false,
   isSeated: false,
   emotion: null,
 })
+/**
+ * 川渡りパズルの登場人物
+ */
 interface UseCastReturn {
-  /**
-   * 現在地
-   */
+  /** 現在地 */
   location: Ref<'origin' | 'destination' | null>
-  /**
-   * 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上矢印を表示する
-   */
+  /** 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上矢印を表示する */
   enableArrowUp: Ref<boolean>
-  /**
-   * 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下矢印を表示する
-   */
+  /** 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下矢印を表示する */
   enableArrowDown: Ref<boolean>
-  /**
-   * 登場人物のステータスを初期化
-   */
+  /** 登場人物のステータスを初期化 */
   init: () => Promise<void>
-  /**
-   * ステータスの変更を無効にする
-   */
+  /** ステータスの変更を無効にする */
   deactivate: () => Promise<void>
-  /**
-   * ステータスの変更を有効にする
-   */
+  /** ステータスの変更を有効にする */
   activate: () => Promise<void>
-  /**
-   * スワイプ終了後の行動
-   */
+  /** スワイプ終了後の行動 */
   request: (direction: UseSwipeDirection) => Promise<'getOff' | 'getOn' | null>
-  /**
-   * 乗り物に乗る
-   */
+  /** 乗り物に乗る */
   getOn: () => Promise<void>
-  /**
-   * 乗り物から降りる
-   */
+  /** 乗り物から降りる */
   getOff: () => Promise<void>
-  /**
-   * 対岸に到着する
-   */
+  /** 対岸に到着する */
   crossed: () => Promise<void>
 }
 const useCast = (

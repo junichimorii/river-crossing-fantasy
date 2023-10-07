@@ -11,12 +11,13 @@ const scene: Scene = {
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
     id: 0,
+    appearance: '/images/carriers/boat.png',
     capacity: 1,
     status: {...defaultCarrierStatus},
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/villager.png',
+    avatar: '/images/casts/villager1.png',
     description: '旅人A',
     role: {
       canRow: true,

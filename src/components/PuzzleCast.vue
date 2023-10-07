@@ -11,9 +11,7 @@ const { state } = defineProps<{
 const scene = useSceneStore()
 const target = ref<HTMLElement | null>(null)
 const { enableArrowUp, enableArrowDown } = useCast(state)
-/**
- * タッチイベントの検知
- */
+/** タッチイベントの検知 */
 const { direction: directionSwipe, isSwiping } = useSwipe(
   target, {
     passive: false,
@@ -24,9 +22,7 @@ const { direction: directionSwipe, isSwiping } = useSwipe(
     },
   }
 )
-/**
- * ポインターイベントの検知
- */
+/** ポインターイベントの検知 */
 const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerSwipe(
   target, {
     onSwipe(e: PointerEvent) {
@@ -35,12 +31,9 @@ const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerS
       scene.action(state, direction)
     },
 })
-/**
- * 適用するスタイル（transformプロパティ）
- */
+/** 適用するスタイル（transformプロパティ） */
 const transformProperty = computed(() => `scale(${state.status.isCrossed ? -1 : 1}, 1)`)
-const width = computed(() => scene.castSize) 
-const height = computed(() => scene.castSize * 2)
+/** 進行可能な方向 */
 const direction = computed(() => {
   return {
     up: {
@@ -57,10 +50,10 @@ const direction = computed(() => {
 
 <template>
   <v-card
-    flat
+    variant="outlined"
     ref="target"
-    :width="width"
-    :height="height"
+    :width="scene.castSize"
+    :height="scene.castSize * 2"
     class="bg-transparent"
   >
     <v-img

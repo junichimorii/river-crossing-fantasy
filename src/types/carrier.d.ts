@@ -1,15 +1,26 @@
 import type { Cast } from '@/types/cast'
 
-// 川渡りパズルの乗り物
+/**
+ * 乗り物
+ */
 export interface Carrier {
+  /** 乗り物のID */
   id: number
-  capacity: number  // 定員
+  /** 乗り物の画像URL */
+  appearance: string
+  /** 乗り物の定員 */
+  capacity: number
+  /** 乗り物の状態 */
   status: Status
 }
-
-// 川渡りパズルの乗り物の状態
+/**
+ * 川渡りパズルの乗り物の状態
+ */
 export interface Status {
-  isCrossed: boolean  // 開始地点の対岸にいるかどうか
-  isSailing: boolean  // 進行中かどうか
-  passengers: Cast[]  // 乗員
+  /** 開始地点の対岸にいるかどうか */
+  isCrossed: boolean
+  /** 進行中かどうか */
+  isSailing: boolean
+  /** 乗員 */
+  passengers: Cast[]
 }

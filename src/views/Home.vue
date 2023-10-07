@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useSettingStore } from '@/store/setting'
-const setting = useSettingStore()
+import { useRecordsStore } from '@/store/records'
+const records = useRecordsStore()
 </script>
 
 <template>
@@ -15,13 +15,13 @@ const setting = useSettingStore()
       </h1>
       <div class="text-subtitle-2 text-center">Made with Vuetify</div>
       <v-card
-        v-for="scene in setting.scenes"
+        v-for="scene in records.scenes"
         :key="scene.id"
         class="my-3"
       >
         <v-list-item
-          :to="`/stage/${scene.id}`"
-          :disabled="scene.id < setting.state.scene"
+          :to="`/${scene.id}`"
+          :disabled="scene.id < records.state.stage"
         >
           <template v-slot:prepend>
             <v-chip color="green">

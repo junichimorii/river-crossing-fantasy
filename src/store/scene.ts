@@ -21,41 +21,25 @@ export const useSceneStore = defineStore('scene', () => {
     carriers: [],
     casts: [],
   }, sessionStorage)
-  /**
-   * ステージのサイズ
-   */
+  /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
-  /**
-   * 登場人物のサイズ
-   */
+  /** 登場人物のサイズ */
   const castSize = computed(() => Math.min(stageSize.value / state.value.casts.length, stageSize.value / 10))
-  /**
-   * 川幅（乗り物が往復する距離）
-   */
-  const riverSize = computed(() => Math.min(stageSize.value * 0.2))
-  /**
-   * 出発地点のキャラクター
-   */
+  /** 川幅（乗り物が往復する距離） */
+  const riverSize = computed(() => stageSize.value * 0.35)
+  /** 出発地点のキャラクター */
   const originCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'origin'))
-  /**
-   * 到着地点のキャラクター
-   */
+  /** 到着地点のキャラクター */
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
-  /**
-   * すべての登場人物が対岸にいるかどうか
-   */
+  /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
-  /**
-   *  パズルの状態を初期化
-   */
+  /**  パズルの状態を初期化 */
   const init = async (
     config: Scene
   ) => {
     state.value = config
   }
-  /**
-   * 乗り物と登場人物の状態を初期化
-   */
+  /** 乗り物と登場人物の状態を初期化 */
   const start = async () => {
     state.value.carriers.forEach(carrier => {
       useCarrier(carrier).init()
@@ -64,9 +48,7 @@ export const useSceneStore = defineStore('scene', () => {
       useCast(cast).init()
     })
   }
-  /**
-   * 登場人物をスワイプした時の行動
-   */
+  /** 登場人物をスワイプした時の行動 */
   const action = async(
     cast: Cast,
     direction: UseSwipeDirection
@@ -81,16 +63,16 @@ export const useSceneStore = defineStore('scene', () => {
         await useCarrier(carrier).dropOff(cast)
       })
     } else if(request === 'getOn'){
-      // 搭乗可能な乗り物があれば登場人物を船に乗せる
-      const carrier = state.value.carriers.find(carrier => useCarrier(carrier).isBoardable.value)
+      // 搭乗可能な乗り物（空席があり、登場人物と同じ岸）があれば登場人物を船に乗せる
+      const carrier = state.value.carriers.find(carrier =>
+        useCarrier(carrier).isBoardable.value && carrier.status.isCrossed === cast.status.isCrossed
+      )
       if (carrier === undefined) return
       await useCast(cast).getOn()
       await useCarrier(carrier).pickUp(cast)
     }
   }
-  /**
-   * 乗り物が出発した時の行動
-   */
+  /** 乗り物が出発した時の行動 */
   const leave = async (
     carrier: Carrier,
   ) => {
@@ -99,9 +81,7 @@ export const useSceneStore = defineStore('scene', () => {
       useCast(cast).deactivate()
     })
   }
-  /**
-   * 乗り物が到着した時の行動
-   */
+  /** 乗り物が到着した時の行動 */
   const arrive = async (
     carrier: Carrier,
   ) => {
