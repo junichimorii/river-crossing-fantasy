@@ -1,16 +1,16 @@
-import BottomNavigation from './BottomNavigation.vue'
-import PuzzleCarrier from './PuzzleCarrier.vue'
-import PuzzleCast from './PuzzleCast.vue'
-import PuzzleConditions from './PuzzleConditions.vue'
-import PuzzleConsole from './PuzzleConsole.vue'
+import PuzzleNavigation from './PuzzleNavigation.vue'
 import PuzzleStage from './PuzzleStage.vue'
-import TitleBar from './TitleBar.vue'
+import PuzzleConditions from './navigation/PuzzleConditions.vue'
+import PuzzleConsole from './navigation/PuzzleConsole.vue'
+import PuzzleDialog from './navigation/PuzzleDialog.vue'
+import PuzzleCarrier from './objects/PuzzleCarrier.vue'
+import PuzzleCast from './objects/PuzzleCast.vue'
 export {
-  BottomNavigation,
-  PuzzleCarrier,
-  PuzzleCast,
+  PuzzleNavigation,
+  PuzzleStage,
   PuzzleConditions,
   PuzzleConsole,
-  PuzzleStage,
-  TitleBar,
+  PuzzleDialog,
+  PuzzleCarrier,
+  PuzzleCast,
 }

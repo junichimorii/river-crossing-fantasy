@@ -16,10 +16,10 @@ export const defaultStatus: Status = Object.freeze({
 interface UseCastReturn {
   /** 現在地 */
   location: Ref<'origin' | 'destination' | null>
-  /** 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上矢印を表示する */
-  enableArrowUp: Ref<boolean>
-  /** 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下矢印を表示する */
-  enableArrowDown: Ref<boolean>
+  /** 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる */
+  upbound: Ref<boolean>
+  /** 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる */
+  downbound: Ref<boolean>
   /** 登場人物のステータスを初期化 */
   init: () => Promise<void>
   /** ステータスの変更を無効にする */
@@ -44,10 +44,12 @@ const useCast = (
       ? 'destination'
       : null
   )
-  const enableArrowUp = computed(() =>
+  const upbound = computed(() =>
+    !state.status.disabled && 
     (state.status.isSeated && state.status.isCrossed) || (!state.status.isSeated && !state.status.isCrossed)
   )
-  const enableArrowDown = computed(() =>
+  const downbound = computed(() =>
+    !state.status.disabled && 
     (state.status.isSeated && !state.status.isCrossed) || (!state.status.isSeated && state.status.isCrossed)
   )
   const init = async () => {
@@ -85,8 +87,8 @@ const useCast = (
   }
   return {
     location,
-    enableArrowUp,
-    enableArrowDown,
+    upbound,
+    downbound,
     init,
     deactivate,
     activate,

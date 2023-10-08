@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, toRefs, ref, watch, watchEffect } from 'vue'
+import { computed } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
 import useCarrier from '@/composables/use-carrier'
@@ -9,7 +9,7 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, upbound, downbound, init, leave } = useCarrier(state)
+const { y, upbound, downbound, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
@@ -21,32 +21,35 @@ const amount = useTransition(y, {
     scene.arrive(state)
   },
 })
-/** 適用するスタイル（transformプロパティ） */
-const transformProperty = computed(() => `translate(0, ${amount.value * scene.riverSize}px)`)
-/** サイズ（登場人物の幅 * 登場人物の人数 + 登場人物の幅） */
-const size = computed(() => scene.castSize * state.capacity + scene.castSize)
-onMounted(async () => {
-  await init()
+/** 川幅（乗り物が往復する距離） */
+const riverWidth = computed(() => scene.stageSize * 0.35)
+/** v-cardに適用するCSS transformプロパティ */
+const transformCard = computed(() => {
+  const y = amount.value * riverWidth.value
+  return `translate(0, ${y}px)`
 })
-watch(
-  () => upbound.value,
-  () => {
-    console.log(`upbound to ${upbound.value}`)
-  }
-)
+/** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2） */
+const width = computed(() => scene.castWidth * state.capacity + scene.castWidth * 0.5)
+/** 高さ（登場人物の高さ） */
+const height = computed(() => scene.castWidth * 2.125)
+/** アスペクト比 */
+const aspectRatio = computed(() => width.value / height.value)
 </script>
 <template>
   <v-card
-    variant="outlined"
-    :style="{ transform: transformProperty }"
-    :width="size"
-    :height="size * 1.25"
-    class="d-flex justify-center align-end bg-transparent"
+    flat
+    :width="width"
+    :style="{ transform: transformCard }"
+    class="d-flex justify-center align-start bg-transparent"
   >
-    <v-img :src="state.appearance">
+    <v-img
+      :aspect-ratio="aspectRatio"
+      :src="state.appearance"
+      :height="height"
+      >
       <v-sheet
-        class="d-flex justify-center align-end bg-transparent"
-        :height="size"
+        class="d-flex justify-center align-start bg-transparent"
+        :height="height"
       >
         <PuzzleCast
           v-for="cast in state.status.passengers"
@@ -55,12 +58,13 @@ watch(
         ></PuzzleCast>
       </v-sheet>
     </v-img>
-    {{ upbound }}
     <v-menu
       activator="parent"
-      v-model="upbound"
+      :close-on-content-click="false"
       disabled
       location="top"
+      v-model="upbound"
+      persistent
       transition="scroll-y-reverse-transition"
     >
       <div class="d-flex justify-center">
@@ -77,9 +81,11 @@ watch(
     </v-menu>
     <v-menu
       activator="parent"
-      v-model="downbound"
+      :close-on-content-click="false"
       disabled
       location="bottom"
+      v-model="downbound"
+      persistent
       transition="scroll-y-transition"
     >
       <div class="d-flex justify-center">

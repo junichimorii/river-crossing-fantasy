@@ -18,6 +18,8 @@ export interface Scene {
   }
   /** ステージの背景画像URL */
   landscape: string
+  /** ステージの実績 */
+  records: ('started'|'swiped'|'gotOn'|'gotOnRower'|'leaved'|'arrived')[]
   /** ステージに登場する乗り物 */
   carriers: Carrier[]
   /** ステージの登場人物 */

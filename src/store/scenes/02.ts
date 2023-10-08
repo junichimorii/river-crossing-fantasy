@@ -9,9 +9,10 @@ const scene: Scene = {
     transportation: '2人乗りのボートが1艘',
   },
   landscape: '/images/landscapes/daytime-river.png',
+  records: [],
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat.png',
+    appearance: '/images/carriers/boat2.png',
     capacity: 2,
     status: {...defaultCarrierStatus},
   }],
