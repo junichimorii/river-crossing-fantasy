@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { computed, toRefs, ref, watch } from 'vue'
+import { computed, onMounted, toRefs, ref, watch, watchEffect } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
-import useCarrier from '@/composable/use-carrier'
+import useCarrier from '@/composables/use-carrier'
 import { useSceneStore } from '@/store/scene'
 import type { Carrier } from '@/types/carrier'
 const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, canLeave, isUpbound, isDownbound, leave } = useCarrier(state)
+const { y, upbound, downbound, init, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
@@ -25,8 +25,15 @@ const amount = useTransition(y, {
 const transformProperty = computed(() => `translate(0, ${amount.value * scene.riverSize}px)`)
 /** サイズ（登場人物の幅 * 登場人物の人数 + 登場人物の幅） */
 const size = computed(() => scene.castSize * state.capacity + scene.castSize)
-const upbound = computed(() => canLeave.value && isUpbound.value)
-const downbound = computed(() => canLeave.value && isDownbound.value)
+onMounted(async () => {
+  await init()
+})
+watch(
+  () => upbound.value,
+  () => {
+    console.log(`upbound to ${upbound.value}`)
+  }
+)
 </script>
 <template>
   <v-card
@@ -48,6 +55,7 @@ const downbound = computed(() => canLeave.value && isDownbound.value)
         ></PuzzleCast>
       </v-sheet>
     </v-img>
+    {{ upbound }}
     <v-menu
       activator="parent"
       v-model="upbound"

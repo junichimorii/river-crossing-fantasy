@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import type { UseSwipeDirection } from '@vueuse/core'
 import { useSwipe, usePointerSwipe } from '@vueuse/core'
-import useCast from '@/composable/use-cast'
+import useCast from '@/composables/use-cast'
 import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
 const { state } = defineProps<{

@@ -2,8 +2,8 @@ import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
-import useCarrier from '@/composable/use-carrier'
-import useCast from '@/composable/use-cast'
+import useCarrier from '@/composables/use-carrier'
+import useCast from '@/composables/use-cast'
 import type { Scene } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
@@ -67,7 +67,7 @@ export const useSceneStore = defineStore('scene', () => {
     } else if(request === 'getOn'){
       // 搭乗可能な乗り物（空席があり、登場人物と同じ岸）があれば登場人物を船に乗せる
       const carrier = state.value.carriers.find(carrier =>
-        useCarrier(carrier).isBoardable.value && carrier.status.isCrossed === cast.status.isCrossed
+        useCarrier(carrier).available.value && carrier.status.isCrossed === cast.status.isCrossed
       )
       if (carrier === undefined) return
       await useCast(cast).getOn()
