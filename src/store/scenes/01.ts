@@ -8,8 +8,8 @@ const scene: Scene = {
     conditions: 'すべての登場人物が対岸に渡る',
     transportation: '1人乗りのボートが1艘',
   },
+  passing: 1,
   landscape: '/images/landscapes/daytime-river.png',
-  records: [],
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat1.png',

@@ -8,17 +8,17 @@ import { PuzzleDialog, PuzzleNavigation, PuzzleStage } from '@/components'
 const route = useRoute()
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
-const { load } = useRecordsStore()
+const records = useRecordsStore()
 const scene = useSceneStore()
 /** パラメータで渡されたIDのシーンを開始する */
-const init = async (id: string|string[]) => {
-  const config = await load(id)
-  await scene.init(config)
+const load = async (id: string|string[]) => {
+  if(Array.isArray(id)) throw false
+  await scene.load(parseInt(id))
 }
 watch(
   () => route.params.id,
   async newId => {
-    await init(newId).catch(() => {
+    await load(newId).catch(() => {
       router.push({ path: '/home' })
     })
   },

@@ -1,42 +1,33 @@
-import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { Records, Record } from '@/types/records'
-import type { Scene } from '@/types/scene'
-import { s01, s02 } from './scenes'
 /**
  * 実績管理
  */
 export const useRecordsStore = defineStore('records', () => {
   const state = useStorage<Records>('RIVER_CROSSING_RECORDS', {
-    stage: 0,
-    records: new Set<Record>(),
+    scenes: new Map(),
+    actions: new Set<Record>(),
   })
-  const now = ref(0)
-  const scenes = [ s01, s02 ]
-  /** 指定されたIDのシーンを読み込み */
-  const load = async (id: string|string[]): Promise<Scene> => {
-    if(Array.isArray(id)) throw false
-    const scene = scenes.find(scene => scene.id === parseInt(id))
-    if(!scene) throw false
-    now.value = parseInt(id)
-    return scene
+  /**  各ステージをクリアした結果を格納する */
+  const report = async (
+    id: number,
+    isCompleted: boolean,
+  ) => {
+    const last = state.value.scenes.get(id)
+    state.value.scenes.set(id, last || isCompleted)
+    console.log(`records: scene ${id} completed ${isCompleted}`)
   }
-  const cleared = async (): Promise<void> => {
-    state.value.stage = now.value
-  }
-  /**  実績解除 */
-  const add = async (
+  /**  実績を格納する */
+  const addRecord = async (
     record: Record
   ) => {
-    state.value.records.add(record)
-    console.log(`records: set ${record}`)
+    state.value.actions.add(record)
+    console.log(`records: add ${record}`)
   }
   return {
     state,
-    scenes,
-    load,
-    cleared,
-    add,
+    report,
+    addRecord,
   }
 })

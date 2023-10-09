@@ -8,8 +8,8 @@ const scene: Scene = {
     conditions: 'すべての登場人物が最小回数で対岸に渡る',
     transportation: '2人乗りのボートが1艘',
   },
+  passing: 1,
   landscape: '/images/landscapes/daytime-river.png',
-  records: [],
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

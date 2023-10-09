@@ -4,8 +4,7 @@ import { PuzzleConditions } from '@/components'
 import { useSceneStore } from '@/store/scene'
 const scene = useSceneStore()
 /** 初回実行時のみダイアログを表示 */
-const dialog = computed(() => !scene.state.records.includes('started'))
-
+const dialog = computed(() => !scene.records.has('started'))
 </script>
 
 <template>

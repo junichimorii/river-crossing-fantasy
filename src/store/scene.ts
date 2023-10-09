@@ -1,12 +1,13 @@
-import { computed } from 'vue'
+import { computed, ref, Ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
 import useCarrier from '@/composables/use-carrier'
 import useCast from '@/composables/use-cast'
-import type { Scene, SceneRecord } from '@/types/scene'
+import type { Scene, Record } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
+import { s01, s02 } from './scenes'
 const { width, height } = useWindowSize()
 /**
  * シーン（ステージ）管理
@@ -19,11 +20,15 @@ export const useSceneStore = defineStore('scene', () => {
       conditions: '',
       transportation: '',
     },
+    passing: 0,
     landscape: '',
-    records: new Set<SceneRecord>(),
     carriers: [],
     casts: [],
   }, sessionStorage)
+  /** シーン一覧 */
+  const scenes = [ s01, s02 ]
+  /** シーンの実績 */
+  const records: Ref<Set<Record>> = ref(new Set<Record>())
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
   /** 登場人物の幅 */
@@ -34,21 +39,24 @@ export const useSceneStore = defineStore('scene', () => {
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
-  /**  パズルを準備する */
-  const init = async (
-    config: Scene
-  ) => {
+  /** 指定されたIDのシーンを読み込む */
+  const load = async (id: number) => {
+    const config = scenes.find(scene => scene.id === id)
+    if(!config) throw false
     state.value = config
+    console.log('scene: loaded')
   }
   /** シーンの状態を初期化 */
   const start = async () => {
+    console.log('scene: start')
     await Promise.all(state.value.carriers.map(async carrier => {
       return await useCarrier(carrier).init()
     }))
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).init()
     }))
-    await addRecord('started')
+    records.value.clear()
+    records.value.add('started')
   }
   /** 登場人物をスワイプした時の行動 */
   const action = async(
@@ -72,9 +80,9 @@ export const useSceneStore = defineStore('scene', () => {
       if (carrier === undefined) return
       await useCast(cast).getOn()
       await useCarrier(carrier).pickUp(cast)
-      await addRecord('gotOn')
+      records.value.add('gotOn')
       if (useCarrier(carrier).canLeave.value) {
-        await addRecord('gotOnRower')
+        records.value.add('gotOnRower')
       }
     }
   }
@@ -86,7 +94,7 @@ export const useSceneStore = defineStore('scene', () => {
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).deactivate()
     }))
-    await addRecord('leaved')
+    records.value.add('left')
   }
   /** 乗り物が到着した時の行動 */
   const arrive = async (
@@ -103,23 +111,25 @@ export const useSceneStore = defineStore('scene', () => {
       await useCast(cast).getOff()
       await useCarrier(carrier).dropOff(cast)
     }))
-    await addRecord('arrived')
+    records.value.add('arrived')
+    // クリア判定
+    if (isCompleted.value) {
+      terminate()
+    }
   }
-  /**  実績解除 */
-  const addRecord = async (
-    record: SceneRecord
-  ) => {
-    state.value.records.add(record)
-    console.log(`scene: add record ${record}`)
+  /** シーンの終了時 */
+  const terminate = async () => {
+    records.value.add('completed')
   }
   return {
     state,
+    records,
     stageSize,
     castWidth,
     originCasts,
     destinationCasts,
     isCompleted,
-    init,
+    load,
     start,
     action,
     leave,
