@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import type { UseSwipeDirection } from '@vueuse/core'
-import { useEventListener, usePointerSwipe, useSwipe } from '@vueuse/core'
+import { usePointerSwipe, useSwipe } from '@vueuse/core'
 import useCast from '@/composables/use-cast'
 import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
@@ -30,10 +30,6 @@ const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerS
     onSwipeEnd(event: PointerEvent, direction: UseSwipeDirection) {
       scene.action(state, direction)
     },
-})
-/** スワイプ時のエラーを無効化 */
-useEventListener(document, 'touchstart', (event) => {
-  if(event.cancelable) event.preventDefault()
 })
 /** 矢印の色 */
 const signal = computed(() => 

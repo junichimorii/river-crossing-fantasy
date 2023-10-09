@@ -4,7 +4,7 @@ import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
 import useCarrier from '@/composables/use-carrier'
 import useCast from '@/composables/use-cast'
-import type { Scene } from '@/types/scene'
+import type { Scene, SceneRecord } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 const { width, height } = useWindowSize()
@@ -20,7 +20,7 @@ export const useSceneStore = defineStore('scene', () => {
       transportation: '',
     },
     landscape: '',
-    records: [],
+    records: new Set<SceneRecord>(),
     carriers: [],
     casts: [],
   }, sessionStorage)
@@ -42,13 +42,13 @@ export const useSceneStore = defineStore('scene', () => {
   }
   /** シーンの状態を初期化 */
   const start = async () => {
-    state.value.records = ['started']
     await Promise.all(state.value.carriers.map(async carrier => {
       return await useCarrier(carrier).init()
     }))
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).init()
     }))
+    await addRecord('started')
   }
   /** 登場人物をスワイプした時の行動 */
   const action = async(
@@ -72,6 +72,10 @@ export const useSceneStore = defineStore('scene', () => {
       if (carrier === undefined) return
       await useCast(cast).getOn()
       await useCarrier(carrier).pickUp(cast)
+      await addRecord('gotOn')
+      if (useCarrier(carrier).canLeave.value) {
+        await addRecord('gotOnRower')
+      }
     }
   }
   /** 乗り物が出発した時の行動 */
@@ -82,6 +86,7 @@ export const useSceneStore = defineStore('scene', () => {
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).deactivate()
     }))
+    await addRecord('leaved')
   }
   /** 乗り物が到着した時の行動 */
   const arrive = async (
@@ -98,6 +103,14 @@ export const useSceneStore = defineStore('scene', () => {
       await useCast(cast).getOff()
       await useCarrier(carrier).dropOff(cast)
     }))
+    await addRecord('arrived')
+  }
+  /**  実績解除 */
+  const addRecord = async (
+    record: SceneRecord
+  ) => {
+    state.value.records.add(record)
+    console.log(`scene: add record ${record}`)
   }
   return {
     state,

@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import { Records } from '@/types/records'
+import { Records, Record } from '@/types/records'
 import type { Scene } from '@/types/scene'
 import { s01, s02 } from './scenes'
 /**
@@ -10,12 +10,7 @@ import { s01, s02 } from './scenes'
 export const useRecordsStore = defineStore('records', () => {
   const state = useStorage<Records>('RIVER_CROSSING_RECORDS', {
     stage: 0,
-    started: false,
-    swiped: false,
-    gotOn: false,
-    gotOnRower: false,
-    leaved: false,
-    arrived: false,
+    records: new Set<Record>(),
   })
   const now = ref(0)
   const scenes = [ s01, s02 ]
@@ -30,10 +25,18 @@ export const useRecordsStore = defineStore('records', () => {
   const cleared = async (): Promise<void> => {
     state.value.stage = now.value
   }
+  /**  実績解除 */
+  const add = async (
+    record: Record
+  ) => {
+    state.value.records.add(record)
+    console.log(`records: set ${record}`)
+  }
   return {
     state,
     scenes,
     load,
     cleared,
+    add,
   }
 })

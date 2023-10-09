@@ -9,10 +9,10 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, upbound, downbound, leave } = useCarrier(state)
+const { y, upbound, downbound, duration, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
-  duration: 1000,
+  duration: duration.value * 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
     scene.leave(state)

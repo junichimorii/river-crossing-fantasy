@@ -21,6 +21,10 @@ interface UseCarrierReturn {
   downbound: Ref<boolean>
   /** 乗り物が利用可能（空席がある） */
   available: Ref<boolean>
+  /** 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない） */
+  canLeave: Ref<boolean>
+  /** 移動速度 */
+  duration: Ref<number>
   /** 乗り物のステータスを初期化 */
   init: () => Promise<void>
   /** 乗客を乗せる */
@@ -39,8 +43,8 @@ const useCarrier = (
   const upbound = computed(() => canLeave.value && !state.status.isCrossed)
   const downbound = computed(() => canLeave.value && state.status.isCrossed)
   const available = computed(() => state.status.passengers.length < state.capacity)
-  /** 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない） */
   const canLeave = computed(() => !state.status.isSailing && state.status.passengers.some(cast => cast.role.canRow))
+  const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
   const init = async () => {
     console.log(`useCarrier: init carrier ${state.id}`)
     state.status = {...defaultStatus}
@@ -72,6 +76,8 @@ const useCarrier = (
     upbound,
     downbound,
     available,
+    canLeave,
+    duration,
     init,
     pickUp,
     dropOff,
