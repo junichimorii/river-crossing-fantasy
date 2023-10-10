@@ -1,3 +1,5 @@
+import type { Scene } from '@/types/scene'
+
 /**
  * 川渡りパズルの実績
  */

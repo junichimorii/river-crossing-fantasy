@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
 import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
-const scene: Scene = {
+const scene: Scene = Object.freeze({
   id: 1,
   title: '一人旅',
   description: {
@@ -25,5 +25,5 @@ const scene: Scene = {
     },
     status: {...defaultCastStatus},
   }],
-}
+})
 export default scene

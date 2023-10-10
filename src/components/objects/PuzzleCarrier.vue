@@ -22,7 +22,7 @@ const amount = useTransition(y, {
   },
 })
 /** 川幅（乗り物が往復する距離） */
-const riverWidth = computed(() => scene.stageSize * 0.35)
+const riverWidth = computed(() => scene.stageSize * 0.3)
 /** v-cardに適用するCSS transformプロパティ */
 const transformCard = computed(() => {
   const y = amount.value * riverWidth.value

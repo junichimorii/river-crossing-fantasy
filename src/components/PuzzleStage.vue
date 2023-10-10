@@ -27,7 +27,7 @@ const scene = useSceneStore()
         </v-sheet>
         <v-sheet
           class="d-flex justify-center align-end bg-transparent"
-          :height="scene.stageSize * 0.45"
+          :height="scene.stageSize * 0.4"
         >
           <PuzzleCarrier
             v-for="carrier in scene.state.carriers"
@@ -37,7 +37,7 @@ const scene = useSceneStore()
         </v-sheet>
         <v-sheet
           class="d-flex justify-start align-end bg-transparent"
-          :height="scene.stageSize * 0.15"
+          :height="scene.stageSize * 0.2"
         >
           <PuzzleCast
             v-for="cast in scene.originCasts"

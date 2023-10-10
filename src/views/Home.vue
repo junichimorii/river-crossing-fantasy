@@ -21,7 +21,6 @@ const records = useRecordsStore()
       >
         <v-list-item
           :to="`/${scene.id}`"
-          :disabled="scene.id < records.state.stage"
         >
           <template v-slot:prepend>
             <v-chip color="green">

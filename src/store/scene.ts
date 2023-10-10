@@ -7,7 +7,6 @@ import useCast from '@/composables/use-cast'
 import type { Scene, Record } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
-import { s01, s02 } from './scenes'
 const { width, height } = useWindowSize()
 /**
  * シーン（ステージ）管理
@@ -25,10 +24,10 @@ export const useSceneStore = defineStore('scene', () => {
     carriers: [],
     casts: [],
   }, sessionStorage)
-  /** シーン一覧 */
-  const scenes = [ s01, s02 ]
   /** シーンの実績 */
   const records: Ref<Set<Record>> = ref(new Set<Record>())
+  /** カウンター */
+  const count = ref(0)
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
   /** 登場人物の幅 */
@@ -39,23 +38,20 @@ export const useSceneStore = defineStore('scene', () => {
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
-  /** 指定されたIDのシーンを読み込む */
-  const load = async (id: number) => {
-    const config = scenes.find(scene => scene.id === id)
-    if(!config) throw false
+  /** シーンを読み込む */
+  const load = async (config: Scene) => {
     state.value = config
-    console.log('scene: loaded')
+    records.value.clear()
+  }
+  const unload = async () => {
+    state.value = null
   }
   /** シーンの状態を初期化 */
   const start = async () => {
     console.log('scene: start')
-    await Promise.all(state.value.carriers.map(async carrier => {
-      return await useCarrier(carrier).init()
-    }))
-    await Promise.all(state.value.casts.map(async cast => {
-      return await useCast(cast).init()
-    }))
-    records.value.clear()
+    state.value.carriers.forEach(async carrier => await useCarrier(carrier).init())
+    state.value.casts.forEach(async cast => await useCast(cast).init())
+    count.value = 0
     records.value.add('started')
   }
   /** 登場人物をスワイプした時の行動 */
@@ -111,6 +107,7 @@ export const useSceneStore = defineStore('scene', () => {
       await useCast(cast).getOff()
       await useCarrier(carrier).dropOff(cast)
     }))
+    count.value++
     records.value.add('arrived')
     // クリア判定
     if (isCompleted.value) {
@@ -130,6 +127,7 @@ export const useSceneStore = defineStore('scene', () => {
     destinationCasts,
     isCompleted,
     load,
+    unload,
     start,
     action,
     leave,

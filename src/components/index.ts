@@ -3,6 +3,7 @@ import PuzzleStage from './PuzzleStage.vue'
 import PuzzleConditions from './navigation/PuzzleConditions.vue'
 import PuzzleConsole from './navigation/PuzzleConsole.vue'
 import PuzzleDialog from './navigation/PuzzleDialog.vue'
+import PuzzleResult from './navigation/PuzzleResult.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
 import PuzzleCast from './objects/PuzzleCast.vue'
 export {
@@ -11,6 +12,7 @@ export {
   PuzzleConditions,
   PuzzleConsole,
   PuzzleDialog,
+  PuzzleResult,
   PuzzleCarrier,
   PuzzleCast,
 }

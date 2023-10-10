@@ -1,5 +1,5 @@
-import { Carrier } from '@/types/carrier'
-import { Cast } from '@/types/cast'
+import type { Carrier } from '@/types/carrier'
+import type { Cast } from '@/types/cast'
 
 /**
  * シーン
@@ -25,6 +25,7 @@ export interface Scene {
   /** ステージの登場人物 */
   casts: Cast[]
 }
+
 /** シーンの実績 */
 export type Record = (
   'started'     // パズルを開始した
