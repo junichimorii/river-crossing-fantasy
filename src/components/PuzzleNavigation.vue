@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useWindowSize, useElementSize } from '@vueuse/core'
 import { useSceneStore } from '@/store/scene'
-import { PuzzleConditions, PuzzleConsole } from '@/components'
+import { PuzzleConditions, PuzzleConsole, PuzzleHistory } from '@/components'
 const target = ref<HTMLElement | null>(null)
 const scene = useSceneStore()
 const { width: windowWidth, height: windowHeight } = useWindowSize()
@@ -22,7 +22,7 @@ const contentsHeight = computed(() => windowHeight.value - scene.stageSize - ele
       <PuzzleConditions :max-height="contentsHeight"></PuzzleConditions>
     </v-window-item>
     <v-window-item value="history">
-      Two
+      <PuzzleHistory :max-height="contentsHeight"></PuzzleHistory>
     </v-window-item>
     <v-window-item value="console">
       <PuzzleConsole :max-height="contentsHeight"></PuzzleConsole>
@@ -43,8 +43,8 @@ const contentsHeight = computed(() => windowHeight.value - scene.stageSize - ele
         <span>履歴</span>
       </v-tab>
       <v-tab value="console">
-        <v-icon>mdi-rewind</v-icon>
-        <span>戻る</span>
+        <v-icon>mdi-cog</v-icon>
+        <span>設定</span>
       </v-tab>
     </v-tabs>
   </v-bottom-navigation>

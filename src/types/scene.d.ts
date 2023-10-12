@@ -1,4 +1,5 @@
-import type { Carrier } from '@/types/carrier'
+import type { Category } from '@/types/records'
+import type { Carrier, Direction } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 
 /**
@@ -16,6 +17,8 @@ export interface Scene {
     /** ステージに登場する乗り物の説明 */
     transportation: string
   }
+  /** パズル種別 */
+  category: Category | null
   /** ステージの合格基準となる回数または時間 */
   passing: number
   /** ステージの背景画像URL */
@@ -26,13 +29,12 @@ export interface Scene {
   casts: Cast[]
 }
 
-/** シーンの実績 */
-export type Record = (
-  'started'     // パズルを開始した
-  |'swiped'     // 登場人物をスワイプした
-  |'gotOn'      // 乗り物に乗った
-  |'gotOnRower' // 乗り物を操作できる登場人物が乗った
-  |'left'       // 乗り物が出発した
-  |'arrived'    // 乗り物が対岸に到着した
-  |'completed'  // パズルをクリアした
-)
+/**
+ * 履歴
+ */
+export interface History {
+  /** 移動した登場人物 */
+  casts: Cast[]
+  /** 所要時間 */
+  duration: number 
+}

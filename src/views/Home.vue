@@ -10,27 +10,31 @@ const records = useRecordsStore()
     class="d-flex justify-center align-start fill-height"
   >
     <v-container>
-      <h1 class="text-h6 text-sm-h4 text-center py-2">
+      <h1 class="text-h5 text-sm-h3 text-center py-2">
         River Crossing Puzzles
       </h1>
       <div class="text-subtitle-2 text-center">Made with Vuetify</div>
-      <v-card
-        v-for="scene in records.scenes"
-        :key="scene.id"
-        class="my-3"
+      <v-list
+        class="pa-3 bg-transparent"
       >
         <v-list-item
+          v-for="scene in records.scenes"
+          :key="scene.id"
           :to="`/${scene.id}`"
+          :title="scene.title"
+          class="elevation-4 rounded bg-white my-1"
         >
           <template v-slot:prepend>
-            <v-chip color="green">
+            <v-chip color="green" class="mr-3">
               Q{{scene.id}}
             </v-chip>
           </template>
-          <v-list-item-title class="pl-3">{{ scene.title }}</v-list-item-title>
+          <template v-slot:append>
+            <v-icon icon="mdi-lock"></v-icon>
+          </template>
           <v-list-item-subtitle></v-list-item-subtitle>
         </v-list-item>
-      </v-card>
+      </v-list>
     </v-container>
   </v-img>
 </template>

@@ -4,7 +4,10 @@ import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
 import useCarrier from '@/composables/use-carrier'
 import useCast from '@/composables/use-cast'
-import type { Scene, Record } from '@/types/scene'
+import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
+import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
+import type { Category, Action } from '@/types/records'
+import type { Scene, History } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 const { width, height } = useWindowSize()
@@ -19,15 +22,18 @@ export const useSceneStore = defineStore('scene', () => {
       conditions: '',
       transportation: '',
     },
+    category: null,
     passing: 0,
     landscape: '',
     carriers: [],
     casts: [],
   }, sessionStorage)
-  /** シーンの実績 */
-  const records: Ref<Set<Record>> = ref(new Set<Record>())
+  /** シーンの行動履歴 */
+  const history: Ref<Set<History>> = ref(new Set<History>())
+  /** シーンの行動実績 */
+  const actions: Ref<Set<Action>> = ref(new Set<Action>())
   /** カウンター */
-  const count = ref(0)
+  const count = computed(() => [...history.value].reduce((a, b) => a + b.duration, 0))
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
   /** 登場人物の幅 */
@@ -41,25 +47,34 @@ export const useSceneStore = defineStore('scene', () => {
   /** シーンを読み込む */
   const load = async (config: Scene) => {
     state.value = config
-    records.value.clear()
+    await init()
   }
+
   const unload = async () => {
     state.value = null
   }
+
   /** シーンの状態を初期化 */
-  const start = async () => {
-    console.log('scene: start')
-    state.value.carriers.forEach(async carrier => await useCarrier(carrier).init())
-    state.value.casts.forEach(async cast => await useCast(cast).init())
-    count.value = 0
-    records.value.add('started')
+  const init = async () => {
+    state.value.carriers.forEach(async carrier => carrier.status = structuredClone(defaultCarrierStatus))
+    state.value.casts.forEach(async cast => cast.status = structuredClone(defaultCastStatus))
+    history.value.clear()
+    actions.value.clear()
   }
+
+  /** シーンを開始 */
+  const start = async () => {
+    await init()
+    actions.value.add('started')
+    console.log('scene: started')
+  }
+
   /** 登場人物をスワイプした時の行動 */
   const action = async(
     cast: Cast,
     direction: UseSwipeDirection
   ) => {
-    console.log(`scene: swipe ${direction} by cast ${cast.id}`)
+    console.log(`scene: swipe ${direction} by cast ${cast.id}.`)
     if(cast.status.disabled) return
     const request = await useCast(cast).request(direction)
     if(request === 'getOff') {
@@ -68,6 +83,7 @@ export const useSceneStore = defineStore('scene', () => {
       await Promise.all(state.value.carriers.map(async carrier => {
         await useCarrier(carrier).dropOff(cast)
       }))
+      console.log(`scene: cast ${cast.id} got off the carrier.`)
     } else if(request === 'getOn'){
       // 搭乗可能な乗り物（空席があり、登場人物と同じ岸）があれば登場人物を船に乗せる
       const carrier = state.value.carriers.find(carrier =>
@@ -76,27 +92,35 @@ export const useSceneStore = defineStore('scene', () => {
       if (carrier === undefined) return
       await useCast(cast).getOn()
       await useCarrier(carrier).pickUp(cast)
-      records.value.add('gotOn')
+      actions.value.add('gotOn')
+      console.log(`scene: cast ${cast.id} got on the carrier ${carrier.id}.`)
       if (useCarrier(carrier).canLeave.value) {
-        records.value.add('gotOnRower')
+        actions.value.add('gotOnRower')
       }
     }
   }
+
   /** 乗り物が出発した時の行動 */
   const leave = async (
     carrier: Carrier,
   ) => {
-    console.log(`scene: leave by carrier ${carrier.id}`)
+    if (!actions.value.has('gotOnRower')) return
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).deactivate()
     }))
-    records.value.add('left')
+    actions.value.add('left')
+    console.log(`scene: carrier ${carrier.id} left.`)
   }
+
   /** 乗り物が到着した時の行動 */
   const arrive = async (
     carrier: Carrier,
   ) => {
-    console.log(`scene: arrive by carrier ${carrier.id}`)
+    if (!actions.value.has('gotOnRower')) return
+    history.value.add({
+      casts: carrier.status.passengers,
+      duration: useCarrier(carrier).duration.value
+    })
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).activate()
     }))
@@ -107,8 +131,8 @@ export const useSceneStore = defineStore('scene', () => {
       await useCast(cast).getOff()
       await useCarrier(carrier).dropOff(cast)
     }))
-    count.value++
-    records.value.add('arrived')
+    actions.value.add('arrived')
+    console.log(`scene: carrier ${carrier.id} arrived.`)
     // クリア判定
     if (isCompleted.value) {
       terminate()
@@ -116,11 +140,14 @@ export const useSceneStore = defineStore('scene', () => {
   }
   /** シーンの終了時 */
   const terminate = async () => {
-    records.value.add('completed')
+    actions.value.add('completed')
+    console.log(`scene: completed, count ${count.value}`)
   }
   return {
     state,
-    records,
+    history,
+    actions,
+    count,
     stageSize,
     castWidth,
     originCasts,

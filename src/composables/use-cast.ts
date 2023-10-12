@@ -20,8 +20,6 @@ interface UseCastReturn {
   upbound: Ref<boolean>
   /** 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる */
   downbound: Ref<boolean>
-  /** 登場人物のステータスを初期化 */
-  init: () => Promise<void>
   /** ステータスの変更を無効にする */
   deactivate: () => Promise<void>
   /** ステータスの変更を有効にする */
@@ -52,16 +50,10 @@ const useCast = (
     !state.status.disabled && 
     (state.status.isSeated && !state.status.isCrossed) || (!state.status.isSeated && state.status.isCrossed)
   )
-  const init = async () => {
-    console.log(`useCast: init cast ${state.id}`)
-    Object.assign(state.status, {...defaultStatus})
-  }
   const deactivate = async () => {
-    console.log(`useCast: deactivate cast ${state.id}`)
     state.status.disabled = true
   }
   const activate = async () => {
-    console.log(`useCast: activate cast ${state.id}`)
     state.status.disabled = false
   }
   const request = async (
@@ -74,22 +66,18 @@ const useCast = (
       : null
   }
   const getOn = async () => {
-    console.log(`useCast: getOn cast ${state.id}`)
     state.status.isSeated = true
   }
   const getOff = async () => {
-    console.log(`useCast: getOff cast ${state.id}`)
     state.status.isSeated = false
   }
   const crossed = async () => {
-    console.log(`useCast: crossed cast ${state.id}`)
     state.status.isCrossed = !state.status.isCrossed
   }
   return {
     location,
     upbound,
     downbound,
-    init,
     deactivate,
     activate,
     request,

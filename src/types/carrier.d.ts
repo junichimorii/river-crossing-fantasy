@@ -14,7 +14,7 @@ export interface Carrier {
   status: Status
 }
 /**
- * 川渡りパズルの乗り物の状態
+ * 乗り物の状態
  */
 export interface Status {
   /** 開始地点の対岸にいるかどうか */
@@ -24,3 +24,8 @@ export interface Status {
   /** 乗員 */
   passengers: Cast[]
 }
+
+/**
+ * 乗り物の進行方向
+ */
+export type Direction = 'up'|'down'

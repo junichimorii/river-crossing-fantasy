@@ -3,12 +3,13 @@ import { computed } from 'vue'
 import { useSceneStore } from '@/store/scene'
 const scene = useSceneStore()
 /** クリア時にオーバーレイを表示 */
-const overlay = computed(() => scene.records.has('completed'))
+const overlay = computed(() => scene.actions.has('completed'))
 </script>
 
 <template>
   <v-overlay
     v-model="overlay"
+    contained
     persistent
     class="d-flex justify-center align-center"
   >

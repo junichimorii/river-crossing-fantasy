@@ -4,7 +4,7 @@ import { PuzzleConditions } from '@/components'
 import { useSceneStore } from '@/store/scene'
 const scene = useSceneStore()
 /** 初回実行時のみダイアログを表示 */
-const dialog = computed(() => !scene.records.has('started'))
+const dialog = computed(() => !scene.actions.has('started'))
 </script>
 
 <template>
@@ -16,7 +16,14 @@ const dialog = computed(() => !scene.records.has('started'))
     <v-card>
       <PuzzleConditions></PuzzleConditions>
       <v-card-actions>
-        <v-btn color="primary" block @click="scene.start">Start</v-btn>
+        <v-btn
+          size="default"
+          color="green"
+          block
+          @click="scene.start"
+        >
+          Start
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

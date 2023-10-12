@@ -1,20 +1,18 @@
 import type { Scene } from '@/types/scene'
-import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
-import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
-const scene: Scene = Object.freeze({
+const scene = Object.freeze({
   id: 2,
   title: '二人旅',
   description: {
     conditions: 'すべての登場人物が最小回数で対岸に渡る',
     transportation: '2人乗りのボートが1艘',
   },
+  category: 'double-seated',
   passing: 1,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',
     capacity: 2,
-    status: {...defaultCarrierStatus},
   }],
   casts: [{
     id: 0,
@@ -23,7 +21,6 @@ const scene: Scene = Object.freeze({
     role: {
       canRow: true,
     },
-    status: {...defaultCastStatus},
   }, {
     id: 1,
     avatar: '/images/casts/villager2.png',
@@ -31,7 +28,6 @@ const scene: Scene = Object.freeze({
     role: {
       canRow: true,
     },
-    status: {...defaultCastStatus},
   }],
-})
+}) as Scene
 export default scene
