@@ -1,7 +1,9 @@
+// Composables
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
 import Stage from '@/views/Stage.vue'
+
 const routes: Array<RouteRecordRaw> = [{
   path: '/',
   redirect: '/home',
@@ -14,8 +16,10 @@ const routes: Array<RouteRecordRaw> = [{
     component: Stage,
   }]
 }]
+
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 })
+
 export default router

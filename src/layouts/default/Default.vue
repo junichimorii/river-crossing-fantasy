@@ -1,9 +1,9 @@
-<script lang="ts" setup>
-import AppView from './AppView.vue'
-</script>
-
 <template>
   <v-app>
-    <AppView />
+    <default-view />
   </v-app>
 </template>
+
+<script lang="ts" setup>
+  import DefaultView from './View.vue'
+</script>
