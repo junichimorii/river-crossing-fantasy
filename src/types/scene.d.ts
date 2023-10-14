@@ -1,5 +1,5 @@
 import type { Category } from '@/types/records'
-import type { Carrier, Direction } from '@/types/carrier'
+import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 
 /**

@@ -1,22 +1,18 @@
 import PuzzleNavigation from './PuzzleNavigation.vue'
 import PuzzleStage from './PuzzleStage.vue'
-import PuzzleConditions from './navigation/PuzzleConditions.vue'
-import PuzzleController from './navigation/PuzzleController.vue'
-import PuzzleDialog from './navigation/PuzzleDialog.vue'
-import PuzzleHistory from './navigation/PuzzleHistory.vue'
-import PuzzleResult from './navigation/PuzzleResult.vue'
-import PuzzleSnackbar from './navigation/PuzzleSnackbar.vue'
+import SceneConditions from './navigation/SceneConditions.vue'
+import SceneController from './navigation/SceneController.vue'
+import SceneHistory from './navigation/SceneHistory.vue'
+import SceneResult from './navigation/SceneResult.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
 import PuzzleCast from './objects/PuzzleCast.vue'
 export {
   PuzzleNavigation,
   PuzzleStage,
-  PuzzleConditions,
-  PuzzleController,
-  PuzzleDialog,
-  PuzzleHistory,
-  PuzzleResult,
-  PuzzleSnackbar,
+  SceneConditions,
+  SceneController,
+  SceneHistory,
+  SceneResult,
   PuzzleCarrier,
   PuzzleCast,
 }

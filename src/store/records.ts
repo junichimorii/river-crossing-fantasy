@@ -1,18 +1,16 @@
-import { computed, ref, Ref } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import type { Records, Category, Action } from '@/types/records'
+import type { Category, Activity } from '@/types/records'
 import * as scenes from './scenes'
 /**
  * 実績管理
  */
 export const useRecordsStore = defineStore('records', () => {
-  const state = useStorage<Records>('RIVER_CROSSING_RECORDS', {
-    scenes: new Map<number, number>([
-      [1, 0]
-    ]),
-    categories: new Set<Category>(),
-    actions: new Set<Action>(),
+  const state = ref({
+    scenes: useStorage<Map<number, number>>('RIVER_CROSSING_PUZZLES_SCENES', new Map<number, number>()),
+    categories: useStorage<Set<Category>>('RIVER_CROSSING_PUZZLES_CATEGORIES', new Set<Category>()),
+    activities: useStorage<Set<Activity>>('RIVER_CROSSING_PUZZLES_ACTIVITIES', new Set<Activity>()),
   })
   /** 指定されたIDのシーンを読み込む */
   const load = async (
@@ -20,41 +18,35 @@ export const useRecordsStore = defineStore('records', () => {
   ) => {
     const config = Object.values(scenes).find(scene => scene.id === id)
     if(!config) throw false
-    console.log(`records: loaded scene ${id}`)
     return config
   }
+  /**  行動実績を獲得しているかどうか */
+  const hasActivity = (
+    activity: Activity
+  ) => state.value.activities.has(activity)
   /**  各ステージをクリアした結果を格納する */
   const report = async (
     id: number,
+    category: Category,
     score: number,
   ) => {
     const last = state.value.scenes.get(id) || 0
     state.value.scenes.set(id, Math.max(last, score))
     state.value.scenes.set(id + 1, 0)
-    console.log(`records: scene ${id}, score ${score}`)
+    state.value.categories.add(category)
   }
-  /**  プレイしたパズル種別を格納する */
-  const addCategories = async (
-    categories: Category[]
+  /**  行動実績を獲得する */
+  const obtain = async (
+    activity: Activity
   ) => {
-    categories.forEach(category => {
-      state.value.categories.add(category)
-      console.log(`records: add category ${category}`)
-    })
-  }
-  /**  行動実績を格納する */
-  const addAction = async (
-    action: Action
-  ) => {
-    state.value.actions.add(action)
-    console.log(`records: add action ${action}`)
+    state.value.activities.add(activity)
   }
   return {
     state,
     scenes,
     load,
+    hasActivity,
     report,
-    addCategories,
-    addAction,
+    obtain,
   }
 })

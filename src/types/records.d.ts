@@ -7,7 +7,7 @@ export interface Records {
   /** 実施したパズル種別 */
   categories: Set<Category>
   /** 実施した行動 */
-  actions: Set<Action>
+  activities: Set<Activity>
 }
 /** 種別 */
 export type Category =
@@ -18,10 +18,13 @@ export type Category =
   |'doubleSeated'  // 二人乗り
 
   /** 行動実績 */
-export type Action =
-  'started'     // 初めてパズルを開始した
-  |'gotOn'      // 初めて乗り物に乗った
-  |'gotOnRower' // 初めて乗り物を操作できる登場人物が乗った
-  |'left'       // 初めて乗り物が出発した
-  |'arrived'    // 初めて乗り物が対岸に到着した
-  |'completed'  // 初めてシーンをクリアした
+export type Activity =
+  'started'             // 初めてパズルを開始した
+  |'swiped'             // 初めて登場人物をスワイプした
+  |'gotOn'              // 初めて乗り物に乗った
+  |'gotOff'             // 初めて乗り物から降りた
+  |'gotOnRower'         // 初めて乗り物を操作できる登場人物が乗った
+  |'left'               // 初めて乗り物が出発した
+  |'arrived'            // 初めて乗り物が対岸に到着した
+  |'gotOnFromOpposite'  // 初めて向こう岸から乗り物に乗った
+  |'completed'          // 初めてシーンをクリアした
