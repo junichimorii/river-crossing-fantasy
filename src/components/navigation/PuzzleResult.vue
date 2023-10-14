@@ -11,7 +11,7 @@ const overlay = computed(() => scene.actions.has('completed'))
     v-model="overlay"
     contained
     persistent
-    class="d-flex justify-center align-center"
+    class="d-flex justify-center align-start"
   >
     <v-card
       flat

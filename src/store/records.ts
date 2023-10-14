@@ -2,7 +2,7 @@ import { computed, ref, Ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import type { Records, Category, Action } from '@/types/records'
-import { s01, s02 } from './scenes'
+import * as scenes from './scenes'
 /**
  * 実績管理
  */
@@ -14,13 +14,11 @@ export const useRecordsStore = defineStore('records', () => {
     categories: new Set<Category>(),
     actions: new Set<Action>(),
   })
-  /** シーン一覧 */
-  const scenes = [ s01, s02 ]
   /** 指定されたIDのシーンを読み込む */
   const load = async (
     id: number
   ) => {
-    const config = scenes.find(scene => scene.id === id)
+    const config = Object.values(scenes).find(scene => scene.id === id)
     if(!config) throw false
     console.log(`records: loaded scene ${id}`)
     return config

@@ -11,7 +11,7 @@ const scene = useSceneStore()
     title="履歴"
   >
     <v-divider></v-divider>
-    <v-card-text>
+    <v-card-item>
       <v-list>
         <v-list-item
           v-for="(history, i) in scene.history"
@@ -38,12 +38,12 @@ const scene = useSceneStore()
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
-            <span v-if="scene.state.category === 'bridge-and-torch'">
+            <span v-if="scene.state.category === 'bridgeAndTorch'">
               + {{ history.duration }} min
             </span>
           </template>
         </v-list-item>
       </v-list>
-    </v-card-text>
+    </v-card-item>
   </v-card>
 </template>

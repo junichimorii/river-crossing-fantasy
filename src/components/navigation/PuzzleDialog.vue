@@ -4,14 +4,15 @@ import { PuzzleConditions } from '@/components'
 import { useSceneStore } from '@/store/scene'
 const scene = useSceneStore()
 /** 初回実行時のみダイアログを表示 */
-const dialog = computed(() => !scene.actions.has('started'))
+const dialog = computed(() => !scene.isPlaying)
 </script>
 
 <template>
   <v-dialog
     v-model="dialog"
     persistent
-    width="auto"
+    :retain-focus="false"
+    class="d-flex justify-center align-start"
   >
     <v-card>
       <PuzzleConditions></PuzzleConditions>

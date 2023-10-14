@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { useRoute, useRouter, onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useScreenOrientation } from '@vueuse/core'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
-import { PuzzleDialog, PuzzleNavigation, PuzzleStage, PuzzleResult } from '@/components'
+import { PuzzleDialog, PuzzleNavigation, PuzzleStage, PuzzleResult, PuzzleSnackbar } from '@/components'
 const route = useRoute()
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
@@ -26,20 +26,13 @@ onMounted(async () => {
 onUnmounted(async () => {
   await scene.unload()
 })
-onBeforeRouteLeave(async (to, from) => {
-})
-onBeforeRouteUpdate(async (to, from) => {
-  await load(to.params.id).catch(() => {
-    router.push({ path: '/home' })
-  })
-})
 </script>
 
 <template>
   <div v-if="loaded">
     <PuzzleStage></PuzzleStage>
     <PuzzleNavigation v-if="orientation === 'portrait-primary'"></PuzzleNavigation>
-    <PuzzleDialog></PuzzleDialog>
+    <PuzzleSnackbar></PuzzleSnackbar>
     <PuzzleResult></PuzzleResult>
   </div>
 </template>

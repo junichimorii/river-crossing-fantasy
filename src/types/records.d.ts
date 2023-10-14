@@ -11,16 +11,15 @@ export interface Records {
 }
 /** 種別 */
 export type Category =
-  'wolf-goat-and-cabbage'       // 敵と守護者がいる川渡りパズル
-  |'missionaries-and-cannibals' // 多数派を維持する川渡りパズル
-  |'bridge-and-torch'           // 制限時間のある川渡りパズル
-  |'single-seated'  // 一人乗り
-  |'double-seated'  // 二人乗り
+  'wolfGoatAndCabbage'        // 敵と守護者がいる川渡りパズル
+  |'missionariesAndCannibals' // 多数派を維持する川渡りパズル
+  |'bridgeAndTorch'           // 制限時間のある川渡りパズル
+  |'singleSeated'  // 一人乗り
+  |'doubleSeated'  // 二人乗り
 
   /** 行動実績 */
 export type Action =
   'started'     // 初めてパズルを開始した
-  |'swiped'     // 初めて登場人物をスワイプした
   |'gotOn'      // 初めて乗り物に乗った
   |'gotOnRower' // 初めて乗り物を操作できる登場人物が乗った
   |'left'       // 初めて乗り物が出発した

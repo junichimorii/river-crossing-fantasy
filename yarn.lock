@@ -2510,6 +2510,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"river-crossing-puzzles@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "river-crossing-puzzles@workspace:."
+  dependencies:
+    "@babel/types": ^7.23.0
+    "@mdi/font": 7.3.67
+    "@types/node": ^20.8.5
+    "@vitejs/plugin-vue": ^4.4.0
+    "@vue/eslint-config-typescript": ^12.0.0
+    "@vueuse/core": ^10.5.0
+    core-js: ^3.33.0
+    eslint: ^8.51.0
+    eslint-plugin-vue: ^9.17.0
+    pinia: ^2.1.7
+    roboto-fontface: "*"
+    sass: ^1.69.3
+    typescript: ^5.2.2
+    unplugin-fonts: ^1.0.3
+    vite: ^4.4.11
+    vite-plugin-vuetify: ^1.0.2
+    vue: ^3.3.4
+    vue-router: ^4.2.5
+    vue-tsc: ^1.8.19
+    vuetify: ^3.3.21
+  languageName: unknown
+  linkType: soft
+
 "roboto-fontface@npm:*":
   version: 0.10.0
   resolution: "roboto-fontface@npm:0.10.0"
@@ -3033,33 +3060,6 @@ __metadata:
   checksum: 58b6c62a66a375ce5df460fcb7ba41b37c8637c635faf06ef472ae4197f412cf9ad83586cd8e3f66c486404fbe8550e694f90ff724a571d1ba78830791099c59
   languageName: node
   linkType: hard
-
-"vuetify-project@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "vuetify-project@workspace:."
-  dependencies:
-    "@babel/types": ^7.23.0
-    "@mdi/font": 7.3.67
-    "@types/node": ^20.8.5
-    "@vitejs/plugin-vue": ^4.4.0
-    "@vue/eslint-config-typescript": ^12.0.0
-    "@vueuse/core": ^10.5.0
-    core-js: ^3.33.0
-    eslint: ^8.51.0
-    eslint-plugin-vue: ^9.17.0
-    pinia: ^2.1.7
-    roboto-fontface: "*"
-    sass: ^1.69.3
-    typescript: ^5.2.2
-    unplugin-fonts: ^1.0.3
-    vite: ^4.4.11
-    vite-plugin-vuetify: ^1.0.2
-    vue: ^3.3.4
-    vue-router: ^4.2.5
-    vue-tsc: ^1.8.19
-    vuetify: ^3.3.21
-  languageName: unknown
-  linkType: soft
 
 "vuetify@npm:^3.3.21":
   version: 3.3.21

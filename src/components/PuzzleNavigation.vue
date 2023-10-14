@@ -2,14 +2,12 @@
 import { computed, ref } from 'vue'
 import { useWindowSize, useElementSize } from '@vueuse/core'
 import { useSceneStore } from '@/store/scene'
-import { PuzzleConditions, PuzzleConsole, PuzzleHistory } from '@/components'
+import { PuzzleConditions, PuzzleController, PuzzleHistory } from '@/components'
 const target = ref<HTMLElement | null>(null)
 const scene = useSceneStore()
 const { width: windowWidth, height: windowHeight } = useWindowSize()
 const { width: elementWidth, height: elementHeight } = useElementSize(target)
 const tab = ref(null)
-const snackbar = ref(false)
-const text = ref('text')
 /**
  * コンテンツの高さ
  */
@@ -25,7 +23,7 @@ const contentsHeight = computed(() => windowHeight.value - scene.stageSize - ele
       <PuzzleHistory :max-height="contentsHeight"></PuzzleHistory>
     </v-window-item>
     <v-window-item value="console">
-      <PuzzleConsole :max-height="contentsHeight"></PuzzleConsole>
+      <PuzzleController :max-height="contentsHeight"></PuzzleController>
     </v-window-item>
   </v-window>
   <v-bottom-navigation ref="target" color="green">
@@ -48,18 +46,4 @@ const contentsHeight = computed(() => windowHeight.value - scene.stageSize - ele
       </v-tab>
     </v-tabs>
   </v-bottom-navigation>
-  <v-snackbar
-    v-model="snackbar"
-  >
-    {{ text }}
-    <template v-slot:actions>
-      <v-btn
-        color="pink"
-        variant="text"
-        @click="snackbar = false"
-      >
-        Close
-      </v-btn>
-    </template>
-  </v-snackbar>
 </template>

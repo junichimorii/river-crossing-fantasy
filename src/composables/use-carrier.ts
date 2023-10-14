@@ -42,9 +42,7 @@ const useCarrier = (
   const downbound = computed(() => canLeave.value && state.status.isCrossed)
   const available = computed(() => state.status.passengers.length < state.capacity)
   const canLeave = computed(() => !state.status.isSailing && state.status.passengers.some(cast => cast.role.canRow))
-  const duration = computed(() => state.status.passengers.length > 0
-    ? Math.max(...state.status.passengers.map(cast => cast.role.duration ? cast.role.duration : 1))
-    : 1)
+  const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
   const pickUp = async (
     cast: Cast
   ) => {

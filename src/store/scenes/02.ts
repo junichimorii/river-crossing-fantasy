@@ -4,9 +4,9 @@ const scene = Object.freeze({
   title: '二人旅',
   description: {
     conditions: 'すべての登場人物が最小回数で対岸に渡る',
-    transportation: '2人乗りのボートが1艘',
+    transportation: '2人乗りの舟が1艘',
   },
-  category: 'double-seated',
+  category: 'doubleSeated',
   passing: 1,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

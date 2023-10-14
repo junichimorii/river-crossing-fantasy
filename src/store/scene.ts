@@ -6,7 +6,7 @@ import useCarrier from '@/composables/use-carrier'
 import useCast from '@/composables/use-cast'
 import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
 import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
-import type { Category, Action } from '@/types/records'
+import type { Action } from '@/types/records'
 import type { Scene, History } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
@@ -28,10 +28,24 @@ export const useSceneStore = defineStore('scene', () => {
     carriers: [],
     casts: [],
   }, sessionStorage)
+
+  /** シーン継続中 */
+  const isPlaying = ref(false)
   /** シーンの行動履歴 */
   const history: Ref<Set<History>> = ref(new Set<History>())
   /** シーンの行動実績 */
   const actions: Ref<Set<Action>> = ref(new Set<Action>())
+  /** ヒントテキスト */
+  const hintText = computed(() => actions.value.has('completed')
+    ? ''
+    : actions.value.has('arrived')
+      ? '対岸のキャラクターを舟に乗せる時は下方向にスワイプします。'
+      : actions.value.has('gotOnRower')
+        ? 'ボタンをタップすると対岸へ移動します。'
+        : actions.value.has('gotOn')
+          ? '舟を漕げるキャラクターが乗っていない場合は移動することができません。'
+          : '移動させたいキャラクターを上方向にスワイプしてください。'
+  )
   /** カウンター */
   const count = computed(() => [...history.value].reduce((a, b) => a + b.duration, 0))
   /** ステージのサイズ */
@@ -44,6 +58,7 @@ export const useSceneStore = defineStore('scene', () => {
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
+
   /** シーンを読み込む */
   const load = async (config: Scene) => {
     state.value = config
@@ -65,6 +80,7 @@ export const useSceneStore = defineStore('scene', () => {
   /** シーンを開始 */
   const start = async () => {
     await init()
+    isPlaying.value = true
     actions.value.add('started')
     console.log('scene: started')
   }
@@ -145,8 +161,10 @@ export const useSceneStore = defineStore('scene', () => {
   }
   return {
     state,
+    isPlaying,
     history,
     actions,
+    hintText,
     count,
     stageSize,
     castWidth,

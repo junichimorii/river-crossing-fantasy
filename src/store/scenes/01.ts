@@ -4,9 +4,9 @@ const scene = Object.freeze({
   title: '一人旅',
   description: {
     conditions: 'すべての登場人物が対岸に渡る',
-    transportation: '1人乗りのボートが1艘',
+    transportation: '1人乗りの舟が1艘',
   },
-  category: 'single-seated',
+  category: 'singleSeated',
   passing: 1,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

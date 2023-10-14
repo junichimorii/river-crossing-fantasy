@@ -22,7 +22,7 @@ const records = useRecordsStore()
           :key="scene.id"
           :to="`/${scene.id}`"
           :title="scene.title"
-          class="elevation-4 rounded bg-white my-1"
+          class="elevation-4 rounded my-1 bg-white"
         >
           <template v-slot:prepend>
             <v-chip color="green" class="mr-3">
@@ -32,7 +32,6 @@ const records = useRecordsStore()
           <template v-slot:append>
             <v-icon icon="mdi-lock"></v-icon>
           </template>
-          <v-list-item-subtitle></v-list-item-subtitle>
         </v-list-item>
       </v-list>
     </v-container>

@@ -11,7 +11,7 @@ const { start } = useSceneStore()
     title="オプション"
   >
     <v-divider></v-divider>
-    <v-card-text>
+    <v-card-item>
       <v-list>
         <v-list-item title="最初から始める" @click="start">
           <template v-slot:prepend>
@@ -20,10 +20,9 @@ const { start } = useSceneStore()
         </v-list-item>
         <v-list-item title="パズル一覧に戻る" to="/home">
           <template v-slot:prepend>
-            <v-icon icon="mdi-home"></v-icon>
           </template>
         </v-list-item>
       </v-list>
-    </v-card-text>
+    </v-card-item>
   </v-card>
 </template>

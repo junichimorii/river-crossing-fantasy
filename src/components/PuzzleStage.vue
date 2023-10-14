@@ -10,7 +10,6 @@ const scene = useSceneStore()
     :src="scene.state.landscape"
   >
     <div class="d-flex justify-center align-center">
-      {{ scene.count }}
       <v-sheet
         class="bg-transparent"
         :width="scene.stageSize * 0.9"

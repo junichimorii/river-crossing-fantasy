@@ -9,10 +9,10 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, upbound, downbound, duration, leave } = useCarrier(state)
+const { y, upbound, downbound, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
-  duration: duration.value * 1000,
+  duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
     scene.leave(state)
@@ -31,7 +31,7 @@ const transformCard = computed(() => {
 /** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2） */
 const width = computed(() => scene.castWidth * state.capacity + scene.castWidth * 0.5)
 /** 高さ（登場人物の高さ） */
-const height = computed(() => scene.castWidth * 2.125)
+const height = computed(() => scene.castWidth * 2.25)
 /** アスペクト比 */
 const aspectRatio = computed(() => width.value / height.value)
 </script>
