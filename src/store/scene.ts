@@ -36,7 +36,7 @@ export const useSceneStore = defineStore('scene', () => {
   const activities: Ref<Set<Activity>> = ref(new Set<Activity>())
 
   /** カウンター */
-  const count = computed(() => [...history.value].reduce((a, b) => a + b.duration, 0))
+  const count = computed(() => Array.from(history.value).reduce((a, b) => a + b.duration, 0))
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
   /** 登場人物の幅 */
@@ -45,12 +45,16 @@ export const useSceneStore = defineStore('scene', () => {
   const originCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'origin'))
   /** 到着地点のキャラクター */
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
+  /** 出発地点の右端のキャラクター */
+  const originRightEndCast = computed(() => originCasts.value.reduce((a, b) => a.id > b.id ? a : b))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
   /** 規定回数を超過したかどうか */
-  const isExceeded = computed(() => count.value > scene.passing)
+  const isExceeded = computed(() => count.value > state.value.passing)
 
-  /** シーンを読み込む */
+  /**
+   * シーンを読み込む
+   */
   const load = async (config: Scene) => {
     state.value = config
     await init()
@@ -60,7 +64,9 @@ export const useSceneStore = defineStore('scene', () => {
     state.value = null
   }
 
-  /** シーンの状態を初期化 */
+  /**
+   * シーンの状態を初期化
+   */
   const init = async () => {
     state.value.carriers.forEach(async carrier => carrier.status = structuredClone(defaultCarrierStatus))
     state.value.casts.forEach(async cast => cast.status = structuredClone(defaultCastStatus))
@@ -68,27 +74,31 @@ export const useSceneStore = defineStore('scene', () => {
     activities.value.clear()
   }
 
-  /** シーンを開始 */
+  /**
+   * シーンを開始
+   */
   const start = async () => {
     await init()
     activities.value.add('started')
   }
 
-  /** 登場人物をスワイプした時の行動 */
+  /**
+   * 登場人物をスワイプした時の行動
+   */
   const action = async(
     cast: Cast,
     direction: UseSwipeDirection
   ) => {
     activities.value.add('swiped')
-    if(cast.status.disabled) return
+    if (cast.status.disabled) return
     const request = await useCast(cast).request(direction)
-    if(request === 'getOff') {
+    if (request === 'getOff') {
       // 登場人物を船から降ろす
       await useCast(cast).getOff()
       await Promise.all(state.value.carriers.map(async carrier => {
         await useCarrier(carrier).dropOff(cast)
-      activities.value.add('gotOff')
       }))
+      activities.value.add('gotOff')
     } else if(request === 'getOn') {
       // 搭乗可能な乗り物（空席があり、登場人物と同じ岸）があれば登場人物を船に乗せる
       const carrier = state.value.carriers.find(carrier =>
@@ -105,12 +115,39 @@ export const useSceneStore = defineStore('scene', () => {
         activities.value.add('gotOnRower')
       }
     }
+    // 安否確認
+    safetyConfirmation()
   }
 
-  /** 乗り物が出発した時の行動 */
-  const leave = async (
-    carrier: Carrier
-  ) => {
+  /**
+   * 安否確認
+   */
+  const safetyConfirmation = async () => {
+    state.value.casts.forEach(async self => {
+      self.status.emotions = []
+      if (!self.role.enemies) return
+      self.role.enemies.forEach(enemyId => {
+        const enemy = state.value.casts.find(other => other.id === enemyId)
+        if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
+          const guardian = state.value.casts.find(other => other.id === self.role.guardian)
+          if (guardian && useCast(guardian).location.value !== useCast(self).location.value) {
+            self.status.emotions.push('M')  // 怖
+            enemy.status.emotions.push('E') // 嬉
+            guardian.status.emotions.push('G')  // 驚
+            return
+          }
+        }
+      })
+    })
+    state.value.casts.forEach(async cast => {
+      cast.status.emotions = Array.from(new Set(cast.status.emotions))
+    })
+  }
+
+  /**
+   * 乗り物が出発した時の行動
+   */
+  const leave = async () => {
     if (!activities.value.has('gotOnRower')) return
     await Promise.all(state.value.casts.map(async cast => {
       return await useCast(cast).deactivate()
@@ -118,7 +155,9 @@ export const useSceneStore = defineStore('scene', () => {
     activities.value.add('left')
   }
 
-  /** 乗り物が到着した時の行動 */
+  /**
+   * 乗り物が到着した時の行動
+   */
   const arrive = async (
     carrier: Carrier,
   ) => {
@@ -143,10 +182,14 @@ export const useSceneStore = defineStore('scene', () => {
       terminate()
     }
   }
-  /** シーンの終了時 */
+
+  /**
+   * シーンの終了時
+   */
   const terminate = async () => {
     activities.value.add('completed')
   }
+
   return {
     state,
     history,
@@ -156,6 +199,7 @@ export const useSceneStore = defineStore('scene', () => {
     castWidth,
     originCasts,
     destinationCasts,
+    originRightEndCast,
     isCompleted,
     isExceeded,
     load,

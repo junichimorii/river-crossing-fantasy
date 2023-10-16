@@ -8,14 +8,14 @@ export const defaultStatus: Status = Object.freeze({
   disabled: false,
   isCrossed: false,
   isSeated: false,
-  emotion: null,
+  emotions: [],
 })
 /**
  * 川渡りパズルの登場人物
  */
 interface UseCastReturn {
   /** 現在地 */
-  location: Ref<'origin' | 'destination' | null>
+  location: Ref<'origin' | 'destination' | 'onBoard'>
   /** 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる */
   upbound: Ref<boolean>
   /** 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる */
@@ -36,11 +36,11 @@ interface UseCastReturn {
 const useCast = (
   state: Cast
 ): UseCastReturn => {
-  const location = computed(() => (!state.status.isCrossed && !state.status.isSeated)
-    ? 'origin'
-    : (state.status.isCrossed && !state.status.isSeated)
+  const location = computed(() => state.status.isSeated
+    ? 'onBoard'
+    : state.status.isCrossed
       ? 'destination'
-      : null
+      : 'origin'
   )
   const upbound = computed(() =>
     !state.status.disabled && 

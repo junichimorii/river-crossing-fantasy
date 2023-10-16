@@ -17,7 +17,7 @@ const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
-    scene.leave(state)
+    scene.leave()
   },
   onFinished() {
     scene.arrive(state)
@@ -36,7 +36,7 @@ const transformCard = computed(() => `translate(0, ${amount.value * riverWidth.v
 /** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2） */
 const width = computed(() => scene.castWidth * state.capacity + scene.castWidth * 0.5)
 /** 高さ（登場人物の高さ） */
-const height = computed(() => scene.castWidth * 2.25)
+const height = computed(() => scene.castWidth * 2.5)
 /** アスペクト比 */
 const aspectRatio = computed(() => width.value / height.value)
 </script>
@@ -53,7 +53,7 @@ const aspectRatio = computed(() => width.value / height.value)
       :height="height"
       >
       <v-sheet
-        class="d-flex justify-center align-start bg-transparent"
+        class="d-flex justify-center align-center bg-transparent"
         :height="height"
       >
         <PuzzleCast

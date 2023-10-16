@@ -6,8 +6,10 @@ export interface Cast {
   id: number
   /** 登場人物の画像URL */
   avatar: string
+  /** 登場人物の名前 */
+  name: string
   /** 登場人物の説明 */
-  description: string
+  description?: string
   /** 登場人物の役割 */
   role: Role
   /** 登場人物のステータス */
@@ -37,5 +39,5 @@ export interface Status {
   /** 乗り物の上にいる */
   isSeated: boolean 
   /** 感情 */
-  emotion: string | null
+  emotions: string[]
 }

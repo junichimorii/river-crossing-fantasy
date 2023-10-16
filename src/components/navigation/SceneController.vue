@@ -20,6 +20,7 @@ const { start } = useSceneStore()
         </v-list-item>
         <v-list-item title="パズル一覧に戻る" to="/home">
           <template v-slot:prepend>
+            <v-icon icon="mdi-home"></v-icon>
           </template>
         </v-list-item>
       </v-list>

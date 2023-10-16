@@ -40,11 +40,23 @@ const scene = useSceneStore()
         :key="cast.id"
       >
         <v-list-item-title class="text-subtitle-2">
+          {{ cast.name }}
+        </v-list-item-title>
+        <v-list-item-subtitle class="text-subtitle-2">
+          {{
+            cast.role.duration
+              ? `橋を渡るのに${cast.role.duration}分必要。`
+              : cast.role.canRow
+                ? '舟を漕げる。'
+                : '舟を漕げない。'
+          }}
+          {{ cast.description }}
+        </v-list-item-subtitle>
+        <template v-slot:prepend>
           <v-avatar>
             <v-img :src="cast.avatar"></v-img>
           </v-avatar>
-          {{ cast.description }}
-        </v-list-item-title>
+        </template>
       </v-list-item>
     </v-card-item>
   </v-card>

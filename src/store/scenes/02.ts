@@ -17,14 +17,14 @@ const scene = Object.freeze({
   casts: [{
     id: 0,
     avatar: '/images/casts/villager1.png',
-    description: '旅人A',
+    name: '旅人A',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
     avatar: '/images/casts/villager2.png',
-    description: '旅人B',
+    name: '旅人B',
     role: {
       canRow: true,
     },

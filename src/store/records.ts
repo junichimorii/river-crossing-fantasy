@@ -12,7 +12,9 @@ export const useRecordsStore = defineStore('records', () => {
     categories: useStorage<Set<Category>>('RIVER_CROSSING_PUZZLES_CATEGORIES', new Set<Category>()),
     activities: useStorage<Set<Activity>>('RIVER_CROSSING_PUZZLES_ACTIVITIES', new Set<Activity>()),
   })
-  /** 指定されたIDのシーンを読み込む */
+  /**
+   * 指定されたIDのシーンを読み込む
+   */
   const load = async (
     id: number
   ) => {
@@ -20,11 +22,15 @@ export const useRecordsStore = defineStore('records', () => {
     if(!config) throw false
     return config
   }
-  /**  行動実績を獲得しているかどうか */
+  /**
+   * 行動実績を獲得しているかどうか
+   */
   const hasActivity = (
     activity: Activity
   ) => state.value.activities.has(activity)
-  /**  各ステージをクリアした結果を格納する */
+  /**
+   * 各ステージをクリアした結果を格納する
+   */
   const report = async (
     id: number,
     category: Category,
@@ -32,10 +38,14 @@ export const useRecordsStore = defineStore('records', () => {
   ) => {
     const last = state.value.scenes.get(id) || 0
     state.value.scenes.set(id, Math.max(last, score))
-    state.value.scenes.set(id + 1, 0)
+    if (!state.value.scenes.has(id + 1)) {
+      state.value.scenes.set(id + 1, 0)
+    }
     state.value.categories.add(category)
   }
-  /**  行動実績を獲得する */
+  /**
+   * 行動実績を獲得する
+   */
   const obtain = async (
     activity: Activity
   ) => {

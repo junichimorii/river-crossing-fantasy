@@ -10,6 +10,13 @@ const scene = useSceneStore()
     class="overflow-y-auto bg-transparent"
     title="履歴"
   >
+    <template v-slot:append>
+      <v-badge
+        :color="scene.isExceeded?'error':'success'"
+        :content="scene.count"
+        inline
+      ></v-badge>
+    </template>
     <v-divider></v-divider>
     <v-card-item>
       <v-list>

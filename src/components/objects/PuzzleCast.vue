@@ -67,84 +67,92 @@ const aspectRatio = computed(() => width.value / height.value)
 </script>
 
 <template>
-  <v-card
-    flat
-    ref="target"
-    :width="width"
-    class="d-flex justify-center align-end bg-transparent"
+  <v-badge
+    :model-value="state.status.emotions.length !== 0"
+    :content="state.status.emotions.join('')"
+    :offset-x="scene.castWidth * 0.1"
+    :offset-y="scene.castWidth * 0.1"
+    color="error"
   >
-    <v-img
-      :aspect-ratio="aspectRatio"
-      :src="state.avatar"
-      :height="height"
-      :style="{ transform: transformImage }"
+    <v-card
+      flat
+      ref="target"
+      :width="width"
+      class="d-flex justify-center align-end bg-transparent"
     >
-      <div class="d-flex align-center justify-center fill-height"></div>
-    </v-img>
-    <v-menu
-      activator="parent"
-      v-model="direction.upbound"
-      disabled
-      location="top"
-      transition="scroll-y-reverse-transition"
-    >
-      <v-expand-transition mode="out-in">
-        <div class="d-flex justify-center">
-          <v-icon
-            size="x-large"
-            icon="mdi-arrow-up"
-            :color="signal"
-          ></v-icon>
-        </div>
-      </v-expand-transition>
-    </v-menu>
-    <v-menu
-      activator="parent"
-      v-model="direction.downbound"
-      disabled
-      location="bottom"
-      transition="scroll-y-transition"
-    >
-      <v-expand-transition mode="in-out">
-        <div class="d-flex justify-center">
-          <v-icon
-            size="x-large"
-            icon="mdi-arrow-down"
-            :color="signal"
-          ></v-icon>
-        </div>
-      </v-expand-transition>
-    </v-menu>
-    <v-tooltip
-      activator="parent"
-      v-model="showHintSwipe"
-      location="end"
-    >
-      <v-icon
-        icon="mdi-arrow-left"
-      ></v-icon>
-      キャラクターを上方向にスワイプし、舟の上にセットします。
-    </v-tooltip>
-    <v-tooltip
-      activator="parent"
-      v-model="showHintGetOff"
-      location="start"
-    >
-      下方向にスワイプすると舟から降ります。
-      <v-icon
-        icon="mdi-arrow-right"
-      ></v-icon>
-    </v-tooltip>
-    <v-tooltip
-      activator="parent"
-      v-model="showHintArrived"
-      location="start"
-    >
-      対岸のキャラクターを舟に乗せる時は下方向にスワイプします。
-      <v-icon
-        icon="mdi-arrow-right"
-      ></v-icon>
-    </v-tooltip>
-  </v-card>
+      <v-img
+        :aspect-ratio="aspectRatio"
+        :src="state.avatar"
+        :height="height"
+        :style="{ transform: transformImage }"
+      >
+        <div class="d-flex align-center justify-center fill-height"></div>
+      </v-img>
+      <v-menu
+        activator="parent"
+        v-model="direction.upbound"
+        disabled
+        location="top"
+        transition="scroll-y-reverse-transition"
+      >
+        <v-expand-transition mode="out-in">
+          <div class="d-flex justify-center">
+            <v-icon
+              size="x-large"
+              icon="mdi-arrow-up"
+              :color="signal"
+            ></v-icon>
+          </div>
+        </v-expand-transition>
+      </v-menu>
+      <v-menu
+        activator="parent"
+        v-model="direction.downbound"
+        disabled
+        location="bottom"
+        transition="scroll-y-transition"
+      >
+        <v-expand-transition mode="in-out">
+          <div class="d-flex justify-center">
+            <v-icon
+              size="x-large"
+              icon="mdi-arrow-down"
+              :color="signal"
+            ></v-icon>
+          </div>
+        </v-expand-transition>
+      </v-menu>
+      <v-tooltip
+        activator="parent"
+        v-model="showHintSwipe"
+        location="end"
+      >
+        <v-icon
+          icon="mdi-arrow-left"
+        ></v-icon>
+        キャラクターを上方向にスワイプし、舟の上にセットします。
+      </v-tooltip>
+      <v-tooltip
+        activator="parent"
+        v-model="showHintGetOff"
+        location="start"
+      >
+        下方向にスワイプすると舟から降ります。
+        <v-icon
+          icon="mdi-arrow-right"
+        ></v-icon>
+      </v-tooltip>
+      <v-tooltip
+        activator="parent"
+        v-model="showHintArrived"
+        location="start"
+      >
+        対岸のキャラクターを舟に乗せる時は下方向にスワイプします。
+        <v-icon
+          icon="mdi-arrow-right"
+        ></v-icon>
+      </v-tooltip>
+    </v-card>
+  </v-badge>
 </template>
 
