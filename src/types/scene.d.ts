@@ -1,4 +1,3 @@
-import type { Category } from '@/types/records'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 
@@ -17,6 +16,8 @@ export interface Scene {
     /** ステージに登場する乗り物の説明 */
     transportation: string
   }
+  /** ヒント */
+  tips?: string[]
   /** パズル種別 */
   category: Category | null
   /** ステージの合格基準となる回数または時間 */
@@ -38,3 +39,25 @@ export interface History {
   /** 所要時間 */
   duration: number 
 }
+
+/**
+ * パズル種別
+ */
+export type Category =
+  'tutorial'                  // 演習問題
+  |'wolfGoatAndCabbage'       // 敵と保護者がいる川渡りパズル
+  |'missionariesAndCannibals' // 多数派を維持する川渡りパズル
+  |'bridgeAndTorch'           // 制限時間のある川渡りパズル
+
+/**
+ * 行動実績
+ */
+export type Activity =
+  'swiped'              // 登場人物をスワイプした
+  |'gotOn'              // 乗り物に乗った
+  |'gotOff'             // 乗り物から降りた
+  |'gotOnRower'         // 乗り物を操作できる登場人物が乗った
+  |'left'               // 乗り物が出発した
+  |'arrived'            // 乗り物が対岸に到着した
+  |'gotOnFromOpposite'  // 向こう岸から乗り物に乗った
+  |'completed'          // シーンをクリアした

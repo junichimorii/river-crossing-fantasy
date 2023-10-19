@@ -1,5 +1,5 @@
 import { computed, Ref } from 'vue'
-import type { Carrier, Status, Direction } from '@/types/carrier'
+import type { Carrier, Status } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 /**
  * 川渡りパズルの乗り物の初期ステータス
@@ -15,14 +15,20 @@ export const defaultStatus: Status = Object.freeze({
 interface UseCarrierReturn {
   /** useTransitionで変化させるY座標 */
   y: Ref<number>
+  /** 空席がある */
+  isVacancy: Ref<boolean>
+  /** 重量オーバーである */
+  isOverweight: Ref<boolean>
+  /** 乗り物が利用可能 */
+  isAvailable: Ref<boolean>
+  /** 乗り物を操作可能 */
+  isOperable: Ref<boolean>
+  /** 乗り物が出発可能 */
+  isReady: Ref<boolean>
   /** 上方向に移動可能 */
   upbound: Ref<boolean>
   /** 下方向に移動可能 */
   downbound: Ref<boolean>
-  /** 乗り物が利用可能（空席がある） */
-  available: Ref<boolean>
-  /** 乗り物が出発できるかどうか（乗り物を操作できる人物が乗っており、乗り物が進行中でない） */
-  canLeave: Ref<boolean>
   /** 移動速度 */
   duration: Ref<number>
   /** 乗客を乗せる */
@@ -38,10 +44,15 @@ const useCarrier = (
   state: Carrier
 ): UseCarrierReturn => {
   const y = computed(() => state.status.isCrossed ? -1 : 0)
-  const upbound = computed(() => canLeave.value && !state.status.isCrossed)
-  const downbound = computed(() => canLeave.value && state.status.isCrossed)
-  const available = computed(() => state.status.passengers.length < state.capacity)
-  const canLeave = computed(() => !state.status.isSailing && state.status.passengers.some(cast => cast.role.canRow))
+  const isVacancy = computed(() => state.status.passengers.length < state.capacity)
+  const isOverweight = computed(() => state.weightLimit !== undefined
+    && state.status.passengers.reduce((a, b) => a + (b.role.weight ? b.role.weight : 0), 0) > state.weightLimit
+  )
+  const isAvailable = computed(() => isVacancy.value && !isOverweight.value)
+  const isOperable = computed(() => state.status.passengers.some(cast => cast.role.canRow))
+  const isReady = computed(() => !state.status.isSailing && isOperable.value && !isOverweight.value)
+  const upbound = computed(() => isReady.value && !state.status.isCrossed)
+  const downbound = computed(() => isReady.value && state.status.isCrossed)
   const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
   const pickUp = async (
     cast: Cast
@@ -62,11 +73,14 @@ const useCarrier = (
   }
   return {
     y,
+    isVacancy,
+    isOverweight,
+    isAvailable,
+    isOperable,
+    isReady,
+    duration,
     upbound,
     downbound,
-    available,
-    canLeave,
-    duration,
     pickUp,
     dropOff,
     leave,

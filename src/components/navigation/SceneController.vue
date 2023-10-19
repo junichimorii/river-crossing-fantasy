@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useSceneStore } from '@/store/scene'
-const { start } = useSceneStore()
+const { init } = useSceneStore()
 </script>
 
 <template>
@@ -13,7 +13,7 @@ const { start } = useSceneStore()
     <v-divider></v-divider>
     <v-card-item>
       <v-list>
-        <v-list-item title="最初から始める" @click="start">
+        <v-list-item title="最初から始める" @click="init">
           <template v-slot:prepend>
             <v-icon icon="mdi-restart"></v-icon>
           </template>

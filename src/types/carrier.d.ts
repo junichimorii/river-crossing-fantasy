@@ -10,6 +10,8 @@ export interface Carrier {
   appearance: string
   /** 乗り物の定員 */
   capacity: number
+  /** 乗り物の重量制限 */
+  weightLimit?: number
   /** 乗り物の状態 */
   status: Status
 }

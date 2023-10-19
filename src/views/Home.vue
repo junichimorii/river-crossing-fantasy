@@ -1,14 +1,10 @@
 <script lang="ts" setup>
+import { onMounted } from 'vue'
 import { useRecordsStore } from '@/store/records'
 const records = useRecordsStore()
-/**  ステージのスコアの有無 */
-const hasScore = (
-  id: number
-) => records.state.scenes.has(id) || id === 1
-/**  ステージのスコアを取得 */
-const getScore = (
-  id: number
-) => records.state.scenes.get(id) || 0
+onMounted(async () => {
+  if (!records.has(1)) records.set(1, 0)
+})
 </script>
 
 <template>
@@ -30,7 +26,7 @@ const getScore = (
           :key="scene.id"
           :to="`/${scene.id}`"
           :title="scene.title"
-          :disabled="!hasScore(scene.id)"
+          :disabled="false/*!records.has(scene.id)*/"
           class="elevation-4 rounded my-1 bg-white"
         >
           <template v-slot:prepend>
@@ -40,15 +36,16 @@ const getScore = (
           </template>
           <template v-slot:append>
             <v-icon
-              v-if="!hasScore(scene.id)"
+              v-if="!records.has(scene.id)"
               icon="mdi-lock"
             ></v-icon>
             <v-rating
-              v-if="hasScore(scene.id)"
+              v-if="records.has(scene.id)"
               readonly
+              density="compact"
+              size="small"
               :length="2"
-              :size="32"
-              :model-value="getScore(scene.id)"
+              :model-value="records.get(scene.id)"
               active-color="orange"
             />
           </template>

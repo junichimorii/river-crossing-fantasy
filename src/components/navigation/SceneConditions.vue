@@ -4,7 +4,7 @@ const scene = useSceneStore()
 </script>
 
 <template>
-  <v-card flat class="overflow-y-auto bg-transparent">
+  <v-card flat class="overflow-y-auto">
     <v-card-title>
       <v-chip
         size="x-large"
@@ -17,6 +17,7 @@ const scene = useSceneStore()
     <v-divider></v-divider>
     <v-card-item>
       <v-card-subtitle>
+        <v-icon icon="mdi-lock-open"></v-icon>
         クリア条件:
       </v-card-subtitle>
       <v-card-text class="py-1">
@@ -25,6 +26,7 @@ const scene = useSceneStore()
     </v-card-item>
     <v-card-item>
       <v-card-subtitle>
+        <v-icon icon="mdi-swap-vertical"></v-icon>
         移動手段:
       </v-card-subtitle>
       <v-card-text class="py-1">
@@ -33,6 +35,7 @@ const scene = useSceneStore()
     </v-card-item>
     <v-card-item>
       <v-card-subtitle>
+        <v-icon icon="mdi-account-multiple"></v-icon>
         登場人物:
       </v-card-subtitle>
       <v-list-item
@@ -50,6 +53,11 @@ const scene = useSceneStore()
                 ? '舟を漕げる。'
                 : '舟を漕げない。'
           }}
+          {{
+            cast.role.weight
+              ? `体重は大人${cast.role.weight}人分。`
+              : ''
+          }}
           {{ cast.description }}
         </v-list-item-subtitle>
         <template v-slot:prepend>
@@ -59,5 +67,20 @@ const scene = useSceneStore()
         </template>
       </v-list-item>
     </v-card-item>
+    <v-card-item v-if="scene.state.tips">
+      <v-card-subtitle>
+        <v-icon icon="mdi-chat-alert"></v-icon>
+        Tips:
+      </v-card-subtitle>
+      <v-list-item
+        v-for="(tips, i) in scene.state.tips"
+        :key="i"
+      >
+        <v-list-item-subtitle class="text-subtitle-2">
+          {{ tips }}
+        </v-list-item-subtitle>
+      </v-list-item>
+    </v-card-item>
+    <slot name="actions"></slot>
   </v-card>
 </template>

@@ -1,13 +1,16 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 3,
-  title: '親子旅',
+  title: '親子旅(1)',
   description: {
     conditions: 'すべての登場人物が最小回数で対岸に渡る',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母親のみ。',
   },
-  category: 'doubleSeated',
-  passing: 1,
+  tips: [
+    '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
+  ],
+  category: 'tutorial',
+  passing: 3,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
     id: 0,
@@ -24,7 +27,16 @@ const scene = Object.freeze({
   }, {
     id: 1,
     avatar: '/images/casts/villager2.png',
-    name: '娘',
+    name: '娘A',
+    ratio: 0.85,
+    role: {
+      canRow: false,
+    },
+  }, {
+    id: 2,
+    avatar: '/images/casts/villager3.png',
+    name: '娘B',
+    ratio: 0.85,
     role: {
       canRow: false,
     },

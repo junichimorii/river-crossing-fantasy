@@ -10,6 +10,8 @@ export interface Cast {
   name: string
   /** 登場人物の説明 */
   description?: string
+  /** 登場人物の画像の比率 */
+  ratio?: number
   /** 登場人物の役割 */
   role: Role
   /** 登場人物のステータス */
@@ -20,13 +22,15 @@ export interface Cast {
  */
 export interface Role {
   /** 乗り物を操作できる */
-  canRow: boolean 
+  canRow: boolean
   /** 敵のID */
-  enemies?: number[] 
-  /** 守護者のID */
-  guardian?: number 
+  enemies?: number[]
+  /** 保護者のID */
+  guardian?: number
+  /** 重量 */
+  weight?: number
   /** 所要時間 */
-  duration?: number 
+  duration?: number
 }
 /**
  * 登場人物の状態

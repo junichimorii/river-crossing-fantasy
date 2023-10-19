@@ -1,4 +1,4 @@
-import { computed, ref, Ref } from 'vue'
+import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
@@ -6,34 +6,47 @@ import useCarrier from '@/composables/use-carrier'
 import useCast from '@/composables/use-cast'
 import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
 import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
-import type { Activity } from '@/types/records'
-import type { Scene, History } from '@/types/scene'
+import type { Scene, History, Activity } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
-import scene from './scenes/01'
 const { width, height } = useWindowSize()
 /**
  * シーン（ステージ）管理
  */
 export const useSceneStore = defineStore('scene', () => {
-  const state = useStorage<Scene>('RIVER_CROSSING_PUZZLES_SCENE', {
-    id: 0,
-    title: '',
-    description: {
-      conditions: '',
-      transportation: '',
+  const state = useStorage<Scene>(
+    'RIVER_CROSSING_PUZZLES_SCENE',
+    {
+      id: 0,
+      title: '',
+      description: {
+        conditions: '',
+        transportation: '',
+      },
+      category: null,
+      passing: 0,
+      landscape: '',
+      carriers: [],
+      casts: [],
     },
-    category: null,
-    passing: 0,
-    landscape: '',
-    carriers: [],
-    casts: [],
-  }, sessionStorage)
-
-  /** シーンの行動履歴 */
-  const history: Ref<Set<History>> = ref(new Set<History>())
-  /** シーンの行動実績 */
-  const activities: Ref<Set<Activity>> = ref(new Set<Activity>())
+    sessionStorage
+  )
+  /**
+   * シーンの行動履歴
+   */
+  const history = useStorage<Set<History>>(
+    'RIVER_CROSSING_PUZZLES_HISTORY',
+    new Set<History>(),
+    sessionStorage,
+  )
+  /**
+   * シーンの行動実績
+   */
+  const activities = useStorage<Set<Activity>>(
+    'RIVER_CROSSING_PUZZLES_ACTIVITY',
+    new Set<Activity>(),
+    sessionStorage,
+  )
 
   /** カウンター */
   const count = computed(() => Array.from(history.value).reduce((a, b) => a + b.duration, 0))
@@ -51,17 +64,31 @@ export const useSceneStore = defineStore('scene', () => {
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
   /** 規定回数を超過したかどうか */
   const isExceeded = computed(() => count.value > state.value.passing)
+  /** スコア */
+  const score = computed(() => !isCompleted.value
+    ? 0
+    : isExceeded.value
+      ? 1
+      : 2
+  )
 
   /**
    * シーンを読み込む
    */
   const load = async (config: Scene) => {
     state.value = config
+    history.value = new Set<History>([])
+    activities.value = new Set<Activity>([])
     await init()
   }
 
+  /**
+   * シーンの状態を消去
+   */
   const unload = async () => {
     state.value = null
+    history.value = null
+    activities.value = null
   }
 
   /**
@@ -72,14 +99,6 @@ export const useSceneStore = defineStore('scene', () => {
     state.value.casts.forEach(async cast => cast.status = structuredClone(defaultCastStatus))
     history.value.clear()
     activities.value.clear()
-  }
-
-  /**
-   * シーンを開始
-   */
-  const start = async () => {
-    await init()
-    activities.value.add('started')
   }
 
   /**
@@ -102,7 +121,7 @@ export const useSceneStore = defineStore('scene', () => {
     } else if(request === 'getOn') {
       // 搭乗可能な乗り物（空席があり、登場人物と同じ岸）があれば登場人物を船に乗せる
       const carrier = state.value.carriers.find(carrier =>
-        useCarrier(carrier).available.value && carrier.status.isCrossed === cast.status.isCrossed
+        useCarrier(carrier).isAvailable.value && carrier.status.isCrossed === cast.status.isCrossed
       )
       if (carrier === undefined) return
       await useCast(cast).getOn()
@@ -111,7 +130,7 @@ export const useSceneStore = defineStore('scene', () => {
       if (direction === 'down') {
         activities.value.add('gotOnFromOpposite')
       }
-      if (useCarrier(carrier).canLeave.value) {
+      if (useCarrier(carrier).isReady.value) {
         activities.value.add('gotOnRower')
       }
     }
@@ -202,9 +221,10 @@ export const useSceneStore = defineStore('scene', () => {
     originRightEndCast,
     isCompleted,
     isExceeded,
+    score,
     load,
     unload,
-    start,
+    init,
     action,
     leave,
     arrive,

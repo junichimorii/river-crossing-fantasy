@@ -1,53 +1,34 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 5,
-  title: 'オオカミとヤギとキャベツ',
+  title: '夜間旅行',
   description: {
-    conditions: 'すべての登場人物が最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは農民のみ。',
+    conditions: 'すべての登場人物が2分以内に対岸に渡る',
+    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつを持ち、遅い方に合わせて同時に移動する。',
   },
-  category: 'doubleSeated',
-  passing: 7,
-  landscape: '/images/landscapes/daytime-river.png',
+  category: 'bridgeAndTorch',
+  passing: 2,
+  landscape: '/images/landscapes/night-bridge.png',
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat2.png',
+    appearance: '/images/carriers/touch.png',
     capacity: 2,
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/farmer1.png',
-    name: '農民',
+    avatar: '/images/casts/villager1.png',
+    name: '旅人A',
     role: {
       canRow: true,
+      duration: 1, 
     },
   }, {
     id: 1,
-    avatar: '/images/casts/wolf1.png',
-    name: 'オオカミ',
-    description: '農民が目を離すとヤギを食べる。',
+    avatar: '/images/casts/villager2.png',
+    name: '旅人B',
     role: {
-      canRow: false,
-    },
-  }, {
-    id: 2,
-    avatar: '/images/casts/goat1.png',
-    name: 'ヤギ',
-    description: '農民が目を離すとキャベツを食べる。',
-    role: {
-      canRow: false,
-      enemies: [1],
-      guardian: 0,
-    },
-  }, {
-    id: 3,
-    avatar: '/images/casts/cabbage1.png',
-    name: 'キャベツ',
-    description: '',
-    role: {
-      canRow: false,
-      enemies: [2],
-      guardian: 0,
+      canRow: true,
+      duration: 2, 
     },
   }],
 }) as Scene

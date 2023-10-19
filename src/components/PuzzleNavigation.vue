@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { useElementSize, useScreenOrientation, useWindowSize } from '@vueuse/core'
 import { useSceneStore } from '@/store/scene'
-import { SceneConditions, SceneController, SceneHistory, SceneResult } from '@/components'
+import { SceneConditions, SceneController, SceneHistory, SceneResult, SceneSplash } from '@/components'
 const target = ref<HTMLElement | null>(null)
 const scene = useSceneStore()
 const { width: windowWidth, height: windowHeight } = useWindowSize()
@@ -52,6 +52,7 @@ const active = computed(() => orientation.value === 'portrait-primary')
         </v-tab>
       </v-tabs>
     </v-bottom-navigation>
-    <SceneResult></SceneResult>
+    <SceneSplash></SceneSplash>
+    <SceneResult v-if="scene"></SceneResult>
   </div>
 </template>
