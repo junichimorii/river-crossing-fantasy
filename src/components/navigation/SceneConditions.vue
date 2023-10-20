@@ -46,19 +46,18 @@ const scene = useSceneStore()
           {{ cast.name }}
         </v-list-item-title>
         <v-list-item-subtitle class="text-subtitle-2">
-          {{
-            cast.role.duration
-              ? `橋を渡るのに${cast.role.duration}分必要。`
-              : cast.role.canRow
-                ? '舟を漕げる。'
-                : '舟を漕げない。'
-          }}
-          {{
-            cast.role.weight
-              ? `体重は大人${cast.role.weight}人分。`
-              : ''
-          }}
-          {{ cast.description }}
+          <span v-if="cast.role.canRow !== undefined">
+            {{ cast.role.canRow ? '舟を漕げる。' : '舟を漕げない。' }}
+          </span>
+          <span v-if="cast.role.duration !== undefined">
+            橋を渡るのに{{ cast.role.duration }}分必要。
+          </span>
+          <span v-if="cast.role.weight !== undefined">
+            体重は大人{{ cast.role.weight }}人分。
+          </span>
+          <span>
+            {{ cast.description }}
+          </span>
         </v-list-item-subtitle>
         <template v-slot:prepend>
           <v-avatar>

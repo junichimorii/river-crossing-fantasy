@@ -44,10 +44,12 @@ export interface History {
  * パズル種別
  */
 export type Category =
-  'tutorial'                  // 演習問題
-  |'wolfGoatAndCabbage'       // 敵と保護者がいる川渡りパズル
-  |'missionariesAndCannibals' // 多数派を維持する川渡りパズル
-  |'bridgeAndTorch'           // 制限時間のある川渡りパズル
+  'unconditioned'           // 乗り物の定員以外の制限がない川渡りパズル
+  |'qualified'              // 乗り物を操作できる人が決まっている川渡りパズル
+  |'weight-limited'         // 重量制限のある川渡りパズル
+  |'time-limited'           // 制限時間のある川渡りパズル
+  |'enemies-and-guardians'  // 敵と保護者がいる川渡りパズル
+  |'keep-majority'          // 多数派を維持する川渡りパズル
 
 /**
  * 行動実績

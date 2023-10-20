@@ -65,7 +65,7 @@ const aspectRatio = computed(() => width.value / height.value)
     :content="state.status.emotions.join('')"
     :offset-x="scene.castWidth * 0.1"
     :offset-y="scene.castWidth * 0.1"
-    color="error"
+    color="white"
   >
     <v-card
       flat

@@ -21,6 +21,14 @@ const amount = useTransition(y, {
     scene.arrive(state)
   },
 })
+/** 進行可能な方向 */
+const direction = computed(() => {
+  return {
+    upbound: !scene.isEmergency && upbound.value,
+    downbound: !scene.isEmergency && downbound.value,
+  }
+})
+
 /** 川幅（乗り物が往復する距離） */
 const riverWidth = computed(() => scene.stageSize * 0.3)
 /** v-cardに適用するCSS transformプロパティ */
@@ -61,7 +69,7 @@ const aspectRatio = computed(() => width.value / height.value)
       :close-on-content-click="false"
       disabled
       location="top"
-      v-model="upbound"
+      v-model="direction.upbound"
       persistent
       transition="scroll-y-reverse-transition"
     >
@@ -82,7 +90,7 @@ const aspectRatio = computed(() => width.value / height.value)
       :close-on-content-click="false"
       disabled
       location="bottom"
-      v-model="downbound"
+      v-model="direction.downbound"
       persistent
       transition="scroll-y-transition"
     >

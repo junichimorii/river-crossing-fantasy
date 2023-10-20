@@ -3,10 +3,15 @@ const scene = Object.freeze({
   id: 6,
   title: 'オオカミとヤギとキャベツ',
   description: {
-    conditions: 'すべての登場人物が最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは農民のみ。',
+    conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは旅人のみ。',
   },
-  category: 'wolfGoatAndCabbage',
+  tips: [
+    'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
+    'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
+    'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
+  ],
+  category: 'enemies-and-guardians',
   passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
@@ -17,7 +22,7 @@ const scene = Object.freeze({
   casts: [{
     id: 0,
     avatar: '/images/casts/farmer1.png',
-    name: '農民',
+    name: '旅人',
     role: {
       canRow: true,
     },
@@ -25,7 +30,7 @@ const scene = Object.freeze({
     id: 1,
     avatar: '/images/casts/wolf1.png',
     name: 'オオカミ',
-    description: '農民が目を離すとヤギを食べる。',
+    description: '旅人が目を離すとヤギを食べる。',
     role: {
       canRow: false,
     },
@@ -33,7 +38,7 @@ const scene = Object.freeze({
     id: 2,
     avatar: '/images/casts/goat1.png',
     name: 'ヤギ',
-    description: '農民が目を離すとキャベツを食べる。',
+    description: '旅人が目を離すとキャベツを食べる。',
     role: {
       canRow: false,
       enemies: [1],

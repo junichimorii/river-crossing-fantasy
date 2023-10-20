@@ -9,6 +9,7 @@ import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
 import type { Scene, History, Activity } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
+import scene from './scenes/01'
 const { width, height } = useWindowSize()
 /**
  * シーン（ステージ）管理
@@ -60,6 +61,8 @@ export const useSceneStore = defineStore('scene', () => {
   const destinationCasts = computed(() => state.value.casts.filter(cast => useCast(cast).location.value === 'destination'))
   /** 出発地点の右端のキャラクター */
   const originRightEndCast = computed(() => originCasts.value.reduce((a, b) => a.id > b.id ? a : b))
+  /** いずれかの登場人物が非常事態かどうか */
+  const isEmergency = computed(() => state.value.casts.some(cast => cast.status.emotions.length > 0))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
   /** 規定回数を超過したかどうか */
@@ -135,29 +138,35 @@ export const useSceneStore = defineStore('scene', () => {
       }
     }
     // 安否確認
-    safetyConfirmation()
+    await safetyConfirmation()
   }
 
   /**
    * 安否確認
    */
   const safetyConfirmation = async () => {
-    state.value.casts.forEach(async self => {
-      self.status.emotions = []
-      if (!self.role.enemies) return
-      self.role.enemies.forEach(enemyId => {
-        const enemy = state.value.casts.find(other => other.id === enemyId)
-        if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
-          const guardian = state.value.casts.find(other => other.id === self.role.guardian)
-          if (guardian && useCast(guardian).location.value !== useCast(self).location.value) {
-            self.status.emotions.push('M')  // 怖
-            enemy.status.emotions.push('E') // 嬉
-            guardian.status.emotions.push('G')  // 驚
-            return
-          }
-        }
-      })
+    state.value.casts.forEach(async cast => {
+      cast.status.emotions = []
     })
+    switch (state.value.category) {
+      case 'enemies-and-guardians':
+        state.value.casts.forEach(async self => {
+          if (!self.role.enemies) return
+          self.role.enemies.forEach(enemyId => {
+            const enemy = state.value.casts.find(other => other.id === enemyId)
+            if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
+              const guardian = state.value.casts.find(other => other.id === self.role.guardian)
+              if (guardian && useCast(guardian).location.value !== useCast(self).location.value) {
+                self.status.emotions.push('😰')  // 怖い、危機に瀕している
+                enemy.status.emotions.push('😈') // 喜んでいる
+                guardian.status.emotions.push('😖')  // 困っている
+                return
+              }
+            }
+          })
+        })
+        break
+    }
     state.value.casts.forEach(async cast => {
       cast.status.emotions = Array.from(new Set(cast.status.emotions))
     })
@@ -219,6 +228,7 @@ export const useSceneStore = defineStore('scene', () => {
     originCasts,
     destinationCasts,
     originRightEndCast,
+    isEmergency,
     isCompleted,
     isExceeded,
     score,

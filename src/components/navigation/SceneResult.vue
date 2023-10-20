@@ -23,13 +23,10 @@ const overlay = computed(() => scene.isCompleted)
         class="pa-6"
       >
         <v-card-title
-          class="text-teal text-h5 text-sm-h3 py-4"
+          class="text-success text-h5 text-sm-h3 py-4"
         >
           STAGE CLEAR
         </v-card-title>
-        <v-card-subtitle>
-          Score:
-        </v-card-subtitle>
         <v-card-item class="d-flex justify-center">
           <v-rating
             readonly

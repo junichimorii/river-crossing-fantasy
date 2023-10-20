@@ -49,7 +49,7 @@ const useCarrier = (
     && state.status.passengers.reduce((a, b) => a + (b.role.weight ? b.role.weight : 0), 0) > state.weightLimit
   )
   const isAvailable = computed(() => isVacancy.value && !isOverweight.value)
-  const isOperable = computed(() => state.status.passengers.some(cast => cast.role.canRow))
+  const isOperable = computed(() => state.status.passengers.some(cast => cast.role.canRow === undefined || cast.role.canRow))
   const isReady = computed(() => !state.status.isSailing && isOperable.value && !isOverweight.value)
   const upbound = computed(() => isReady.value && !state.status.isCrossed)
   const downbound = computed(() => isReady.value && state.status.isCrossed)

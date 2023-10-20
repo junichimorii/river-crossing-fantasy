@@ -22,7 +22,7 @@ export interface Cast {
  */
 export interface Role {
   /** 乗り物を操作できる */
-  canRow: boolean
+  canRow?: boolean
   /** 敵のID */
   enemies?: number[]
   /** 保護者のID */

@@ -1,18 +1,13 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
-  id: 5,
-  title: '夜間旅行',
+  id: 15,
+  title: '30分の夜間旅行',
   description: {
-    conditions: 'すべてのキャラクターが2分以内に対岸に渡る',
+    conditions: 'すべてのキャラクターが30分以内に対岸に渡る',
     transportation: '吊り橋の人数制限は2人まで。',
   },
-  tips: [
-    '夜のステージは、移動時にたいまつが必要です。',
-    '橋を渡るのに必要な所要時間はキャラクター毎に異なります。',
-    '2人以上で移動する時は、遅いほうに合わせて同時に移動します。',
-  ],
   category: 'time-limited',
-  passing: 2,
+  passing: 30,
   landscape: '/images/landscapes/night-bridge.png',
   carriers: [{
     id: 0,
@@ -31,7 +26,28 @@ const scene = Object.freeze({
     avatar: '/images/casts/villager2.png',
     name: '旅人B',
     role: {
-      duration: 2, 
+      duration: 3, 
+    },
+  }, {
+    id: 2,
+    avatar: '/images/casts/villager3.png',
+    name: '旅人B',
+    role: {
+      duration: 6, 
+    },
+  }, {
+    id: 3,
+    avatar: '/images/casts/villager4.png',
+    name: '旅人B',
+    role: {
+      duration: 8, 
+    },
+  }, {
+    id: 4,
+    avatar: '/images/casts/villager4.png',
+    name: '旅人B',
+    role: {
+      duration: 12, 
     },
   }],
 }) as Scene

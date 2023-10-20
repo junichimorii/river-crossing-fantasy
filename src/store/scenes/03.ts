@@ -3,13 +3,13 @@ const scene = Object.freeze({
   id: 3,
   title: '親子旅(1)',
   description: {
-    conditions: 'すべての登場人物が最小回数で対岸に渡る',
+    conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母親のみ。',
   },
   tips: [
     '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
   ],
-  category: 'tutorial',
+  category: 'qualified',
   passing: 3,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

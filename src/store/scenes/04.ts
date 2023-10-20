@@ -3,13 +3,13 @@ const scene = Object.freeze({
   id: 4,
   title: '親子旅(2)',
   description: {
-    conditions: 'すべての登場人物が最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし重量制限は大人1人分。',
+    conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
+    transportation: '2人乗りの舟が1艘。ただし重量制限は大人1人分。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
     '舟には、定員の他に重量制限がある場合があります。重量オーバーの状態で舟を移動させることはできません。',
   ],
-  category: 'tutorial',
+  category: 'weight-limited',
   passing: 9,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
@@ -23,7 +23,6 @@ const scene = Object.freeze({
     avatar: '/images/casts/villager1.png',
     name: '母親A',
     role: {
-      canRow: true,
       weight: 1,
     },
   }, {
@@ -31,7 +30,6 @@ const scene = Object.freeze({
     avatar: '/images/casts/villager2.png',
     name: '母親B',
     role: {
-      canRow: true,
       weight: 1,
     },
   }, {
@@ -40,7 +38,6 @@ const scene = Object.freeze({
     name: '娘A',
     ratio: 0.85,
     role: {
-      canRow: true,
       weight: 0.5,
     },
   }, {
@@ -49,7 +46,6 @@ const scene = Object.freeze({
     name: '娘B',
     ratio: 0.85,
     role: {
-      canRow: true,
       weight: 0.5,
     },
   }],
