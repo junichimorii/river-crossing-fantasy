@@ -2,6 +2,7 @@ import PuzzleNavigation from './PuzzleNavigation.vue'
 import PuzzleStage from './PuzzleStage.vue'
 import SceneConditions from './navigation/SceneConditions.vue'
 import SceneController from './navigation/SceneController.vue'
+import SceneCounter from './navigation/SceneCounter.vue'
 import SceneHistory from './navigation/SceneHistory.vue'
 import SceneResult from './navigation/SceneResult.vue'
 import SceneSplash from './navigation/SceneSplash.vue'
@@ -12,6 +13,7 @@ export {
   PuzzleStage,
   SceneConditions,
   SceneController,
+  SceneCounter,
   SceneHistory,
   SceneResult,
   SceneSplash,

@@ -1,4 +1,5 @@
 import { computed, Ref } from 'vue'
+import type { UseSwipeDirection } from '@vueuse/core'
 import type { Carrier, Status } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 /**
@@ -25,10 +26,8 @@ interface UseCarrierReturn {
   isOperable: Ref<boolean>
   /** 乗り物が出発可能 */
   isReady: Ref<boolean>
-  /** 上方向に移動可能 */
-  upbound: Ref<boolean>
-  /** 下方向に移動可能 */
-  downbound: Ref<boolean>
+  /** 進行方向 */
+  bound: Ref<UseSwipeDirection>
   /** 移動速度 */
   duration: Ref<number>
   /** 乗客を乗せる */
@@ -51,8 +50,12 @@ const useCarrier = (
   const isAvailable = computed(() => isVacancy.value && !isOverweight.value)
   const isOperable = computed(() => state.status.passengers.some(cast => cast.role.canRow === undefined || cast.role.canRow))
   const isReady = computed(() => !state.status.isSailing && isOperable.value && !isOverweight.value)
-  const upbound = computed(() => isReady.value && !state.status.isCrossed)
-  const downbound = computed(() => isReady.value && state.status.isCrossed)
+  const bound = computed(() => isReady.value
+    ? !state.status.isCrossed
+      ? 'up'
+      : 'down'
+    : 'none'
+  )
   const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
   const pickUp = async (
     cast: Cast
@@ -79,8 +82,7 @@ const useCarrier = (
     isOperable,
     isReady,
     duration,
-    upbound,
-    downbound,
+    bound,
     pickUp,
     dropOff,
     leave,

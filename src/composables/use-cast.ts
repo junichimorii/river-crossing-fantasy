@@ -16,10 +16,8 @@ export const defaultStatus: Status = Object.freeze({
 interface UseCastReturn {
   /** 現在地 */
   location: Ref<'origin' | 'destination' | 'onBoard'>
-  /** 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる */
-  upbound: Ref<boolean>
-  /** 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる */
-  downbound: Ref<boolean>
+  /** 進行方向 */
+  bound: Ref<UseSwipeDirection>
   /** ステータスの変更を無効にする */
   deactivate: () => Promise<void>
   /** ステータスの変更を有効にする */
@@ -42,13 +40,16 @@ const useCast = (
       ? 'destination'
       : 'origin'
   )
-  const upbound = computed(() =>
-    !state.status.disabled && 
-    (state.status.isSeated && state.status.isCrossed) || (!state.status.isSeated && !state.status.isCrossed)
-  )
-  const downbound = computed(() =>
-    !state.status.disabled && 
-    (state.status.isSeated && !state.status.isCrossed) || (!state.status.isSeated && state.status.isCrossed)
+  const bound = computed(() =>
+    !state.status.disabled 
+      // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
+      ? (state.status.isSeated && state.status.isCrossed) || (!state.status.isSeated && !state.status.isCrossed)
+        ? 'up'
+        // 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる
+        : (state.status.isSeated && !state.status.isCrossed) || (!state.status.isSeated && state.status.isCrossed)
+          ? 'down'
+          : 'none'
+      : 'none'
   )
   const deactivate = async () => {
     state.status.disabled = true
@@ -76,8 +77,7 @@ const useCast = (
   }
   return {
     location,
-    upbound,
-    downbound,
+    bound,
     deactivate,
     activate,
     request,

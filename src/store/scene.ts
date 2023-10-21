@@ -9,7 +9,6 @@ import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
 import type { Scene, History, Activity } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
-import scene from './scenes/01'
 const { width, height } = useWindowSize()
 /**
  * シーン（ステージ）管理
@@ -105,6 +104,18 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
+   * 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる
+   */
+  const reserve = async (
+    cast: Cast,
+  ) => {
+    const carrier = state.value.carriers.find(carrier =>
+      useCarrier(carrier).isAvailable.value && carrier.status.isCrossed === cast.status.isCrossed
+    )
+    return carrier
+  }
+
+  /**
    * 登場人物をスワイプした時の行動
    */
   const action = async(
@@ -122,10 +133,8 @@ export const useSceneStore = defineStore('scene', () => {
       }))
       activities.value.add('gotOff')
     } else if(request === 'getOn') {
-      // 搭乗可能な乗り物（空席があり、登場人物と同じ岸）があれば登場人物を船に乗せる
-      const carrier = state.value.carriers.find(carrier =>
-        useCarrier(carrier).isAvailable.value && carrier.status.isCrossed === cast.status.isCrossed
-      )
+      // 搭乗可能な乗り物があれば登場人物を船に乗せる
+      const carrier = await reserve(cast)
       if (carrier === undefined) return
       await useCast(cast).getOn()
       await useCarrier(carrier).pickUp(cast)
@@ -137,38 +146,54 @@ export const useSceneStore = defineStore('scene', () => {
         activities.value.add('gotOnRower')
       }
     }
-    // 安否確認
-    await safetyConfirmation()
-  }
-
-  /**
-   * 安否確認
-   */
-  const safetyConfirmation = async () => {
     state.value.casts.forEach(async cast => {
       cast.status.emotions = []
     })
-    switch (state.value.category) {
-      case 'enemies-and-guardians':
-        state.value.casts.forEach(async self => {
-          if (!self.role.enemies) return
-          self.role.enemies.forEach(enemyId => {
-            const enemy = state.value.casts.find(other => other.id === enemyId)
-            if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
-              const guardian = state.value.casts.find(other => other.id === self.role.guardian)
-              if (guardian && useCast(guardian).location.value !== useCast(self).location.value) {
-                self.status.emotions.push('😰')  // 怖い、危機に瀕している
-                enemy.status.emotions.push('😈') // 喜んでいる
-                guardian.status.emotions.push('😖')  // 困っている
-                return
-              }
-            }
-          })
-        })
-        break
-    }
+    if (state.value.category === 'enemies-and-guardians') await predation()
+    if (state.value.category === 'keep-majority') await rebellion()
+  }
+
+  /**
+   * （敵と保護者がいるパズルにおいて）敵が行動を開始する
+   */
+  const predation = async () => {
+    state.value.casts.forEach(async self => {
+      if (!self.role.enemies) return
+      self.role.enemies.forEach(enemyId => {
+        const enemy = state.value.casts.find(other => other.id === enemyId)
+        if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
+          const guardian = state.value.casts.find(other => other.id === self.role.guardian)
+          if (guardian && useCast(guardian).location.value !== useCast(self).location.value) {
+            self.status.emotions.push('😰')  // 怖い、危機に瀕している
+            enemy.status.emotions.push('😈') // 喜んでいる
+            guardian.status.emotions.push('😖')  // 困っている
+            return
+          }
+        }
+      })
+    })
     state.value.casts.forEach(async cast => {
       cast.status.emotions = Array.from(new Set(cast.status.emotions))
+    })
+  }
+
+  /**
+   * （半数以上を維持するパズルにおいて）反乱を企てる
+   */
+  const rebellion = async () => {
+    [
+      originCasts.value,
+      destinationCasts.value,
+      state.value.carriers.flatMap(carrier => carrier.status.passengers)
+    ].forEach(casts => {
+      const missionaries = casts.filter(cast => cast.role.rebel === false)
+      if (missionaries.length === 0) return
+      const cannibals = casts.filter(cast => cast.role.rebel === true)
+      if (cannibals.length === 0) return
+      if (missionaries.length < cannibals.length) {
+        missionaries.forEach(cast => cast.status.emotions.push('😰'))
+        cannibals.forEach(cast => cast.status.emotions.push('😈'))
+      }
     })
   }
 
@@ -191,7 +216,7 @@ export const useSceneStore = defineStore('scene', () => {
   ) => {
     if (!activities.value.has('gotOnRower')) return
     history.value.add({
-      casts: carrier.status.passengers,
+      casts: carrier.status.passengers.sort((a, b) => a.id < b.id ? -1 : 1),
       duration: useCarrier(carrier).duration.value
     })
     await Promise.all(state.value.casts.map(async cast => {

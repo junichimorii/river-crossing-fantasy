@@ -1,10 +1,10 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
-  id: 6,
-  title: '虎の子渡し',
+  id: 8,
+  title: 'オオカミとヤギとキャベツ',
   description: {
     conditions: 'すべてのキャラクターが危機に瀕することなく最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母トラのみ。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは旅人のみ。',
   },
   tips: [
     'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
@@ -22,39 +22,38 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '母トラ',
+    avatar: '/images/casts/farmer1.png',
+    name: '旅人',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '子トラA',
-    ratio: 0.85,
+    avatar: '/images/casts/wolf1.png',
+    name: 'オオカミ',
+    description: '旅人が目を離すとヤギを食べる。',
     role: {
       canRow: false,
-      enemies: [3],
-      guardian: 0,
     },
   }, {
     id: 2,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '子トラB',
-    ratio: 0.85,
+    avatar: '/images/casts/goat1.png',
+    name: 'ヤギ',
+    description: '旅人が目を離すとキャベツを食べる。',
     role: {
       canRow: false,
-      enemies: [3],
+      enemies: [1],
       guardian: 0,
     },
   }, {
     id: 3,
-    avatar: '/images/casts/therianthropy1.png',
-    name: 'ヒョウ',
-    description: '母トラが目を離すと他の子トラを食べる。',
-    ratio: 0.85,
+    avatar: '/images/casts/cabbage1.png',
+    name: 'キャベツ',
+    description: '',
     role: {
       canRow: false,
+      enemies: [2],
+      guardian: 0,
     },
   }],
 }) as Scene

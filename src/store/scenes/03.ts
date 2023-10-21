@@ -7,6 +7,7 @@ const scene = Object.freeze({
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母親のみ。',
   },
   tips: [
+    '舟を漕げないキャラクターが登場するケースがあります。',
     '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
   ],
   category: 'qualified',

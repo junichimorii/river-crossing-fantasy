@@ -10,7 +10,7 @@ const { state } = defineProps<{
 }>()
 const scene = useSceneStore()
 const target = ref<HTMLElement | null>(null)
-const { upbound, downbound } = useCast(state)
+const { bound } = useCast(state)
 /** タッチイベントの検知 */
 const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
   target, {
@@ -33,24 +33,22 @@ const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerS
 )
 /** スワイプ中かどうか */
 const isSwiping = computed(() => isTouchSwiping.value || isPointerSwiping.value)
+/** スワイプ方向 */
+const direction = computed(() => directionSwipe.value || directionPointer.value)
 /** 矢印の色 */
-const signal = computed(() => 
-  (upbound.value && (directionSwipe.value === 'up' ||  directionPointer.value === 'up'))
-    || (downbound.value && (directionSwipe.value === 'down' || directionPointer.value === 'down'))
-      ? 'green' : 'grey'
+const signal = computed(() => bound.value === direction.value
+  ? 'orange'
+  : 'grey'
 )
 /** v-imgに適用するCSS transformプロパティ */
 const transformImage = computed(() => {
   const ratio = state.ratio || 1
   return `scale(${state.status.isCrossed ? -ratio : ratio}, ${ratio})`
 })
-/** 進行可能な方向 */
-const direction = computed(() => {
-  return {
-    upbound: isSwiping.value && upbound.value,
-    downbound: isSwiping.value && downbound.value,
-  }
-})
+/** 上方向に進行可能 */
+const upbound = computed(() =>  isSwiping.value && bound.value === 'up')
+/** 下方向に進行可能 */
+const downbound = computed(() =>  isSwiping.value && bound.value === 'down')
 /** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2） */
 const width = computed(() => scene.castWidth)
 /** 高さ（登場人物の高さ） */
@@ -84,7 +82,7 @@ const aspectRatio = computed(() => width.value / height.value)
       </v-img>
       <v-menu
         activator="parent"
-        v-model="direction.upbound"
+        v-model="upbound"
         disabled
         location="top"
         transition="scroll-y-reverse-transition"
@@ -101,7 +99,7 @@ const aspectRatio = computed(() => width.value / height.value)
       </v-menu>
       <v-menu
         activator="parent"
-        v-model="direction.downbound"
+        v-model="downbound"
         disabled
         location="bottom"
         transition="scroll-y-transition"

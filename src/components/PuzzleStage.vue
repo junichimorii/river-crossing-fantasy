@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useSceneStore } from '@/store/scene'
-import { PuzzleCast, PuzzleCarrier } from '@/components'
+import { SceneCounter, PuzzleCast, PuzzleCarrier } from '@/components'
 const scene = useSceneStore()
 </script>
 
@@ -16,8 +16,14 @@ const scene = useSceneStore()
         :height="scene.stageSize"
       >
         <v-sheet
+          class="d-flex justify-start align-center bg-transparent"
+          :height="scene.stageSize * 0.1"
+        >
+          <SceneCounter></SceneCounter>
+        </v-sheet>
+        <v-sheet
           class="d-flex justify-end align-end bg-transparent"
-          :height="scene.stageSize * 0.35"
+          :height="scene.stageSize * 0.25"
         >
           <PuzzleCast
             v-for="cast in scene.destinationCasts"

@@ -45,7 +45,7 @@ const scene = useSceneStore()
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
-            <span v-if="scene.state.category === 'bridgeAndTorch'">
+            <span v-if="scene.state.category === 'time-limited'">
               + {{ history.duration }} min
             </span>
           </template>

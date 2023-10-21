@@ -9,7 +9,7 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, upbound, downbound, leave } = useCarrier(state)
+const { y, bound, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
@@ -21,14 +21,10 @@ const amount = useTransition(y, {
     scene.arrive(state)
   },
 })
-/** 進行可能な方向 */
-const direction = computed(() => {
-  return {
-    upbound: !scene.isEmergency && upbound.value,
-    downbound: !scene.isEmergency && downbound.value,
-  }
-})
-
+/** 上方向に進行可能 */
+const upbound = computed(() => !scene.isEmergency && bound.value === 'up')
+/** 下方向に進行可能 */
+const downbound = computed(() => !scene.isEmergency && bound.value === 'down')
 /** 川幅（乗り物が往復する距離） */
 const riverWidth = computed(() => scene.stageSize * 0.3)
 /** v-cardに適用するCSS transformプロパティ */
@@ -69,7 +65,7 @@ const aspectRatio = computed(() => width.value / height.value)
       :close-on-content-click="false"
       disabled
       location="top"
-      v-model="direction.upbound"
+      v-model="upbound"
       persistent
       transition="scroll-y-reverse-transition"
     >
@@ -90,7 +86,7 @@ const aspectRatio = computed(() => width.value / height.value)
       :close-on-content-click="false"
       disabled
       location="bottom"
-      v-model="direction.downbound"
+      v-model="downbound"
       persistent
       transition="scroll-y-transition"
     >

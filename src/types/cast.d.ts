@@ -23,14 +23,16 @@ export interface Cast {
 export interface Role {
   /** 乗り物を操作できる */
   canRow?: boolean
-  /** 敵のID */
-  enemies?: number[]
-  /** 保護者のID */
-  guardian?: number
   /** 重量 */
   weight?: number
   /** 所要時間 */
   duration?: number
+  /** 敵のID */
+  enemies?: number[]
+  /** 保護者のID */
+  guardian?: number
+  /** （半数以上を維持するパズルにおける）反逆者 */
+  rebel?: boolean
 }
 /**
  * 登場人物の状態
