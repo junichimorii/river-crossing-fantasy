@@ -1,10 +1,10 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 5,
-  title: '夜間旅行',
+  title: '闇夜の冒険(1)',
   description: {
     conditions: 'すべてのキャラクターが2分以内に対岸に渡る',
-    transportation: '吊り橋の人数制限は2人まで。',
+    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
   tips: [
     '夜のステージは、移動時にたいまつが必要です。また、たいまつが燃え尽きる制限時間も決まっています。',
@@ -21,15 +21,15 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/villager1.png',
-    name: '旅人A',
+    avatar: '/images/casts/thief1.png',
+    name: '盗賊',
     role: {
       duration: 1, 
     },
   }, {
     id: 1,
-    avatar: '/images/casts/villager2.png',
-    name: '旅人B',
+    avatar: '/images/casts/fighter1.png',
+    name: '戦士',
     role: {
       duration: 2, 
     },

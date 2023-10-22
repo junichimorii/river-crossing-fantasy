@@ -59,7 +59,7 @@ const scene = useSceneStore()
               橋を渡るのに{{ cast.role.duration }}分必要。
             </span>
             <span v-if="cast.role.weight !== undefined">
-              体重は大人{{ cast.role.weight }}人分。
+              重量は定員{{ cast.role.weight }}人分。
             </span>
             <span>
               {{ cast.description }}

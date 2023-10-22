@@ -1,13 +1,13 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 3,
-  title: '家族旅行(1)',
+  title: '逃避行(1)',
   description: {
     conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母親のみ。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは騎士のみ。',
   },
   tips: [
-    '舟を漕げないキャラクターが登場するケースがあります。',
+    '舟を漕げるキャラクターと漕げないキャラクターがいます。',
     '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
   ],
   category: 'qualified',
@@ -20,23 +20,23 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/villager1.png',
-    name: '母親',
+    avatar: '/images/casts/knight1.png',
+    name: '騎士',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/villager2.png',
-    name: '娘A',
+    avatar: '/images/casts/princess1.png',
+    name: '王女A',
     ratio: 0.85,
     role: {
       canRow: false,
     },
   }, {
     id: 2,
-    avatar: '/images/casts/villager3.png',
-    name: '娘B',
+    avatar: '/images/casts/princess2.png',
+    name: '王女B',
     ratio: 0.85,
     role: {
       canRow: false,

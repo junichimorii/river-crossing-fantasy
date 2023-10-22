@@ -22,7 +22,7 @@ const scene = Object.freeze({
   casts: [{
     id: 0,
     avatar: '/images/casts/villager1.png',
-    name: '旅人A',
+    name: '村人',
     role: {
     },
   }],

@@ -4,7 +4,7 @@ const scene = Object.freeze({
   title: '危険な冒険者たち(1)',
   description: {
     conditions: 'すべてのキャラクターが危機に瀕することなく最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母トラのみ。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
   tips: [
     'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
@@ -22,15 +22,15 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '母トラ',
+    avatar: '/images/casts/beast-tamer1.png',
+    name: '魔獣使い',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '子トラA',
+    avatar: '/images/casts/villager1.png',
+    name: '村人',
     ratio: 0.85,
     role: {
       canRow: false,
@@ -40,8 +40,8 @@ const scene = Object.freeze({
   }, {
     id: 2,
     avatar: '/images/casts/therianthropy1.png',
-    name: 'ヒョウ',
-    description: '母トラが目を離すと他の子トラを食べる。',
+    name: '魔獣',
+    description: '魔獣使いが目を離すと村人を襲う。',
     ratio: 0.85,
     role: {
       canRow: false,

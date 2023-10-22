@@ -1,10 +1,10 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 4,
-  title: '家族旅行(2)',
+  title: '逃避行(2)',
   description: {
     conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし重量制限は大人1人分。すべてのキャラクターが舟を漕げる。',
+    transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
     '舟には、定員の他に重量制限がある場合があります。重量オーバーの状態で舟を移動させることはできません。',
@@ -16,37 +16,35 @@ const scene = Object.freeze({
     id: 0,
     appearance: '/images/carriers/boat2.png',
     capacity: 2,
-    weightLimit: 1,
+    weightLimit: 2,
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/villager1.png',
-    name: '母親A',
+    avatar: '/images/casts/knight1.png',
+    name: '騎士A',
     role: {
-      weight: 1,
+      weight: 2,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/villager2.png',
-    name: '母親B',
+    avatar: '/images/casts/knight2.png',
+    name: '騎士B',
+    role: {
+      weight: 2,
+    },
+  }, {
+    id: 2,
+    avatar: '/images/casts/villager1.png',
+    name: '村人A',
     role: {
       weight: 1,
     },
   }, {
-    id: 2,
-    avatar: '/images/casts/villager3.png',
-    name: '娘A',
-    ratio: 0.85,
-    role: {
-      weight: 0.5,
-    },
-  }, {
     id: 3,
-    avatar: '/images/casts/villager4.png',
-    name: '娘B',
-    ratio: 0.85,
+    avatar: '/images/casts/villager2.png',
+    name: '村人B',
     role: {
-      weight: 0.5,
+      weight: 1,
     },
   }],
 }) as Scene

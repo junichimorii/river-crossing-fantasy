@@ -9,7 +9,7 @@ import s08 from './08'
 import s09 from './09'
 import s10 from './10'
 import s11 from './11'
-// import s12 from './12'
+import s12 from './12'
 // import s13 from './13'
 // import s14 from './14'
 import s15 from './15'
@@ -30,7 +30,7 @@ export {
   s09,
   s10,
   s11,
-  // s12,
+  s12,
   // s13,
   // s14,
   s15,

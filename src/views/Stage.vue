@@ -24,7 +24,6 @@ onMounted(async () => {
 onUnmounted(async () => {
   await scene.unload()
 })
-
 watch(
   () => scene.activities,
   (activities) => {

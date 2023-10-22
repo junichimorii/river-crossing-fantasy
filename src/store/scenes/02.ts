@@ -20,20 +20,20 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/villager1.png',
-    name: '旅人A',
+    avatar: '/images/casts/fighter1.png',
+    name: '戦士',
     role: {
     },
   }, {
     id: 1,
-    avatar: '/images/casts/villager2.png',
-    name: '旅人B',
+    avatar: '/images/casts/thief1.png',
+    name: '盗賊',
     role: {
     },
   }, {
     id: 2,
-    avatar: '/images/casts/villager3.png',
-    name: '旅人C',
+    avatar: '/images/casts/black-mage1.png',
+    name: '魔法使い',
     role: {
     },
   }],

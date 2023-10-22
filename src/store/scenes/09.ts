@@ -19,24 +19,26 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/farmer1.png',
-    name: '旅人',
+    avatar: '/images/casts/beast-tamer1.png',
+    name: '魔獣使い',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/wolf1.png',
-    name: 'オオカミ',
-    description: '旅人が目を離すとヤギを食べる。',
+    avatar: '/images/casts/knight1.png',
+    name: '騎士',
+    description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
+    ratio: 0.85,
     role: {
       canRow: false,
     },
   }, {
     id: 2,
-    avatar: '/images/casts/goat1.png',
-    name: 'ヤギ',
-    description: '旅人が目を離すとキャベツを食べる。',
+    avatar: '/images/casts/therianthropy1.png',
+    name: '魔獣',
+    description: '魔獣使いが目を離すと村人を襲う。',
+    ratio: 0.85,
     role: {
       canRow: false,
       enemies: [1],
@@ -44,9 +46,9 @@ const scene = Object.freeze({
     },
   }, {
     id: 3,
-    avatar: '/images/casts/cabbage1.png',
-    name: 'キャベツ',
-    description: '',
+    avatar: '/images/casts/villager1.png',
+    name: '村人',
+    ratio: 0.85,
     role: {
       canRow: false,
       enemies: [2],
