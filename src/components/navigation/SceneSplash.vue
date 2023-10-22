@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import { SceneConditions } from '@/components'
-const records = useRecordsStore()
 const scene = useSceneStore()
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
@@ -27,7 +25,6 @@ onMounted(async () => {
           class="d-flex justify-center"
         >
           <v-btn
-            size="large"
             color="green"
             variant="elevated"
             @click="dialog = false"

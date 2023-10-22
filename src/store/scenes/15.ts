@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 15,
-  title: '暗闇恐怖症(3)',
+  title: '30分の夜間旅行',
   description: {
     conditions: 'すべてのキャラクターが30分以内に対岸に渡る',
     transportation: '吊り橋の人数制限は2人まで。',

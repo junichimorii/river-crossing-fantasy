@@ -11,7 +11,7 @@ const scene = useSceneStore()
     <v-card-title>
       <v-chip
         size="x-large"
-        color="green"
+        :color="scene.state.category"
       >
         Q{{scene.state.id}}
       </v-chip>
@@ -77,14 +77,13 @@ const scene = useSceneStore()
           <v-icon icon="mdi-chat-alert"></v-icon>
           Tips:
         </v-card-subtitle>
-        <v-list-item
+        <v-card-text
           v-for="(tips, i) in scene.state.tips"
           :key="i"
+          class="py-1"
         >
-          <v-list-item-subtitle class="text-subtitle-2">
-            {{ tips }}
-          </v-list-item-subtitle>
-        </v-list-item>
+          {{ tips }}
+        </v-card-text>
       </v-card-item>
     </v-card-text>
     <v-divider></v-divider>

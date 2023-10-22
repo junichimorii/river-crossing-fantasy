@@ -19,7 +19,7 @@ export interface Scene {
   /** ヒント */
   tips?: string[]
   /** パズル種別 */
-  category: Category | null
+  category: Category
   /** ステージの合格基準となる回数または時間 */
   passing: number
   /** ステージの背景画像URL */
@@ -62,4 +62,5 @@ export type Activity =
   |'left'               // 乗り物が出発した
   |'arrived'            // 乗り物が対岸に到着した
   |'gotOnFromOpposite'  // 向こう岸から乗り物に乗った
-  |'completed'          // シーンをクリアした
+  |'completed'          // シーンをクリアに成功した
+  |'failed'             // シーンのクリアに失敗した

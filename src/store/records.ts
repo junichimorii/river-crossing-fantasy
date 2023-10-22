@@ -11,6 +11,10 @@ export const useRecordsStore = defineStore('records', () => {
       'RIVER_CROSSING_PUZZLES_SCENES',
       new Map<number, number>()
     ),
+    splash: useStorage<boolean>(
+      'RIVER_CROSSING_PUZZLES_SPLASH',
+      false
+    ),
   })
 
   /**

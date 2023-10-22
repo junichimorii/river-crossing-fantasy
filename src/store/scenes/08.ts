@@ -1,16 +1,13 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 8,
-  title: 'オオカミとヤギとキャベツ',
+  title: '危険な冒険者たち(2)',
   description: {
     conditions: 'すべてのキャラクターが危機に瀕することなく最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは旅人のみ。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母トラのみ。',
   },
   tips: [
-    'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
-    'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-    'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。',
-    'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
+    '古くから「虎の子渡し」の名で知られる川渡りパズル。',
   ],
   category: 'enemies-and-guardians',
   passing: 7,
@@ -22,38 +19,39 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/farmer1.png',
-    name: '旅人',
+    avatar: '/images/casts/therianthropy1.png',
+    name: '母トラ',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/wolf1.png',
-    name: 'オオカミ',
-    description: '旅人が目を離すとヤギを食べる。',
+    avatar: '/images/casts/therianthropy1.png',
+    name: '子トラA',
+    ratio: 0.85,
     role: {
       canRow: false,
+      enemies: [3],
+      guardian: 0,
     },
   }, {
     id: 2,
-    avatar: '/images/casts/goat1.png',
-    name: 'ヤギ',
-    description: '旅人が目を離すとキャベツを食べる。',
+    avatar: '/images/casts/therianthropy1.png',
+    name: '子トラB',
+    ratio: 0.85,
     role: {
       canRow: false,
-      enemies: [1],
+      enemies: [3],
       guardian: 0,
     },
   }, {
     id: 3,
-    avatar: '/images/casts/cabbage1.png',
-    name: 'キャベツ',
-    description: '',
+    avatar: '/images/casts/therianthropy1.png',
+    name: 'ヒョウ',
+    description: '母トラが目を離すと他の子トラを食べる。',
+    ratio: 0.85,
     role: {
       canRow: false,
-      enemies: [2],
-      guardian: 0,
     },
   }],
 }) as Scene

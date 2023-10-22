@@ -6,7 +6,7 @@ import s05 from './05'
 import s06 from './06'
 import s07 from './07'
 import s08 from './08'
-// import s09 from './09'
+import s09 from './09'
 import s10 from './10'
 import s11 from './11'
 // import s12 from './12'
@@ -27,7 +27,15 @@ export {
   s06,
   s07,
   s08,
+  s09,
   s10,
   s11,
+  // s12,
+  // s13,
+  // s14,
   s15,
+  // s16,
+  // s17,
+  // s18,
+  // s19,
 }

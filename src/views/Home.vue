@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
 import { useRecordsStore } from '@/store/records'
+import { AppSplash } from '@/components'
 const records = useRecordsStore()
 onMounted(async () => {
   if (!records.has(1)) records.set(1, 0)
@@ -14,10 +15,9 @@ onMounted(async () => {
     class="d-flex justify-center align-start fill-height"
   >
     <v-container>
-      <h1 class="text-h5 text-sm-h3 text-center py-3">
+      <h1 class="text-h5 text-sm-h3 text-center py-4">
         River Crossing Puzzles
       </h1>
-      <div class="text-subtitle-2 text-center py-3">Made with Vuetify</div>
       <v-list-item
         v-for="scene in records.scenes"
         :key="scene.id"
@@ -28,7 +28,7 @@ onMounted(async () => {
       >
         <template v-slot:prepend>
           <v-chip
-            :color="scene.category === 'time-limited' ? 'indigo' : 'green'"
+            :color="scene.category"
             class="mr-3"
           >
             Q{{scene.id}}
@@ -52,4 +52,24 @@ onMounted(async () => {
       </v-list-item>
     </v-container>
   </v-img>
+  <v-footer
+    app
+    class="pa-0"
+  >
+    <v-banner
+      lines="one"
+      text="River Crossing Puzzles"
+      color="primary"
+      class="px-3 py-0"
+    >
+      <template v-slot:actions>
+        <v-btn
+          @click="records.state.splash = true"
+        >
+          このゲームについて
+        </v-btn>
+      </template>
+    </v-banner>
+  </v-footer>
+  <AppSplash></AppSplash>
 </template>

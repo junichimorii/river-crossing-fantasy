@@ -23,7 +23,7 @@ export const useSceneStore = defineStore('scene', () => {
         conditions: '',
         transportation: '',
       },
-      category: null,
+      category: 'unconditioned',
       passing: 0,
       landscape: '',
       carriers: [],
@@ -149,17 +149,18 @@ export const useSceneStore = defineStore('scene', () => {
     state.value.casts.forEach(async cast => {
       cast.status.emotions = []
     })
-    if (state.value.category === 'enemies-and-guardians') await predation()
-    if (state.value.category === 'keep-majority') await rebellion()
+    await predation()
+    await rebellion()
   }
 
   /**
    * （敵と保護者がいるパズルにおいて）敵が行動を開始する
    */
   const predation = async () => {
-    state.value.casts.forEach(async self => {
-      if (!self.role.enemies) return
-      self.role.enemies.forEach(enemyId => {
+    if (state.value.category !== 'enemies-and-guardians') return false
+    const results = await Promise.all(state.value.casts.map(async self => {
+      if (!self.role.enemies) return false
+      const results = await Promise.all(self.role.enemies.map(async enemyId => {
         const enemy = state.value.casts.find(other => other.id === enemyId)
         if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
           const guardian = state.value.casts.find(other => other.id === self.role.guardian)
@@ -167,34 +168,46 @@ export const useSceneStore = defineStore('scene', () => {
             self.status.emotions.push('😰')  // 怖い、危機に瀕している
             enemy.status.emotions.push('😈') // 喜んでいる
             guardian.status.emotions.push('😖')  // 困っている
-            return
+            return true
           }
         }
-      })
-    })
+        return false
+      }))
+      return results.some(isError => isError === true)
+    }))
     state.value.casts.forEach(async cast => {
       cast.status.emotions = Array.from(new Set(cast.status.emotions))
     })
+    return results.some(isError => isError === true)
   }
 
   /**
    * （半数以上を維持するパズルにおいて）反乱を企てる
    */
   const rebellion = async () => {
-    [
+    if (state.value.category !== 'keep-majority') return false
+    const results = await Promise.all([
       originCasts.value,
       destinationCasts.value,
       state.value.carriers.flatMap(carrier => carrier.status.passengers)
-    ].forEach(casts => {
+    ].map(casts => {
       const missionaries = casts.filter(cast => cast.role.rebel === false)
-      if (missionaries.length === 0) return
+      if (missionaries.length === 0) return false
       const cannibals = casts.filter(cast => cast.role.rebel === true)
-      if (cannibals.length === 0) return
+      if (cannibals.length === 0) return false
       if (missionaries.length < cannibals.length) {
         missionaries.forEach(cast => cast.status.emotions.push('😰'))
         cannibals.forEach(cast => cast.status.emotions.push('😈'))
+        return true
       }
-    })
+      return false
+    }))
+    if (results.some(isError => isError === true)) {
+      state.value.casts.filter(cast => cast.role.rebel === false).forEach(async cast => {
+        if (cast.status.emotions.length === 0) cast.status.emotions.push('😖')
+      })
+    }
+    return results.some(isError => isError === true)
   }
 
   /**
@@ -229,18 +242,20 @@ export const useSceneStore = defineStore('scene', () => {
       await useCast(cast).getOff()
       await useCarrier(carrier).dropOff(cast)
     }))
-    activities.value.add('arrived')
-    // クリア判定
-    if (isCompleted.value) {
-      terminate()
+    state.value.casts.forEach(async cast => {
+      cast.status.emotions = []
+    })
+    const isPredated = await predation()
+    const isRebelled = await rebellion()
+    if (isPredated || isRebelled) {
+      activities.value.add('failed')
+    } else {
+      activities.value.add('arrived')
+      // クリア判定
+      if (isCompleted.value) {
+        activities.value.add('completed')
+      }
     }
-  }
-
-  /**
-   * シーンの終了時
-   */
-  const terminate = async () => {
-    activities.value.add('completed')
   }
 
   return {

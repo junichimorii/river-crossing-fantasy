@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 3,
-  title: '親子旅(1)',
+  title: '家族旅行(1)',
   description: {
     conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは母親のみ。',

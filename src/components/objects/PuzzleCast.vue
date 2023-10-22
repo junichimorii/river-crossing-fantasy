@@ -61,9 +61,15 @@ const aspectRatio = computed(() => width.value / height.value)
   <v-badge
     :model-value="state.status.emotions.length !== 0"
     :content="state.status.emotions.join('')"
-    :offset-x="scene.castWidth * 0.1"
-    :offset-y="scene.castWidth * 0.1"
-    color="white"
+    :offset-x="scene.castWidth * 0.15"
+    :offset-y="scene.castWidth * 0.15"
+    :color="state.status.emotions.includes('😈')
+      ? 'red-lighten-4'
+      : state.status.emotions.includes('😰')
+        ? 'blue-lighten-4'
+        : state.status.emotions.includes('😖')
+          ? 'amber-lighten-4'
+          : 'white'"
   >
     <v-card
       flat
