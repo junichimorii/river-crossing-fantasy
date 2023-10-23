@@ -18,7 +18,7 @@ onMounted(async () => {
     class="d-flex justify-center align-center"
   >
     <SceneConditions
-      style="background-color: hsla(0, 0%, 100%, 0.9)"
+      style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
       <template v-slot:actions>
         <v-card-actions

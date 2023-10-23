@@ -1,13 +1,13 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 9,
-  title: '危険な冒険者たち(3)',
+  title: '危険なパーティ（初級編2）',
   description: {
-    conditions: 'すべてのキャラクターが危機に瀕することなく最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは旅人のみ。',
+    conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
   tips: [
-    '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズル。',
+    '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したもの。',
   ],
   category: 'enemies-and-guardians',
   passing: 7,
@@ -26,33 +26,36 @@ const scene = Object.freeze({
     },
   }, {
     id: 1,
-    avatar: '/images/casts/knight1.png',
-    name: '騎士',
-    description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
+    avatar: '/images/casts/villager1.png',
+    name: '村人A',
     ratio: 0.85,
     role: {
       canRow: false,
+      predators: [{
+        predator: 3,
+        guardian: 0,
+      }],
     },
   }, {
     id: 2,
+    avatar: '/images/casts/villager2.png',
+    name: '村人B',
+    ratio: 0.85,
+    role: {
+      canRow: false,
+      predators: [{
+        predator: 3,
+        guardian: 0,
+      }],
+    },
+  }, {
+    id: 3,
     avatar: '/images/casts/therianthropy1.png',
     name: '魔獣',
     description: '魔獣使いが目を離すと村人を襲う。',
     ratio: 0.85,
     role: {
       canRow: false,
-      enemies: [1],
-      guardian: 0,
-    },
-  }, {
-    id: 3,
-    avatar: '/images/casts/villager1.png',
-    name: '村人',
-    ratio: 0.85,
-    role: {
-      canRow: false,
-      enemies: [2],
-      guardian: 0,
     },
   }],
 }) as Scene

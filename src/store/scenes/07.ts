@@ -1,9 +1,9 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 7,
-  title: '魔獣と魔獣使い(1)',
+  title: '魔獣たちの反乱（初級編）',
   description: {
-    conditions: 'すべての地点で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターが最小回数で対岸に渡る',
+    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [

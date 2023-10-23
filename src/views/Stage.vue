@@ -25,11 +25,11 @@ onUnmounted(async () => {
   await scene.unload()
 })
 watch(
-  () => scene.activities,
-  (activities) => {
+  () => scene.score,
+  (score) => {
     /** ステージクリア */
-    if (activities.has('completed')) {
-      records.report(scene.state.id, scene.score)
+    if (score !== 0) {
+      records.report(scene.state.id, score)
     }
   },
   { deep: true }

@@ -8,11 +8,11 @@ import * as scenes from './scenes'
 export const useRecordsStore = defineStore('records', () => {
   const state = ref({
     scenes: useStorage<Map<number, number>>(
-      'RIVER_CROSSING_PUZZLES_SCENES',
+      'RIVER_CROSSING_SCENES',
       new Map<number, number>()
     ),
     splash: useStorage<boolean>(
-      'RIVER_CROSSING_PUZZLES_SPLASH',
+      'RIVER_CROSSING_SPLASH',
       false
     ),
   })

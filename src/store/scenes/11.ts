@@ -1,16 +1,16 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 11,
-  title: '魔獣と魔獣使い(2)',
+  title: '危険なパーティ（初級編3）',
   description: {
-    conditions: 'すべての地点で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターが最小回数で対岸に渡る',
-    transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
+    conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
   tips: [
-    '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズル。',
+    '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
   ],
-  category: 'keep-majority',
-  passing: 11,
+  category: 'enemies-and-guardians',
+  passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
     id: 0,
@@ -20,44 +20,43 @@ const scene = Object.freeze({
   casts: [{
     id: 0,
     avatar: '/images/casts/beast-tamer1.png',
-    name: '魔獣使いA',
+    name: '魔獣使い',
     role: {
-      rebel: false,
+      canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/beast-tamer2.png',
-    name: '魔獣使いB',
+    avatar: '/images/casts/knight-indigo1.png',
+    name: '騎士',
+    description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
+    ratio: 0.85,
     role: {
-      rebel: false,
+      canRow: false,
     },
   }, {
     id: 2,
-    avatar: '/images/casts/beast-tamer3.png',
-    name: '魔獣使いC',
+    avatar: '/images/casts/therianthropy1.png',
+    name: '魔獣',
+    description: '魔獣使いが目を離すと村人を襲う。',
+    ratio: 0.85,
     role: {
-      rebel: false,
+      canRow: false,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }],
     },
   }, {
     id: 3,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '魔獣A',
+    avatar: '/images/casts/villager1.png',
+    name: '村人',
+    ratio: 0.85,
     role: {
-      rebel: true,
-    },
-  }, {
-    id: 4,
-    avatar: '/images/casts/therianthropy2.png',
-    name: '魔獣B',
-    role: {
-      rebel: true,
-    },
-  }, {
-    id: 5,
-    avatar: '/images/casts/therianthropy3.png',
-    name: '魔獣C',
-    role: {
-      rebel: true,
+      canRow: false,
+      predators: [{
+        predator: 2,
+        guardian: 0,
+      }],
     },
   }],
 }) as Scene

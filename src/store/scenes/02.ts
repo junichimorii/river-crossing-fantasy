@@ -3,7 +3,7 @@ const scene = Object.freeze({
   id: 2,
   title: '三人旅',
   description: {
-    conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
+    conditions: 'すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [

@@ -27,10 +27,11 @@ export interface Role {
   weight?: number
   /** 所要時間 */
   duration?: number
-  /** 敵のID */
-  enemies?: number[]
-  /** 保護者のID */
-  guardian?: number
+  /** 天敵と保護者 */
+  predators?: {
+    predator: number  // 敵のID
+    guardian: number  // 保護者のID
+  }[]
   /** （半数以上を維持するパズルにおける）反逆者 */
   rebel?: boolean
 }

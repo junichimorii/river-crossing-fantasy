@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { useSettingsStore } from '@/store/settings'
 import { useSceneStore } from '@/store/scene'
+const settings = useSettingsStore()
 const scene = useSceneStore()
 </script>
 
@@ -29,6 +31,18 @@ const scene = useSceneStore()
             <v-icon icon="mdi-home"></v-icon>
           </template>
         </v-list-item>
+      </v-list>
+    </v-card-item>
+    <v-divider></v-divider>
+    <v-card-item>
+      <v-list>
+        <v-switch
+          v-model="settings.state.nameplate"
+          density="compact"
+          color="primary"
+          label="キャラクターの名前を表示する"
+        >
+        </v-switch>
       </v-list>
     </v-card-item>
   </v-card>

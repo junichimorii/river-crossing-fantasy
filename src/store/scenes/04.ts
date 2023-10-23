@@ -3,7 +3,7 @@ const scene = Object.freeze({
   id: 4,
   title: '逃避行(2)',
   description: {
-    conditions: 'すべてのキャラクターが最小回数で対岸に渡る',
+    conditions: 'すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
@@ -20,14 +20,14 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/knight1.png',
+    avatar: '/images/casts/knight-pink1.png',
     name: '騎士A',
     role: {
       weight: 2,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/knight2.png',
+    avatar: '/images/casts/knight-pink2.png',
     name: '騎士B',
     role: {
       weight: 2,

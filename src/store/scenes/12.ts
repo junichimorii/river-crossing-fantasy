@@ -1,15 +1,15 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 12,
-  title: '魔獣と魔獣使い(3)',
+  title: '魔獣たちの反乱（中級編）',
   description: {
-    conditions: 'すべてのキャラクターが危機に瀕することなく最小回数で対岸に渡る',
+    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
-    '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズル。',
+    '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したもの。',
   ],
-  category: 'enemies-and-guardians',
+  category: 'keep-majority',
   passing: 11,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
@@ -21,46 +21,43 @@ const scene = Object.freeze({
     id: 0,
     avatar: '/images/casts/beast-tamer1.png',
     name: '魔獣使いA',
-    description: 'ペアとなる魔獣が近くにいないと他の魔獣に襲われる。',
     role: {
-      enemies: [3, 5],
-      guardian: 1,
+      rebel: false,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/therianthropy1.png',
-    name: '魔獣A',
+    avatar: '/images/casts/beast-tamer2.png',
+    name: '魔獣使いB',
     role: {
+      rebel: false,
     },
   }, {
     id: 2,
-    avatar: '/images/casts/beast-tamer2.png',
-    name: '魔獣使いB',
-    description: 'ペアとなる魔獣が近くにいないと他の魔獣に襲われる。',
+    avatar: '/images/casts/beast-tamer3.png',
+    name: '魔獣使いC',
     role: {
-      enemies: [1, 5],
-      guardian: 3,
+      rebel: false,
     },
   }, {
     id: 3,
-    avatar: '/images/casts/therianthropy2.png',
-    name: '魔獣B',
+    avatar: '/images/casts/therianthropy1.png',
+    name: '魔獣A',
     role: {
+      rebel: true,
     },
   }, {
     id: 4,
-    avatar: '/images/casts/beast-tamer3.png',
-    name: '魔獣使いC',
-    description: 'ペアとなる魔獣が近くにいないと他の魔獣に襲われる。',
+    avatar: '/images/casts/therianthropy2.png',
+    name: '魔獣B',
     role: {
-      enemies: [1, 3],
-      guardian: 5,
+      rebel: true,
     },
   }, {
     id: 5,
     avatar: '/images/casts/therianthropy3.png',
     name: '魔獣C',
     role: {
+      rebel: true,
     },
   }],
 }) as Scene

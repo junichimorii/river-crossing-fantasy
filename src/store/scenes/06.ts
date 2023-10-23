@@ -1,9 +1,9 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 6,
-  title: '危険な冒険者たち(1)',
+  title: '危険なパーティ（初級編1）',
   description: {
-    conditions: 'すべてのキャラクターが危機に瀕することなく最小回数で対岸に渡る',
+    conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
   tips: [
@@ -34,7 +34,10 @@ const scene = Object.freeze({
     ratio: 0.85,
     role: {
       canRow: false,
-      enemies: [2],
+      predators: [{
+        predator: 2,
+        guardian: 0,
+      }],
       guardian: 0,
     },
   }, {

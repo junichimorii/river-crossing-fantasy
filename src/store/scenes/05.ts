@@ -1,9 +1,9 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 5,
-  title: '闇夜の冒険(1)',
+  title: '闇夜の旅（初級編1）',
   description: {
-    conditions: 'すべてのキャラクターが2分以内に対岸に渡る',
+    conditions: 'すべてのキャラクターを2分以内に対岸に渡す',
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
   tips: [

@@ -10,13 +10,13 @@ import s09 from './09'
 import s10 from './10'
 import s11 from './11'
 import s12 from './12'
-// import s13 from './13'
-// import s14 from './14'
+import s13 from './13'
+import s14 from './14'
 import s15 from './15'
 // import s16 from './16'
 // import s17 from './17'
 // import s18 from './18'
-// import s19 from './19'
+import s19 from './19'
 
 export {
   s01,
@@ -31,11 +31,11 @@ export {
   s10,
   s11,
   s12,
-  // s13,
-  // s14,
+  s13,
+  s14,
   s15,
   // s16,
   // s17,
   // s18,
-  // s19,
+  s19,
 }

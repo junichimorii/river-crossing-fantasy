@@ -3,7 +3,7 @@ const scene = Object.freeze({
   id: 1,
   title: '一人旅',
   description: {
-    conditions: 'すべてのキャラクターが対岸に渡る',
+    conditions: 'キャラクターを対岸に渡す',
     transportation: '1人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [

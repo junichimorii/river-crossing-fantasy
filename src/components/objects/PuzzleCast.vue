@@ -3,11 +3,13 @@ import { computed, ref } from 'vue'
 import type { UseSwipeDirection } from '@vueuse/core'
 import { usePointerSwipe, useSwipe } from '@vueuse/core'
 import useCast from '@/composables/use-cast'
+import { useSettingsStore } from '@/store/settings'
 import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
 const { state } = defineProps<{
   state: Cast
 }>()
+const settings = useSettingsStore()
 const scene = useSceneStore()
 const target = ref<HTMLElement | null>(null)
 const { bound } = useCast(state)
@@ -84,7 +86,17 @@ const aspectRatio = computed(() => width.value / height.value)
         :style="{ transform: transformImage }"
         style="transform-origin: bottom center;"
       >
-        <div class="d-flex align-center justify-center fill-height"></div>
+        <div class="d-flex justify-center align-end fill-height">
+          <v-chip
+            v-if="settings.state.nameplate"
+            label
+            variant="tonal"
+            color="white"
+            size="small"
+          >
+            {{ state.name }}
+          </v-chip>
+        </div>
       </v-img>
       <v-menu
         activator="parent"

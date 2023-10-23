@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { useRecordsStore } from '@/store/records'
-const records = useRecordsStore()
+import { useSettingsStore } from '@/store/settings'
+const settings = useSettingsStore()
 </script>
 
 <template>
   <v-dialog
-    v-model="records.state.splash"
+    v-model="settings.state.splash"
     persistent
     :retain-focus="false"
     class="d-flex justify-center align-center"
@@ -14,7 +14,7 @@ const records = useRecordsStore()
       flat
       title="River Crossing Puzzles"
       class="overflow-y-auto"
-      style="background-color: hsla(0, 0%, 100%, 0.9)"
+      style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
       <v-divider></v-divider>
       <v-card-text
@@ -80,7 +80,7 @@ const records = useRecordsStore()
         <v-btn
           color="green"
           variant="elevated"
-          @click="records.state.splash = false"
+          @click="settings.state.splash = false"
         >
           OK
         </v-btn>

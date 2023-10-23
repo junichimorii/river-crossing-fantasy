@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useSceneStore } from '@/store/scene'
 const scene = useSceneStore()
 /** クリア時にオーバーレイを表示 */
-const overlay = computed(() => scene.activities.has('completed') || scene.activities.has('failed'))
+const overlay = computed(() => scene.score !== 0)
 </script>
 
 <template>
@@ -19,17 +19,17 @@ const overlay = computed(() => scene.activities.has('completed') || scene.activi
     >
       <v-card
         flat
-        style="background-color: hsla(0, 0%, 100%, 0.9)"
+        style="background-color: hsla(0, 0%, 100%, 0.95)"
         class="pa-6"
       >
         <v-card-title
-          v-if="scene.activities.has('completed')"
+          v-if="scene.score > 0"
           class="text-center text-success text-h5 text-sm-h3 py-4"
         >
           STAGE CLEAR
         </v-card-title>
         <v-card-title
-          v-if="scene.activities.has('failed')"
+          v-if="scene.score === -1"
           class="text-center text-error text-h5 text-sm-h3 py-4"
         >
           FAILED
@@ -48,7 +48,7 @@ const overlay = computed(() => scene.activities.has('completed') || scene.activi
           class="d-flex justify-center"
         >
           <v-btn
-            v-if="scene.activities.has('failed')"
+            v-if="scene.score === -1"
             color="error"
             variant="elevated"
             @click="scene.init"

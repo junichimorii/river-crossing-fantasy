@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
+import { useSettingsStore } from '@/store/settings'
 import { useRecordsStore } from '@/store/records'
 import { AppSplash } from '@/components'
+const settings = useSettingsStore()
 const records = useRecordsStore()
 onMounted(async () => {
   if (!records.has(1)) records.set(1, 0)
@@ -21,10 +23,13 @@ onMounted(async () => {
       <v-list-item
         v-for="scene in records.scenes"
         :key="scene.id"
+        lines="one"
         :to="`/${scene.id}`"
         :title="scene.title"
+        :subtitle="scene.description.conditions"
         :disabled="false/*!records.has(scene.id)*/"
-        class="elevation-4 rounded my-1 bg-white"
+        class="elevation-4 rounded my-1"
+        style="background-color: hsla(0, 0%, 100%, 0.95)"
       >
         <template v-slot:prepend>
           <v-chip
@@ -64,7 +69,7 @@ onMounted(async () => {
     >
       <template v-slot:actions>
         <v-btn
-          @click="records.state.splash = true"
+          @click="settings.state.splash = true"
         >
           このゲームについて
         </v-btn>

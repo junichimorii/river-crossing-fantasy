@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
@@ -15,7 +15,7 @@ const { width, height } = useWindowSize()
  */
 export const useSceneStore = defineStore('scene', () => {
   const state = useStorage<Scene>(
-    'RIVER_CROSSING_PUZZLES_SCENE',
+    'RIVER_CROSSING_SCENE',
     {
       id: 0,
       title: '',
@@ -31,20 +31,29 @@ export const useSceneStore = defineStore('scene', () => {
     },
     sessionStorage
   )
+  
   /**
    * シーンの行動履歴
    */
   const history = useStorage<Set<History>>(
-    'RIVER_CROSSING_PUZZLES_HISTORY',
+    'RIVER_CROSSING_HISTORY',
     new Set<History>(),
     sessionStorage,
   )
+
   /**
    * シーンの行動実績
    */
   const activities = useStorage<Set<Activity>>(
-    'RIVER_CROSSING_PUZZLES_ACTIVITY',
+    'RIVER_CROSSING_ACTIVITY',
     new Set<Activity>(),
+    sessionStorage,
+  )
+
+  /** スコア */
+  const score = useStorage<number>(
+    'RIVER_CROSSING_SCORE',
+    0,
     sessionStorage,
   )
 
@@ -66,13 +75,6 @@ export const useSceneStore = defineStore('scene', () => {
   const isCompleted = computed(() => state.value.casts.every(cast => useCast(cast).location.value === 'destination'))
   /** 規定回数を超過したかどうか */
   const isExceeded = computed(() => count.value > state.value.passing)
-  /** スコア */
-  const score = computed(() => !isCompleted.value
-    ? 0
-    : isExceeded.value
-      ? 1
-      : 2
-  )
 
   /**
    * シーンを読み込む
@@ -91,6 +93,7 @@ export const useSceneStore = defineStore('scene', () => {
     state.value = null
     history.value = null
     activities.value = null
+    score.value = null
   }
 
   /**
@@ -101,6 +104,7 @@ export const useSceneStore = defineStore('scene', () => {
     state.value.casts.forEach(async cast => cast.status = structuredClone(defaultCastStatus))
     history.value.clear()
     activities.value.clear()
+    score.value = 0
   }
 
   /**
@@ -158,15 +162,15 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const predation = async () => {
     if (state.value.category !== 'enemies-and-guardians') return false
-    const results = await Promise.all(state.value.casts.map(async self => {
-      if (!self.role.enemies) return false
-      const results = await Promise.all(self.role.enemies.map(async enemyId => {
-        const enemy = state.value.casts.find(other => other.id === enemyId)
-        if (enemy && useCast(enemy).location.value === useCast(self).location.value) {
-          const guardian = state.value.casts.find(other => other.id === self.role.guardian)
-          if (guardian && useCast(guardian).location.value !== useCast(self).location.value) {
-            self.status.emotions.push('😰')  // 怖い、危機に瀕している
-            enemy.status.emotions.push('😈') // 喜んでいる
+    const results = await Promise.all(state.value.casts.map(async myself => {
+      if (!myself.role.predators) return false
+      const results = await Promise.all(myself.role.predators.map(async my => {
+        const predator = state.value.casts.find(other => other.id === my.predator)
+        if (predator && useCast(predator).location.value === useCast(myself).location.value) {
+          const guardian = state.value.casts.find(other => other.id === my.guardian)
+          if (guardian && useCast(guardian).location.value !== useCast(myself).location.value) {
+            myself.status.emotions.push('😰')  // 怖い、危機に瀕している
+            predator.status.emotions.push('😈') // 喜んでいる
             guardian.status.emotions.push('😖')  // 困っている
             return true
           }
@@ -249,19 +253,35 @@ export const useSceneStore = defineStore('scene', () => {
     const isRebelled = await rebellion()
     if (isPredated || isRebelled) {
       activities.value.add('failed')
+      await terminate()
     } else {
       activities.value.add('arrived')
       // クリア判定
       if (isCompleted.value) {
         activities.value.add('completed')
+        await terminate()
       }
     }
+  }
+
+  /**
+   * シーンの終了時
+   */
+  const terminate = async () => {
+    score.value = activities.value.has('completed')
+      ? isExceeded.value
+        ? 1
+        : 2
+      : activities.value.has('failed')
+        ? -1
+        : 0
   }
 
   return {
     state,
     history,
     activities,
+    score,
     count,
     stageSize,
     castWidth,
@@ -271,7 +291,6 @@ export const useSceneStore = defineStore('scene', () => {
     isEmergency,
     isCompleted,
     isExceeded,
-    score,
     load,
     unload,
     init,

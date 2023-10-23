@@ -1,19 +1,16 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
-  id: 8,
-  title: '防衛戦線（初級編）',
+  id: 13,
+  title: '防衛戦線（中級編）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
-    'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
-    'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-    'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。',
-    'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
+    '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
   ],
   category: 'enemies-and-guardians',
-  passing: 5,
+  passing: 11,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{
     id: 0,
@@ -36,6 +33,9 @@ const scene = Object.freeze({
       predators: [{
         predator: 2,
         guardian: 0,
+      }, {
+        predator: 4,
+        guardian: 0,
       }],
     },
   }, {
@@ -54,6 +54,30 @@ const scene = Object.freeze({
       predators: [{
         predator: 0,
         guardian: 2,
+      }, {
+        predator: 4,
+        guardian: 2,
+      }],
+    },
+  }, {
+    id: 4,
+    avatar: '/images/casts/knight-teal1.png',
+    name: 'C国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    role: {
+    },
+  }, {
+    id: 5,
+    avatar: '/images/casts/princess-teal1.png',
+    name: 'C国王女',
+    description: '同国の騎士が近くにいないと他国の騎士に襲われる。',
+    role: {
+      predators: [{
+        predator: 0,
+        guardian: 4,
+      }, {
+        predator: 2,
+        guardian: 4,
       }],
     },
   }],
