@@ -12,7 +12,7 @@ const scene = Object.freeze({
     'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。',
     'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
   ],
-  category: 'enemies-and-guardians',
+  category: 'predators-and-guardians',
   passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

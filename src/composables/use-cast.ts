@@ -18,6 +18,12 @@ interface UseCastReturn {
   location: Ref<'origin' | 'destination' | 'onBoard'>
   /** 進行方向 */
   bound: Ref<UseSwipeDirection>
+  /** 感情 */
+  emotion: Ref<{
+    model: boolean;
+    content: string;
+    color: string;
+  }>
   /** ステータスの変更を無効にする */
   deactivate: () => Promise<void>
   /** ステータスの変更を有効にする */
@@ -51,6 +57,19 @@ const useCast = (
           : 'none'
       : 'none'
   )
+  const emotion = computed(() => {
+    return {
+      model: state.status.emotions.length !== 0,
+      content: state.status.emotions.join(''),
+      color: state.status.emotions.includes('😈')
+        ? 'red-lighten-4'
+        : state.status.emotions.includes('😰')
+          ? 'blue-lighten-4'
+          : state.status.emotions.includes('😖')
+            ? 'amber-lighten-4'
+            : 'white'
+    }
+  })
   const deactivate = async () => {
     state.status.disabled = true
   }
@@ -78,6 +97,7 @@ const useCast = (
   return {
     location,
     bound,
+    emotion,
     deactivate,
     activate,
     request,

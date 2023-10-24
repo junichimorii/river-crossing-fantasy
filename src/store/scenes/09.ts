@@ -9,7 +9,7 @@ const scene = Object.freeze({
   tips: [
     '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したもの。',
   ],
-  category: 'enemies-and-guardians',
+  category: 'predators-and-guardians',
   passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

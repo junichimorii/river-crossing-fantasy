@@ -7,12 +7,11 @@ const scene = Object.freeze({
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
-    'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
-    'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-    'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。',
+    '騎士達が同国の王女を保護しながら川を渡るパズルです。',
+    '王女は、同国の騎士が近くにいない場合、他国の騎士に襲われてしまいます。',
     'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
   ],
-  category: 'enemies-and-guardians',
+  category: 'escorting-celebrity',
   passing: 5,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

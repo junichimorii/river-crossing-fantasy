@@ -161,7 +161,7 @@ export const useSceneStore = defineStore('scene', () => {
    * （敵と保護者がいるパズルにおいて）敵が行動を開始する
    */
   const predation = async () => {
-    if (state.value.category !== 'enemies-and-guardians') return false
+    if (state.value.category !== 'predators-and-guardians' && state.value.category !== 'escorting-celebrity') return false
     const results = await Promise.all(state.value.casts.map(async myself => {
       if (!myself.role.predators) return false
       const results = await Promise.all(myself.role.predators.map(async my => {

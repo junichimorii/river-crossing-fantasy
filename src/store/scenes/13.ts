@@ -9,7 +9,7 @@ const scene = Object.freeze({
   tips: [
     '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
   ],
-  category: 'enemies-and-guardians',
+  category: 'escorting-celebrity',
   passing: 11,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

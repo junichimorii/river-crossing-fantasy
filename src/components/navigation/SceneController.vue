@@ -36,13 +36,14 @@ const scene = useSceneStore()
     <v-divider></v-divider>
     <v-card-item>
       <v-list>
-        <v-switch
-          v-model="settings.state.nameplate"
-          density="compact"
-          color="primary"
-          label="キャラクターの名前を表示する"
-        >
-        </v-switch>
+        <v-list-item>
+          <v-switch
+            v-model="settings.state.nameplate"
+            color="primary"
+            label="キャラクターの名前を表示する"
+          >
+          </v-switch>
+        </v-list-item>
       </v-list>
     </v-card-item>
   </v-card>

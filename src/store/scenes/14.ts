@@ -6,7 +6,7 @@ const scene = Object.freeze({
     conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
-  category: 'enemies-and-guardians',
+  category: 'predators-and-guardians',
   passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
   carriers: [{

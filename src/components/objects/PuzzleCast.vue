@@ -12,7 +12,7 @@ const { state } = defineProps<{
 const settings = useSettingsStore()
 const scene = useSceneStore()
 const target = ref<HTMLElement | null>(null)
-const { bound } = useCast(state)
+const { bound, emotion } = useCast(state)
 /** タッチイベントの検知 */
 const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
   target, {
@@ -61,17 +61,11 @@ const aspectRatio = computed(() => width.value / height.value)
 
 <template>
   <v-badge
-    :model-value="state.status.emotions.length !== 0"
-    :content="state.status.emotions.join('')"
+    :model-value="emotion.model"
+    :content="emotion.content"
+    :color="emotion.color"
     :offset-x="scene.castWidth * 0.15"
     :offset-y="scene.castWidth * 0.15"
-    :color="state.status.emotions.includes('😈')
-      ? 'red-lighten-4'
-      : state.status.emotions.includes('😰')
-        ? 'blue-lighten-4'
-        : state.status.emotions.includes('😖')
-          ? 'amber-lighten-4'
-          : 'white'"
   >
     <v-card
       flat
