@@ -64,8 +64,8 @@ const aspectRatio = computed(() => width.value / height.value)
     :model-value="emotion.model"
     :content="emotion.content"
     :color="emotion.color"
-    :offset-x="scene.castWidth * 0.15"
-    :offset-y="scene.castWidth * 0.15"
+    :offset-x="scene.castWidth * 0.1 * (3 - (state.ratio || 2))"
+    :offset-y="scene.castWidth * 0.1 * (3 - (state.ratio || 2))"
   >
     <v-card
       flat
@@ -80,17 +80,7 @@ const aspectRatio = computed(() => width.value / height.value)
         :style="{ transform: transformImage }"
         style="transform-origin: bottom center;"
       >
-        <div class="d-flex justify-center align-end fill-height">
-          <v-chip
-            v-if="settings.state.nameplate"
-            label
-            variant="tonal"
-            color="white"
-            size="small"
-          >
-            {{ state.name }}
-          </v-chip>
-        </div>
+        <div class="d-flex justify-center align-end fill-height"></div>
       </v-img>
       <v-menu
         activator="parent"

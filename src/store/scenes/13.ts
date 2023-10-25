@@ -19,14 +19,14 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/knight-indigo1.png',
+    avatar: '/images/casts/knight-a1.png',
     name: 'A国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
     role: {
     },
   }, {
     id: 1,
-    avatar: '/images/casts/princess-indigo1.png',
+    avatar: '/images/casts/princess-a1.png',
     name: 'A国王女',
     description: '同国の騎士が近くにいないと他国の騎士に襲われる。',
     role: {
@@ -40,14 +40,14 @@ const scene = Object.freeze({
     },
   }, {
     id: 2,
-    avatar: '/images/casts/knight-pink1.png',
+    avatar: '/images/casts/knight-b1.png',
     name: 'B国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
     role: {
     },
   }, {
     id: 3,
-    avatar: '/images/casts/princess-pink1.png',
+    avatar: '/images/casts/princess-b1.png',
     name: 'B国王女',
     description: '同国の騎士が近くにいないと他国の騎士に襲われる。',
     role: {
@@ -61,14 +61,14 @@ const scene = Object.freeze({
     },
   }, {
     id: 4,
-    avatar: '/images/casts/knight-teal1.png',
+    avatar: '/images/casts/knight-c1.png',
     name: 'C国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
     role: {
     },
   }, {
     id: 5,
-    avatar: '/images/casts/princess-teal1.png',
+    avatar: '/images/casts/princess-c1.png',
     name: 'C国王女',
     description: '同国の騎士が近くにいないと他国の騎士に襲われる。',
     role: {

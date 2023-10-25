@@ -3,5 +3,4 @@
  */
 export interface Settings {
   splash: boolean
-  nameplate: boolean
 }

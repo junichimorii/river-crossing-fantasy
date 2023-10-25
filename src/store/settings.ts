@@ -6,7 +6,6 @@ export const useSettingsStore = defineStore('settings', () => {
     'RIVER_CROSSING_SETTINGS',
     {
       splash: false,
-      nameplate: true,
     }
   )
   return {

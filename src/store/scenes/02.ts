@@ -32,7 +32,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 2,
-    avatar: '/images/casts/black-mage1.png',
+    avatar: '/images/casts/mage1.png',
     name: '魔法使い',
     role: {
     },

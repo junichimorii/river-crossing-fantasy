@@ -32,7 +32,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 2,
-    avatar: '/images/casts/knight-indigo1.png',
+    avatar: '/images/casts/knight-a1.png',
     name: 'A国騎士',
     description: 'B国騎士が目を離すとB国王女を襲う。',
     role: {
@@ -44,7 +44,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 3,
-    avatar: '/images/casts/princess-indigo1.png',
+    avatar: '/images/casts/princess-a1.png',
     name: 'A国王女',
     ratio: 0.85,
     role: {
@@ -59,7 +59,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 4,
-    avatar: '/images/casts/knight-pink1.png',
+    avatar: '/images/casts/knight-b1.png',
     name: 'B国騎士',
     description: 'A国騎士が目を離すとA国王女を襲う。',
     role: {
@@ -71,7 +71,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 5,
-    avatar: '/images/casts/princess-pink1.png',
+    avatar: '/images/casts/princess-b1.png',
     name: 'B国王女',
     ratio: 0.85,
     role: {

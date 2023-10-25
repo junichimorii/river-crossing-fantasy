@@ -4,7 +4,7 @@ const scene = Object.freeze({
   title: '危険なパーティ（上級編）',
   description: {
     conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いと騎士のみ。',
   },
   category: 'predators-and-guardians',
   passing: 7,
@@ -32,7 +32,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 2,
-    avatar: '/images/casts/knight-indigo1.png',
+    avatar: '/images/casts/knight-a1.png',
     name: 'A国騎士',
     description: 'B国騎士が目を離すとB国王女を襲う。',
     role: {
@@ -44,7 +44,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 3,
-    avatar: '/images/casts/princess-indigo1.png',
+    avatar: '/images/casts/princess-a1.png',
     name: 'A国王女1',
     ratio: 0.85,
     role: {
@@ -59,7 +59,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 4,
-    avatar: '/images/casts/princess-indigo2.png',
+    avatar: '/images/casts/princess-a2.png',
     name: 'A国王女2',
     ratio: 0.85,
     role: {
@@ -74,7 +74,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 5,
-    avatar: '/images/casts/knight-pink1.png',
+    avatar: '/images/casts/knight-b1.png',
     name: 'B国騎士',
     description: 'A国騎士が目を離すとA国王女を襲う。',
     role: {
@@ -86,7 +86,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 6,
-    avatar: '/images/casts/princess-pink1.png',
+    avatar: '/images/casts/princess-b1.png',
     name: 'B国王女1',
     ratio: 0.85,
     role: {
@@ -101,7 +101,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 7,
-    avatar: '/images/casts/princess-pink2.png',
+    avatar: '/images/casts/princess-b2.png',
     name: 'B国王女2',
     ratio: 0.85,
     role: {

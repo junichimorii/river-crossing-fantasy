@@ -26,7 +26,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 1,
-    avatar: '/images/casts/knight-indigo1.png',
+    avatar: '/images/casts/knight-a1.png',
     name: '騎士',
     description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
     ratio: 0.85,

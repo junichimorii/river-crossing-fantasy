@@ -10,7 +10,6 @@ const scene = useSceneStore()
   >
     <v-card-title>
       <v-chip
-        size="x-large"
         :color="scene.state.category"
       >
         Q{{scene.state.id}}

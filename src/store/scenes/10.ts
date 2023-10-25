@@ -30,8 +30,8 @@ const scene = Object.freeze({
     },
   }, {
     id: 2,
-    avatar: '/images/casts/black-mage1.png',
-    name: '魔法使い',
+    avatar: '/images/casts/priest1.png',
+    name: '司祭',
     role: {
       duration: 4, 
     },

@@ -20,14 +20,14 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/knight-pink1.png',
+    avatar: '/images/casts/knight-b1.png',
     name: '騎士A',
     role: {
       weight: 2,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/knight-pink2.png',
+    avatar: '/images/casts/knight-b2.png',
     name: '騎士B',
     role: {
       weight: 2,

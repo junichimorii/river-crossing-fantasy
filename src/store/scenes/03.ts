@@ -20,14 +20,14 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/knight-indigo1.png',
+    avatar: '/images/casts/knight-a1.png',
     name: '騎士',
     role: {
       canRow: true,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/princess-indigo1.png',
+    avatar: '/images/casts/princess-a1.png',
     name: '王女A',
     ratio: 0.85,
     role: {
@@ -35,7 +35,7 @@ const scene = Object.freeze({
     },
   }, {
     id: 2,
-    avatar: '/images/casts/princess-indigo2.png',
+    avatar: '/images/casts/princess-a2.png',
     name: '王女B',
     ratio: 0.85,
     role: {
