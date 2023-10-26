@@ -16,6 +16,10 @@ export const defaultStatus: Status = Object.freeze({
 interface UseCarrierReturn {
   /** useTransitionで変化させるY座標 */
   y: Ref<number>
+  /** 移動速度 */
+  duration: Ref<number>
+  /** 積載量 */
+  load: Ref<number>
   /** 空席がある */
   isVacancy: Ref<boolean>
   /** 重量オーバーである */
@@ -28,8 +32,6 @@ interface UseCarrierReturn {
   isReady: Ref<boolean>
   /** 進行方向 */
   bound: Ref<UseSwipeDirection>
-  /** 移動速度 */
-  duration: Ref<number>
   /** 乗客を乗せる */
   pickUp: (cast: Cast) => Promise<void>
   /** 乗客を降ろす */
@@ -43,10 +45,10 @@ const useCarrier = (
   state: Carrier
 ): UseCarrierReturn => {
   const y = computed(() => state.status.isCrossed ? -1 : 0)
+  const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
+  const load = computed(() => state.status.passengers.reduce((a, b) => a + (b.role.weight ? b.role.weight : 0), 0))
   const isVacancy = computed(() => state.status.passengers.length < state.capacity)
-  const isOverweight = computed(() => state.weightLimit !== undefined
-    && state.status.passengers.reduce((a, b) => a + (b.role.weight ? b.role.weight : 0), 0) > state.weightLimit
-  )
+  const isOverweight = computed(() => state.weightLimit !== undefined && load.value > state.weightLimit)
   const isAvailable = computed(() => isVacancy.value && !isOverweight.value)
   const isOperable = computed(() => state.status.passengers.some(cast => cast.role.canRow === undefined || cast.role.canRow))
   const isReady = computed(() => !state.status.isSailing && isOperable.value && !isOverweight.value)
@@ -56,7 +58,6 @@ const useCarrier = (
       : 'down'
     : 'none'
   )
-  const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
   const pickUp = async (
     cast: Cast
   ) => {
@@ -76,12 +77,13 @@ const useCarrier = (
   }
   return {
     y,
+    duration,
+    load,
     isVacancy,
     isOverweight,
     isAvailable,
     isOperable,
     isReady,
-    duration,
     bound,
     pickUp,
     dropOff,

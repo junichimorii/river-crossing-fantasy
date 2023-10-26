@@ -33,7 +33,7 @@ export interface Scene {
 /**
  * 履歴
  */
-export interface History {
+export interface Queue {
   /** 移動した登場人物 */
   casts: Cast[]
   /** 所要時間 */

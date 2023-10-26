@@ -3,13 +3,11 @@ import { computed, ref } from 'vue'
 import type { UseSwipeDirection } from '@vueuse/core'
 import { usePointerSwipe, useSwipe } from '@vueuse/core'
 import useCast from '@/composables/use-cast'
-import { useSettingsStore } from '@/store/settings'
 import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
 const { state } = defineProps<{
   state: Cast
 }>()
-const settings = useSettingsStore()
 const scene = useSceneStore()
 const target = ref<HTMLElement | null>(null)
 const { bound, emotion } = useCast(state)
@@ -119,4 +117,3 @@ const aspectRatio = computed(() => width.value / height.value)
     </v-card>
   </v-badge>
 </template>
-

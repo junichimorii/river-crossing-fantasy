@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
 import type { UseSwipeDirection } from '@vueuse/core'
@@ -6,7 +6,7 @@ import useCarrier from '@/composables/use-carrier'
 import useCast from '@/composables/use-cast'
 import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
 import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
-import type { Scene, History, Activity } from '@/types/scene'
+import type { Scene, Queue, Activity } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 const { width, height } = useWindowSize()
@@ -35,9 +35,9 @@ export const useSceneStore = defineStore('scene', () => {
   /**
    * シーンの行動履歴
    */
-  const history = useStorage<Set<History>>(
-    'RIVER_CROSSING_HISTORY',
-    new Set<History>(),
+  const queue = useStorage<Set<Queue>>(
+    'RIVER_CROSSING_QUEUE',
+    new Set<Queue>(),
     sessionStorage,
   )
 
@@ -58,9 +58,11 @@ export const useSceneStore = defineStore('scene', () => {
   )
 
   /** カウンター */
-  const count = computed(() => Array.from(history.value).reduce((a, b) => a + b.duration, 0))
+  const count = computed(() => Array.from(queue.value).reduce((a, b) => a + b.duration, 0))
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
+  /** コンテンツの高さ */
+  const navigationHeight = computed(() => height.value - stageSize.value)
   /** 登場人物の幅 */
   const castWidth = computed(() => Math.min(stageSize.value / state.value.casts.length, stageSize.value / 10))
   /** 出発地点のキャラクター */
@@ -81,7 +83,7 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const load = async (config: Scene) => {
     state.value = config
-    history.value = new Set<History>([])
+    queue.value = new Set<Queue>([])
     activities.value = new Set<Activity>([])
     await init()
   }
@@ -91,7 +93,7 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const unload = async () => {
     state.value = null
-    history.value = null
+    queue.value = null
     activities.value = null
     score.value = null
   }
@@ -102,7 +104,7 @@ export const useSceneStore = defineStore('scene', () => {
   const init = async () => {
     state.value.carriers.forEach(async carrier => carrier.status = structuredClone(defaultCarrierStatus))
     state.value.casts.forEach(async cast => cast.status = structuredClone(defaultCastStatus))
-    history.value.clear()
+    queue.value.clear()
     activities.value.clear()
     score.value = 0
   }
@@ -150,18 +152,81 @@ export const useSceneStore = defineStore('scene', () => {
         activities.value.add('gotOnRower')
       }
     }
+    // 安否確認
+    await safetyConfirmation()
+  }
+
+  /**
+   * 乗り物が出発した時の行動
+   */
+  const leave = async () => {
+    if (!activities.value.has('gotOnRower')) return
+    await Promise.all(state.value.casts.map(async cast => {
+      return await useCast(cast).deactivate()
+    }))
+    activities.value.add('left')
+  }
+
+  /**
+   * 乗り物が到着した時の行動
+   */
+  const arrive = async (
+    carrier: Carrier,
+  ) => {
+    if (!activities.value.has('gotOnRower')) return
+    queue.value.add({
+      casts: carrier.status.passengers.sort((a, b) => a.id < b.id ? -1 : 1),
+      duration: useCarrier(carrier).duration.value
+    })
+    await Promise.all(state.value.casts.map(async cast => {
+      return await useCast(cast).activate()
+    }))
+    await useCarrier(carrier).arrive()
+    await Promise.all(carrier.status.passengers.map(async cast => {
+      // 登場人物を船から降ろす
+      await useCast(cast).crossed()
+      await useCast(cast).getOff()
+      await useCarrier(carrier).dropOff(cast)
+    }))
     state.value.casts.forEach(async cast => {
       cast.status.emotions = []
     })
-    await predation()
-    await rebellion()
+    const isFailed = await safetyConfirmation()
+    if (isFailed) {
+      activities.value.add('failed')
+      await terminate()
+    } else {
+      activities.value.add('arrived')
+      // クリア判定
+      if (isCompleted.value) {
+        activities.value.add('completed')
+        await terminate()
+      }
+    }
+  }
+
+  /**
+   * 安否確認
+   */
+  const safetyConfirmation = async () => {
+    state.value.casts.forEach(async cast => {
+      cast.status.emotions = []
+    })
+    // 敵と保護者がいるパズルにおける安否確認
+    const isPredated = (state.value.category === 'predators-and-guardians' || state.value.category === 'escorting-celebrity')
+      ? await predation()
+      : false
+    // 半数以上を維持するパズルにおける安否確認
+    const isRebelled = (state.value.category === 'keep-majority')
+      ? await rebellion()
+      : false
+    return isPredated || isRebelled
   }
 
   /**
    * （敵と保護者がいるパズルにおいて）敵が行動を開始する
    */
   const predation = async () => {
-    if (state.value.category !== 'predators-and-guardians' && state.value.category !== 'escorting-celebrity') return false
     const results = await Promise.all(state.value.casts.map(async myself => {
       if (!myself.role.predators) return false
       const results = await Promise.all(myself.role.predators.map(async my => {
@@ -189,7 +254,6 @@ export const useSceneStore = defineStore('scene', () => {
    * （半数以上を維持するパズルにおいて）反乱を企てる
    */
   const rebellion = async () => {
-    if (state.value.category !== 'keep-majority') return false
     const results = await Promise.all([
       originCasts.value,
       destinationCasts.value,
@@ -215,56 +279,6 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
-   * 乗り物が出発した時の行動
-   */
-  const leave = async () => {
-    if (!activities.value.has('gotOnRower')) return
-    await Promise.all(state.value.casts.map(async cast => {
-      return await useCast(cast).deactivate()
-    }))
-    activities.value.add('left')
-  }
-
-  /**
-   * 乗り物が到着した時の行動
-   */
-  const arrive = async (
-    carrier: Carrier,
-  ) => {
-    if (!activities.value.has('gotOnRower')) return
-    history.value.add({
-      casts: carrier.status.passengers.sort((a, b) => a.id < b.id ? -1 : 1),
-      duration: useCarrier(carrier).duration.value
-    })
-    await Promise.all(state.value.casts.map(async cast => {
-      return await useCast(cast).activate()
-    }))
-    await useCarrier(carrier).arrive()
-    await Promise.all(carrier.status.passengers.map(async cast => {
-      // 登場人物を船から降ろす
-      await useCast(cast).crossed()
-      await useCast(cast).getOff()
-      await useCarrier(carrier).dropOff(cast)
-    }))
-    state.value.casts.forEach(async cast => {
-      cast.status.emotions = []
-    })
-    const isPredated = await predation()
-    const isRebelled = await rebellion()
-    if (isPredated || isRebelled) {
-      activities.value.add('failed')
-      await terminate()
-    } else {
-      activities.value.add('arrived')
-      // クリア判定
-      if (isCompleted.value) {
-        activities.value.add('completed')
-        await terminate()
-      }
-    }
-  }
-
-  /**
    * シーンの終了時
    */
   const terminate = async () => {
@@ -279,11 +293,12 @@ export const useSceneStore = defineStore('scene', () => {
 
   return {
     state,
-    history,
+    queue,
     activities,
     score,
     count,
     stageSize,
+    navigationHeight,
     castWidth,
     originCasts,
     destinationCasts,

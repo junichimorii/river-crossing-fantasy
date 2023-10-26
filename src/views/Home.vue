@@ -11,52 +11,57 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-img
-    cover
-    src="/images/landscapes/daytime-river.png"
-    class="d-flex justify-center align-start fill-height"
-  >
-    <v-container>
-      <h1 class="text-h5 text-sm-h3 text-center py-4">
-        River Crossing Puzzles
-      </h1>
-      <v-list-item
-        v-for="scene in records.scenes"
-        :key="scene.id"
-        lines="one"
-        :to="`/${scene.id}`"
-        :title="scene.title"
-        :subtitle="scene.description.conditions"
-        :disabled="false/*!records.has(scene.id)*/"
-        class="elevation-4 rounded my-1"
-        style="background-color: hsla(0, 0%, 100%, 0.95)"
-      >
-        <template v-slot:prepend>
-          <v-chip
-            :color="scene.category"
-            class="mr-3"
-          >
-            Q{{scene.id}}
-          </v-chip>
-        </template>
-        <template v-slot:append>
-          <v-icon
-            v-if="!records.has(scene.id)"
-            icon="mdi-lock"
-          ></v-icon>
-          <v-rating
-            v-if="records.has(scene.id)"
-            readonly
-            density="compact"
-            size="small"
-            :length="2"
-            :model-value="records.get(scene.id)"
-            active-color="orange"
-          />
-        </template>
-      </v-list-item>
-    </v-container>
-  </v-img>
+  <v-app-bar
+    :elevation="2"
+    density="compact"
+    color="secondary"
+    title="River Crossing Puzzles"
+  ></v-app-bar>
+  <v-main>
+    <v-parallax
+      src="/images/landscapes/daytime-river.png"
+      class="h-100"
+    >
+      <v-container>
+        <v-list-item
+          v-for="scene in records.scenes"
+          :key="scene.id"
+          lines="one"
+          :to="`/${scene.id}`"
+          :title="scene.title"
+          :subtitle="scene.description.conditions"
+          :disabled="false/*!records.has(scene.id)*/"
+          class="elevation-4 rounded my-1"
+          style="background-color: hsla(0, 0%, 100%, 0.95)"
+        >
+          <template v-slot:prepend>
+            <v-chip
+              rounded
+              :color="scene.category"
+              class="mr-3"
+            >
+              Q{{scene.id}}
+            </v-chip>
+          </template>
+          <template v-slot:append>
+            <v-icon
+              v-if="!records.has(scene.id)"
+              icon="mdi-lock"
+            ></v-icon>
+            <v-rating
+              v-if="records.has(scene.id)"
+              readonly
+              density="compact"
+              size="small"
+              :length="2"
+              :model-value="records.get(scene.id)"
+              active-color="orange"
+            />
+          </template>
+        </v-list-item>
+      </v-container>
+    </v-parallax>
+  </v-main>
   <v-footer
     app
     class="pa-0"

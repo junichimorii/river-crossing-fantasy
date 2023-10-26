@@ -6,19 +6,20 @@ const scene = useSceneStore()
 <template>
   <v-card
     flat
+    :title="scene.state.title"
     class="overflow-y-auto"
   >
-    <v-card-title>
+    <template v-slot:prepend>
       <v-chip
+        rounded
         :color="scene.state.category"
       >
         Q{{scene.state.id}}
       </v-chip>
-      {{ scene.state.title }}
-    </v-card-title>
+    </template>
     <v-divider></v-divider>
     <v-card-text
-      class="overflow-y-auto pa-0"
+      class="overflow-y-auto pa-2"
     >
       <v-card-item>
         <v-card-subtitle>

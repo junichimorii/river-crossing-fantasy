@@ -37,8 +37,8 @@ watch(
 </script>
 
 <template>
-  <div v-if="scene.state">
+  <v-main>
     <PuzzleStage></PuzzleStage>
     <PuzzleNavigation v-show="orientation === 'portrait-primary'"></PuzzleNavigation>
-  </div>
+  </v-main>
 </template>

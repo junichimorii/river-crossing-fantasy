@@ -1,20 +1,22 @@
 <script lang="ts" setup>
-import { useSettingsStore } from '@/store/settings'
 import { useSceneStore } from '@/store/scene'
-const settings = useSettingsStore()
 const scene = useSceneStore()
 </script>
 
 <template>
   <v-card
     flat
-    prepend-icon="mdi-cog"
-    class="overflow-y-auto bg-transparent"
     title="オプション"
+    class="overflow-y-auto"
   >
+    <template v-slot:prepend>
+      <v-icon icon="mdi-cog"></v-icon>
+    </template>
     <v-divider></v-divider>
     <v-card-item>
-      <v-list>
+      <v-list
+        class="bg-transparent"
+      >
         <v-list-item
           title="最初から始める"
           @click="scene.init"

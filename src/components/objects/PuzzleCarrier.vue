@@ -9,7 +9,7 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, bound, leave } = useCarrier(state)
+const { y, duration, load, bound, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
@@ -35,6 +35,17 @@ const width = computed(() => scene.castWidth * state.capacity + scene.castWidth 
 const height = computed(() => scene.castWidth * 2.5)
 /** アスペクト比 */
 const aspectRatio = computed(() => width.value / height.value)
+/** ツールチップ */
+const tooltip = computed(() => tooltipText.value !== '')
+/** ツールチップのテキスト */
+const tooltipText = computed(() => state.status.passengers.length > 0 && !state.status.isSailing
+  ? scene.state.category === 'time-limited'
+    ? `所要時間: ${duration.value}分`
+    : scene.state.category === 'weight-limited'
+      ? `積載量: ${load.value} / ${state.weightLimit}`
+      : ''
+  : ''
+)
 </script>
 
 <template>
@@ -102,6 +113,14 @@ const aspectRatio = computed(() => width.value / height.value)
         </v-expand-transition>
       </div>
     </v-menu>
+    <v-tooltip
+      activator="parent"
+      v-model="tooltip"
+      location="end bottom"
+      content-class="pa-1"
+    >
+      {{ tooltipText }}
+    </v-tooltip>
   </v-card>
 </template>
 
