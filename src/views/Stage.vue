@@ -37,8 +37,15 @@ watch(
 </script>
 
 <template>
-  <v-main>
-    <PuzzleStage></PuzzleStage>
-    <PuzzleNavigation v-show="orientation === 'portrait-primary'"></PuzzleNavigation>
-  </v-main>
+  <Suspense timeout="0">
+    <template #default>
+      <v-main>
+        <PuzzleStage></PuzzleStage>
+        <PuzzleNavigation v-show="orientation === 'portrait-primary'"></PuzzleNavigation>
+      </v-main>
+    </template>
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
 </template>
