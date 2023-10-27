@@ -10,8 +10,8 @@ const scene = Object.freeze({
     '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したもの。',
   ],
   category: 'keep-majority',
-  passing: 11,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 11,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

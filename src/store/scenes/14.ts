@@ -7,8 +7,8 @@ const scene = Object.freeze({
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
   category: 'predators-and-guardians',
-  passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 7,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

@@ -12,8 +12,8 @@ const scene = Object.freeze({
     '岸への到着時、魔獣使いが危機を回避できない場合はその時点でクリア失敗となります。',
   ],
   category: 'keep-majority',
-  passing: 5,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 5,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

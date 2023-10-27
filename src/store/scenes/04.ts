@@ -10,8 +10,8 @@ const scene = Object.freeze({
     '舟には、定員の他に重量制限がある場合があります。重量オーバーの状態で舟を移動させることはできません。',
   ],
   category: 'weight-limited',
-  passing: 9,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 9,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

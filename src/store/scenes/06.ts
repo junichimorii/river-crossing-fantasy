@@ -13,8 +13,8 @@ const scene = Object.freeze({
     'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
   ],
   category: 'predators-and-guardians',
-  passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 7,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

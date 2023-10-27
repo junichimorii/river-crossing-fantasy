@@ -1,41 +1,26 @@
 import { computed, Ref } from 'vue'
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { Carrier, Status } from '@/types/carrier'
-import type { Cast } from '@/types/cast'
+
 /**
  * 川渡りパズルの乗り物の初期ステータス
  */
 export const defaultStatus: Status = Object.freeze({
   isCrossed: false,
   isSailing: false,
-  passengers: [] as Cast[],
+  passengers: [] as number[],
 })
+
 /**
  * 川渡りパズルの乗り物
  */
 interface UseCarrierReturn {
   /** useTransitionで変化させるY座標 */
   y: Ref<number>
-  /** 移動速度 */
-  duration: Ref<number>
-  /** 積載量 */
-  load: Ref<number>
-  /** 空席がある */
-  isVacancy: Ref<boolean>
-  /** 重量オーバーである */
-  isOverweight: Ref<boolean>
-  /** 乗り物が利用可能 */
-  isAvailable: Ref<boolean>
-  /** 乗り物を操作可能 */
-  isOperable: Ref<boolean>
-  /** 乗り物が出発可能 */
-  isReady: Ref<boolean>
-  /** 進行方向 */
-  bound: Ref<UseSwipeDirection>
   /** 乗客を乗せる */
-  pickUp: (cast: Cast) => Promise<void>
+  pickUp: (castId: number) => Promise<void>
   /** 乗客を降ろす */
-  dropOff: (cast: Cast) => Promise<void>
+  dropOff: (castId: number) => Promise<void>
   /** 発進する */
   leave: () => Promise<void>
   /** 到着する */
@@ -45,28 +30,15 @@ const useCarrier = (
   state: Carrier
 ): UseCarrierReturn => {
   const y = computed(() => state.status.isCrossed ? -1 : 0)
-  const duration = computed(() => Math.max(...state.status.passengers.map(cast => cast.role.duration || 1)))
-  const load = computed(() => state.status.passengers.reduce((a, b) => a + (b.role.weight ? b.role.weight : 0), 0))
-  const isVacancy = computed(() => state.status.passengers.length < state.capacity)
-  const isOverweight = computed(() => state.weightLimit !== undefined && load.value > state.weightLimit)
-  const isAvailable = computed(() => isVacancy.value && !isOverweight.value)
-  const isOperable = computed(() => state.status.passengers.some(cast => cast.role.canRow === undefined || cast.role.canRow))
-  const isReady = computed(() => !state.status.isSailing && isOperable.value && !isOverweight.value)
-  const bound = computed(() => isReady.value
-    ? !state.status.isCrossed
-      ? 'up'
-      : 'down'
-    : 'none'
-  )
   const pickUp = async (
-    cast: Cast
+    castId: number
   ) => {
-    state.status.passengers.push(cast)
+    state.status.passengers.push(castId)
   }
   const dropOff = async (
-    cast: Cast
+    castId: number
   ) => {
-    state.status.passengers = state.status.passengers.filter(passenger => passenger.id !== cast.id)
+    state.status.passengers = state.status.passengers.filter(passengerId => passengerId !== castId)
   }
   const leave = async () => {
     state.status.isSailing = true
@@ -77,14 +49,6 @@ const useCarrier = (
   }
   return {
     y,
-    duration,
-    load,
-    isVacancy,
-    isOverweight,
-    isAvailable,
-    isOperable,
-    isReady,
-    bound,
     pickUp,
     dropOff,
     leave,

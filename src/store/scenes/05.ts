@@ -12,8 +12,8 @@ const scene = Object.freeze({
     '橋を渡るのに必要な所要時間はキャラクター毎に異なります。2人以上で移動する時は、遅いほうに合わせて同時に移動します。',
   ],
   category: 'time-limited',
-  passing: 2,
   landscape: '/images/landscapes/night-bridge.png',
+  passing: 2,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/touch.png',

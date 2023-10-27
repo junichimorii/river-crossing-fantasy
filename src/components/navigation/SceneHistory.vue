@@ -43,9 +43,9 @@ const scene = useSceneStore()
               icon="mdi-arrow-down"
             ></v-icon>
             <v-avatar
-              v-for="cast in queue.casts"
+              v-for="castId in queue.casts"
             >
-              <v-img :src="cast.avatar"></v-img>
+              <v-img :src="scene.getCast(castId)?.avatar"></v-img>
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>

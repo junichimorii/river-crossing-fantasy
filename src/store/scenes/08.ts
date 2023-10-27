@@ -12,8 +12,8 @@ const scene = Object.freeze({
     'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
   ],
   category: 'escorting-celebrity',
-  passing: 5,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 5,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

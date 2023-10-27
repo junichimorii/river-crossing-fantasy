@@ -10,8 +10,8 @@ const scene = Object.freeze({
     '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
   ],
   category: 'predators-and-guardians',
-  passing: 7,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 7,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

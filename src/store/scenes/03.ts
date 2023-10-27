@@ -11,8 +11,8 @@ const scene = Object.freeze({
     '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
   ],
   category: 'qualified',
-  passing: 3,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 3,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',

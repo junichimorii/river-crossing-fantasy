@@ -1,5 +1,3 @@
-import type { Cast } from '@/types/cast'
-
 /**
  * 乗り物
  */
@@ -24,10 +22,10 @@ export interface Status {
   /** 進行中かどうか */
   isSailing: boolean
   /** 乗員 */
-  passengers: Cast[]
+  passengers: number[]
 }
 
 /**
  * 乗り物の進行方向
  */
-export type Direction = 'up'|'down'
+export type Direction = 'up' | 'down'

@@ -40,11 +40,11 @@ export interface Role {
  */
 export interface Status {
   /** 操作が無効である */
-  disabled: boolean 
+  disabled: boolean
   /** 開始地点の対岸にいる */
-  isCrossed: boolean 
-  /** 乗り物の上にいる */
-  isSeated: boolean 
+  isCrossed: boolean
+  /** 乗っている乗り物 */
+  boarding: number | undefined
   /** 感情 */
   emotions: string[]
 }

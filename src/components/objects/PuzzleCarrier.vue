@@ -9,7 +9,7 @@ const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, duration, load, bound, leave } = useCarrier(state)
+const { y, leave } = useCarrier(state)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
@@ -22,9 +22,9 @@ const amount = useTransition(y, {
   },
 })
 /** 上方向に進行可能 */
-const upbound = computed(() => !scene.isEmergency && bound.value === 'up')
+const upbound = computed(() => !state.status.isSailing && !scene.isEmergency && scene.getCarrierBound(state) === 'up')
 /** 下方向に進行可能 */
-const downbound = computed(() => !scene.isEmergency && bound.value === 'down')
+const downbound = computed(() => !state.status.isSailing && !scene.isEmergency && scene.getCarrierBound(state) === 'down')
 /** 川幅（乗り物が往復する距離） */
 const riverWidth = computed(() => scene.stageSize * 0.3)
 /** v-cardに適用するCSS transformプロパティ */
@@ -40,9 +40,9 @@ const tooltip = computed(() => tooltipText.value !== '')
 /** ツールチップのテキスト */
 const tooltipText = computed(() => state.status.passengers.length > 0 && !state.status.isSailing
   ? scene.state.category === 'time-limited'
-    ? `所要時間: ${duration.value}分`
+    ? `所要時間: ${scene.getDuration(state)}分`
     : scene.state.category === 'weight-limited'
-      ? `積載量: ${load.value} / ${state.weightLimit}`
+      ? `積載量: ${scene.getLoad(state)} / ${state.weightLimit}`
       : ''
   : ''
 )
@@ -65,9 +65,9 @@ const tooltipText = computed(() => state.status.passengers.length > 0 && !state.
         :height="height"
       >
         <PuzzleCast
-          v-for="cast in state.status.passengers"
-          :key="cast.id"
-          :state="cast"
+          v-for="castId in state.status.passengers"
+          :key="castId"
+          :state="scene.getCast(castId) || scene.state.casts[0]"
         ></PuzzleCast>
       </v-sheet>
     </v-img>

@@ -10,8 +10,8 @@ const scene = Object.freeze({
     '古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したもの。',
   ],
   category: 'time-limited',
-  passing: 15,
   landscape: '/images/landscapes/night-bridge.png',
+  passing: 15,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/touch.png',

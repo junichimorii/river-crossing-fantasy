@@ -11,8 +11,8 @@ const scene = Object.freeze({
     '対岸のキャラクターを舟に乗せる時は、下方向にスワイプします。',
   ],
   category: 'unconditioned',
-  passing: 3,
   landscape: '/images/landscapes/daytime-river.png',
+  passing: 3,
   carriers: [{
     id: 0,
     appearance: '/images/carriers/boat2.png',
