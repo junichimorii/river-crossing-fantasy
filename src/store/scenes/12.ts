@@ -14,51 +14,65 @@ const scene = Object.freeze({
   passing: 11,
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat2.png',
     capacity: 2,
+    appearance: {
+      sprite: '/images/carriers/boat2.png'
+    }
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/beast-tamer1.png',
     name: '魔獣使いA',
-    role: {
-      rebel: false,
+    appearance: {
+      sprite: '/images/casts/beast-tamer1.png'
     },
+    role: {
+      rebel: false
+    }
   }, {
     id: 1,
-    avatar: '/images/casts/beast-tamer2.png',
     name: '魔獣使いB',
-    role: {
-      rebel: false,
+    appearance: {
+      sprite: '/images/casts/beast-tamer2.png'
     },
+    role: {
+      rebel: false
+    }
   }, {
     id: 2,
-    avatar: '/images/casts/beast-tamer3.png',
     name: '魔獣使いC',
-    role: {
-      rebel: false,
+    appearance: {
+      sprite: '/images/casts/beast-tamer3.png'
     },
+    role: {
+      rebel: false
+    }
   }, {
     id: 3,
-    avatar: '/images/casts/therianthropy1.png',
     name: '魔獣A',
-    role: {
-      rebel: true,
+    appearance: {
+      sprite: '/images/casts/therianthropy1.png'
     },
+    role: {
+      rebel: true
+    }
   }, {
     id: 4,
-    avatar: '/images/casts/therianthropy2.png',
     name: '魔獣B',
-    role: {
-      rebel: true,
+    appearance: {
+      sprite: '/images/casts/therianthropy2.png'
     },
+    role: {
+      rebel: true
+    }
   }, {
     id: 5,
-    avatar: '/images/casts/therianthropy3.png',
     name: '魔獣C',
-    role: {
-      rebel: true,
+    appearance: {
+      sprite: '/images/casts/therianthropy3.png'
     },
-  }],
+    role: {
+      rebel: true
+    }
+  }]
 }) as Scene
 export default scene

@@ -4,32 +4,31 @@ const scene = useSceneStore()
 </script>
 
 <template>
-  <v-card
-    flat
-    title="履歴"
-    class="overflow-y-auto"
-  >
-    <template v-slot:prepend>
+  <v-list>
+    <v-list-subheader>
       <v-icon icon="mdi-history"></v-icon>
-    </template>
-    <template v-slot:append>
+      履歴
       <v-badge
         :color="scene.isExceeded ? 'error' : 'success'"
         :content="scene.count"
         inline
       ></v-badge>
-    </template>
-    <v-divider></v-divider>
-    <v-card-item>
-      <v-list
-        class="bg-transparent"
+    </v-list-subheader>
+    <v-row no-gutters>
+      <v-col
+        v-for="(queue, i) in scene.queue"
+        :key="i"
+        cols="12"
+        sm="6"
+        md="4"
       >
-        <v-list-item
-          v-for="(queue, i) in scene.queue"
-          :key="i"
-        >
+        <v-list-item>
           <template v-slot:prepend>
-            <v-chip color="green" class="mr-3">
+            <v-chip
+              rounded
+              color="green"
+              class="mr-3"
+            >
               {{ i + 1 }}
             </v-chip>
           </template>
@@ -45,7 +44,9 @@ const scene = useSceneStore()
             <v-avatar
               v-for="castId in queue.casts"
             >
-              <v-img :src="scene.getCast(castId)?.avatar"></v-img>
+              <v-img
+                :src="scene.getCast(castId)?.appearance.sprite"
+              ></v-img>
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
@@ -54,7 +55,7 @@ const scene = useSceneStore()
             </span>
           </template>
         </v-list-item>
-      </v-list>
-    </v-card-item>
-  </v-card>
+      </v-col>
+    </v-row>
+  </v-list>
 </template>

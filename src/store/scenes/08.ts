@@ -16,45 +16,53 @@ const scene = Object.freeze({
   passing: 5,
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat2.png',
     capacity: 2,
+    appearance: {
+      sprite: '/images/carriers/boat2.png'
+    }
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/knight-a1.png',
     name: 'A国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
-    role: {
+    appearance: {
+      sprite: '/images/casts/knight-a1.png'
     },
+    role: {
+    }
   }, {
     id: 1,
-    avatar: '/images/casts/princess-a1.png',
     name: 'A国王女',
-    description: '同国の騎士が近くにいないと他国の騎士に襲われる。',
+    appearance: {
+      sprite: '/images/casts/princess-a1.png'
+    },
     role: {
       predators: [{
         predator: 2,
         guardian: 0,
-      }],
-    },
+      }]
+    }
   }, {
     id: 2,
-    avatar: '/images/casts/knight-b1.png',
     name: 'B国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
-    role: {
+    appearance: {
+      sprite: '/images/casts/knight-b1.png'
     },
+    role: {
+    }
   }, {
     id: 3,
-    avatar: '/images/casts/princess-b1.png',
     name: 'B国王女',
-    description: '同国の騎士が近くにいないと他国の騎士に襲われる。',
+    appearance: {
+      sprite: '/images/casts/princess-b1.png'
+    },
     role: {
       predators: [{
         predator: 0,
         guardian: 2,
-      }],
-    },
-  }],
+      }]
+    }
+  }]
 }) as Scene
 export default scene

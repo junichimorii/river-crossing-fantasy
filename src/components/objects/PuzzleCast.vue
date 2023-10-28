@@ -42,7 +42,7 @@ const signal = computed(() => bound.value === direction.value
 )
 /** v-imgに適用するCSS transformプロパティ */
 const transformImage = computed(() => {
-  const ratio = state.ratio || 1
+  const ratio = state.appearance.ratio || 1
   return `scale(${state.status.isCrossed ? -ratio : ratio}, ${ratio})`
 })
 /** 上方向に進行可能 */
@@ -55,6 +55,8 @@ const width = computed(() => scene.castWidth)
 const height = computed(() => scene.castWidth * 2)
 /** アスペクト比 */
 const aspectRatio = computed(() => width.value / height.value)
+/** バッジのオフセット値 */
+const badgeOffset = computed(() => scene.castWidth * 0.1 * (3 - (state.appearance.ratio || 2)))
 </script>
 
 <template>
@@ -62,8 +64,8 @@ const aspectRatio = computed(() => width.value / height.value)
     :model-value="emotion.model"
     :content="emotion.content"
     :color="emotion.color"
-    :offset-x="scene.castWidth * 0.1 * (3 - (state.ratio || 2))"
-    :offset-y="scene.castWidth * 0.1 * (3 - (state.ratio || 2))"
+    :offset-x="badgeOffset"
+    :offset-y="badgeOffset"
   >
     <v-card
       flat
@@ -73,7 +75,7 @@ const aspectRatio = computed(() => width.value / height.value)
     >
       <v-img
         :aspect-ratio="aspectRatio"
-        :src="state.avatar"
+        :src="state.appearance.sprite"
         :height="height"
         :style="{ transform: transformImage }"
         style="transform-origin: bottom center;"

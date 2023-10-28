@@ -11,44 +11,56 @@ const scene = Object.freeze({
   passing: 30,
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/touch.png',
     capacity: 2,
+    appearance: {
+      sprite: '/images/carriers/touch.png'
+    }
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/thief1.png',
     name: '盗賊',
-    role: {
-      duration: 1, 
+    appearance: {
+      sprite: '/images/casts/thief1.png'
     },
+    role: {
+      duration: 1
+    }
   }, {
     id: 1,
-    avatar: '/images/casts/fighter1.png',
     name: '戦士',
-    role: {
-      duration: 3, 
+    appearance: {
+      sprite: '/images/casts/fighter1.png'
     },
+    role: {
+      duration: 3
+    }
   }, {
     id: 2,
-    avatar: '/images/casts/priest1.png',
     name: '司祭',
-    role: {
-      duration: 6, 
+    appearance: {
+      sprite: '/images/casts/priest1.png'
     },
+    role: {
+      duration: 6
+    }
   }, {
     id: 3,
-    avatar: '/images/casts/mage1.png',
     name: '魔法使い',
-    role: {
-      duration: 8, 
+    appearance: {
+      sprite: '/images/casts/mage1.png'
     },
+    role: {
+      duration: 8
+    }
   }, {
     id: 4,
-    avatar: '/images/casts/princess-a1.png',
     name: '王女',
-    role: {
-      duration: 12, 
+    appearance: {
+      sprite: '/images/casts/princess-a1.png'
     },
-  }],
+    role: {
+      duration: 12
+    }
+  }]
 }) as Scene
 export default scene

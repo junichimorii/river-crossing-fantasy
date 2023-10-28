@@ -16,15 +16,19 @@ const scene = Object.freeze({
   passing: 1,
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat1.png',
     capacity: 1,
+    appearance: {
+      sprite: '/images/carriers/boat1.png'
+    }
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/villager1.png',
     name: '村人',
-    role: {
+    appearance: {
+      sprite: '/images/casts/villager1.png'
     },
-  }],
+    role: {
+    }
+  }]
 }) as Scene
 export default scene

@@ -62,7 +62,7 @@ export const useSceneStore = defineStore('scene', () => {
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
   /** コンテンツの高さ */
-  const navigationHeight = computed(() => height.value - stageSize.value)
+  const navigationHeight = computed(() => height.value - stageSize.value - 56)
   /** 登場人物の幅 */
   const castWidth = computed(() => Math.min(stageSize.value / state.value.casts.length, stageSize.value / 10))
   /** 出発地点のキャラクター */
@@ -232,7 +232,7 @@ export const useSceneStore = defineStore('scene', () => {
   }, 0)
 
   /**
-   * 乗り物の進行方向かどうかを取得
+   * 乗り物の移動可能な進行方向を取得
    */
   const getCarrierBound = (
     carrier: Carrier
@@ -371,7 +371,7 @@ export const useSceneStore = defineStore('scene', () => {
   const isNeighboring = (
     a: Cast,
     b: Cast,
-  ) => (a.status.boarding && b.status.boarding) && (a.status.isCrossed && b.status.isCrossed)
+  ) => (a.status.boarding === b.status.boarding) && (a.status.isCrossed === b.status.isCrossed)
 
   return {
     state,

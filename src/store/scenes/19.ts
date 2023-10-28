@@ -11,109 +11,127 @@ const scene = Object.freeze({
   passing: 7,
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat2.png',
     capacity: 2,
+    appearance: {
+      sprite: '/images/carriers/boat2.png'
+    }
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/beast-tamer1.png',
     name: '魔獣使い',
+    appearance: {
+      sprite: '/images/casts/beast-tamer1.png'
+    },
     role: {
-      canRow: true,
+      canRow: true
     },
   }, {
     id: 1,
-    avatar: '/images/casts/therianthropy1.png',
     name: '魔獣',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    ratio: 0.85,
-    role: {
-      canRow: false,
+    appearance: {
+      sprite: '/images/casts/therianthropy1.png',
+      ratio: 0.85
     },
+    role: {
+      canRow: false
+    }
   }, {
     id: 2,
-    avatar: '/images/casts/knight-a1.png',
     name: 'A国騎士',
     description: 'B国騎士が目を離すとB国王女を襲う。',
+    appearance: {
+      sprite: '/images/casts/knight-a1.png'
+    },
     role: {
       canRow: false,
       predators: [{
         predator: 1,
-        guardian: 0,
-      }],
-    },
+        guardian: 0
+      }]
+    }
   }, {
     id: 3,
-    avatar: '/images/casts/princess-a1.png',
     name: 'A国王女1',
-    ratio: 0.85,
+    appearance: {
+      sprite: '/images/casts/princess-a1.png',
+      ratio: 0.85
+    },
     role: {
       canRow: false,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
       }, {
         predator: 5,
-        guardian: 2,
-      }],
-    },
+        guardian: 2
+      }]
+    }
   }, {
     id: 4,
-    avatar: '/images/casts/princess-a2.png',
     name: 'A国王女2',
-    ratio: 0.85,
+    appearance: {
+      sprite: '/images/casts/princess-a2.png',
+      ratio: 0.85
+    },
     role: {
       canRow: false,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
       }, {
         predator: 5,
-        guardian: 2,
-      }],
-    },
+        guardian: 2
+      }]
+    }
   }, {
     id: 5,
-    avatar: '/images/casts/knight-b1.png',
     name: 'B国騎士',
     description: 'A国騎士が目を離すとA国王女を襲う。',
+    appearance: {
+      sprite: '/images/casts/knight-b1.png'
+    },
     role: {
       canRow: false,
       predators: [{
         predator: 1,
-        guardian: 0,
-      }],
-    },
+        guardian: 0
+      }]
+    }
   }, {
     id: 6,
-    avatar: '/images/casts/princess-b1.png',
     name: 'B国王女1',
-    ratio: 0.85,
+    appearance: {
+      sprite: '/images/casts/princess-b1.png',
+      ratio: 0.85
+    },
     role: {
       canRow: false,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
       }, {
         predator: 2,
-        guardian: 5,
-      }],
-    },
+        guardian: 5
+      }]
+    }
   }, {
     id: 7,
-    avatar: '/images/casts/princess-b2.png',
     name: 'B国王女2',
-    ratio: 0.85,
+    appearance: {
+      sprite: '/images/casts/princess-b2.png',
+      ratio: 0.85
+    },
     role: {
       canRow: false,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
       }, {
         predator: 2,
-        guardian: 5,
-      }],
-    },
-  }],
+        guardian: 5
+      }]
+    }
+  }]
 }) as Scene
 export default scene

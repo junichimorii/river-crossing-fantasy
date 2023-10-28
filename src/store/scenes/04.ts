@@ -14,38 +14,48 @@ const scene = Object.freeze({
   passing: 9,
   carriers: [{
     id: 0,
-    appearance: '/images/carriers/boat2.png',
     capacity: 2,
     weightLimit: 2,
+    appearance: {
+      sprite: '/images/carriers/boat2.png'
+    }
   }],
   casts: [{
     id: 0,
-    avatar: '/images/casts/knight-b1.png',
     name: '騎士A',
+    appearance: {
+      sprite: '/images/casts/knight-b1.png',
+    },
     role: {
       weight: 2,
     },
   }, {
     id: 1,
-    avatar: '/images/casts/knight-b2.png',
     name: '騎士B',
-    role: {
-      weight: 2,
+    appearance: {
+      sprite: '/images/casts/knight-b2.png'
     },
+    role: {
+      weight: 2
+    }
   }, {
     id: 2,
-    avatar: '/images/casts/villager1.png',
     name: '村人A',
-    role: {
-      weight: 1,
+    appearance: {
+      sprite: '/images/casts/villager1.png'
     },
+    role: {
+      weight: 1
+    }
   }, {
     id: 3,
-    avatar: '/images/casts/villager2.png',
     name: '村人B',
-    role: {
-      weight: 1,
+    appearance: {
+      sprite: '/images/casts/villager2.png'
     },
-  }],
+    role: {
+      weight: 1
+    }
+  }]
 }) as Scene
 export default scene

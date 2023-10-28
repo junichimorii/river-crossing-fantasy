@@ -57,7 +57,7 @@ const tooltipText = computed(() => state.status.passengers.length > 0 && !state.
   >
     <v-img
       :aspect-ratio="aspectRatio"
-      :src="state.appearance"
+      :src="state.appearance.sprite"
       :height="height"
       >
       <v-sheet
