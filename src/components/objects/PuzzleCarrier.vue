@@ -30,7 +30,7 @@ const riverWidth = computed(() => scene.stageSize * 0.3)
 /** v-cardに適用するCSS transformプロパティ */
 const transformCard = computed(() => `translate(0, ${amount.value * riverWidth.value}px)`)
 /** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2） */
-const width = computed(() => scene.castWidth * state.capacity + scene.castWidth * 0.5)
+const width = computed(() => scene.castWidth * state.capacity + scene.castWidth)
 /** 高さ（登場人物の高さ） */
 const height = computed(() => scene.castWidth * 2.5)
 /** アスペクト比 */
@@ -38,7 +38,7 @@ const aspectRatio = computed(() => width.value / height.value)
 /** ツールチップ */
 const tooltip = computed(() => tooltipText.value !== '')
 /** ツールチップのテキスト */
-const tooltipText = computed(() => state.status.passengers.length > 0 && !state.status.isSailing
+const tooltipText = computed(() => scene.passengers[state.id].length > 0 && !state.status.isSailing
   ? scene.state.category === 'time-limited'
     ? `所要時間: ${scene.getDuration(state)}分`
     : scene.state.category === 'weight-limited'
@@ -65,9 +65,9 @@ const tooltipText = computed(() => state.status.passengers.length > 0 && !state.
         :height="height"
       >
         <PuzzleCast
-          v-for="castId in state.status.passengers"
-          :key="castId"
-          :state="scene.getCast(castId) || scene.state.casts[0]"
+          v-for="cast in scene.passengers[state.id]"
+          :key="cast.id"
+          :state="cast"
         ></PuzzleCast>
       </v-sheet>
     </v-img>

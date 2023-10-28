@@ -26,7 +26,7 @@ const scene = useSceneStore()
           :height="scene.stageSize * 0.25"
         >
           <PuzzleCast
-            v-for="cast in scene.destinationCasts"
+            v-for="cast in scene.reachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>
@@ -46,7 +46,7 @@ const scene = useSceneStore()
           :height="scene.stageSize * 0.2"
         >
           <PuzzleCast
-            v-for="cast in scene.originCasts"
+            v-for="cast in scene.unreachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>

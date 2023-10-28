@@ -1,11 +1,9 @@
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
-import type { UseSwipeDirection } from '@vueuse/core'
-import useCarrier from '@/composables/use-carrier'
-import useCast from '@/composables/use-cast'
 import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
 import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
+import type { UseSwipeDirection } from '@vueuse/core'
 import type { Scene, Queue, Activity } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
@@ -65,10 +63,14 @@ export const useSceneStore = defineStore('scene', () => {
   const navigationHeight = computed(() => height.value - stageSize.value - 56)
   /** 登場人物の幅 */
   const castWidth = computed(() => Math.min(stageSize.value / state.value.casts.length, stageSize.value / 10))
-  /** 出発地点のキャラクター */
-  const originCasts = computed(() => state.value.casts.filter(cast => cast.status.boarding === undefined && !cast.status.isCrossed))
-  /** 到着地点のキャラクター */
-  const destinationCasts = computed(() => state.value.casts.filter(cast => cast.status.boarding === undefined && cast.status.isCrossed))
+  /** 出発地点の登場人物 */
+  const unreachers = computed(() => state.value.casts.filter(cast => cast.status.boarding === undefined && !cast.status.isCrossed))
+  /** 到着地点の登場人物 */
+  const reachers = computed(() => state.value.casts.filter(cast => cast.status.boarding === undefined && cast.status.isCrossed))
+  /** 乗り物に乗っている登場人物 */
+  const passengers = computed(() => state.value.carriers.map(carrier =>
+    state.value.casts.filter(cast => cast.status.boarding === carrier.id))
+  )
   /** いずれかの登場人物が非常事態かどうか */
   const isEmergency = computed(() => state.value.casts.some(cast => cast.status.emotions.length > 0))
   /** すべての登場人物が対岸にいるかどうか */
@@ -100,11 +102,55 @@ export const useSceneStore = defineStore('scene', () => {
    * シーンの状態を初期化
    */
   const init = async () => {
-    state.value.carriers.forEach(async carrier => carrier.status = structuredClone(defaultCarrierStatus))
-    state.value.casts.forEach(async cast => cast.status = structuredClone(defaultCastStatus))
+    state.value.carriers.forEach(carrier => {
+      carrier.status = structuredClone(defaultCarrierStatus)
+    })
+    state.value.casts.forEach(cast => {
+      cast.status = structuredClone(defaultCastStatus)
+    })
     queue.value.clear()
     activities.value.clear()
     score.value = 0
+  }
+
+  /**
+   * 登場人物をスワイプした時
+   */
+  const action = async (
+    cast: Cast,
+    direction: UseSwipeDirection
+  ) => {
+    if (cast.status.disabled) return
+    // 動作の種別を取得
+    const request = cast.status.boarding !== undefined && direction === (cast.status.isCrossed ? 'up' : 'down')
+    ? 'getOff' // 乗り物から降りる
+    : (cast.status.boarding === undefined && direction === (cast.status.isCrossed ? 'down' : 'up'))
+      ? 'getOn' // 乗り物に乗る
+      : null
+    if (!request) return
+    if (request === 'getOff') {
+      // 登場人物を乗り物から降ろす
+      await getOff(cast)
+    } else {
+      // 搭乗可能な乗り物があれば乗る
+      await getOn(cast)
+    }
+  }
+
+  /**
+   * 乗り物に登場人物が乗ろうとした時
+   */
+  const getOn = async (
+    cast: Cast,
+  ) => {
+    const carrier = await reserve(cast)
+    if (carrier === undefined) return false
+    cast.status.boarding = carrier.id
+    if (isReady(carrier)) {
+      activities.value.add('ready')
+    }
+    // 安否確認
+    return await safetyConfirmation()
   }
 
   /**
@@ -120,83 +166,58 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
-   * 登場人物をスワイプした時の行動
+   * 乗り物から登場人物が降りた時
    */
-  const action = async (
+  const getOff = async (
     cast: Cast,
-    direction: UseSwipeDirection
   ) => {
-    activities.value.add('swiped')
-    if (cast.status.disabled) return
-    const request = await useCast(cast).request(direction)
-    if (request === 'getOff') {
-      // 登場人物を船から降ろす
-      await useCast(cast).getOff()
-      await Promise.all(state.value.carriers.map(async carrier => {
-        await useCarrier(carrier).dropOff(cast.id)
-      }))
-      activities.value.add('gotOff')
-    } else if(request === 'getOn') {
-      // 搭乗可能な乗り物があれば登場人物を船に乗せる
-      const carrier = await reserve(cast)
-      if (carrier === undefined) return
-      await useCast(cast).getOn(carrier.id)
-      await useCarrier(carrier).pickUp(cast.id)
-      activities.value.add('gotOn')
-      if (direction === 'down') {
-        activities.value.add('gotOnFromOpposite')
-      }
-      if (isReady(carrier)) {
-        activities.value.add('gotOnRower')
-      }
-    }
+    cast.status.boarding = undefined
     // 安否確認
     await safetyConfirmation()
   }
 
   /**
-   * 乗り物が出発した時の行動
+   * 乗り物が出発した時
    */
   const leave = async () => {
-    if (!activities.value.has('gotOnRower')) return
-    await Promise.all(state.value.casts.map(async cast => {
-      return await useCast(cast).deactivate()
-    }))
-    activities.value.add('left')
+    // 乗り物を操作できる状態になった実績がない場合は何もしない
+    if (!activities.value.has('ready')) return
+    // 登場人物の操作を無効にする
+    state.value.casts.forEach(cast => {
+      cast.status.disabled = true
+    })
   }
 
   /**
-   * 乗り物が到着した時の行動
+   * 乗り物が到着した時
    */
   const arrive = async (
     carrier: Carrier,
   ) => {
-    if (!activities.value.has('gotOnRower')) return
+    // 乗り物を操作できる状態になった実績がない場合は何もしない
+    if (!activities.value.has('ready')) return
+    // 乗り物を停止中の状態にする
+    carrier.status.isSailing = false
+    // 登場人物の操作を有効にする
+    state.value.casts.forEach(cast => {
+      cast.status.disabled = false
+    })
+    // 履歴を追加
     queue.value.add({
-      casts: carrier.status.passengers.sort(),
+      casts: passengers.value[carrier.id],
       duration: getDuration(carrier)
     })
-    await Promise.all(state.value.casts.map(async cast => {
-      return await useCast(cast).activate()
-    }))
-    await useCarrier(carrier).arrive()
-    await Promise.all(carrier.status.passengers.map(async castId => {
-      // 登場人物を船から降ろす
-      const cast = getCast(castId)
-      if (!cast) return
-      await useCast(cast).crossed()
-      await useCast(cast).getOff()
-      await useCarrier(carrier).dropOff(castId)
-    }))
-    state.value.casts.forEach(async cast => {
-      cast.status.emotions = []
+    // 登場人物を乗り物から降ろす
+    passengers.value[carrier.id].forEach(cast => {
+      cast.status.isCrossed = !cast.status.isCrossed
+      cast.status.boarding = undefined
     })
+    // 安否確認
     const isFailed = await safetyConfirmation()
     if (isFailed) {
       activities.value.add('failed')
       await terminate()
     } else {
-      activities.value.add('arrived')
       // クリア判定
       if (isCompleted.value) {
         activities.value.add('completed')
@@ -206,30 +227,18 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
-   * 登場人物を取得
-   */
-  const getCast = (
-    id: number
-  ) => {
-    return state.value.casts.find(cast => cast.id === id)
-  }
-
-  /**
    * 乗り物の対岸までの所要時間を取得
    */
   const getDuration = (
     carrier: Carrier
-  ) => Math.max(...carrier.status.passengers.map(castId => getCast(castId)?.role.duration || 1))
+  ) => Math.max(...passengers.value[carrier.id].map(cast => cast.role.duration || 1))
 
   /**
    * 乗り物の積載重量を取得
    */
   const getLoad = (
     carrier: Carrier
-  ) => carrier.status.passengers.reduce((weight, castId) => {
-    const cast = getCast(castId)
-    return weight + (cast !== undefined && cast.role.weight ? cast.role.weight : 0)
-  }, 0)
+  ) => passengers.value[carrier.id].reduce((weight, cast) => weight + (cast.role.weight ? cast.role.weight : 0), 0)
 
   /**
    * 乗り物の移動可能な進行方向を取得
@@ -273,20 +282,17 @@ export const useSceneStore = defineStore('scene', () => {
           const guardian = state.value.casts.find(other => other.id === my.guardian)
           // 保護者が近くにいない
           if (guardian && !isNeighboring(myself, guardian)) {
-            myself.status.emotions.push('😰')  // 怖い、危機に瀕している
-            predator.status.emotions.push('😈') // 喜んでいる
-            guardian.status.emotions.push('😖')  // 困っている
+            myself.status.emotions.push('scared')
+            predator.status.emotions.push('excited')
+            guardian.status.emotions.push('surprised')
             return true
           }
         }
         return false
       }))
-      return results.some(isError => isError === true)
+      return results.some(isError => isError)
     }))
-    state.value.casts.forEach(async cast => {
-      cast.status.emotions = Array.from(new Set(cast.status.emotions))
-    })
-    return results.some(isError => isError === true)
+    return results.some(isError => isError)
   }
 
   /**
@@ -294,27 +300,27 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const rebellion = async () => {
     const results = await Promise.all([
-      originCasts.value,
-      destinationCasts.value,
-      state.value.carriers.flatMap(carrier => carrier.status.passengers.map(castId => getCast(castId)))
+      unreachers.value,
+      reachers.value,
+      passengers.value.flat()
     ].map(casts => {
-      const missionaries = casts.filter(cast => cast?.role.rebel === false)
+      const missionaries = casts.filter(cast => !cast.role.rebel)
       if (missionaries.length === 0) return false
-      const cannibals = casts.filter(cast => cast?.role.rebel === true)
+      const cannibals = casts.filter(cast => !cast.role.rebel)
       if (cannibals.length === 0) return false
       if (missionaries.length < cannibals.length) {
-        missionaries.forEach(cast => cast?.status.emotions.push('😰'))
-        cannibals.forEach(cast => cast?.status.emotions.push('😈'))
+        missionaries.forEach(cast => cast.status.emotions.push('scared'))
+        cannibals.forEach(cast => cast.status.emotions.push('excited'))
         return true
       }
       return false
     }))
-    if (results.some(isError => isError === true)) {
-      state.value.casts.filter(cast => cast.role.rebel === false).forEach(async cast => {
-        if (cast.status.emotions.length === 0) cast.status.emotions.push('😖')
+    if (results.some(isError => isError)) {
+      state.value.casts.filter(cast => !cast.role.rebel).forEach(cast => {
+        if (cast.status.emotions.length === 0) cast.status.emotions.push('surprised')
       })
     }
-    return results.some(isError => isError === true)
+    return results.some(isError => isError)
   }
 
   /**
@@ -328,6 +334,7 @@ export const useSceneStore = defineStore('scene', () => {
       : activities.value.has('failed')
         ? -1
         : 0
+    return isExceeded.value
   }
 
   /**
@@ -344,7 +351,7 @@ export const useSceneStore = defineStore('scene', () => {
     carrier: Carrier
   ) => {
     // 乗り物に空席がある
-    const isVacancy = carrier.status.passengers.length < carrier.capacity
+    const isVacancy = passengers.value[carrier.id].length < carrier.capacity
     return isVacancy && !isOverweight(carrier)
   }
 
@@ -353,10 +360,7 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const isOperable = (
     carrier: Carrier
-  ) => carrier.status.passengers.some(castId => {
-    const cast = getCast(castId)
-    return cast !== undefined && (cast.role.canRow === undefined || cast.role.canRow)
-  })
+  ) => passengers.value[carrier.id].some(cast => cast.role.canRow === undefined || cast.role.canRow)
 
   /**
    * 乗り物が出発可能かどうかを取得
@@ -382,8 +386,9 @@ export const useSceneStore = defineStore('scene', () => {
     stageSize,
     navigationHeight,
     castWidth,
-    originCasts,
-    destinationCasts,
+    unreachers,
+    reachers,
+    passengers,
     isEmergency,
     isCompleted,
     isExceeded,
@@ -391,9 +396,9 @@ export const useSceneStore = defineStore('scene', () => {
     unload,
     init,
     action,
+    getOn,
     leave,
     arrive,
-    getCast,
     getDuration,
     getLoad,
     getCarrierBound,

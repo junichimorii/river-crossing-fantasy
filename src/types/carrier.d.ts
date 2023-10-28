@@ -32,8 +32,6 @@ export interface Status {
   isCrossed: boolean
   /** 進行中かどうか */
   isSailing: boolean
-  /** 乗員 */
-  passengers: number[]
 }
 
 /**

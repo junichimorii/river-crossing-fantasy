@@ -55,6 +55,6 @@ export interface Status {
   isCrossed: boolean
   /** 乗っている乗り物 */
   boarding: number | undefined
-  /** 感情 */
-  emotions: string[]
+  /** 登場人物の感情 */
+  emotions: ('scared'|'excited'|'surprised')[]
 }

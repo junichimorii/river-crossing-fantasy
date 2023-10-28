@@ -35,7 +35,7 @@ export interface Scene {
  */
 export interface Queue {
   /** 移動した登場人物 */
-  casts: number[]
+  casts: Cast[]
   /** 所要時間 */
   duration: number 
 }
@@ -56,12 +56,6 @@ export type Category =
  * 行動実績
  */
 export type Activity =
-  'swiped'              // 登場人物をスワイプした
-  |'gotOn'              // 乗り物に乗った
-  |'gotOff'             // 乗り物から降りた
-  |'gotOnRower'         // 乗り物を操作できる登場人物が乗った
-  |'left'               // 乗り物が出発した
-  |'arrived'            // 乗り物が対岸に到着した
-  |'gotOnFromOpposite'  // 向こう岸から乗り物に乗った
-  |'completed'          // シーンをクリアに成功した
-  |'failed'             // シーンのクリアに失敗した
+  'ready'       // 乗り物を操作できる状態になった
+  |'completed'  // シーンをクリアに成功した
+  |'failed'     // シーンのクリアに失敗した

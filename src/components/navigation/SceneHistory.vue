@@ -42,10 +42,10 @@ const scene = useSceneStore()
               icon="mdi-arrow-down"
             ></v-icon>
             <v-avatar
-              v-for="castId in queue.casts"
+              v-for="cast in queue.casts"
             >
               <v-img
-                :src="scene.getCast(castId)?.appearance.sprite"
+                :src="cast.appearance.sprite"
               ></v-img>
             </v-avatar>
           </v-list-item-title>

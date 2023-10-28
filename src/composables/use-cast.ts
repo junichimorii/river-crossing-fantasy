@@ -22,18 +22,6 @@ interface UseCastReturn {
     content: string
     color: string
   }>
-  /** ステータスの変更を無効にする */
-  deactivate: () => Promise<void>
-  /** ステータスの変更を有効にする */
-  activate: () => Promise<void>
-  /** スワイプ終了後の行動 */
-  request: (direction: UseSwipeDirection) => Promise<'getOff' | 'getOn' | null>
-  /** 乗り物に乗る */
-  getOn: (carrierId: number) => Promise<void>
-  /** 乗り物から降りる */
-  getOff: () => Promise<void>
-  /** 対岸に到着する */
-  crossed: () => Promise<void>
 }
 const useCast = (
   state: Cast
@@ -50,53 +38,27 @@ const useCast = (
       : 'none'
   )
   const emotion = computed(() => {
+    const emotions = Array.from(new Set(state.status.emotions))
+    const isScared = emotions.includes('scared')  // 怖い、危機に瀕している
+    const isExcited = emotions.includes('excited') // 興奮している、喜んでいる
+    const isSurprised = emotions.includes('surprised')  // 驚いている、困っている
+    const content = `${isScared?'😰':''}${isExcited?'😈':''}${isSurprised?'😖':''}`
+    const color = isExcited
+    ? 'red-lighten-4'
+    : isScared
+      ? 'blue-lighten-4'
+      : isSurprised
+        ? 'amber-lighten-4'
+        : 'white'
     return {
-      model: state.status.emotions.length !== 0,
-      content: state.status.emotions.join(''),
-      color: state.status.emotions.includes('😈')
-        ? 'red-lighten-4'
-        : state.status.emotions.includes('😰')
-          ? 'blue-lighten-4'
-          : state.status.emotions.includes('😖')
-            ? 'amber-lighten-4'
-            : 'white'
+      model: emotions.length > 0,
+      content: content,
+      color: color
     }
   })
-  const deactivate = async () => {
-    state.status.disabled = true
-  }
-  const activate = async () => {
-    state.status.disabled = false
-  }
-  const request = async (
-    direction: UseSwipeDirection,
-  ) => {
-    return (state.status.boarding !== undefined && direction === (state.status.isCrossed ? 'up' : 'down'))
-    ? 'getOff' // 乗り物から降りる
-    : (state.status.boarding === undefined && direction === (state.status.isCrossed ? 'down' : 'up'))
-      ? 'getOn' // 乗り物に乗る
-      : null
-  }
-  const getOn = async (
-    carrierId: number
-  ) => {
-    state.status.boarding = carrierId
-  }
-  const getOff = async () => {
-    state.status.boarding = undefined
-  }
-  const crossed = async () => {
-    state.status.isCrossed = !state.status.isCrossed
-  }
   return {
     bound,
     emotion,
-    deactivate,
-    activate,
-    request,
-    getOn,
-    getOff,
-    crossed,
   }
 }
 export default useCast
