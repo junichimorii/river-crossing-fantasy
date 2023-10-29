@@ -2,67 +2,84 @@
 import { computed } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
-import useCarrier from '@/composables/use-carrier'
 import { useSceneStore } from '@/store/scene'
 import type { Carrier } from '@/types/carrier'
 const { state } = defineProps<{
   state: Carrier
 }>()
 const scene = useSceneStore()
-const { y, leave } = useCarrier(state)
+/** useTransitionで変化させるY座標 */
+const y = computed(() => state.status.isCrossed ? -1 : 0)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
-    scene.leave()
   },
   onFinished() {
     scene.arrive(state)
   },
 })
-/** 上方向に進行可能 */
-const upbound = computed(() => !state.status.isSailing && !scene.isEmergency && scene.getCarrierBound(state) === 'up')
-/** 下方向に進行可能 */
-const downbound = computed(() => !state.status.isSailing && !scene.isEmergency && scene.getCarrierBound(state) === 'down')
-/** 川幅（乗り物が往復する距離） */
-const riverWidth = computed(() => scene.stageSize * 0.3)
+/** 乗り物の外観 */
+const appearance = computed(() => {
+  // 幅（登場人物の幅 * （登場人物の人数 + 1））
+  const width = scene.castWidth * (state.capacity + 1)
+  // 高さ（登場人物の高さ * 2.5）
+  const height = scene.castWidth * 2.5
+  // アスペクト比
+  const aspectRatio = width / height
+  return {
+    width: width,
+    height: height,
+    aspectRatio: aspectRatio,
+  }
+})
 /** v-cardに適用するCSS transformプロパティ */
-const transformCard = computed(() => `translate(0, ${amount.value * riverWidth.value}px)`)
-/** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2） */
-const width = computed(() => scene.castWidth * state.capacity + scene.castWidth)
-/** 高さ（登場人物の高さ） */
-const height = computed(() => scene.castWidth * 2.5)
-/** アスペクト比 */
-const aspectRatio = computed(() => width.value / height.value)
-/** ツールチップ */
-const tooltip = computed(() => tooltipText.value !== '')
-/** ツールチップのテキスト */
-const tooltipText = computed(() => scene.passengers[state.id].length > 0 && !state.status.isSailing
-  ? scene.state.category === 'time-limited'
-    ? `所要時間: ${scene.getDuration(state)}分`
-    : scene.state.category === 'weight-limited'
-      ? `積載量: ${scene.getLoad(state)} / ${state.weightLimit}`
-      : ''
-  : ''
-)
+const transform = computed(() => `translate(0, ${amount.value * scene.stageSize * 0.3}px)`)
+/** 行動に関するプロパティ */
+const action = computed(() => {
+  /** 進行可能 */
+  const { upbound, downbound } = scene.getCarrierStatus(state)
+  return {
+    upbound: upbound,
+    downbound: downbound,
+  }
+})
+/** 乗り物のツールチップ */
+const tooltip = computed(() => {
+  const { duration, load } = scene.getCarrierStatus(state)
+  // テキスト
+  const text = scene.passengers[state.id].length > 0 && !state.status.isSailing
+    ? scene.state.category === 'time-limited'
+      ? `所要時間: ${duration}分`
+      : scene.state.category === 'weight-limited'
+        ? `積載量: ${load} / ${state.weightLimit}`
+        : ''
+    : ''
+  // 表示
+  const model = text !== ''
+  return {
+    text: text,
+    model: model,
+  }
+})
 </script>
 
 <template>
   <v-card
     flat
-    :width="width"
-    :style="{ transform: transformCard }"
+    :width="appearance.width"
+    :style="{ transform: transform }"
     class="d-flex justify-center align-start bg-transparent"
   >
     <v-img
-      :aspect-ratio="aspectRatio"
+      :aspect-ratio="appearance.aspectRatio"
       :src="state.appearance.sprite"
-      :height="height"
+      :height="appearance.height"
       >
       <v-sheet
         class="d-flex justify-center align-center bg-transparent"
-        :height="height"
+        :height="appearance.height"
       >
         <PuzzleCast
           v-for="cast in scene.passengers[state.id]"
@@ -76,7 +93,7 @@ const tooltipText = computed(() => scene.passengers[state.id].length > 0 && !sta
       :close-on-content-click="false"
       disabled
       location="top"
-      v-model="upbound"
+      v-model="action.upbound"
       persistent
       transition="scroll-y-reverse-transition"
     >
@@ -87,7 +104,7 @@ const tooltipText = computed(() => scene.passengers[state.id].length > 0 && !sta
             icon="mdi-arrow-up"
             color="orange"
             class="ma-1"
-            @click="leave"
+            @click="scene.leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>
@@ -97,7 +114,7 @@ const tooltipText = computed(() => scene.passengers[state.id].length > 0 && !sta
       :close-on-content-click="false"
       disabled
       location="bottom"
-      v-model="downbound"
+      v-model="action.downbound"
       persistent
       transition="scroll-y-transition"
     >
@@ -108,18 +125,18 @@ const tooltipText = computed(() => scene.passengers[state.id].length > 0 && !sta
             icon="mdi-arrow-down"
             color="orange"
             class="ma-1"
-            @click="leave"
+            @click="scene.leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>
     </v-menu>
     <v-tooltip
       activator="parent"
-      v-model="tooltip"
+      v-model="tooltip.model"
       location="end bottom"
       content-class="pa-1"
     >
-      {{ tooltipText }}
+      {{ tooltip.text }}
     </v-tooltip>
   </v-card>
 </template>

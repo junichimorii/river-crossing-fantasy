@@ -31,9 +31,9 @@ const scene = Object.freeze({
   }, {
     id: 1,
     name: '村人A',
-    ratio: 0.85,
     appearance: {
-      sprite: '/images/casts/villager1.png'
+      sprite: '/images/casts/villager1.png',
+      ratio: 0.85
     },
     role: {
       canRow: false,
@@ -45,9 +45,9 @@ const scene = Object.freeze({
   }, {
     id: 2,
     name: '村人B',
-    ratio: 0.85,
     appearance: {
-      sprite: '/images/casts/villager2.png'
+      sprite: '/images/casts/villager2.png',
+      ratio: 0.85
     },
     role: {
       canRow: false,

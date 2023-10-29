@@ -1,13 +1,13 @@
 import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage, useWindowSize } from '@vueuse/core'
-import { defaultStatus as defaultCarrierStatus } from '@/composables/use-carrier'
-import { defaultStatus as defaultCastStatus } from '@/composables/use-cast'
+import { carrierStatus, castStatus } from '@/store/statuses'
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { Scene, Queue, Activity } from '@/types/scene'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 const { width, height } = useWindowSize()
+
 /**
  * シーン（ステージ）管理
  */
@@ -71,12 +71,12 @@ export const useSceneStore = defineStore('scene', () => {
   const passengers = computed(() => state.value.carriers.map(carrier =>
     state.value.casts.filter(cast => cast.status.boarding === carrier.id))
   )
-  /** いずれかの登場人物が非常事態かどうか */
-  const isEmergency = computed(() => state.value.casts.some(cast => cast.status.emotions.length > 0))
   /** すべての登場人物が対岸にいるかどうか */
   const isCompleted = computed(() => state.value.casts.every(cast => cast.status.boarding === undefined && cast.status.isCrossed))
   /** 規定回数を超過したかどうか */
   const isExceeded = computed(() => count.value > state.value.passing)
+  /** いずれかの登場人物が非常事態かどうか */
+  const isEmergency = computed(() => state.value.casts.some(cast => cast.status.emotions.length > 0))
 
   /**
    * シーンを読み込む
@@ -103,10 +103,10 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const init = async () => {
     state.value.carriers.forEach(carrier => {
-      carrier.status = structuredClone(defaultCarrierStatus)
+      carrier.status = structuredClone(carrierStatus)
     })
     state.value.casts.forEach(cast => {
-      cast.status = structuredClone(defaultCastStatus)
+      cast.status = structuredClone(castStatus)
     })
     queue.value.clear()
     activities.value.clear()
@@ -123,10 +123,10 @@ export const useSceneStore = defineStore('scene', () => {
     if (cast.status.disabled) return
     // 動作の種別を取得
     const request = cast.status.boarding !== undefined && direction === (cast.status.isCrossed ? 'up' : 'down')
-    ? 'getOff' // 乗り物から降りる
-    : (cast.status.boarding === undefined && direction === (cast.status.isCrossed ? 'down' : 'up'))
-      ? 'getOn' // 乗り物に乗る
-      : null
+      ? 'getOff' // 乗り物から降りる
+      : (cast.status.boarding === undefined && direction === (cast.status.isCrossed ? 'down' : 'up'))
+        ? 'getOn' // 乗り物に乗る
+        : null
     if (!request) return
     if (request === 'getOff') {
       // 登場人物を乗り物から降ろす
@@ -138,6 +138,18 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
+   * 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる
+   */
+  const reserve = async (
+    cast: Cast,
+  ) => {
+    const carrier = state.value.carriers.find(carrier =>
+      getCarrierStatus(carrier).isAvailable && carrier.status.isCrossed === cast.status.isCrossed
+    )
+    return carrier
+  }
+
+  /**
    * 乗り物に登場人物が乗ろうとした時
    */
   const getOn = async (
@@ -146,23 +158,11 @@ export const useSceneStore = defineStore('scene', () => {
     const carrier = await reserve(cast)
     if (carrier === undefined) return false
     cast.status.boarding = carrier.id
-    if (isReady(carrier)) {
+    if (getCarrierStatus(carrier).isReady) {
       activities.value.add('ready')
     }
     // 安否確認
     return await safetyConfirmation()
-  }
-
-  /**
-   * 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる
-   */
-  const reserve = async (
-    cast: Cast,
-  ) => {
-    const carrier = state.value.carriers.find(carrier =>
-      isAvailable(carrier) && carrier.status.isCrossed === cast.status.isCrossed
-    )
-    return carrier
   }
 
   /**
@@ -179,9 +179,15 @@ export const useSceneStore = defineStore('scene', () => {
   /**
    * 乗り物が出発した時
    */
-  const leave = async () => {
+  const leave = async (
+    carrier: Carrier,
+  ) => {
     // 乗り物を操作できる状態になった実績がない場合は何もしない
     if (!activities.value.has('ready')) return
+    // 乗り物を進行中の状態にする
+    carrier.status.isSailing = true
+    // 乗り物の位置を変化させる
+    carrier.status.isCrossed = !carrier.status.isCrossed
     // 登場人物の操作を無効にする
     state.value.casts.forEach(cast => {
       cast.status.disabled = true
@@ -196,25 +202,26 @@ export const useSceneStore = defineStore('scene', () => {
   ) => {
     // 乗り物を操作できる状態になった実績がない場合は何もしない
     if (!activities.value.has('ready')) return
+    // 履歴を追加
+    queue.value.add({
+      casts: passengers.value[carrier.id],
+      duration: getCarrierStatus(carrier).duration
+    })
     // 乗り物を停止中の状態にする
     carrier.status.isSailing = false
     // 登場人物の操作を有効にする
     state.value.casts.forEach(cast => {
       cast.status.disabled = false
     })
-    // 履歴を追加
-    queue.value.add({
-      casts: passengers.value[carrier.id],
-      duration: getDuration(carrier)
-    })
     // 登場人物を乗り物から降ろす
     passengers.value[carrier.id].forEach(cast => {
+      // 登場人物の位置を変化させる
       cast.status.isCrossed = !cast.status.isCrossed
       cast.status.boarding = undefined
     })
     // 安否確認
-    const isFailed = await safetyConfirmation()
-    if (isFailed) {
+    const isSafe = await safetyConfirmation()
+    if (!isSafe) {
       activities.value.add('failed')
       await terminate()
     } else {
@@ -227,29 +234,38 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
-   * 乗り物の対岸までの所要時間を取得
-   */
-  const getDuration = (
-    carrier: Carrier
-  ) => Math.max(...passengers.value[carrier.id].map(cast => cast.role.duration || 1))
-
-  /**
-   * 乗り物の積載重量を取得
-   */
-  const getLoad = (
-    carrier: Carrier
-  ) => passengers.value[carrier.id].reduce((weight, cast) => weight + (cast.role.weight ? cast.role.weight : 0), 0)
-
-  /**
    * 乗り物の移動可能な進行方向を取得
    */
-  const getCarrierBound = (
+  const getCarrierStatus = (
     carrier: Carrier
-  ) => isReady(carrier)
-    ? !carrier.status.isCrossed
-      ? 'up'
-      : 'down'
-    : 'none'
+  ) => {
+    // 対岸までの所要時間
+    const duration = Math.max(...passengers.value[carrier.id].map(cast => cast.role.duration || 1))
+    // 積載重量
+    const load = passengers.value[carrier.id].reduce((weight, cast) => weight + (cast.role.weight ? cast.role.weight : 0), 0)
+    // 空席があるかどうか
+    const isVacancy = passengers.value[carrier.id].length < carrier.capacity
+    // 重量オーバーかどうか
+    const isOverweight = carrier.weightLimit !== undefined && load > carrier.weightLimit
+    // 操作可能かどうか
+    const isOperable = passengers.value[carrier.id].some(cast => cast.role.canRow === undefined || cast.role.canRow)
+    // 利用可能かどうか
+    const isAvailable = isVacancy && !isOverweight
+    // 出発可能かどうか
+    const isReady = !carrier.status.isSailing && isOperable && !isOverweight
+    // 上方向に進行可能かどうか
+    const upbound = isReady && !isEmergency.value && !carrier.status.isCrossed
+    // 下方向に進行可能かどうか
+    const downbound = isReady && !isEmergency.value && carrier.status.isCrossed
+    return {
+      duration: duration,
+      load: load,
+      isAvailable: isAvailable,
+      isReady: isReady,
+      upbound: upbound,
+      downbound: downbound,
+    }
+  }
 
   /**
    * 安否確認
@@ -266,11 +282,11 @@ export const useSceneStore = defineStore('scene', () => {
     const isRebelled = (state.value.category === 'keep-majority')
       ? await rebellion()
       : false
-    return isPredated || isRebelled
+    return !(isPredated || isRebelled)
   }
 
   /**
-   * （敵と保護者がいるパズルにおいて）敵が行動を開始する
+   * 敵の捕食が成功したかどうか
    */
   const predation = async () => {
     const results = await Promise.all(state.value.casts.map(async myself => {
@@ -296,7 +312,7 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
-   * （半数以上を維持するパズルにおいて）反乱を企てる
+   * 反乱が成功したかどうか
    */
   const rebellion = async () => {
     const results = await Promise.all([
@@ -334,40 +350,8 @@ export const useSceneStore = defineStore('scene', () => {
       : activities.value.has('failed')
         ? -1
         : 0
-    return isExceeded.value
+    return score.value
   }
-
-  /**
-   * 乗り物が重量オーバーかどうかを取得
-   */
-  const isOverweight = (
-    carrier: Carrier
-  ) => carrier.weightLimit !== undefined && getLoad(carrier) > carrier.weightLimit
-
-  /**
-   * 乗り物が利用可能かどうかを取得
-   */
-  const isAvailable = (
-    carrier: Carrier
-  ) => {
-    // 乗り物に空席がある
-    const isVacancy = passengers.value[carrier.id].length < carrier.capacity
-    return isVacancy && !isOverweight(carrier)
-  }
-
-  /**
-   * 乗り物を操作可能かどうかを取得
-   */
-  const isOperable = (
-    carrier: Carrier
-  ) => passengers.value[carrier.id].some(cast => cast.role.canRow === undefined || cast.role.canRow)
-
-  /**
-   * 乗り物が出発可能かどうかを取得
-   */
-  const isReady = (
-    carrier: Carrier
-  ) => !carrier.status.isSailing && isOperable(carrier) && !isOverweight(carrier)
 
   /**
    * 2人のキャラクターが隣接しているかどうか
@@ -389,7 +373,6 @@ export const useSceneStore = defineStore('scene', () => {
     unreachers,
     reachers,
     passengers,
-    isEmergency,
     isCompleted,
     isExceeded,
     load,
@@ -399,8 +382,6 @@ export const useSceneStore = defineStore('scene', () => {
     getOn,
     leave,
     arrive,
-    getDuration,
-    getLoad,
-    getCarrierBound,
+    getCarrierStatus,
   }
 })
