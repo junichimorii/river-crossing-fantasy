@@ -1,16 +1,12 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
-  id: 13,
-  title: '魔獣使いの苦悩（中級編1）',
+  id: 18,
+  title: '魔獣使いの苦悩（中級編2）',
   description: {
     conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いAと魔獣Aのみ。',
   },
-  tips: [
-    '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したもの。',
-  ],
   category: 'keep-majority',
-  level: '中級編',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 11,
   carriers: [{
@@ -27,24 +23,29 @@ const scene = Object.freeze({
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
+      canRow: true,
       rebel: false
     }
   }, {
     id: 1,
     name: '魔獣使いB',
     appearance: {
-      sprite: '/images/casts/beast-tamer2.png'
+      sprite: '/images/casts/beast-tamer2.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       rebel: false
     }
   }, {
     id: 2,
     name: '魔獣使いC',
     appearance: {
-      sprite: '/images/casts/beast-tamer3.png'
+      sprite: '/images/casts/beast-tamer3.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       rebel: false
     }
   }, {
@@ -54,24 +55,29 @@ const scene = Object.freeze({
       sprite: '/images/casts/therianthropy1.png'
     },
     role: {
+      canRow: true,
       rebel: true
     }
   }, {
     id: 4,
     name: '魔獣B',
     appearance: {
-      sprite: '/images/casts/therianthropy2.png'
+      sprite: '/images/casts/therianthropy2.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       rebel: true
     }
   }, {
     id: 5,
     name: '魔獣C',
     appearance: {
-      sprite: '/images/casts/therianthropy3.png'
+      sprite: '/images/casts/therianthropy3.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       rebel: true
     }
   }]

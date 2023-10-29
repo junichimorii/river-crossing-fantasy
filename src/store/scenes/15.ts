@@ -4,7 +4,7 @@ const scene = Object.freeze({
   title: '危険なパーティ（中級編）',
   description: {
     conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いと騎士のみ。',
   },
   category: 'predators-and-guardians',
   landscape: '/images/landscapes/daytime-river.png',
@@ -44,7 +44,7 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-a1.png'
     },
     role: {
-      canRow: false,
+      canRow: true,
       predators: [{
         predator: 1,
         guardian: 0,
@@ -75,7 +75,7 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-b1.png'
     },
     role: {
-      canRow: false,
+      canRow: true,
       predators: [{
         predator: 1,
         guardian: 0,

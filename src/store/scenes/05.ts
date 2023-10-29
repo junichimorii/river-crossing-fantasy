@@ -3,7 +3,7 @@ const scene = Object.freeze({
   id: 5,
   title: '闇夜の旅',
   description: {
-    conditions: 'すべてのキャラクターを2分以内に対岸に渡す',
+    conditions: 'すべてのキャラクターを7分以内に対岸に渡す',
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
   tips: [
@@ -13,7 +13,7 @@ const scene = Object.freeze({
   ],
   category: 'time-limited',
   landscape: '/images/landscapes/night-bridge.png',
-  passing: 2,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -38,6 +38,15 @@ const scene = Object.freeze({
     },
     role: {
       duration: 2
+    }
+  }, {
+    id: 2,
+    name: '司祭',
+    appearance: {
+      sprite: '/images/casts/priest1.png'
+    },
+    role: {
+      duration: 4
     }
   }]
 }) as Scene

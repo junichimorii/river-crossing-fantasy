@@ -1,17 +1,14 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 12,
-  title: '危険なパーティ（初級編3）',
+  title: '防衛戦線（初級編2）',
   description: {
-    conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは騎士のみ。',
   },
-  tips: [
-    '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
-  ],
-  category: 'predators-and-guardians',
+  category: 'escorting-celebrity',
   landscape: '/images/landscapes/daytime-river.png',
-  passing: 7,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -21,51 +18,50 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
+    name: 'A国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/beast-tamer1.png'
+      sprite: '/images/casts/knight-a1.png'
     },
     role: {
-      canRow: true
-    },
-  }, {
-    id: 1,
-    name: '騎士',
-    description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
-    appearance: {
-      sprite: '/images/casts/knight-a1.png',
-      ratio: 0.85
-    },
-    role: {
-      canRow: false
-    },
-  }, {
-    id: 2,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと村人を襲う。',
-    appearance: {
-      sprite: '/images/casts/therianthropy1.png',
-      ratio: 0.85
-    },
-    role: {
-      canRow: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      canRow: true,
     }
   }, {
-    id: 3,
-    name: '村人',
+    id: 1,
+    name: 'A国王女',
     appearance: {
-      sprite: '/images/casts/villager1.png',
+      sprite: '/images/casts/princess-a1.png',
       ratio: 0.85
     },
     role: {
       canRow: false,
       predators: [{
         predator: 2,
-        guardian: 0
+        guardian: 0,
+      }]
+    }
+  }, {
+    id: 2,
+    name: 'B国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: {
+      sprite: '/images/casts/knight-b1.png'
+    },
+    role: {
+      canRow: true,
+    }
+  }, {
+    id: 3,
+    name: 'B国王女',
+    appearance: {
+      sprite: '/images/casts/princess-b1.png',
+      ratio: 0.85
+    },
+    role: {
+      canRow: false,
+      predators: [{
+        predator: 0,
+        guardian: 2,
       }]
     }
   }]

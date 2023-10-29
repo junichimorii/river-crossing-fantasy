@@ -173,7 +173,7 @@ export const useSceneStore = defineStore('scene', () => {
   ) => {
     cast.status.boarding = undefined
     // 安否確認
-    await safetyConfirmation()
+    return await safetyConfirmation()
   }
 
   /**
@@ -231,6 +231,7 @@ export const useSceneStore = defineStore('scene', () => {
         await terminate()
       }
     }
+    return isSafe
   }
 
   /**
@@ -340,6 +341,14 @@ export const useSceneStore = defineStore('scene', () => {
   }
 
   /**
+   * 2人のキャラクターが隣接しているかどうか
+   */
+  const isNeighboring = (
+    a: Cast,
+    b: Cast,
+  ) => (a.status.boarding === b.status.boarding) && (a.status.isCrossed === b.status.isCrossed)
+
+  /**
    * シーンの終了時
    */
   const terminate = async () => {
@@ -352,14 +361,6 @@ export const useSceneStore = defineStore('scene', () => {
         : 0
     return score.value
   }
-
-  /**
-   * 2人のキャラクターが隣接しているかどうか
-   */
-  const isNeighboring = (
-    a: Cast,
-    b: Cast,
-  ) => (a.status.boarding === b.status.boarding) && (a.status.isCrossed === b.status.isCrossed)
 
   return {
     state,

@@ -1,14 +1,11 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
-  id: 14,
-  title: '防衛戦線（中級編1）',
+  id: 17,
+  title: '防衛戦線（中級編2）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは騎士のみ。',
   },
-  tips: [
-    '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
-  ],
   category: 'escorting-celebrity',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 11,
@@ -27,14 +24,17 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-a1.png'
     },
     role: {
+      canRow: true,
     }
   }, {
     id: 1,
     name: 'A国王女',
     appearance: {
-      sprite: '/images/casts/princess-a1.png'
+      sprite: '/images/casts/princess-a1.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       predators: [{
         predator: 2,
         guardian: 0
@@ -51,14 +51,17 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-b1.png'
     },
     role: {
+      canRow: true,
     }
   }, {
     id: 3,
     name: 'B国王女',
     appearance: {
-      sprite: '/images/casts/princess-b1.png'
+      sprite: '/images/casts/princess-b1.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       predators: [{
         predator: 0,
         guardian: 2
@@ -75,14 +78,17 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-c1.png'
     },
     role: {
+      canRow: true,
     }
   }, {
     id: 5,
     name: 'C国王女',
     appearance: {
-      sprite: '/images/casts/princess-c1.png'
+      sprite: '/images/casts/princess-c1.png',
+      ratio: 0.85
     },
     role: {
+      canRow: false,
       predators: [{
         predator: 0,
         guardian: 4
