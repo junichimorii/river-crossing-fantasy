@@ -1,17 +1,17 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 12,
-  title: '魔獣使いの苦悩（中級編）',
+  title: '危険なパーティ（初級編3）',
   description: {
-    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
+    conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
   },
   tips: [
-    '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したもの。',
+    '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
   ],
-  category: 'keep-majority',
+  category: 'predators-and-guardians',
   landscape: '/images/landscapes/daytime-river.png',
-  passing: 11,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -21,57 +21,52 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使いA',
+    name: '魔獣使い',
     appearance: {
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      rebel: false
-    }
+      canRow: true
+    },
   }, {
     id: 1,
-    name: '魔獣使いB',
+    name: '騎士',
+    description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
     appearance: {
-      sprite: '/images/casts/beast-tamer2.png'
+      sprite: '/images/casts/knight-a1.png',
+      ratio: 0.85
     },
     role: {
-      rebel: false
-    }
+      canRow: false
+    },
   }, {
     id: 2,
-    name: '魔獣使いC',
+    name: '魔獣',
+    description: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
-      sprite: '/images/casts/beast-tamer3.png'
+      sprite: '/images/casts/therianthropy1.png',
+      ratio: 0.85
     },
     role: {
-      rebel: false
+      canRow: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }]
     }
   }, {
     id: 3,
-    name: '魔獣A',
+    name: '村人',
     appearance: {
-      sprite: '/images/casts/therianthropy1.png'
+      sprite: '/images/casts/villager1.png',
+      ratio: 0.85
     },
     role: {
-      rebel: true
-    }
-  }, {
-    id: 4,
-    name: '魔獣B',
-    appearance: {
-      sprite: '/images/casts/therianthropy2.png'
-    },
-    role: {
-      rebel: true
-    }
-  }, {
-    id: 5,
-    name: '魔獣C',
-    appearance: {
-      sprite: '/images/casts/therianthropy3.png'
-    },
-    role: {
-      rebel: true
+      canRow: false,
+      predators: [{
+        predator: 2,
+        guardian: 0
+      }]
     }
   }]
 }) as Scene

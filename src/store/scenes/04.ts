@@ -11,7 +11,7 @@ const scene = Object.freeze({
   ],
   category: 'weight-limited',
   landscape: '/images/landscapes/daytime-river.png',
-  passing: 9,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -31,15 +31,6 @@ const scene = Object.freeze({
     },
   }, {
     id: 1,
-    name: '騎士B',
-    appearance: {
-      sprite: '/images/casts/knight-b2.png'
-    },
-    role: {
-      weight: 2
-    }
-  }, {
-    id: 2,
     name: '村人A',
     appearance: {
       sprite: '/images/casts/villager1.png'
@@ -48,7 +39,7 @@ const scene = Object.freeze({
       weight: 1
     }
   }, {
-    id: 3,
+    id: 2,
     name: '村人B',
     appearance: {
       sprite: '/images/casts/villager2.png'

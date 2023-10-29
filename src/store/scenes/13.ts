@@ -1,15 +1,16 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 13,
-  title: '防衛戦線（中級編）',
+  title: '魔獣使いの苦悩（中級編）',
   description: {
-    conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
   },
   tips: [
-    '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
+    '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したもの。',
   ],
-  category: 'escorting-celebrity',
+  category: 'keep-majority',
+  level: '中級編',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 11,
   carriers: [{
@@ -21,75 +22,57 @@ const scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: 'A国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    name: '魔獣使いA',
     appearance: {
-      sprite: '/images/casts/knight-a1.png'
+      sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
+      rebel: false
     }
   }, {
     id: 1,
-    name: 'A国王女',
+    name: '魔獣使いB',
     appearance: {
-      sprite: '/images/casts/princess-a1.png'
+      sprite: '/images/casts/beast-tamer2.png'
     },
     role: {
-      predators: [{
-        predator: 2,
-        guardian: 0
-      }, {
-        predator: 4,
-        guardian: 0
-      }]
+      rebel: false
     }
   }, {
     id: 2,
-    name: 'B国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    name: '魔獣使いC',
     appearance: {
-      sprite: '/images/casts/knight-b1.png'
+      sprite: '/images/casts/beast-tamer3.png'
     },
     role: {
+      rebel: false
     }
   }, {
     id: 3,
-    name: 'B国王女',
+    name: '魔獣A',
     appearance: {
-      sprite: '/images/casts/princess-b1.png'
+      sprite: '/images/casts/therianthropy1.png'
     },
     role: {
-      predators: [{
-        predator: 0,
-        guardian: 2
-      }, {
-        predator: 4,
-        guardian: 2
-      }]
+      rebel: true
     }
   }, {
     id: 4,
-    name: 'C国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    name: '魔獣B',
     appearance: {
-      sprite: '/images/casts/knight-c1.png'
+      sprite: '/images/casts/therianthropy2.png'
     },
     role: {
+      rebel: true
     }
   }, {
     id: 5,
-    name: 'C国王女',
+    name: '魔獣C',
     appearance: {
-      sprite: '/images/casts/princess-c1.png'
+      sprite: '/images/casts/therianthropy3.png'
     },
     role: {
-      predators: [{
-        predator: 0,
-        guardian: 4
-      }, {
-        predator: 2,
-        guardian: 4
-      }]
+      rebel: true
     }
   }]
 }) as Scene

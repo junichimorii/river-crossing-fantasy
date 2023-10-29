@@ -37,7 +37,7 @@ const settings = useSettingsStore()
           </v-card-subtitle>
           <v-card-text class="py-1">
             スマートフォンまたはタブレットの縦向きでのプレイを推奨します。
-            横向き、PCでもプレイは可能ですが、各種メニューが表示されません。また意図しない動きをする可能性があります。
+            横向き、PCでもプレイは可能ですが、メニュー等の表示に制限があります。また、意図しない動作をする可能性があります。
           </v-card-text>
         </v-card-item>
         <v-card-item>

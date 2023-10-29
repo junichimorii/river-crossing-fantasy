@@ -1,72 +1,47 @@
 import type { Scene } from '@/types/scene'
 const scene = Object.freeze({
   id: 11,
-  title: '危険なパーティ（初級編3）',
+  title: '闇夜の旅（初級編2）',
   description: {
-    conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    conditions: 'すべてのキャラクターを7分以内に対岸に渡す',
+    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
-  tips: [
-    '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
-  ],
-  category: 'predators-and-guardians',
-  landscape: '/images/landscapes/daytime-river.png',
+  category: 'time-limited',
+  landscape: '/images/landscapes/night-bridge.png',
   passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: '/images/carriers/boat2.png'
+      sprite: '/images/carriers/touch.png'
     }
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
+    name: '盗賊',
     appearance: {
-      sprite: '/images/casts/beast-tamer1.png'
+      sprite: '/images/casts/thief1.png'
     },
     role: {
-      canRow: true
-    },
-  }, {
-    id: 1,
-    name: '騎士',
-    description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
-    appearance: {
-      sprite: '/images/casts/knight-a1.png',
-      ratio: 0.85
-    },
-    role: {
-      canRow: false
-    },
-  }, {
-    id: 2,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと村人を襲う。',
-    appearance: {
-      sprite: '/images/casts/therianthropy1.png',
-      ratio: 0.85
-    },
-    role: {
-      canRow: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      duration: 1
     }
   }, {
-    id: 3,
-    name: '村人',
+    id: 1,
+    name: '戦士',
     appearance: {
-      sprite: '/images/casts/villager1.png',
-      ratio: 0.85
+      sprite: '/images/casts/fighter1.png'
     },
     role: {
-      canRow: false,
-      predators: [{
-        predator: 2,
-        guardian: 0
-      }]
+      duration: 2
+    }
+  }, {
+    id: 2,
+    name: '司祭',
+    appearance: {
+      sprite: '/images/casts/priest1.png'
+    },
+    role: {
+      duration: 4
     }
   }]
 }) as Scene

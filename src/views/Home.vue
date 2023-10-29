@@ -23,42 +23,53 @@ onMounted(async () => {
       class="h-100"
     >
       <v-container>
-        <v-list-item
+        <template
           v-for="scene in records.scenes"
           :key="scene.id"
-          lines="one"
-          :to="`/${scene.id}`"
-          :title="scene.title"
-          :subtitle="scene.description.conditions"
-          :disabled="false/*!records.has(scene.id)*/"
-          class="elevation-4 rounded my-1"
-          style="background-color: hsla(0, 0%, 100%, 0.95)"
         >
-          <template v-slot:prepend>
-            <v-chip
-              rounded
-              :color="scene.category"
-              class="mr-3"
-            >
-              Q{{scene.id}}
-            </v-chip>
-          </template>
-          <template v-slot:append>
+          <v-list-subheader
+            v-if="scene.level"
+          >
             <v-icon
-              v-if="!records.has(scene.id)"
-              icon="mdi-lock"
+              icon="mdi-speedometer"
             ></v-icon>
-            <v-rating
-              v-if="records.has(scene.id)"
-              readonly
-              density="compact"
-              size="small"
-              :length="2"
-              :model-value="records.get(scene.id)"
-              active-color="orange"
-            />
-          </template>
-        </v-list-item>
+            {{ scene.level }}
+          </v-list-subheader>
+          <v-list-item
+            lines="one"
+            :to="`/${scene.id}`"
+            :title="scene.title"
+            :subtitle="scene.description.conditions"
+            :disabled="false/*!records.has(scene.id)*/"
+            class="elevation-4 rounded my-1"
+            style="background-color: hsla(0, 0%, 100%, 0.95)"
+          >
+            <template v-slot:prepend>
+              <v-chip
+                rounded
+                :color="scene.category"
+                class="mr-3"
+              >
+                Q{{scene.id}}
+              </v-chip>
+            </template>
+            <template v-slot:append>
+              <v-icon
+                v-if="!records.has(scene.id)"
+                icon="mdi-lock"
+              ></v-icon>
+              <v-rating
+                v-if="records.has(scene.id)"
+                readonly
+                density="compact"
+                size="small"
+                :length="2"
+                :model-value="records.get(scene.id)"
+                active-color="orange"
+              />
+            </template>
+          </v-list-item>
+        </template>
       </v-container>
     </v-parallax>
   </v-main>

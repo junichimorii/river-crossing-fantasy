@@ -12,6 +12,7 @@ const scene = Object.freeze({
     '舟の上のキャラクターを下方向にスワイプすると舟から降ります。',
   ],
   category: 'unconditioned',
+  level: '入門編',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 1,
   carriers: [{

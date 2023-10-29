@@ -20,6 +20,8 @@ export interface Scene {
   tips?: string[]
   /** パズル種別 */
   category: Category
+  /** 難易度 */
+  level?: string
   /** ステージの背景画像URL */
   landscape: string
   /** ステージの合格基準となる回数または時間 */
