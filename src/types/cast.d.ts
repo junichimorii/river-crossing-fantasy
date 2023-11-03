@@ -49,8 +49,6 @@ interface Role {
  * 登場人物の状態
  */
 export interface Status {
-  /** 操作が無効である */
-  disabled: boolean
   /** 開始地点の対岸にいる */
   isCrossed: boolean
   /** 乗っている乗り物 */

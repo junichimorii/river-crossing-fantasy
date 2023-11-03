@@ -1,44 +1,35 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, watch } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useScreenOrientation } from '@vueuse/core'
 import { useRecordsStore } from '@/store/records'
-import { useSceneStore } from '@/store/scene'
+import { usePuzzleStore } from '@/store/puzzle'
 import { PuzzleNavigation, PuzzleStage } from '@/components'
 const route = useRoute()
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
 const records = useRecordsStore()
-const scene = useSceneStore()
-/** パラメータで渡されたIDのシーンを開始する */
-const load = async (id: string|string[]) => {
-  if(Array.isArray(id)) throw `id: ${id}`
-  const config = await records.load(parseInt(id))
-  await scene.load(structuredClone(config))
-}
+const puzzle = usePuzzleStore()
+const loading = ref(true)
+
 onMounted(async () => {
-  await load(route.params.id).catch(() => {
+  if(Array.isArray(route.params.id)) throw `id: ${route.params.id}`
+  const config = await records.load(parseInt(route.params.id))
+  await puzzle.load(config).catch(() => {
     router.push({ path: '/home' })
   })
+  await puzzle.init()
+  loading.value = false
 })
+
 onUnmounted(async () => {
-  await scene.unload()
+  await puzzle.unload()
 })
-watch(
-  () => scene.score,
-  (score) => {
-    /** ステージクリア */
-    if (score !== 0) {
-      records.report(scene.state.id, score)
-    }
-  },
-  { deep: true }
-)
 </script>
 
 <template>
   <v-main
-    v-if="scene.state"
+    v-if="!loading"
     @contextmenu.prevent
   >
     <PuzzleStage></PuzzleStage>

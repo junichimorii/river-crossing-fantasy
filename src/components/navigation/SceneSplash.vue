@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { useSceneStore } from '@/store/scene'
 import { SceneCasts, SceneConditions } from '@/components'
-const scene = useSceneStore()
+import { usePuzzleStore } from '@/store/puzzle'
+const puzzle = usePuzzleStore()
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {
-  dialog.value = (scene.count === 0)
+  dialog.value = (puzzle.queue.size === 0)
 })
 </script>
 
@@ -20,16 +20,16 @@ onMounted(async () => {
   >
     <v-card
       flat
-      :title="scene.state.title"
+      :title="puzzle.scene.title"
       class="overflow-y-auto"
       style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
       <template v-slot:prepend>
         <v-chip
           rounded
-          :color="scene.state.category"
+          :color="puzzle.scene.category"
         >
-          Q{{scene.state.id}}
+          Q{{puzzle.scene.id}}
         </v-chip>
       </template>
       <v-divider class="mt-3"></v-divider>

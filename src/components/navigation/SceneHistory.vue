@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
+import { usePuzzleStore } from '@/store/puzzle'
+const puzzle = usePuzzleStore()
 </script>
 
 <template>
@@ -8,15 +8,10 @@ const scene = useSceneStore()
     <v-list-subheader>
       <v-icon icon="mdi-history"></v-icon>
       履歴
-      <v-badge
-        :color="scene.isExceeded ? 'error' : 'success'"
-        :content="scene.count"
-        inline
-      ></v-badge>
     </v-list-subheader>
     <v-row no-gutters>
       <v-col
-        v-for="(queue, i) in scene.queue"
+        v-for="(move, i) in puzzle.queue"
         :key="i"
         cols="12"
         sm="6"
@@ -42,7 +37,8 @@ const scene = useSceneStore()
               icon="mdi-arrow-down"
             ></v-icon>
             <v-avatar
-              v-for="cast in queue.casts"
+              v-for="cast in move.casts"
+              :key="cast.id"
             >
               <v-img
                 :src="cast.appearance.sprite"
@@ -50,8 +46,8 @@ const scene = useSceneStore()
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
-            <span v-if="scene.state.category === 'time-limited'">
-              + {{ queue.duration }} min
+            <span v-if="puzzle.scene.category === 'time-limited'">
+              + {{ move.value }} min
             </span>
           </template>
         </v-list-item>

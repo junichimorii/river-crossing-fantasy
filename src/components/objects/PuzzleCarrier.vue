@@ -2,30 +2,48 @@
 import { computed } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
-import { useSceneStore } from '@/store/scene'
+import { usePuzzle, useStage } from '@/composables'
+import { usePuzzleStore } from '@/store/puzzle'
 import type { Carrier } from '@/types/carrier'
-const { state } = defineProps<{
+const props = defineProps<{
   state: Carrier
 }>()
-const scene = useSceneStore()
+const puzzle = usePuzzleStore()
+const { carriers, leave, arrive } = usePuzzle(puzzle.scene)
+const { stageSize, gridSize } = useStage(puzzle.scene)
+const carrier = carriers.value[props.state.id]
+
 /** useTransitionで変化させるY座標 */
-const y = computed(() => state.status.isCrossed ? -1 : 0)
+const y = computed(() => props.state.status.isCrossed ? -1 : 0)
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
+    puzzle.pause()
   },
   onFinished() {
-    scene.arrive(state)
+    puzzle.resume()
+    finished()
   },
 })
+
+/**
+ * 乗り物の動作が停止した時
+ */
+const finished = async () => {
+  const result = await arrive(props.state)
+  if(result !== undefined) {
+    puzzle.queue.add(result)
+  }
+}
+
 /** 乗り物の外観 */
 const appearance = computed(() => {
   // 幅（登場人物の幅 * （登場人物の人数 + 1））
-  const width = scene.castWidth * (state.capacity + 1)
+  const width = gridSize.value * (props.state.capacity + 1)
   // 高さ（登場人物の高さ * 2.5）
-  const height = scene.castWidth * 2.5
+  const height = gridSize.value * 2.5
   // アスペクト比
   const aspectRatio = width / height
   return {
@@ -35,11 +53,11 @@ const appearance = computed(() => {
   }
 })
 /** v-cardに適用するCSS transformプロパティ */
-const transform = computed(() => `translate(0, ${amount.value * scene.stageSize * 0.3}px)`)
-/** 行動に関するプロパティ */
-const action = computed(() => {
+const transform = computed(() => `translate(0, ${amount.value * stageSize.value * 0.3}px)`)
+/** 行動範囲に関するプロパティ */
+const navigation = computed(() => {
   /** 進行可能 */
-  const { upbound, downbound } = scene.getCarrierStatus(state)
+  const { upbound, downbound } = carrier
   return {
     upbound: upbound,
     downbound: downbound,
@@ -47,13 +65,13 @@ const action = computed(() => {
 })
 /** 乗り物のツールチップ */
 const tooltip = computed(() => {
-  const { duration, load } = scene.getCarrierStatus(state)
+  const { duration, load } = carrier
   // テキスト
-  const text = scene.passengers[state.id].length > 0 && !state.status.isSailing
-    ? scene.state.category === 'time-limited'
+  const text = carrier.passengers.length > 0 && !props.state.status.isSailing
+    ? puzzle.scene.category === 'time-limited'
       ? `所要時間: ${duration}分`
-      : scene.state.category === 'weight-limited'
-        ? `積載量: ${load} / ${state.weightLimit}`
+      : puzzle.scene.category === 'weight-limited'
+        ? `積載量: ${load} / ${props.state.weightLimit}`
         : ''
     : ''
   // 表示
@@ -82,7 +100,7 @@ const tooltip = computed(() => {
         :height="appearance.height"
       >
         <PuzzleCast
-          v-for="cast in scene.passengers[state.id]"
+          v-for="cast in carrier.passengers"
           :key="cast.id"
           :state="cast"
         ></PuzzleCast>
@@ -93,7 +111,7 @@ const tooltip = computed(() => {
       :close-on-content-click="false"
       disabled
       location="top"
-      v-model="action.upbound"
+      v-model="navigation.upbound"
       persistent
       transition="scroll-y-reverse-transition"
     >
@@ -104,7 +122,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-up"
             color="orange"
             class="ma-1"
-            @click="scene.leave(state)"
+            @click="leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>
@@ -114,7 +132,7 @@ const tooltip = computed(() => {
       :close-on-content-click="false"
       disabled
       location="bottom"
-      v-model="action.downbound"
+      v-model="navigation.downbound"
       persistent
       transition="scroll-y-transition"
     >
@@ -125,7 +143,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-down"
             color="orange"
             class="ma-1"
-            @click="scene.leave(state)"
+            @click="leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>

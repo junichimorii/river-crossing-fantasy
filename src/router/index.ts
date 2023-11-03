@@ -2,7 +2,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
-import Stage from '@/views/Stage.vue'
+import Scene from '@/views/Scene.vue'
 import Test from '@/views/Test.vue'
 
 const routes: Array<RouteRecordRaw> = [{
@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [{
     component: Home,
   }, {
     path: ':id',
-    component: Stage,
+    component: Scene,
   }, {
     path: 'test/:id',
     component: Test,

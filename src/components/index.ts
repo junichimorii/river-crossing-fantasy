@@ -10,6 +10,7 @@ import SceneResult from './navigation/SceneResult.vue'
 import SceneSplash from './navigation/SceneSplash.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
 import PuzzleCast from './objects/PuzzleCast.vue'
+import PuzzleCastEmotion from './objects/PuzzleCastEmotion.vue'
 export {
   PuzzleNavigation,
   PuzzleStage,
@@ -23,4 +24,5 @@ export {
   SceneSplash,
   PuzzleCarrier,
   PuzzleCast,
+  PuzzleCastEmotion,
 }

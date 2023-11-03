@@ -33,16 +33,6 @@ export interface Scene {
 }
 
 /**
- * 履歴
- */
-export interface Queue {
-  /** 移動した登場人物 */
-  casts: Cast[]
-  /** 所要時間 */
-  duration: number 
-}
-
-/**
  * パズル種別
  */
 export type Category =
@@ -53,11 +43,3 @@ export type Category =
   |'escorting-celebrity'      // 要人を敵から保護する川渡りパズル
   |'keep-majority'            // 多数派を維持する川渡りパズル
   |'time-limited'             // 制限時間のある川渡りパズル
-
-/**
- * 行動実績
- */
-export type Activity =
-  'ready'       // 乗り物を操作できる状態になった
-  |'completed'  // シーンをクリアに成功した
-  |'failed'     // シーンのクリアに失敗した

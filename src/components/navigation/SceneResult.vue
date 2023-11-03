@@ -1,9 +1,31 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
-/** クリア時にオーバーレイを表示 */
-const overlay = computed(() => scene.score !== 0)
+import { computed, ref, watch } from 'vue'
+import { useRecordsStore } from '@/store/records'
+import { useStage } from '@/composables'
+import { usePuzzleStore } from '@/store/puzzle'
+const records = useRecordsStore()
+const puzzle = usePuzzleStore()
+const { stageSize } = useStage(puzzle.scene)
+const score = ref(0)
+const result = computed(() => includes('failed')
+  ? 'failed'
+  : includes('succeeded')
+    ? 'succeeded'
+    : undefined
+)
+const overlay = computed(() => result.value !== undefined)
+
+const includes = (
+  status: string
+) => Array.from(puzzle.queue).some(queue => queue.result === status)
+
+watch(result, async (value) => {
+  /** ステージクリア */
+  if (value === 'succeeded') {
+    score.value = puzzle.count <= puzzle.scene.passing ? 2 : 1
+    records.report(puzzle.scene.id, score.value)
+  }
+})
 </script>
 
 <template>
@@ -14,7 +36,7 @@ const overlay = computed(() => scene.score !== 0)
   >
     <v-sheet
       :elevation="0"
-      :height="scene.stageSize"
+      :height="stageSize"
       class="d-flex justify-center align-center bg-transparent"
     >
       <v-card
@@ -23,13 +45,13 @@ const overlay = computed(() => scene.score !== 0)
         class="pa-6"
       >
         <v-card-title
-          v-if="scene.score > 0"
+          v-if="result === 'succeeded'"
           class="text-center text-success text-h5 text-sm-h3 py-4"
         >
           STAGE CLEAR
         </v-card-title>
         <v-card-title
-          v-if="scene.score === -1"
+          v-if="result === 'failed'"
           class="text-center text-error text-h5 text-sm-h3 py-4"
         >
           FAILED
@@ -40,7 +62,7 @@ const overlay = computed(() => scene.score !== 0)
             density="compact"
             :length="2"
             size="x-large"
-            :model-value="scene.score"
+            :model-value="score"
             active-color="orange"
           />
         </v-card-item>
@@ -48,10 +70,10 @@ const overlay = computed(() => scene.score !== 0)
           class="d-flex justify-center"
         >
           <v-btn
-            v-if="scene.score === -1"
+            v-if="result === 'failed'"
             color="error"
             variant="elevated"
-            @click="scene.init"
+            @click="puzzle.init"
           >
             Retry
           </v-btn>

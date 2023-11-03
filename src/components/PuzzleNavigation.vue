@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
-import { useSceneStore } from '@/store/scene'
 import { SceneCasts, SceneConditions, SceneController, SceneHistory, SceneResult, SceneSplash } from '@/components'
-const scene = useSceneStore()
+import { useStage } from '@/composables'
+import { usePuzzleStore } from '@/store/puzzle'
 const { isSupported, orientation } = useScreenOrientation()
+const puzzle = usePuzzleStore()
+const { navigationHeight } = useStage(puzzle.scene)
 const tab = ref(null)
 /** ボトムナビゲーションを表示 */
 const active = computed(() => orientation.value === 'portrait-primary')
@@ -13,16 +15,16 @@ const active = computed(() => orientation.value === 'portrait-primary')
 <template>
   <v-card
     flat
-    :title="scene.state.title"
-    :height="scene.navigationHeight"
+    :title="puzzle.scene.title"
+    :height="navigationHeight"
     class="overflow-y-auto"
   >
     <template v-slot:prepend>
       <v-chip
         rounded
-        :color="scene.state.category"
+        :color="puzzle.scene.category"
       >
-        Q{{scene.state.id}}
+        Q{{puzzle.scene.id}}
       </v-chip>
     </template>
     <v-divider></v-divider>

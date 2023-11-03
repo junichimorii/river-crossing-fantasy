@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
+import { usePuzzleStore } from '@/store/puzzle'
+const puzzle = usePuzzleStore()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const scene = useSceneStore()
     </v-list-subheader>
     <v-row no-gutters>
       <v-col
-        v-for="cast in scene.state.casts"
+        v-for="cast in puzzle.scene.casts"
         :key="cast.id"
         cols="12"
         sm="6"
