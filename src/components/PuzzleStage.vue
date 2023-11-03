@@ -9,7 +9,6 @@ const { stageSize } = useStage(puzzle.scene)
 
 <template>
   <v-img
-    v-if="puzzle.scene"
     cover
     :src="puzzle.scene.landscape"
   >

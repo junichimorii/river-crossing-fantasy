@@ -70,13 +70,16 @@ const usePuzzle = (
     cast: Cast,
   ) => {
     // 搭乗可能な乗り物を問い合わせ
+    console.log('toGetOn', cast.status.boarding)
     const carrier = await reserve(cast)
     if (carrier === undefined) return false
     cast.status.boarding = carrier.id
+    console.log('toGetOn', cast.status.boarding, carrier.id)
     // 安否確認
     const isSafe = await safetyConfirmation()
     // 出航準備の結果
     const readied = carrier.isReady
+    console.log('toGetOn', cast.status.boarding, carrier.id, isSafe, readied)
     return isSafe && readied
   }
 
