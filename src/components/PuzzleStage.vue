@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import { toRef } from 'vue'
 import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
-import { useAppearance } from '@/composables'
+import { useAppearance, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const scene = useSceneStore()
 const { stageSize } = useAppearance(scene.state)
+const { unreachers, reachers } = useCasts(toRef(scene.state))
 </script>
 
 <template>
@@ -36,7 +38,7 @@ const { stageSize } = useAppearance(scene.state)
           :height="stageSize * 0.35"
         >
           <PuzzleCast
-            v-for="cast in scene.reachers"
+            v-for="cast in reachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>
@@ -46,7 +48,7 @@ const { stageSize } = useAppearance(scene.state)
           :height="stageSize * 0.2"
         >
           <PuzzleCast
-            v-for="cast in scene.unreachers"
+            v-for="cast in unreachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>

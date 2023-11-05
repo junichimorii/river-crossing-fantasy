@@ -30,8 +30,6 @@ interface Appearance {
 export interface Status {
   /** 開始地点の対岸にいるかどうか */
   isCrossed: boolean
-  /** 進行中かどうか */
-  isSailing: boolean
 }
 
 /**

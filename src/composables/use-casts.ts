@@ -5,7 +5,7 @@ import type { Scene } from '@/types/scene'
 /**
  * 川渡りパズル
  */
-const useScene = (
+const useCasts = (
   state: Ref<Scene>
 ) => {
   /** 出発地点の登場人物 */
@@ -28,5 +28,5 @@ const useScene = (
     isCrossed,
   }
 }
-export default useScene
-export type UseSceneReturn = ReturnType<typeof useScene>
+export default useCasts
+export type UseCastsReturn = ReturnType<typeof useCasts>

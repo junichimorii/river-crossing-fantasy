@@ -1,4 +1,3 @@
-import { computed, ref } from 'vue'
 import { carrierStatus, castStatus } from '@/store/statuses'
 import { useCarrier, useCasts } from '@/composables'
 import type { Ref } from 'vue'
@@ -33,7 +32,7 @@ const useScene = (
    */
   const reserve = async (
     cast: Cast,
-  ) => state.value.carriers.find(carrier => isAvailable(carrier) && carrier.status.isCrossed === cast.status.isCrossed)
+  ) => state.value.carriers.find(carrier => (carrier.status.isCrossed === cast.status.isCrossed) && isAvailable(carrier))
 
   /**
    * 乗り物に登場人物が乗ろうとした時
@@ -64,8 +63,6 @@ const useScene = (
     carrier: Carrier,
   ) => {
     if (!hasPassengers(carrier)) return
-    // 乗り物を進行中の状態にする
-    carrier.status.isSailing = true
     // 乗り物の位置を変化させる
     carrier.status.isCrossed = !carrier.status.isCrossed
   }
@@ -83,8 +80,6 @@ const useScene = (
       casts: passengers,
       value: getDuration(carrier),
     }
-    // 乗り物を停止中の状態にする
-    carrier.status.isSailing = false
     // 登場人物を乗り物から降ろす
     for await (const cast of passengers) {
       cast.status.isCrossed = !cast.status.isCrossed
@@ -185,6 +180,17 @@ const useScene = (
     getOff,
     leave,
     arrive,
+    getPassengers,
+    getDuration,
+    getLoad,
+    hasPassengers,
+    isAvailable,
+    isReady,
+    unreachers,
+    reachers, 
+    passengers,
+    isPeaceable,
+    isCrossed
   }
 }
 export default useScene

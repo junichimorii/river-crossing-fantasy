@@ -5,6 +5,5 @@ import type { Status } from '@/types/carrier'
  */
 const status: Status = Object.freeze({
   isCrossed: false,
-  isSailing: false,
 })
 export default status

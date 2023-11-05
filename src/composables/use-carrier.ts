@@ -35,10 +35,10 @@ const useCarrier = (
     carrier: Carrier
   ) => getPassengers(carrier).length < carrier.capacity
 
-  /** 重量オーバーかどうか */
-  const isOverweight = (
+  /** 最大積載重量未満かどうか */
+  const isUnderweight = (
     carrier: Carrier
-  ) => carrier.weightLimit !== undefined && getLoad(carrier) > carrier.weightLimit
+  ) => carrier.weightLimit === undefined || getLoad(carrier) < carrier.weightLimit
 
   /** 操作可能かどうか */
   const isOperable = (
@@ -48,12 +48,12 @@ const useCarrier = (
   /** 利用可能かどうか */
   const isAvailable = (
     carrier: Carrier
-  ) => isVacancy(carrier) && !isOverweight(carrier)
+  ) => isVacancy(carrier) && isUnderweight(carrier)
 
   /** 出発可能かどうか */
   const isReady = (
     carrier: Carrier
-  ) => !carrier.status.isSailing && isOperable(carrier) && !isOverweight(carrier)
+  ) => isOperable(carrier) && isUnderweight(carrier)
 
   return {
     getPassengers,

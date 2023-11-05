@@ -1,16 +1,17 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, toRef} from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
 import { SceneCasts, SceneConditions, SceneController, SceneMoves, SceneResult, SceneSplash } from '@/components'
-import { useAppearance } from '@/composables'
+import { useAppearance, useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const { isSupported, orientation } = useScreenOrientation()
 const scene = useSceneStore()
 const { navigationHeight } = useAppearance(scene.state)
+const { count } = useMoves(toRef(scene.moves))
 const tab = ref(null)
 /** ボトムナビゲーションを表示 */
 const active = computed(() => orientation.value === 'portrait-primary')
-const color = computed(() => scene.count <= scene.state.passing ? 'success' : 'error')
+const color = computed(() => count.value <= scene.state.passing ? 'success' : 'error')
 </script>
 
 <template>
@@ -62,8 +63,8 @@ const color = computed(() => scene.count <= scene.state.passing ? 'success' : 'e
       </v-btn>
       <v-btn value="history">
         <v-badge
-          :model-value="scene.count > 0"
-          :content="scene.count"
+          :model-value="count > 0"
+          :content="count"
           :color="color"
           offset-x="-6"
         >

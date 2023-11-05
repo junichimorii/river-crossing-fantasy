@@ -66,7 +66,7 @@ const navigation = computed(() => {
 /** 乗り物のツールチップ */
 const tooltip = computed(() => {
   // テキスト
-  const text = scene.hasPassengers(props.state) && !props.state.status.isSailing
+  const text = scene.hasPassengers(props.state)
     ? scene.state.category === 'time-limited'
       ? `所要時間: ${scene.getDuration(props.state)}分`
       : scene.state.category === 'weight-limited'

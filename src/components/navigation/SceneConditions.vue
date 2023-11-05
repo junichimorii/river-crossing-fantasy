@@ -4,6 +4,7 @@ const scene = useSceneStore()
 </script>
 
 <template>
+  {{ scene.state.casts }}
   <v-list class="bg-transparent">
     <v-list-subheader sticky>
       <v-icon icon="mdi-lock-open"></v-icon>
