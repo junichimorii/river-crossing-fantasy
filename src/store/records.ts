@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import * as scenes from './scenes'
+
 /**
  * 実績管理
  */

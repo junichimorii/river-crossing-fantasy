@@ -6,11 +6,11 @@ const { width, height } = useWindowSize()
 /**
  * 川渡りパズルの外観・操作
  */
-const useStage = (
+const useAppearance = (
   config: Scene,
 ) => {
   /** ステージのサイズ */
-  const stageSize = computed(() => Math.min(width.value, height.value, Math.max(width.value, height.value) * 3 / 4))
+  const stageSize = computed(() => Math.min(width.value, height.value))
   /** コンテンツの高さ */
   const navigationHeight = computed(() => height.value - stageSize.value - 56)
   /** 登場人物一人分の幅 */
@@ -21,5 +21,5 @@ const useStage = (
     gridSize,
   }
 }
-export default useStage
-export type UseStageReturn = ReturnType<typeof useStage>
+export default useAppearance
+export type UseAppearanceReturn = ReturnType<typeof useAppearance>

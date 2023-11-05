@@ -2,39 +2,41 @@
 import { computed } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
-import { usePuzzle, useStage } from '@/composables'
-import { usePuzzleStore } from '@/store/puzzle'
+import { useAppearance } from '@/composables'
+import { useSceneStore } from '@/store/scene'
 import type { Carrier } from '@/types/carrier'
 const props = defineProps<{
   state: Carrier
 }>()
-const puzzle = usePuzzleStore()
-const { carriers, leave, arrive } = usePuzzle(puzzle.scene)
-const { stageSize, gridSize } = useStage(puzzle.scene)
-const carrier = carriers.value[props.state.id]
+const scene = useSceneStore()
+const { stageSize, gridSize } = useAppearance(scene.state)
 
 /** useTransitionで変化させるY座標 */
-const y = computed(() => props.state.status.isCrossed ? -1 : 0)
+const y = computed(() => props.state.status.isCrossed ? 1 : 0)
+
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
-    puzzle.pause()
+    scene.disabled = true
   },
   onFinished() {
-    puzzle.resume()
+    scene.disabled = false
     finished()
   },
 })
+
+/** v-cardに適用するCSS transformプロパティ */
+const transform = computed(() => `translate(0, ${-amount.value * stageSize.value * 0.3}px)`)
 
 /**
  * 乗り物の動作が停止した時
  */
 const finished = async () => {
-  const result = await arrive(props.state)
+  const result = await scene.arrive(props.state)
   if(result !== undefined) {
-    puzzle.queue.add(result)
+    scene.moves.add(result)
   }
 }
 
@@ -52,26 +54,23 @@ const appearance = computed(() => {
     aspectRatio: aspectRatio,
   }
 })
-/** v-cardに適用するCSS transformプロパティ */
-const transform = computed(() => `translate(0, ${amount.value * stageSize.value * 0.3}px)`)
+
 /** 行動範囲に関するプロパティ */
 const navigation = computed(() => {
-  /** 進行可能 */
-  const { upbound, downbound } = carrier
   return {
-    upbound: upbound,
-    downbound: downbound,
+    upbound: scene.isReady(props.state) && !props.state.status.isCrossed,
+    downbound: scene.isReady(props.state) && props.state.status.isCrossed,
   }
 })
+
 /** 乗り物のツールチップ */
 const tooltip = computed(() => {
-  const { duration, load } = carrier
   // テキスト
-  const text = carrier.passengers.length > 0 && !props.state.status.isSailing
-    ? puzzle.scene.category === 'time-limited'
-      ? `所要時間: ${duration}分`
-      : puzzle.scene.category === 'weight-limited'
-        ? `積載量: ${load} / ${props.state.weightLimit}`
+  const text = scene.hasPassengers(props.state) && !props.state.status.isSailing
+    ? scene.state.category === 'time-limited'
+      ? `所要時間: ${scene.getDuration(props.state)}分`
+      : scene.state.category === 'weight-limited'
+        ? `積載量: ${scene.getLoad(props.state)} / ${props.state.weightLimit}`
         : ''
     : ''
   // 表示
@@ -100,7 +99,7 @@ const tooltip = computed(() => {
         :height="appearance.height"
       >
         <PuzzleCast
-          v-for="cast in carrier.passengers"
+          v-for="cast in scene.getPassengers(state)"
           :key="cast.id"
           :state="cast"
         ></PuzzleCast>
@@ -122,7 +121,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-up"
             color="orange"
             class="ma-1"
-            @click="leave(state)"
+            @click="scene.leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>
@@ -143,7 +142,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-down"
             color="orange"
             class="ma-1"
-            @click="leave(state)"
+            @click="scene.leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>

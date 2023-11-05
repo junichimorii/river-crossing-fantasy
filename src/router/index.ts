@@ -13,8 +13,14 @@ const routes: Array<RouteRecordRaw> = [{
     path: 'home',
     component: Home,
   }, {
-    path: ':id',
+    path: 'scene',
+    redirect: '/home',
+  }, {
+    path: 'scene/:id',
     component: Scene,
+  }, {
+    path: 'test',
+    redirect: '/home',
   }, {
     path: 'test/:id',
     component: Test,

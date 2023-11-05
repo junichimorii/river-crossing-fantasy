@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useStage } from '@/composables'
-import { usePuzzleStore } from '@/store/puzzle'
+import { useAppearance } from '@/composables'
+import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
 const { state } = defineProps<{
   state: Cast
 }>()
-const puzzle = usePuzzleStore()
-const { gridSize } = useStage(puzzle.scene)
+const scene = useSceneStore()
+const { gridSize } = useAppearance(scene.state)
 const emotions = computed(() => Array.from(new Set(state.status.emotions)))
 const isScared = computed(() => emotions.value.includes('scared'))  // 怖い、危機に瀕している
 const isExcited = computed(() => emotions.value.includes('excited')) // 興奮している、喜んでいる
@@ -33,5 +33,6 @@ const offset = computed(() => gridSize.value * 0.1 * (3 - (state.appearance.rati
     :offset-x="offset"
     :offset-y="offset"
   >
+    <slot></slot>
   </v-badge>
 </template>

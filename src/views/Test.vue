@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useRecordsStore } from '@/store/records'
-import { usePuzzle } from '@/composables'
+import { useScene } from '@/composables'
 import { carrierStatus, castStatus } from '@/store/statuses'
 import type { Scene } from '@/types/scene'
 import type { Cast } from '@/types/cast'
@@ -25,18 +25,18 @@ const search = async (
   scene.casts.forEach(cast => {
     cast.status = structuredClone(castStatus)
   })
-  const { state, carriers, isEmergency, isCompleted, toGetOn, arrive } = usePuzzle(scene)
+  const { state, carriers, isEmergency, isCompleted, getOn, arrive } = useScene(scene)
   const visited = new Set()
-  const queue = [scene]
+  const moves = [scene]
   const carrier = carriers.value[0]
-  while (queue.length > 0) {
-    const currentState = queue.shift() as Scene
+  while (moves.length > 0) {
+    const currentState = moves.shift() as Scene
     visited.add(currentState)
     if (isCompleted.value) return currentState
     const moves = await generateMoves(currentState)
     moves.forEach(async move => {
       move.forEach(async cast => {
-        await toGetOn(cast)
+        await getOn(cast)
       })
       console.log(move.map(cast => cast.id), 'isEmergency', isEmergency.value)
       if (isEmergency.value) return
@@ -46,7 +46,7 @@ const search = async (
       console.log(move.map(cast => cast.id), 'isArrived', isArrived)
       if (!isArrived) return
       if (!visited.has(currentState)) {
-        queue.push(currentState)
+        moves.push(currentState)
         visited.add(currentState)
       }
     })

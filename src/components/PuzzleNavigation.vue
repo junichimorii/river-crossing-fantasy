@@ -1,30 +1,31 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
-import { SceneCasts, SceneConditions, SceneController, SceneHistory, SceneResult, SceneSplash } from '@/components'
-import { useStage } from '@/composables'
-import { usePuzzleStore } from '@/store/puzzle'
+import { SceneCasts, SceneConditions, SceneController, SceneMoves, SceneResult, SceneSplash } from '@/components'
+import { useAppearance } from '@/composables'
+import { useSceneStore } from '@/store/scene'
 const { isSupported, orientation } = useScreenOrientation()
-const puzzle = usePuzzleStore()
-const { navigationHeight } = useStage(puzzle.scene)
+const scene = useSceneStore()
+const { navigationHeight } = useAppearance(scene.state)
 const tab = ref(null)
 /** ボトムナビゲーションを表示 */
 const active = computed(() => orientation.value === 'portrait-primary')
+const color = computed(() => scene.count <= scene.state.passing ? 'success' : 'error')
 </script>
 
 <template>
   <v-card
     flat
-    :title="puzzle.scene.title"
+    :title="scene.state.title"
     :height="navigationHeight"
     class="overflow-y-auto"
   >
     <template v-slot:prepend>
       <v-chip
         rounded
-        :color="puzzle.scene.category"
+        :color="scene.state.category"
       >
-        Q{{puzzle.scene.id}}
+        Q{{scene.state.id}}
       </v-chip>
     </template>
     <v-divider></v-divider>
@@ -39,7 +40,7 @@ const active = computed(() => orientation.value === 'portrait-primary')
           <SceneCasts></SceneCasts>
         </v-window-item>
         <v-window-item value="history">
-          <SceneHistory></SceneHistory>
+          <SceneMoves></SceneMoves>
         </v-window-item>
         <v-window-item value="console">
           <SceneController></SceneController>
@@ -60,7 +61,15 @@ const active = computed(() => orientation.value === 'portrait-primary')
         <span>登場人物</span>
       </v-btn>
       <v-btn value="history">
-        <v-icon>mdi-history</v-icon>
+        <v-badge
+          :model-value="scene.count > 0"
+          :content="scene.count"
+          :color="color"
+          offset-x="-6"
+        >
+          <v-icon>mdi-history</v-icon>
+        </v-badge>
+
         <span>履歴</span>
       </v-btn>
       <v-btn value="console">

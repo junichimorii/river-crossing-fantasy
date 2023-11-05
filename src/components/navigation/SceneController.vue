@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { usePuzzleStore } from '@/store/puzzle'
-const puzzle = usePuzzleStore()
+import { useSceneStore } from '@/store/scene'
+const scene = useSceneStore()
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const puzzle = usePuzzleStore()
             color="warning"
             size="large"
             prepend-icon="mdi-check-circle"
-            @click="puzzle.init"
+            @click="scene.init"
           >
             最初から始める
           </v-btn>

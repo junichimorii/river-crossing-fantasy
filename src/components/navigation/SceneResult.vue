@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
 import { useRecordsStore } from '@/store/records'
-import { useStage } from '@/composables'
-import { usePuzzleStore } from '@/store/puzzle'
+import { useAppearance } from '@/composables'
+import { useSceneStore } from '@/store/scene'
 const records = useRecordsStore()
-const puzzle = usePuzzleStore()
-const { stageSize } = useStage(puzzle.scene)
+const scene = useSceneStore()
+const { stageSize } = useAppearance(scene.state)
 const score = ref(0)
 const result = computed(() => includes('failed')
   ? 'failed'
@@ -17,13 +17,13 @@ const overlay = computed(() => result.value !== undefined)
 
 const includes = (
   status: string
-) => Array.from(puzzle.queue).some(queue => queue.result === status)
+) => Array.from(scene.moves).some(move => move.result === status)
 
 watch(result, async (value) => {
   /** ステージクリア */
   if (value === 'succeeded') {
-    score.value = puzzle.count <= puzzle.scene.passing ? 2 : 1
-    records.report(puzzle.scene.id, score.value)
+    score.value = scene.count <= scene.state.passing ? 2 : 1
+    records.report(scene.state.id, score.value)
   }
 })
 </script>
@@ -73,7 +73,7 @@ watch(result, async (value) => {
             v-if="result === 'failed'"
             color="error"
             variant="elevated"
-            @click="puzzle.init"
+            @click="scene.init"
           >
             Retry
           </v-btn>

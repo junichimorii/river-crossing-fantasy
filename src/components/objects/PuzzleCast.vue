@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { usePointerSwipe, useSwipe } from '@vueuse/core'
-import { usePuzzle, useStage } from '@/composables'
+import { useAppearance } from '@/composables'
 import { PuzzleCastEmotion } from '@/components'
-import { usePuzzleStore } from '@/store/puzzle'
+import { useSceneStore } from '@/store/scene'
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { Cast } from '@/types/cast'
 const props = defineProps<{
   state: Cast
 }>()
-const puzzle = usePuzzleStore()
-const { toGetOn, getOff } = usePuzzle(puzzle.scene)
-const { gridSize } = useStage(puzzle.scene)
+const scene = useSceneStore()
+const { gridSize } = useAppearance(scene.state)
 const target = ref<HTMLElement | null>(null)
+
 /** タッチイベントの検知 */
 const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
   target, {
@@ -23,6 +23,7 @@ const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
     },
   }
 )
+
 /** ポインターイベントの検知 */
 const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerSwipe(
   target, {
@@ -34,25 +35,25 @@ const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerS
   }
 )
 
-/**
- * 登場人物をスワイプした時
- */
+/** スワイプ中かどうか */
+const isSwiping = computed(() => isTouchSwiping.value || isPointerSwiping.value)
+
+/** スワイプ方向 */
+const direction = computed(() => directionSwipe.value || directionPointer.value)
+
+/** 登場人物をスワイプした時 */
 const action = async (
   direction: UseSwipeDirection
 ) => {
-  if (!puzzle.enabled) return
+  if (scene.disabled) return
   // 登場人物を乗り物から降ろす
-  const isGetOff = props.state.status.boarding !== undefined && direction === (props.state.status.isCrossed ? 'up' : 'down')
-  if (isGetOff) await getOff(props.state)
+  const canGetOff = props.state.status.boarding !== undefined && direction === (props.state.status.isCrossed ? 'up' : 'down')
+  if (canGetOff) await scene.getOff(props.state)
   // 搭乗可能な乗り物があれば乗る
-  const isGetOn = (props.state.status.boarding === undefined && direction === (props.state.status.isCrossed ? 'down' : 'up'))
-  if (isGetOn) await toGetOn(props.state)
+  const canGetOn = (props.state.status.boarding === undefined && direction === (props.state.status.isCrossed ? 'down' : 'up'))
+  if (canGetOn) await scene.getOn(props.state)
 }
 
-/** スワイプ中かどうか */
-const isSwiping = computed(() => isTouchSwiping.value || isPointerSwiping.value)
-/** スワイプ方向 */
-const direction = computed(() => directionSwipe.value || directionPointer.value)
 /** 登場人物の外観 */
 const appearance = computed(() => {
   // 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2）
@@ -84,11 +85,11 @@ const navigation = computed(() => {
       ? 'down'
       : 'none'
   /** 上方向に進行可能 */
-  const upbound = isSwiping.value && puzzle.enabled && bound === 'up'
+  const upbound = isSwiping.value && !scene.disabled && bound === 'up'
   /** 下方向に進行可能 */
-  const downbound = isSwiping.value && puzzle.enabled && bound === 'down'
+  const downbound = isSwiping.value && !scene.disabled && bound === 'down'
   /** 矢印の色 */
-  const color = bound === direction.value && puzzle.enabled ? 'orange' : 'grey'
+  const color = bound === direction.value ? 'orange' : 'grey'
   return {
     upbound: upbound,
     downbound: downbound,

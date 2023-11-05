@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { usePuzzleStore } from '@/store/puzzle'
-const puzzle = usePuzzleStore()
+import { useSceneStore } from '@/store/scene'
+const scene = useSceneStore()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const puzzle = usePuzzleStore()
     </v-list-subheader>
     <v-row no-gutters>
       <v-col
-        v-for="(move, i) in puzzle.queue"
+        v-for="(move, i) in scene.moves"
         :key="i"
         cols="12"
         sm="6"
@@ -46,7 +46,7 @@ const puzzle = usePuzzleStore()
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
-            <span v-if="puzzle.scene.category === 'time-limited'">
+            <span v-if="scene.state.category === 'time-limited'">
               + {{ move.value }} min
             </span>
           </template>

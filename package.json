@@ -1,6 +1,6 @@
 {
   "name": "river-crossing-puzzles",
-  "packageManager": "yarn@4.0.0",
+  "packageManager": "yarn@4.0.1",
   "version": "0.2.0",
   "scripts": {
     "dev": "vite",

@@ -1,0 +1,68 @@
+import type { Ref } from 'vue'
+import type { Carrier } from '@/types/carrier'
+import type { Scene } from '@/types/scene'
+
+/**
+ * 川渡りパズルの乗り物
+ */
+const useCarrier = (
+  state: Ref<Scene>
+) => {
+  /** 乗り物に乗っている登場人物 */
+  const getPassengers = (
+    carrier: Carrier
+  ) => state.value.casts.filter(cast => cast.status.boarding === carrier.id)
+
+  /** 対岸までの所要時間を算出 */
+  const getDuration = (
+    carrier: Carrier
+  ) => getPassengers(carrier).length > 0
+    ? Math.max(...getPassengers(carrier).map(cast => cast.role.duration || 1))
+    : 1
+
+  /** 積載重量を算出 */
+  const getLoad = (
+    carrier: Carrier
+  ) => getPassengers(carrier).reduce((weight, cast) => weight + (cast.role.weight ? cast.role.weight : 0), 0)
+
+  /** 乗員がいるかどうか */
+  const hasPassengers = (
+    carrier: Carrier
+  ) => getPassengers(carrier).length > 0
+
+  /** 空席があるかどうか */
+  const isVacancy = (
+    carrier: Carrier
+  ) => getPassengers(carrier).length < carrier.capacity
+
+  /** 重量オーバーかどうか */
+  const isOverweight = (
+    carrier: Carrier
+  ) => carrier.weightLimit !== undefined && getLoad(carrier) > carrier.weightLimit
+
+  /** 操作可能かどうか */
+  const isOperable = (
+    carrier: Carrier
+  ) => getPassengers(carrier).some(cast => cast.role.canRow === undefined || cast.role.canRow)
+
+  /** 利用可能かどうか */
+  const isAvailable = (
+    carrier: Carrier
+  ) => isVacancy(carrier) && !isOverweight(carrier)
+
+  /** 出発可能かどうか */
+  const isReady = (
+    carrier: Carrier
+  ) => !carrier.status.isSailing && isOperable(carrier) && !isOverweight(carrier)
+
+  return {
+    getPassengers,
+    getDuration,
+    getLoad,
+    hasPassengers,
+    isAvailable,
+    isReady,
+  }
+}
+export default useCarrier
+export type UseCarrierReturn = ReturnType<typeof useCarrier>

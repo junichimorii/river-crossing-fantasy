@@ -37,7 +37,7 @@ onMounted(async () => {
           </v-list-subheader>
           <v-list-item
             lines="one"
-            :to="`/${scene.id}`"
+            :to="`/scene/${scene.id}`"
             :title="scene.title"
             :subtitle="scene.description.conditions"
             :disabled="false/*!records.has(scene.id)*/"

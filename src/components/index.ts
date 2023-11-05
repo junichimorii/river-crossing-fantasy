@@ -4,10 +4,10 @@ import AppSplash from './navigation/AppSplash.vue'
 import SceneCasts from './navigation/SceneCasts.vue'
 import SceneConditions from './navigation/SceneConditions.vue'
 import SceneController from './navigation/SceneController.vue'
-import SceneCounter from './navigation/SceneCounter.vue'
-import SceneHistory from './navigation/SceneHistory.vue'
+import SceneMoves from './navigation/SceneMoves.vue'
 import SceneResult from './navigation/SceneResult.vue'
 import SceneSplash from './navigation/SceneSplash.vue'
+import SceneToolber from './navigation/SceneToolber.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
 import PuzzleCast from './objects/PuzzleCast.vue'
 import PuzzleCastEmotion from './objects/PuzzleCastEmotion.vue'
@@ -18,10 +18,10 @@ export {
   SceneCasts,
   SceneConditions,
   SceneController,
-  SceneCounter,
-  SceneHistory,
+  SceneMoves,
   SceneResult,
   SceneSplash,
+  SceneToolber,
   PuzzleCarrier,
   PuzzleCast,
   PuzzleCastEmotion,

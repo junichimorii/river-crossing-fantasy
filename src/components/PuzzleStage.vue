@@ -1,17 +1,18 @@
 <script lang="ts" setup>
-import { SceneCounter, PuzzleCast, PuzzleCarrier } from '@/components'
-import { usePuzzle, useStage } from '@/composables'
-import { usePuzzleStore } from '@/store/puzzle'
-const puzzle = usePuzzleStore()
-const { unreachers, reachers, carriers } = usePuzzle(puzzle.scene)
-const { stageSize } = useStage(puzzle.scene)
+import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
+import { useAppearance } from '@/composables'
+import { useSceneStore } from '@/store/scene'
+const scene = useSceneStore()
+const { stageSize } = useAppearance(scene.state)
 </script>
 
 <template>
   <v-img
     cover
-    :src="puzzle.scene.landscape"
+    :src="scene.state.landscape"
+    :height="stageSize"
   >
+    <SceneToolber></SceneToolber>
     <v-sheet
       class="d-flex justify-center align-start bg-transparent"
       :height="stageSize"
@@ -21,27 +22,21 @@ const { stageSize } = useStage(puzzle.scene)
         :width="stageSize * 0.9"
       >
         <v-sheet
-          class="d-flex justify-start align-center order-1 bg-transparent"
-          :height="stageSize * 0.1"
-        >
-          <SceneCounter></SceneCounter>
-        </v-sheet>
-        <v-sheet
           class="d-flex justify-center align-end order-3 bg-transparent"
           :height="stageSize * 0.4"
         >
           <PuzzleCarrier
-            v-for="carrier in carriers"
+            v-for="carrier in scene.state.carriers"
             :key="carrier.id"
             :state="carrier"
           ></PuzzleCarrier>
         </v-sheet>
         <v-sheet
           class="d-flex justify-end align-end order-2 bg-transparent"
-          :height="stageSize * 0.25"
+          :height="stageSize * 0.35"
         >
           <PuzzleCast
-            v-for="cast in reachers"
+            v-for="cast in scene.reachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>
@@ -51,7 +46,7 @@ const { stageSize } = useStage(puzzle.scene)
           :height="stageSize * 0.2"
         >
           <PuzzleCast
-            v-for="cast in unreachers"
+            v-for="cast in scene.unreachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>
