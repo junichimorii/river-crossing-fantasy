@@ -12,8 +12,6 @@ export interface Cast {
   appearance: Appearance
   /** 登場人物の役割 */
   role: Role
-  /** 登場人物のステータス */
-  status: Status
 }
 
 /**
@@ -43,16 +41,4 @@ interface Role {
   }[]
   /** （半数以上を維持するパズルにおける）反逆者 */
   rebel?: boolean
-}
-
-/**
- * 登場人物の状態
- */
-export interface Status {
-  /** 開始地点の対岸にいる */
-  isCrossed: boolean
-  /** 乗っている乗り物 */
-  boarding: number | undefined
-  /** 登場人物の感情 */
-  emotions: ('scared'|'excited'|'surprised')[]
 }

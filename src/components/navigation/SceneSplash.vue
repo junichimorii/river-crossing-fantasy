@@ -2,11 +2,11 @@
 import { onMounted, ref } from 'vue'
 import { SceneCasts, SceneConditions } from '@/components'
 import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
+const store = useSceneStore()
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {
-  dialog.value = (scene.moves.size === 0)
+  dialog.value = (store.moves.size === 0)
 })
 </script>
 
@@ -20,16 +20,16 @@ onMounted(async () => {
   >
     <v-card
       flat
-      :title="scene.state.title"
+      :title="store.scene.title"
       class="overflow-y-auto"
       style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
       <template v-slot:prepend>
         <v-chip
           rounded
-          :color="scene.state.category"
+          :color="store.scene.category"
         >
-          Q{{scene.state.id}}
+          Q{{store.scene.id}}
         </v-chip>
       </template>
       <v-divider class="mt-3"></v-divider>

@@ -1,17 +1,15 @@
 <script lang="ts" setup>
-import { toRef } from 'vue'
 import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
-import { useAppearance, useCasts } from '@/composables'
+import { useAppearance } from '@/composables'
 import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
-const { stageSize } = useAppearance(scene.state)
-const { unreachers, reachers } = useCasts(toRef(scene.state))
+const store = useSceneStore()
+const { stageSize } = useAppearance(store.scene)
 </script>
 
 <template>
   <v-img
     cover
-    :src="scene.state.landscape"
+    :src="store.scene.landscape"
     :height="stageSize"
   >
     <SceneToolber></SceneToolber>
@@ -28,7 +26,7 @@ const { unreachers, reachers } = useCasts(toRef(scene.state))
           :height="stageSize * 0.4"
         >
           <PuzzleCarrier
-            v-for="carrier in scene.state.carriers"
+            v-for="carrier in store.scene.carriers"
             :key="carrier.id"
             :state="carrier"
           ></PuzzleCarrier>
@@ -38,7 +36,7 @@ const { unreachers, reachers } = useCasts(toRef(scene.state))
           :height="stageSize * 0.35"
         >
           <PuzzleCast
-            v-for="cast in reachers"
+            v-for="cast in store.reachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>
@@ -48,7 +46,7 @@ const { unreachers, reachers } = useCasts(toRef(scene.state))
           :height="stageSize * 0.2"
         >
           <PuzzleCast
-            v-for="cast in unreachers"
+            v-for="cast in store.unreachers"
             :key="cast.id"
             :state="cast"
           ></PuzzleCast>

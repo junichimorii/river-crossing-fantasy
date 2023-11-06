@@ -1,18 +1,15 @@
 import type { Ref } from 'vue'
 import type { Carrier } from '@/types/carrier'
 import type { Scene } from '@/types/scene'
+import type { State } from '@/types/state'
 
 /**
  * 川渡りパズルの乗り物
  */
 const useCarrier = (
-  state: Ref<Scene>
+  state: Ref<State>,
+  scene: Ref<Scene>,
 ) => {
-  /** 乗り物に乗っている登場人物 */
-  const getPassengers = (
-    carrier: Carrier
-  ) => state.value.casts.filter(cast => cast.status.boarding === carrier.id)
-
   /** 対岸までの所要時間を算出 */
   const getDuration = (
     carrier: Carrier
@@ -55,8 +52,12 @@ const useCarrier = (
     carrier: Carrier
   ) => isOperable(carrier) && isUnderweight(carrier)
 
+  /** 乗り物に乗っている登場人物 */
+  const getPassengers = (
+    carrier: Carrier
+  ) => scene.value.casts.filter((cast, i) => state.value.casts[i].boarding === carrier.id)
+
   return {
-    getPassengers,
     getDuration,
     getLoad,
     hasPassengers,

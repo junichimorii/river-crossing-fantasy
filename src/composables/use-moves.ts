@@ -1,17 +1,41 @@
 import { computed } from 'vue'
 import type { Ref } from 'vue'
 import type { Move } from '@/types/moves'
+import type { Scene } from '@/types/scene'
 
 /**
  * 川渡りパズルの行動履歴
  */
 const useMoves = (
-  state: Ref<Set<Move>>
+  moves: Ref<Set<Move>>,
+  scene?: Ref<Scene>,
 ) => {
-  /** カウンター */
-  const count = computed(() => Array.from(state.value).reduce((a, b) => a + b.value, 0))
+  /**
+   * カウンター
+   */
+  const count = computed(() => Array.from(moves.value).reduce((a, b) => a + b.value, 0))
+
+  /**
+   * カウンターの色
+   */
+  const color = computed(() => scene
+    ? count.value <= scene.value.passing
+      ? 'success'
+      : 'error'
+    : 'black'
+  )
+
+  /**
+   * 行動履歴を初期化
+   */
+  const init = async () => {
+    moves.value.clear()
+  }
+
   return {
     count,
+    color,
+    init,
   }
 }
 export default useMoves

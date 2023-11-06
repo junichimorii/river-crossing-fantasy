@@ -16,6 +16,7 @@ onMounted(async () => {
     density="compact"
     color="secondary"
     title="River Crossing Puzzles"
+    style="font-family: 'Architects Daughter', cursive;"
   ></v-app-bar>
   <v-main>
     <v-parallax
@@ -82,6 +83,7 @@ onMounted(async () => {
       text="River Crossing Puzzles"
       color="primary"
       class="px-3 py-0"
+      style="font-family: 'Architects Daughter', cursive;"
     >
       <template v-slot:actions>
         <v-btn

@@ -1,29 +1,38 @@
-import { carrierStatus, castStatus } from '@/store/statuses'
 import { useCarrier, useCasts } from '@/composables'
 import type { Ref } from 'vue'
 import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
 import type { Scene } from '@/types/scene'
+import type { State, CarrierState, CastState } from '@/types/state'
 import type { Move } from '@/types/moves'
+const carrierState: CarrierState = Object.freeze({
+  isCrossed: false,
+})
+const castState: CastState = Object.freeze({
+  isCrossed: false,
+  boarding: null,
+  emotions: [],
+})
 
 /**
  * 川渡りパズル
  */
 const useScene = (
-  state: Ref<Scene>
+  state: Ref<State>,
+  scene: Ref<Scene>,
 ) => {
-  const { getPassengers, getDuration, getLoad, hasPassengers, isAvailable, isReady } = useCarrier(state)
-  const { unreachers, reachers, passengers, isPeaceable, isCrossed } = useCasts(state)
+  const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
+  const { passengers, groups, isPeaceable, isCrossed } = useCasts(state, scene)
 
   /**
    * シーンの状態を初期化
    */
   const init = async () => {
-    for await (const carrier of state.value.carriers) {
-      carrier.status = structuredClone(carrierStatus)
+    if(state.value.carriers.length === 0) {
+      state.value.carriers = scene.value.carriers.map(x => structuredClone(carrierState))
     }
-    for await (const cast of state.value.casts) {
-      cast.status = structuredClone(castStatus)
+    if(state.value.casts.length === 0) {
+      state.value.casts = scene.value.casts.map(x => structuredClone(castState))
     }
   }
 
@@ -32,7 +41,10 @@ const useScene = (
    */
   const reserve = async (
     cast: Cast,
-  ) => state.value.carriers.find(carrier => (carrier.status.isCrossed === cast.status.isCrossed) && isAvailable(carrier))
+  ) => scene.value.carriers.find(carrier =>
+    (state.value.carriers[carrier.id].isCrossed === state.value.casts[cast.id].isCrossed)
+    && isAvailable(carrier)
+  )
 
   /**
    * 乗り物に登場人物が乗ろうとした時
@@ -42,7 +54,7 @@ const useScene = (
   ) => {
     const carrier = await reserve(cast)
     if (carrier === undefined) return false
-    cast.status.boarding = carrier.id
+    state.value.casts[cast.id].boarding = carrier.id
     await safetyConfirmation()
   }
 
@@ -52,7 +64,7 @@ const useScene = (
   const getOff = async (
     cast: Cast,
   ) => {
-    cast.status.boarding = undefined
+    state.value.casts[cast.id].boarding = null
     await safetyConfirmation()
   }
 
@@ -64,7 +76,7 @@ const useScene = (
   ) => {
     if (!hasPassengers(carrier)) return
     // 乗り物の位置を変化させる
-    carrier.status.isCrossed = !carrier.status.isCrossed
+    state.value.carriers[carrier.id].isCrossed = !state.value.carriers[carrier.id].isCrossed
   }
 
   /**
@@ -74,16 +86,15 @@ const useScene = (
     carrier: Carrier,
   ) => {
     if (!hasPassengers(carrier)) return
-    const passengers = getPassengers(carrier)
     // 履歴を追加
     const move: Move = {
-      casts: passengers,
+      casts: passengers.value[carrier.id],
       value: getDuration(carrier),
     }
     // 登場人物を乗り物から降ろす
-    for await (const cast of passengers) {
-      cast.status.isCrossed = !cast.status.isCrossed
-      cast.status.boarding = undefined
+    for await (const cast of passengers.value[carrier.id]) {
+      state.value.casts[cast.id].isCrossed = !state.value.casts[cast.id].isCrossed
+      state.value.casts[cast.id].boarding = null
     }
     await safetyConfirmation()
     if (!isPeaceable.value) {
@@ -101,9 +112,9 @@ const useScene = (
    */
   const safetyConfirmation = async () => {
     for await (const cast of state.value.casts) {
-      cast.status.emotions = []
+      cast.emotions = []
     }
-    switch (state.value.category) {
+    switch (scene.value.category) {
       case 'predators-and-guardians':
       case 'escorting-celebrity':
         // 敵と保護者がいるパズルにおける安否確認
@@ -120,18 +131,18 @@ const useScene = (
    * 敵の捕食が成功したかどうか
    */
   const predation = async () => {
-    for await (const myself of state.value.casts) {
+    for await (const myself of scene.value.casts) {
       if (!myself.role.predators) continue
       for await (const my of myself.role.predators) {
-        const predator = state.value.casts[my.predator]
+        const predator = scene.value.casts[my.predator]
         // 敵と隣接している
         if (isNeighboring(myself, predator)) {
-          const guardian = state.value.casts[my.guardian]
+          const guardian = scene.value.casts[my.guardian]
           // 保護者が近くにいない
           if (!isNeighboring(myself, guardian)) {
-            myself.status.emotions.push('scared')
-            predator.status.emotions.push('excited')
-            guardian.status.emotions.push('surprised')
+            state.value.casts[myself.id].emotions.push('scared')
+            state.value.casts[predator.id].emotions.push('excited')
+            state.value.casts[guardian.id].emotions.push('surprised')
           }
         }
       }
@@ -142,25 +153,21 @@ const useScene = (
    * 反乱が成功したかどうか
    */
   const rebellion = async () => {
-    for await (const casts of [
-      unreachers.value,
-      reachers.value,
-      passengers.value.flat()
-    ]) {
+    for await (const casts of groups.value) {
       const missionaries = casts.filter(cast => !cast.role.rebel)
       if (missionaries.length === 0) continue
       const cannibals = casts.filter(cast => cast.role.rebel)
       if (cannibals.length === 0) continue
       if (missionaries.length < cannibals.length) {
-        for (const cast of missionaries) cast.status.emotions.push('scared')
-        for (const cast of cannibals) cast.status.emotions.push('excited')
+        for (const cast of missionaries) state.value.casts[cast.id].emotions.push('scared')
+        for (const cast of cannibals) state.value.casts[cast.id].emotions.push('excited')
       }
     }
-    const missionaries = state.value.casts.filter(cast => !cast.role.rebel)
-    if (missionaries.some(cast => cast.status.emotions.length > 0)) {
+    const missionaries = scene.value.casts.filter(cast => !cast.role.rebel)
+    if (missionaries.some(cast => state.value.casts[cast.id].emotions.length > 0)) {
       for await (const cast of missionaries) {
-        if (cast.status.emotions.length === 0) {
-          cast.status.emotions.push('surprised')
+        if (state.value.casts[cast.id].emotions.length === 0) {
+          state.value.casts[cast.id].emotions.push('surprised')
         }
       }
     }
@@ -172,7 +179,8 @@ const useScene = (
   const isNeighboring = (
     a: Cast,
     b: Cast,
-  ) => (a.status.boarding === b.status.boarding) && (a.status.isCrossed === b.status.isCrossed)
+  ) => (state.value.casts[a.id].boarding === state.value.casts[b.id].boarding)
+    && (state.value.casts[a.id].isCrossed === state.value.casts[b.id].isCrossed)
 
   return {
     init,
@@ -180,17 +188,6 @@ const useScene = (
     getOff,
     leave,
     arrive,
-    getPassengers,
-    getDuration,
-    getLoad,
-    hasPassengers,
-    isAvailable,
-    isReady,
-    unreachers,
-    reachers, 
-    passengers,
-    isPeaceable,
-    isCrossed
   }
 }
 export default useScene

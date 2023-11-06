@@ -2,18 +2,28 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { useCarrier, useCasts, useMoves, useScene } from '@/composables'
-import type { Ref } from 'vue'
-import type { Carrier } from '@/types/carrier'
-import type { Cast } from '@/types/cast'
-import type { Scene } from '@/types/scene'
 import type { Move } from '@/types/moves'
+import type { Scene } from '@/types/scene'
+import type { State, CarrierState, CastState } from '@/types/state'
 
 /**
  * シーン（ステージ）管理
  */
 export const useSceneStore = defineStore('scene', () => {
-  /** シーンの設定・状態 */
-  const state = ref<Scene>(
+
+  /** シーンの状態 */
+  const state = useStorage<State>(
+    'RIVER_CROSSING_STATE',
+    {
+      carriers: [] as CarrierState[],
+      casts: [] as CastState[],
+    },
+    sessionStorage,
+  )
+
+  /** シーンの設定 */
+  const scene = useStorage<Scene>(
+    'RIVER_CROSSING_SCENE',
     {
       id: 0,
       title: '',
@@ -27,19 +37,6 @@ export const useSceneStore = defineStore('scene', () => {
       carriers: [],
       casts: [],
     },
-  )
-
-  /** 乗り物 */
-  const carriers = useStorage<Carrier[]>(
-    'RIVER_CROSSING_CARRIERS',
-    [],
-    sessionStorage,
-  )
-
-  /** 登場人物 */
-  const casts = useStorage<Cast[]>(
-    'RIVER_CROSSING_CASTS',
-    [],
     sessionStorage,
   )
 
@@ -53,25 +50,23 @@ export const useSceneStore = defineStore('scene', () => {
   /** 操作の有効／無効 */
   const disabled = ref(false)
 
-  const {
-    init: initScene, getOn, getOff, leave, arrive,
-    getPassengers, getDuration, getLoad, hasPassengers, isReady,
-    unreachers, reachers, passengers, isPeaceable, isCrossed
-  } = useScene(state)
-  const { count } = useMoves(moves)
+  const { getDuration, getLoad, hasPassengers, isAvailable, isReady } = useCarrier(state, scene)
+  const { unreachers, reachers, passengers, groups, isPeaceable, isCrossed } = useCasts(state, scene)
+  const { init: initScene, getOn, getOff, leave, arrive } = useScene(state, scene)
+  const { init: initMoves } = useMoves(moves)
 
   /** シーンを読み込む */
   const load = async (
     config: Scene
   ) => {
-    state.value = config
+    scene.value = config
     moves.value = new Set<Move>()
   }
 
   /** シーンの状態を消去 */
   const unload = async () => {
-    carriers.value = null
-    casts.value = null
+    scene.value = null
+    state.value = null
     moves.value = null
   }
 
@@ -80,15 +75,20 @@ export const useSceneStore = defineStore('scene', () => {
    */
   const init = async () => {
     await initScene()
-    carriers.value = state.value.carriers
-    casts.value = state.value.casts
-    moves.value.clear()
+    await initMoves()
   }
 
   return {
     state,
+    scene,
     moves,
     disabled,
+    unreachers,
+    reachers,
+    passengers,
+    groups,
+    isPeaceable,
+    isCrossed,
     load,
     unload,
     init,
@@ -96,16 +96,10 @@ export const useSceneStore = defineStore('scene', () => {
     getOff,
     leave,
     arrive,
-    getPassengers,
     getDuration,
     getLoad,
     hasPassengers,
+    isAvailable,
     isReady,
-    unreachers,
-    reachers,
-    passengers,
-    isPeaceable,
-    isCrossed,
-    count,
   }
 })

@@ -8,21 +8,21 @@ import type { Carrier } from '@/types/carrier'
 const props = defineProps<{
   state: Carrier
 }>()
-const scene = useSceneStore()
-const { stageSize, gridSize } = useAppearance(scene.state)
+const store = useSceneStore()
+const { stageSize, gridSize } = useAppearance(store.scene)
 
 /** useTransitionで変化させるY座標 */
-const y = computed(() => props.state.status.isCrossed ? 1 : 0)
+const y = computed(() => store.state.carriers[props.state.id].isCrossed ? 1 : 0)
 
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
-    scene.disabled = true
+    store.disabled = true
   },
   onFinished() {
-    scene.disabled = false
+    store.disabled = false
     finished()
   },
 })
@@ -34,9 +34,9 @@ const transform = computed(() => `translate(0, ${-amount.value * stageSize.value
  * 乗り物の動作が停止した時
  */
 const finished = async () => {
-  const result = await scene.arrive(props.state)
+  const result = await store.arrive(props.state)
   if(result !== undefined) {
-    scene.moves.add(result)
+    store.moves.add(result)
   }
 }
 
@@ -58,19 +58,19 @@ const appearance = computed(() => {
 /** 行動範囲に関するプロパティ */
 const navigation = computed(() => {
   return {
-    upbound: scene.isReady(props.state) && !props.state.status.isCrossed,
-    downbound: scene.isReady(props.state) && props.state.status.isCrossed,
+    upbound: store.isReady(props.state) && !store.disabled && !store.state.carriers[props.state.id].isCrossed,
+    downbound: store.isReady(props.state) && !store.disabled && store.state.carriers[props.state.id].isCrossed,
   }
 })
 
 /** 乗り物のツールチップ */
 const tooltip = computed(() => {
   // テキスト
-  const text = scene.hasPassengers(props.state)
-    ? scene.state.category === 'time-limited'
-      ? `所要時間: ${scene.getDuration(props.state)}分`
-      : scene.state.category === 'weight-limited'
-        ? `積載量: ${scene.getLoad(props.state)} / ${props.state.weightLimit}`
+  const text = store.hasPassengers(props.state)
+    ? store.scene.category === 'time-limited'
+      ? `所要時間: ${store.getDuration(props.state)}分`
+      : store.scene.category === 'weight-limited'
+        ? `積載量: ${store.getLoad(props.state)} / ${props.state.weightLimit}`
         : ''
     : ''
   // 表示
@@ -99,7 +99,7 @@ const tooltip = computed(() => {
         :height="appearance.height"
       >
         <PuzzleCast
-          v-for="cast in scene.getPassengers(state)"
+          v-for="cast in store.passengers[state.id]"
           :key="cast.id"
           :state="cast"
         ></PuzzleCast>
@@ -121,7 +121,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-up"
             color="orange"
             class="ma-1"
-            @click="scene.leave(state)"
+            @click="store.leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>
@@ -142,7 +142,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-down"
             color="orange"
             class="ma-1"
-            @click="scene.leave(state)"
+            @click="store.leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>

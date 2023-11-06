@@ -10,8 +10,6 @@ export interface Carrier {
   weightLimit?: number
   /** 乗り物の外観 */
   appearance: Appearance
-  /** 乗り物の状態 */
-  status: Status
 }
 
 /**
@@ -22,14 +20,6 @@ interface Appearance {
   sprite: string
   /** 乗り物の画像の比率 */
   ratio?: number
-}
-
-/**
- * 乗り物の状態
- */
-export interface Status {
-  /** 開始地点の対岸にいるかどうか */
-  isCrossed: boolean
 }
 
 /**

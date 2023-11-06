@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { toRef } from 'vue'
+import { useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
-const color = computed(() => scene.count <= scene.state.passing ? 'success' : 'error')
+const store = useSceneStore()
+const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
 </script>
 
 <template>
@@ -16,7 +17,7 @@ const color = computed(() => scene.count <= scene.state.passing ? 'success' : 'e
         :color="color"
         style="font-size: 5vmin;"
       >
-        {{ scene.count }}
+        {{ count }}
       </v-chip>
     </template>
     <template v-slot:append>

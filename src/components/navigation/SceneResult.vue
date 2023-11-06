@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, toRef, watch } from 'vue'
 import { useRecordsStore } from '@/store/records'
-import { useAppearance } from '@/composables'
+import { useAppearance, useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const records = useRecordsStore()
-const scene = useSceneStore()
-const { stageSize } = useAppearance(scene.state)
+const store = useSceneStore()
+const { stageSize } = useAppearance(store.scene)
+const { count } = useMoves(toRef(store.moves))
 const score = ref(0)
 const result = computed(() => includes('failed')
   ? 'failed'
@@ -17,13 +18,13 @@ const overlay = computed(() => result.value !== undefined)
 
 const includes = (
   status: string
-) => Array.from(scene.moves).some(move => move.result === status)
+) => Array.from(store.moves).some(move => move.result === status)
 
 watch(result, async (value) => {
   /** ステージクリア */
   if (value === 'succeeded') {
-    score.value = scene.count <= scene.state.passing ? 2 : 1
-    records.report(scene.state.id, score.value)
+    score.value = count.value <= store.scene.passing ? 2 : 1
+    records.report(store.scene.id, score.value)
   }
 })
 </script>
@@ -73,7 +74,7 @@ watch(result, async (value) => {
             v-if="result === 'failed'"
             color="error"
             variant="elevated"
-            @click="scene.init"
+            @click="store.init"
           >
             Retry
           </v-btn>

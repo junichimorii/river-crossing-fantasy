@@ -3,12 +3,12 @@ import { computed } from 'vue'
 import { useAppearance } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
-const { state } = defineProps<{
+const props = defineProps<{
   state: Cast
 }>()
-const scene = useSceneStore()
-const { gridSize } = useAppearance(scene.state)
-const emotions = computed(() => Array.from(new Set(state.status.emotions)))
+const store = useSceneStore()
+const { gridSize } = useAppearance(store.scene)
+const emotions = computed(() => Array.from(new Set(store.state.casts[props.state.id].emotions)))
 const isScared = computed(() => emotions.value.includes('scared'))  // 怖い、危機に瀕している
 const isExcited = computed(() => emotions.value.includes('excited')) // 興奮している、喜んでいる
 const isSurprised = computed(() => emotions.value.includes('surprised'))  // 驚いている、困っている
@@ -22,7 +22,7 @@ const color = computed(() => isExcited.value
       ? 'amber-lighten-4'
       : 'white'
 )
-const offset = computed(() => gridSize.value * 0.1 * (3 - (state.appearance.ratio || 2)))
+const offset = computed(() => gridSize.value * 0.1 * (3 - (props.state.appearance.ratio || 2)))
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useSceneStore } from '@/store/scene'
-const scene = useSceneStore()
+const store = useSceneStore()
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const scene = useSceneStore()
     </v-list-subheader>
     <v-row no-gutters>
       <v-col
-        v-for="(move, i) in scene.moves"
+        v-for="(move, i) in store.moves"
         :key="i"
         cols="12"
         sm="6"
@@ -46,7 +46,7 @@ const scene = useSceneStore()
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
-            <span v-if="scene.state.category === 'time-limited'">
+            <span v-if="store.scene.category === 'time-limited'">
               + {{ move.value }} min
             </span>
           </template>
