@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, toRef } from 'vue'
 import { usePointerSwipe, useSwipe } from '@vueuse/core'
-import { useAppearance } from '@/composables'
 import { PuzzleCastEmotion } from '@/components'
+import { useAppearance, useCastState, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import type { UseSwipeDirection } from '@vueuse/core'
 import type { Cast } from '@/types/cast'
@@ -11,6 +11,8 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { gridSize } = useAppearance(store.scene)
+const { isCrossed, boarding } = useCastState(toRef(store.state))
+const { pickUp, dropOff } = useScene(toRef(store.state), toRef(store.scene))
 const target = ref<HTMLElement | null>(null)
 
 /** タッチイベントの検知 */
@@ -47,13 +49,13 @@ const action = async (
 ) => {
   if (store.disabled) return
   // 登場人物を乗り物から降ろす
-  const canGetOff = store.state.casts[props.state.id].boarding !== null
-    && direction === (store.state.casts[props.state.id].isCrossed ? 'up' : 'down')
-  if (canGetOff) await store.getOff(props.state)
+  const canGetOff = boarding(props.state) !== null
+    && direction === (isCrossed(props.state) ? 'up' : 'down')
+  if (canGetOff) await dropOff(props.state)
   // 搭乗可能な乗り物があれば乗る
-  const canGetOn = (store.state.casts[props.state.id].boarding === null
-    && direction === (store.state.casts[props.state.id].isCrossed ? 'down' : 'up'))
-  if (canGetOn) await store.getOn(props.state)
+  const canGetOn = (boarding(props.state) === null
+    && direction === (isCrossed(props.state) ? 'down' : 'up'))
+  if (canGetOn) await pickUp(props.state)
 }
 
 /** 登場人物の外観 */
@@ -73,18 +75,18 @@ const appearance = computed(() => {
 /** v-imgに適用するCSS transformプロパティ */
 const transform = computed(() => {
   const ratio = props.state.appearance.ratio || 1
-  return `scale(${store.state.casts[props.state.id].isCrossed ? -ratio : ratio}, ${ratio})`
+  return `scale(${isCrossed(props.state) ? -ratio : ratio}, ${ratio})`
 })
 
 /** 行動範囲に関するプロパティ */
 const navigation = computed(() => {
   // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
-  const bound = (store.state.casts[props.state.id].boarding !== null && store.state.casts[props.state.id].isCrossed)
-    || (store.state.casts[props.state.id].boarding === null && !store.state.casts[props.state.id].isCrossed)
+  const bound = (boarding(props.state) !== null && isCrossed(props.state))
+    || (boarding(props.state) === null && !isCrossed(props.state))
     ? 'up'
     // 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる
-    : (store.state.casts[props.state.id].boarding !== null && !store.state.casts[props.state.id].isCrossed)
-    || (store.state.casts[props.state.id].boarding === null && store.state.casts[props.state.id].isCrossed)
+    : (boarding(props.state) !== null && !isCrossed(props.state))
+    || (boarding(props.state) === null && isCrossed(props.state))
       ? 'down'
       : 'none'
   /** 上方向に進行可能 */

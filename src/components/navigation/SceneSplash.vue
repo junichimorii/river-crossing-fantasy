@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, toRef } from 'vue'
 import { SceneCasts, SceneConditions } from '@/components'
+import { useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const store = useSceneStore()
+const { isUnreachEvery } = useCasts(toRef(store.state), toRef(store.scene))
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {
-  dialog.value = (store.moves.size === 0)
+  dialog.value = isUnreachEvery.value
 })
 </script>
 

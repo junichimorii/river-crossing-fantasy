@@ -9,21 +9,24 @@ const route = useRoute()
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
 const records = useRecordsStore()
-const scene = useSceneStore()
+const store = useSceneStore()
 const loading = ref(true)
 
 onMounted(async () => {
   if(Array.isArray(route.params.id)) throw `id: ${route.params.id}`
-  const config = await records.load(parseInt(route.params.id))
-  await scene.load(config).catch(() => {
-    router.push({ path: '/home' })
-  })
-  await scene.init()
+  const id = parseInt(route.params.id)
+  if(store.scene.id !== id) {
+    const config = await records.load(id)
+    await store.load(config).catch(() => {
+      router.push({ path: '/home' })
+    })
+    await store.init()
+  }
   loading.value = false
 })
 
 onUnmounted(async () => {
-  await scene.unload()
+  await store.unload()
 })
 </script>
 
@@ -33,6 +36,8 @@ onUnmounted(async () => {
     @contextmenu.prevent
   >
     <PuzzleStage></PuzzleStage>
-    <PuzzleNavigation v-show="orientation === 'portrait-primary'"></PuzzleNavigation>
+    <PuzzleNavigation
+      v-show="orientation === 'portrait-primary'"
+    ></PuzzleNavigation>
   </v-main>
 </template>

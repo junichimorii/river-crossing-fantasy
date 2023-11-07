@@ -1,18 +1,8 @@
-import { useCarrier, useCasts } from '@/composables'
+import { useCarrierState, useCarrier, useCastState, useCasts } from '@/composables'
+import { carrierState } from '@/composables/use-carrier-state'
+import { castState } from '@/composables/use-cast-state'
 import type { Ref } from 'vue'
-import type { Carrier } from '@/types/carrier'
-import type { Cast } from '@/types/cast'
-import type { Scene } from '@/types/scene'
-import type { State, CarrierState, CastState } from '@/types/state'
-import type { Move } from '@/types/moves'
-const carrierState: CarrierState = Object.freeze({
-  isCrossed: false,
-})
-const castState: CastState = Object.freeze({
-  isCrossed: false,
-  boarding: null,
-  emotions: [],
-})
+import type { Carrier, Cast, Scene, State, Move } from '@/types'
 
 /**
  * 川渡りパズル
@@ -21,19 +11,17 @@ const useScene = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
+  const { isCrossed: isCarrierCrossed, cross: crossCarrier } = useCarrierState(state)
   const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
-  const { passengers, groups, isPeaceable, isCrossed } = useCasts(state, scene)
+  const { isCrossed: isCastCrossed, getOn, getOff, cross: crossCast, feel, calmDown, isNeighboring } = useCastState(state)
+  const { passengers, groups, isPeaceable, isEeachEvery } = useCasts(state, scene)
 
   /**
    * シーンの状態を初期化
    */
   const init = async () => {
-    if(state.value.carriers.length === 0) {
-      state.value.carriers = scene.value.carriers.map(x => structuredClone(carrierState))
-    }
-    if(state.value.casts.length === 0) {
-      state.value.casts = scene.value.casts.map(x => structuredClone(castState))
-    }
+    state.value.carriers = scene.value.carriers.map(() => structuredClone(carrierState))
+    state.value.casts = scene.value.casts.map(() => structuredClone(castState))
   }
 
   /**
@@ -42,45 +30,45 @@ const useScene = (
   const reserve = async (
     cast: Cast,
   ) => scene.value.carriers.find(carrier =>
-    (state.value.carriers[carrier.id].isCrossed === state.value.casts[cast.id].isCrossed)
+    (isCarrierCrossed(carrier) === isCastCrossed(cast))
     && isAvailable(carrier)
   )
 
   /**
-   * 乗り物に登場人物が乗ろうとした時
+   * 乗り物に登場人物を乗せる
    */
-  const getOn = async (
+  const pickUp = async (
     cast: Cast,
   ) => {
     const carrier = await reserve(cast)
     if (carrier === undefined) return false
-    state.value.casts[cast.id].boarding = carrier.id
+    getOn(cast, carrier)
     await safetyConfirmation()
   }
 
   /**
-   * 乗り物から登場人物が降りた時
+   * 乗り物から登場人物を降ろす
    */
-  const getOff = async (
+  const dropOff = async (
     cast: Cast,
   ) => {
-    state.value.casts[cast.id].boarding = null
+    getOff(cast)
     await safetyConfirmation()
   }
 
   /**
-   * 乗り物が出発した時
+   * 乗り物が出発する
    */
   const leave = async (
     carrier: Carrier,
   ) => {
     if (!hasPassengers(carrier)) return
     // 乗り物の位置を変化させる
-    state.value.carriers[carrier.id].isCrossed = !state.value.carriers[carrier.id].isCrossed
+    crossCarrier(carrier)
   }
 
   /**
-   * 乗り物が到着した時
+   * 乗り物が対岸に到着する
    */
   const arrive = async (
     carrier: Carrier,
@@ -93,14 +81,14 @@ const useScene = (
     }
     // 登場人物を乗り物から降ろす
     for await (const cast of passengers.value[carrier.id]) {
-      state.value.casts[cast.id].isCrossed = !state.value.casts[cast.id].isCrossed
-      state.value.casts[cast.id].boarding = null
+      crossCast(cast)
+      getOff(cast)
     }
     await safetyConfirmation()
     if (!isPeaceable.value) {
       move.result = 'failed'
     } else {
-      if (isCrossed.value) {
+      if (isEeachEvery.value) {
         move.result = 'succeeded'
       }
     }
@@ -111,8 +99,8 @@ const useScene = (
    * 安否確認
    */
   const safetyConfirmation = async () => {
-    for await (const cast of state.value.casts) {
-      cast.emotions = []
+    for await (const cast of scene.value.casts) {
+      calmDown(cast)
     }
     switch (scene.value.category) {
       case 'predators-and-guardians':
@@ -140,9 +128,10 @@ const useScene = (
           const guardian = scene.value.casts[my.guardian]
           // 保護者が近くにいない
           if (!isNeighboring(myself, guardian)) {
-            state.value.casts[myself.id].emotions.push('scared')
-            state.value.casts[predator.id].emotions.push('excited')
-            state.value.casts[guardian.id].emotions.push('surprised')
+            // 感情を追加
+            feel(myself, 'scared')
+            feel(predator, 'excited')
+            feel(guardian, 'surprised')
           }
         }
       }
@@ -159,33 +148,24 @@ const useScene = (
       const cannibals = casts.filter(cast => cast.role.rebel)
       if (cannibals.length === 0) continue
       if (missionaries.length < cannibals.length) {
-        for (const cast of missionaries) state.value.casts[cast.id].emotions.push('scared')
-        for (const cast of cannibals) state.value.casts[cast.id].emotions.push('excited')
+        for (const cast of missionaries) feel(cast, 'scared')
+        for (const cast of cannibals) feel(cast, 'excited')
       }
     }
     const missionaries = scene.value.casts.filter(cast => !cast.role.rebel)
     if (missionaries.some(cast => state.value.casts[cast.id].emotions.length > 0)) {
       for await (const cast of missionaries) {
         if (state.value.casts[cast.id].emotions.length === 0) {
-          state.value.casts[cast.id].emotions.push('surprised')
+          feel(cast, 'surprised')
         }
       }
     }
   }
 
-  /**
-   * 2人のキャラクターが隣接しているかどうか
-   */
-  const isNeighboring = (
-    a: Cast,
-    b: Cast,
-  ) => (state.value.casts[a.id].boarding === state.value.casts[b.id].boarding)
-    && (state.value.casts[a.id].isCrossed === state.value.casts[b.id].isCrossed)
-
   return {
     init,
-    getOn,
-    getOff,
+    pickUp,
+    dropOff,
     leave,
     arrive,
   }

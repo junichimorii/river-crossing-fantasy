@@ -21,7 +21,7 @@ const store = useSceneStore()
             color="warning"
             size="large"
             prepend-icon="mdi-check-circle"
-            @click="store.init"
+            @click="store.init()"
           >
             最初から始める
           </v-btn>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useAppearance } from '@/composables'
+import { computed, toRef } from 'vue'
+import { useAppearance, useCastEmotion } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import type { Cast } from '@/types/cast'
 const props = defineProps<{
@@ -8,20 +8,7 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { gridSize } = useAppearance(store.scene)
-const emotions = computed(() => Array.from(new Set(store.state.casts[props.state.id].emotions)))
-const isScared = computed(() => emotions.value.includes('scared'))  // 怖い、危機に瀕している
-const isExcited = computed(() => emotions.value.includes('excited')) // 興奮している、喜んでいる
-const isSurprised = computed(() => emotions.value.includes('surprised'))  // 驚いている、困っている
-const model = computed(() => emotions.value.length > 0)
-const content = computed(() => `${isScared.value?'😰':''}${isExcited.value?'😈':''}${isSurprised.value?'😖':''}`)
-const color = computed(() => isExcited.value
-  ? 'red-lighten-4'
-  : isScared.value
-    ? 'blue-lighten-4'
-    : isSurprised.value
-      ? 'amber-lighten-4'
-      : 'white'
-)
+const { model, content, color } = useCastEmotion(toRef(store.state), props.state)
 const offset = computed(() => gridSize.value * 0.1 * (3 - (props.state.appearance.ratio || 2)))
 </script>
 

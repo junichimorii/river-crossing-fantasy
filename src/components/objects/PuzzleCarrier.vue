@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, toRef } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { PuzzleCast } from '@/components'
-import { useAppearance } from '@/composables'
+import { useAppearance, useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import type { Carrier } from '@/types/carrier'
 const props = defineProps<{
@@ -10,11 +10,19 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { stageSize, gridSize } = useAppearance(store.scene)
+const { isCrossed } = useCarrierState(toRef(store.state))
+const { getDuration, getLoad, hasPassengers, isReady } = useCarrier(toRef(store.state), toRef(store.scene))
+const { passengers, isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
+const { leave, arrive } = useScene(toRef(store.state), toRef(store.scene))
 
-/** useTransitionで変化させるY座標 */
-const y = computed(() => store.state.carriers[props.state.id].isCrossed ? 1 : 0)
+/**
+ * useTransitionで変化させるY座標
+ */
+const y = computed(() => isCrossed(props.state) ? 1 : 0)
 
-/** 垂直方向の位置を変化させる */
+/**
+ * 垂直方向の位置を変化させる
+ */
 const amount = useTransition(y, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
@@ -27,20 +35,24 @@ const amount = useTransition(y, {
   },
 })
 
-/** v-cardに適用するCSS transformプロパティ */
+/**
+ * v-cardに適用するCSS transformプロパティ
+ */
 const transform = computed(() => `translate(0, ${-amount.value * stageSize.value * 0.3}px)`)
 
 /**
  * 乗り物の動作が停止した時
  */
 const finished = async () => {
-  const result = await store.arrive(props.state)
+  const result = await arrive(props.state)
   if(result !== undefined) {
     store.moves.add(result)
   }
 }
 
-/** 乗り物の外観 */
+/**
+ * 乗り物の外観
+ */
 const appearance = computed(() => {
   // 幅（登場人物の幅 * （登場人物の人数 + 1））
   const width = gridSize.value * (props.state.capacity + 1)
@@ -58,19 +70,19 @@ const appearance = computed(() => {
 /** 行動範囲に関するプロパティ */
 const navigation = computed(() => {
   return {
-    upbound: store.isReady(props.state) && !store.disabled && !store.state.carriers[props.state.id].isCrossed,
-    downbound: store.isReady(props.state) && !store.disabled && store.state.carriers[props.state.id].isCrossed,
+    upbound: isReady(props.state) && isPeaceable.value && !store.disabled && !isCrossed(props.state),
+    downbound: isReady(props.state) && isPeaceable.value && !store.disabled && isCrossed(props.state),
   }
 })
 
 /** 乗り物のツールチップ */
 const tooltip = computed(() => {
   // テキスト
-  const text = store.hasPassengers(props.state)
+  const text = hasPassengers(props.state)
     ? store.scene.category === 'time-limited'
-      ? `所要時間: ${store.getDuration(props.state)}分`
+      ? `所要時間: ${getDuration(props.state)}分`
       : store.scene.category === 'weight-limited'
-        ? `積載量: ${store.getLoad(props.state)} / ${props.state.weightLimit}`
+        ? `積載量: ${getLoad(props.state)} / ${props.state.weightLimit}`
         : ''
     : ''
   // 表示
@@ -99,7 +111,7 @@ const tooltip = computed(() => {
         :height="appearance.height"
       >
         <PuzzleCast
-          v-for="cast in store.passengers[state.id]"
+          v-for="cast in passengers[state.id]"
           :key="cast.id"
           :state="cast"
         ></PuzzleCast>
@@ -121,7 +133,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-up"
             color="orange"
             class="ma-1"
-            @click="store.leave(state)"
+            @click="leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>
@@ -142,7 +154,7 @@ const tooltip = computed(() => {
             icon="mdi-arrow-down"
             color="orange"
             class="ma-1"
-            @click="store.leave(state)"
+            @click="leave(state)"
           ></v-btn>
         </v-expand-transition>
       </div>

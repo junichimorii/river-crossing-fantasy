@@ -1,17 +1,18 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import { useCarrier, useCasts, useMoves, useScene } from '@/composables'
-import type { Move } from '@/types/moves'
-import type { Scene } from '@/types/scene'
-import type { State, CarrierState, CastState } from '@/types/state'
+import { useMoves, useScene } from '@/composables'
+import type { Scene, State, Move } from '@/types'
+import type { CarrierState, CastState } from '@/types/state'
 
 /**
  * シーン（ステージ）管理
  */
 export const useSceneStore = defineStore('scene', () => {
 
-  /** シーンの状態 */
+  /**
+   * シーンの状態
+   */
   const state = useStorage<State>(
     'RIVER_CROSSING_STATE',
     {
@@ -21,7 +22,9 @@ export const useSceneStore = defineStore('scene', () => {
     sessionStorage,
   )
 
-  /** シーンの設定 */
+  /**
+   * シーンの設定
+   */
   const scene = useStorage<Scene>(
     'RIVER_CROSSING_SCENE',
     {
@@ -40,30 +43,40 @@ export const useSceneStore = defineStore('scene', () => {
     sessionStorage,
   )
 
-  /** シーンの行動履歴 */
+  /**
+   * シーンの行動履歴
+   */
   const moves = useStorage<Set<Move>>(
     'RIVER_CROSSING_MOVES',
     new Set<Move>(),
     sessionStorage,
   )
 
-  /** 操作の有効／無効 */
+  /**
+   * 操作の有効／無効
+   */
   const disabled = ref(false)
 
-  const { getDuration, getLoad, hasPassengers, isAvailable, isReady } = useCarrier(state, scene)
-  const { unreachers, reachers, passengers, groups, isPeaceable, isCrossed } = useCasts(state, scene)
-  const { init: initScene, getOn, getOff, leave, arrive } = useScene(state, scene)
+  const { init: initScene } = useScene(state, scene)
   const { init: initMoves } = useMoves(moves)
 
-  /** シーンを読み込む */
+  /**
+   * シーンを読み込む
+   */
   const load = async (
     config: Scene
   ) => {
     scene.value = config
+    state.value = {
+      carriers: [] as CarrierState[],
+      casts: [] as CastState[],
+    }
     moves.value = new Set<Move>()
   }
 
-  /** シーンの状態を消去 */
+  /**
+   * シーンの状態を消去
+   */
   const unload = async () => {
     scene.value = null
     state.value = null
@@ -83,23 +96,8 @@ export const useSceneStore = defineStore('scene', () => {
     scene,
     moves,
     disabled,
-    unreachers,
-    reachers,
-    passengers,
-    groups,
-    isPeaceable,
-    isCrossed,
     load,
     unload,
     init,
-    getOn,
-    getOff,
-    leave,
-    arrive,
-    getDuration,
-    getLoad,
-    hasPassengers,
-    isAvailable,
-    isReady,
   }
 })

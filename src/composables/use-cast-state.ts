@@ -1,11 +1,8 @@
 import type { Ref } from 'vue'
+import type { Carrier } from '@/types/carrier'
 import type { Cast } from '@/types/cast'
-import type { Scene } from '@/types/scene'
-import type { State, CarrierState, CastState, Emotion } from '@/types/state'
-const crrierState: CarrierState = Object.freeze({
-  isCrossed: false,
-})
-const castState: CastState = Object.freeze({
+import type { State, CastState, Emotion } from '@/types/state'
+export const castState: CastState = Object.freeze({
   isCrossed: false,
   boarding: null,
   emotions: [],
@@ -18,44 +15,87 @@ const useCastState = (
   state: Ref<State>,
 ) => {
 
-  /** 開始地点の対岸にいるかどうか */
+  /** 
+   * 登場人物が開始地点の対岸にいるかどうか
+   */
   const isCrossed = (
     cast: Cast
   ) => state.value.casts[cast.id].isCrossed
 
-  /** 乗っている乗り物 */
+  /**
+   * 登場人物が乗っている乗り物
+   */
   const boarding = (
     cast: Cast
   ) => state.value.casts[cast.id].boarding
 
-  /** 登場人物の感情 */
+  /**
+   * 登場人物の感情
+   * */
   const emotions = (
     cast: Cast,
   ) => state.value.casts[cast.id].emotions
 
-  /** 川を渡る */
+  /**
+   * 登場人物が乗り物に乗る
+   */
+  const getOn = async (
+    cast: Cast,
+    carrier: Carrier
+  ) => {
+    state.value.casts[cast.id].boarding = carrier.id
+  }
+
+  /**
+   * 登場人物が乗り物から降りる
+   */
+  const getOff = async (
+    cast: Cast,
+  ) => {
+    state.value.casts[cast.id].boarding = null
+  }
+
+  /**
+   * 登場人物が川を渡る
+   */
   const cross = (
     cast: Cast
   ) => state.value.casts[cast.id].isCrossed = !state.value.casts[cast.id].isCrossed
 
-  /** 感情を追加する */
+  /**
+   * 登場人物の感情を追加する
+   */
   const feel = (
     cast: Cast,
     emotion: Emotion
   ) => state.value.casts[cast.id].emotions.push(emotion)
 
-  /** 感情を削除する */
+  /**
+   * 登場人物の感情を削除する
+   */
   const calmDown = (
     cast: Cast,
   ) => state.value.casts[cast.id].emotions = []
+
+  /**
+   * 2人の登場人物が隣接しているかどうか
+   */
+  const isNeighboring = (
+    a: Cast,
+    b: Cast,
+  ) => (state.value.casts[a.id].boarding === state.value.casts[b.id].boarding)
+    && (state.value.casts[a.id].isCrossed === state.value.casts[b.id].isCrossed)
 
   return {
     isCrossed,
     boarding,
     emotions,
+    getOn,
+    getOff,
     cross,
     feel,
     calmDown,
+    isNeighboring,
   }
 }
 export default useCastState
