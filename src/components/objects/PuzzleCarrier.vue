@@ -1,19 +1,18 @@
 <script lang="ts" setup>
 import { computed, toRef } from 'vue'
 import { TransitionPresets, useTransition } from '@vueuse/core'
-import { PuzzleCast } from '@/components'
-import { useAppearance, useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
+import { PuzzleCast, PuzzleCarrierMenu, PuzzleCarrierTooltip } from '@/components'
+import { useAppearance, useCarrierState, useCasts, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
-import type { Carrier } from '@/types/carrier'
+import type { Carrier } from '@/types'
 const props = defineProps<{
   state: Carrier
 }>()
 const store = useSceneStore()
 const { stageSize, gridSize } = useAppearance(store.scene)
 const { isCrossed } = useCarrierState(toRef(store.state))
-const { getDuration, getLoad, hasPassengers, isReady } = useCarrier(toRef(store.state), toRef(store.scene))
-const { passengers, isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
-const { leave, arrive } = useScene(toRef(store.state), toRef(store.scene))
+const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
+const { arrive } = useScene(toRef(store.state), toRef(store.scene))
 
 /**
  * useTransitionで変化させるY座標
@@ -66,32 +65,6 @@ const appearance = computed(() => {
     aspectRatio: aspectRatio,
   }
 })
-
-/** 行動範囲に関するプロパティ */
-const navigation = computed(() => {
-  return {
-    upbound: isReady(props.state) && isPeaceable.value && !store.disabled && !isCrossed(props.state),
-    downbound: isReady(props.state) && isPeaceable.value && !store.disabled && isCrossed(props.state),
-  }
-})
-
-/** 乗り物のツールチップ */
-const tooltip = computed(() => {
-  // テキスト
-  const text = hasPassengers(props.state)
-    ? store.scene.category === 'time-limited'
-      ? `所要時間: ${getDuration(props.state)}分`
-      : store.scene.category === 'weight-limited'
-        ? `積載量: ${getLoad(props.state)} / ${props.state.weightLimit}`
-        : ''
-    : ''
-  // 表示
-  const model = text !== ''
-  return {
-    text: text,
-    model: model,
-  }
-})
 </script>
 
 <template>
@@ -117,56 +90,8 @@ const tooltip = computed(() => {
         ></PuzzleCast>
       </v-sheet>
     </v-img>
-    <v-menu
-      activator="parent"
-      :close-on-content-click="false"
-      disabled
-      location="top"
-      v-model="navigation.upbound"
-      persistent
-      transition="scroll-y-reverse-transition"
-    >
-      <div class="d-flex justify-center">
-        <v-expand-transition mode="out-in">
-          <v-btn
-            size="default"
-            icon="mdi-arrow-up"
-            color="orange"
-            class="ma-1"
-            @click="leave(state)"
-          ></v-btn>
-        </v-expand-transition>
-      </div>
-    </v-menu>
-    <v-menu
-      activator="parent"
-      :close-on-content-click="false"
-      disabled
-      location="bottom"
-      v-model="navigation.downbound"
-      persistent
-      transition="scroll-y-transition"
-    >
-      <div class="d-flex justify-center">
-        <v-expand-transition mode="in-out">
-          <v-btn
-            size="default"
-            icon="mdi-arrow-down"
-            color="orange"
-            class="ma-1"
-            @click="leave(state)"
-          ></v-btn>
-        </v-expand-transition>
-      </div>
-    </v-menu>
-    <v-tooltip
-      activator="parent"
-      v-model="tooltip.model"
-      location="end bottom"
-      content-class="pa-1"
-    >
-      {{ tooltip.text }}
-    </v-tooltip>
+    <PuzzleCarrierMenu :state="state"></PuzzleCarrierMenu>
+    <PuzzleCarrierTooltip :state="state"></PuzzleCarrierTooltip>
   </v-card>
 </template>
 

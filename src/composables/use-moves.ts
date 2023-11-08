@@ -1,7 +1,6 @@
 import { computed } from 'vue'
 import type { Ref } from 'vue'
-import type { Move } from '@/types/moves'
-import type { Scene } from '@/types/scene'
+import type { Scene, Move } from '@/types'
 
 /**
  * 川渡りパズルの行動履歴

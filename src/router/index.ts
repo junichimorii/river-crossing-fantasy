@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
 import Scene from '@/views/Scene.vue'
-import Test from '@/views/Test.vue'
+import Search from '@/views/Search.vue'
 
 const routes: Array<RouteRecordRaw> = [{
   path: '/',
@@ -19,11 +19,11 @@ const routes: Array<RouteRecordRaw> = [{
     path: 'scene/:id',
     component: Scene,
   }, {
-    path: 'test',
+    path: 'search',
     redirect: '/home',
   }, {
-    path: 'test/:id',
-    component: Test,
+    path: 'search/:id',
+    component: Search,
   }]
 }]
 

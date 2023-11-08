@@ -66,7 +66,7 @@ onMounted(async () => {
                 size="small"
                 :length="2"
                 :model-value="records.get(scene.id)"
-                active-color="orange"
+                active-color="tertiary"
               />
             </template>
           </v-list-item>

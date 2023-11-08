@@ -2,15 +2,15 @@
 import { ref, toRef } from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
 import { useMoves } from '@/composables'
-import { SceneCasts, SceneConditions, SceneController, SceneMoves } from '@/components'
+import { SceneCasts, SceneConditions, SceneMenu, SceneMoves } from '@/components'
 import { useSceneStore } from '@/store/scene'
 const { isSupported, orientation } = useScreenOrientation()
 const store = useSceneStore()
 const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
-const conditions = ref(false)
-const casts = ref(false)
-const moves = ref(false)
-const controller = ref(false)
+const showConditions = ref(false)
+const showCasts = ref(false)
+const showMoves = ref(false)
+const showMenu = ref(false)
 </script>
 
 <template>
@@ -35,13 +35,15 @@ const controller = ref(false)
       >
         <v-icon icon="mdi-help"></v-icon>
         <v-dialog
-          v-model="conditions"
+          v-model="showConditions"
           activator="parent"
           width="auto"
           close-on-content-click
         >
           <v-card width="50vw">
-            <SceneConditions></SceneConditions>
+            <SceneConditions
+              :scene="store.scene"
+            ></SceneConditions>
           </v-card>
         </v-dialog>
       </v-btn>
@@ -52,13 +54,15 @@ const controller = ref(false)
       >
         <v-icon icon="mdi-account-multiple"></v-icon>
         <v-dialog
-          v-model="casts"
+          v-model="showCasts"
           activator="parent"
           width="auto"
           close-on-content-click
         >
           <v-card width="50vw">
-            <SceneCasts></SceneCasts>
+            <SceneCasts
+              :casts="store.scene.casts"
+            ></SceneCasts>
           </v-card>
         </v-dialog>
       </v-btn>
@@ -69,13 +73,16 @@ const controller = ref(false)
       >
         <v-icon icon="mdi-history"></v-icon>
         <v-dialog
-          v-model="moves"
+          v-model="showMoves"
           activator="parent"
           width="auto"
           close-on-content-click
         >
           <v-card width="50vw">
-            <SceneMoves></SceneMoves>
+            <SceneMoves
+              :moves="store.moves"
+              :category="store.scene.category"
+            ></SceneMoves>
           </v-card>
         </v-dialog>
       </v-btn>
@@ -86,13 +93,13 @@ const controller = ref(false)
       >
         <v-icon icon="mdi-cog"></v-icon>
         <v-dialog
-          v-model="controller"
+          v-model="showMenu"
           activator="parent"
           width="auto"
           close-on-content-click
         >
           <v-card width="50vw">
-            <SceneController></SceneController>
+            <SceneMenu></SceneMenu>
           </v-card>
         </v-dialog>
       </v-btn>

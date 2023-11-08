@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/store/scene'
-const store = useSceneStore()
+import type { Scene } from '@/types'
+defineProps<{
+  scene: Scene
+}>()
 </script>
 
 <template>
@@ -10,24 +12,24 @@ const store = useSceneStore()
       クリア条件
     </v-list-subheader>
     <v-list-item class="text-subtitle-2">
-      {{ store.scene.description.conditions }}
+      {{ scene.description.conditions }}
     </v-list-item>
     <v-list-subheader sticky>
       <v-icon icon="mdi-swap-vertical"></v-icon>
       移動手段
     </v-list-subheader>
     <v-list-item class="text-subtitle-2">
-      {{ store.scene.description.transportation }}
+      {{ scene.description.transportation }}
     </v-list-item>
     <v-list-subheader
-      v-if="store.scene.tips"
+      v-if="scene.tips"
       sticky
     >
       <v-icon icon="mdi-chat-alert"></v-icon>
       Tips
     </v-list-subheader>
     <v-list-item
-      v-for="(tips, i) in store.scene.tips"
+      v-for="(tips, i) in scene.tips"
       :key="i"
       class="text-subtitle-2 py-0"
     >

@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import type { Carrier } from '@/types/carrier'
-import type { State, CarrierState } from '@/types/state'
+import type { Carrier, State } from '@/types'
+import type { CarrierState } from '@/types/state'
 export const carrierState: CarrierState = Object.freeze({
   isCrossed: false,
 })

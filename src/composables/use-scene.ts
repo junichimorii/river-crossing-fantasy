@@ -29,10 +29,7 @@ const useScene = (
    */
   const reserve = async (
     cast: Cast,
-  ) => scene.value.carriers.find(carrier =>
-    (isCarrierCrossed(carrier) === isCastCrossed(cast))
-    && isAvailable(carrier)
-  )
+  ) => scene.value.carriers.find(carrier => (isCarrierCrossed(carrier) === isCastCrossed(cast)) && isAvailable(carrier))
 
   /**
    * 乗り物に登場人物を乗せる
@@ -43,7 +40,7 @@ const useScene = (
     const carrier = await reserve(cast)
     if (carrier === undefined) return false
     getOn(cast, carrier)
-    await safetyConfirmation()
+    return true
   }
 
   /**
@@ -53,7 +50,6 @@ const useScene = (
     cast: Cast,
   ) => {
     getOff(cast)
-    await safetyConfirmation()
   }
 
   /**
@@ -168,6 +164,7 @@ const useScene = (
     dropOff,
     leave,
     arrive,
+    safetyConfirmation,
   }
 }
 export default useScene

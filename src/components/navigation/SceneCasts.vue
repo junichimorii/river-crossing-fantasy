@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/store/scene'
-const store = useSceneStore()
+import type { Cast } from '@/types'
+defineProps<{
+  casts: Cast[]
+}>()
 </script>
 
 <template>
@@ -11,7 +13,7 @@ const store = useSceneStore()
     </v-list-subheader>
     <v-row no-gutters>
       <v-col
-        v-for="cast in store.scene.casts"
+        v-for="cast in casts"
         :key="cast.id"
         cols="12"
         sm="6"

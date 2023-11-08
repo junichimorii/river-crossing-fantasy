@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { useWindowSize } from '@vueuse/core'
-import type { Scene } from '@/types/scene'
+import type { Scene } from '@/types'
 const { width, height } = useWindowSize()
 
 /**

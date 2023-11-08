@@ -2,7 +2,7 @@
 import { computed, toRef } from 'vue'
 import { useAppearance, useCastEmotion } from '@/composables'
 import { useSceneStore } from '@/store/scene'
-import type { Cast } from '@/types/cast'
+import type { Cast } from '@/types'
 const props = defineProps<{
   state: Cast
 }>()

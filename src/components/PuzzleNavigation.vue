@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, toRef } from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
-import { SceneCasts, SceneConditions, SceneController, SceneMoves, SceneResult, SceneSplash } from '@/components'
+import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneResult, SceneSplash } from '@/components'
 import { useAppearance, useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const { isSupported, orientation } = useScreenOrientation()
@@ -34,16 +34,23 @@ const active = computed(() => orientation.value === 'portrait-primary')
     >
       <v-window v-model="tab">
         <v-window-item value="conditions">
-          <SceneConditions></SceneConditions>
+          <SceneConditions
+            :scene="store.scene"
+          ></SceneConditions>
         </v-window-item>
         <v-window-item value="casts">
-          <SceneCasts></SceneCasts>
+          <SceneCasts
+            :casts="store.scene.casts"
+          ></SceneCasts>
         </v-window-item>
         <v-window-item value="history">
-          <SceneMoves></SceneMoves>
+          <SceneMoves
+            :moves="store.moves"
+            :category="store.scene.category"
+          ></SceneMoves>
         </v-window-item>
         <v-window-item value="console">
-          <SceneController></SceneController>
+          <SceneMenu></SceneMenu>
         </v-window-item>
       </v-window>
     </v-card-text>

@@ -1,5 +1,5 @@
 import type { Scene } from '@/types/scene'
-const scene = Object.freeze({
+const scene: Scene = Object.freeze({
   id: 2,
   title: '三人旅',
   description: {
@@ -45,5 +45,5 @@ const scene = Object.freeze({
     role: {
     }
   }]
-}) as Scene
+})
 export default scene

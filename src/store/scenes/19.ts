@@ -1,5 +1,5 @@
 import type { Scene } from '@/types/scene'
-const scene = Object.freeze({
+const scene: Scene = Object.freeze({
   id: 19,
   title: '危険なパーティ（上級編）',
   description: {
@@ -9,7 +9,7 @@ const scene = Object.freeze({
   category: 'predators-and-guardians',
   level: '上級編',
   landscape: '/images/landscapes/daytime-river.png',
-  passing: 7,
+  passing: 17,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -45,7 +45,7 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-a1.png'
     },
     role: {
-      canRow: false,
+      canRow: true,
       predators: [{
         predator: 1,
         guardian: 0
@@ -93,7 +93,7 @@ const scene = Object.freeze({
       sprite: '/images/casts/knight-b1.png'
     },
     role: {
-      canRow: false,
+      canRow: true,
       predators: [{
         predator: 1,
         guardian: 0
@@ -134,5 +134,5 @@ const scene = Object.freeze({
       }]
     }
   }]
-}) as Scene
+})
 export default scene

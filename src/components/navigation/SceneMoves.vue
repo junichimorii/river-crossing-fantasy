@@ -1,6 +1,10 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/store/scene'
-const store = useSceneStore()
+import type { Move } from '@/types'
+import type { Category } from '@/types/scene'
+defineProps<{
+  moves: Set<Move>,
+  category: Category
+}>()
 </script>
 
 <template>
@@ -11,7 +15,7 @@ const store = useSceneStore()
     </v-list-subheader>
     <v-row no-gutters>
       <v-col
-        v-for="(move, i) in store.moves"
+        v-for="(move, i) in moves"
         :key="i"
         cols="12"
         sm="6"
@@ -46,7 +50,7 @@ const store = useSceneStore()
             </v-avatar>
           </v-list-item-title>
           <template v-slot:append>
-            <span v-if="store.scene.category === 'time-limited'">
+            <span v-if="category === 'time-limited'">
               + {{ move.value }} min
             </span>
           </template>

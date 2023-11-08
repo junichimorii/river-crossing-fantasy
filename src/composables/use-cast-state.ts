@@ -1,7 +1,6 @@
 import type { Ref } from 'vue'
-import type { Carrier } from '@/types/carrier'
-import type { Cast } from '@/types/cast'
-import type { State, CastState, Emotion } from '@/types/state'
+import type { Carrier, Cast, State } from '@/types'
+import type { CastState, Emotion } from '@/types/state'
 export const castState: CastState = Object.freeze({
   isCrossed: false,
   boarding: null,

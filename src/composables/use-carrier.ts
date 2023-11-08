@@ -1,7 +1,5 @@
 import type { Ref } from 'vue'
-import type { Carrier } from '@/types/carrier'
-import type { Scene } from '@/types/scene'
-import type { State } from '@/types/state'
+import type { Carrier, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの乗り物

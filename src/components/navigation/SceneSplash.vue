@@ -38,8 +38,12 @@ onMounted(async () => {
       <v-card-text
         class="pa-1"
       >
-        <SceneConditions></SceneConditions>
-        <SceneCasts></SceneCasts>
+        <SceneConditions
+          :scene="store.scene"
+        ></SceneConditions>
+        <SceneCasts
+          :casts="store.scene.casts"
+        ></SceneCasts>
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions
