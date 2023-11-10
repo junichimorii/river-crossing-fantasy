@@ -20,6 +20,13 @@ const useCarrierState = (
   ) => state.value.carriers[carrier.id].isCrossed
 
   /**
+   * 乗り物が中州にいるかどうか
+   */
+  const isHalfway = (
+    carrier: Carrier
+  ) => state.value.carriers[carrier.id].isHalfway || false
+
+  /**
    * 乗り物が川を渡る
    */
   const cross = (
@@ -28,6 +35,7 @@ const useCarrierState = (
 
   return {
     isCrossed,
+    isHalfway,
     cross,
   }
 }

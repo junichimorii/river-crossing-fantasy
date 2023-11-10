@@ -5,11 +5,11 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: 'すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは騎士のみ。',
+    tips: [
+      '舟を漕げるキャラクターと漕げないキャラクターがいます。',
+      '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
+    ],
   },
-  tips: [
-    '舟を漕げるキャラクターと漕げないキャラクターがいます。',
-    '舟を移動させるボタンは、舟を漕げるキャラクターが乗っている時のみ表示されます。',
-  ],
   category: 'qualified',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 3,
@@ -27,7 +27,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/knight-a1.png',
     },
     role: {
-      canRow: true,
+      rower: true,
     }
   }, {
     id: 1,
@@ -37,7 +37,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
     }
   }, {
     id: 2,
@@ -47,7 +47,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
     }
   }]
 })

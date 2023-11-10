@@ -5,10 +5,10 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    tips: [
+      '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したもの。',
+    ],
   },
-  tips: [
-    '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したもの。',
-  ],
   category: 'predators-and-guardians',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 7,
@@ -26,7 +26,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      canRow: true,
+      rower: true,
     }
   }, {
     id: 1,
@@ -36,7 +36,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 3,
         guardian: 0,
@@ -50,7 +50,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 3,
         guardian: 0,
@@ -65,7 +65,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false
+      rower: false
     }
   }]
 })

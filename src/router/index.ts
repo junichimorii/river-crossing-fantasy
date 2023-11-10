@@ -2,6 +2,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
+import List from '@/views/List.vue'
 import Scene from '@/views/Scene.vue'
 import Search from '@/views/Search.vue'
 
@@ -10,20 +11,17 @@ const routes: Array<RouteRecordRaw> = [{
   redirect: '/home',
   component: Default,
   children: [{
-    path: 'home',
+    path: '/home',
     component: Home,
   }, {
-    path: 'scene',
-    redirect: '/home',
-  }, {
-    path: 'scene/:id',
+    path: '/:id(\\d+)',
     component: Scene,
   }, {
-    path: 'search',
-    redirect: '/home',
-  }, {
-    path: 'search/:id',
+    path: '/:id(\\d+)/search',
     component: Search,
+  }, {
+    path: '/list',
+    component: List,
   }]
 }]
 

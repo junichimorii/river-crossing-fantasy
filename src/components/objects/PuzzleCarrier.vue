@@ -10,14 +10,19 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { stageSize, gridSize } = useAppearance(store.scene)
-const { isCrossed } = useCarrierState(toRef(store.state))
+const { isCrossed, isHalfway } = useCarrierState(toRef(store.state))
 const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
 const { arrive } = useScene(toRef(store.state), toRef(store.scene))
 
 /**
  * useTransitionで変化させるY座標
  */
-const y = computed(() => isCrossed(props.state) ? 1 : 0)
+const y = computed(() => isHalfway(props.state)
+  ? 0.5
+  : isCrossed(props.state)
+    ? 1
+    : 0
+)
 
 /**
  * 垂直方向の位置を変化させる

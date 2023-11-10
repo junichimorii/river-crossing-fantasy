@@ -5,10 +5,10 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: 'すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべてのキャラクターが舟を漕げる。',
+    tips: [
+      '舟には、定員の他に重量制限が設定されている場合があります。重量オーバーの状態で舟を移動させることはできません。',
+    ],
   },
-  tips: [
-    '舟には、定員の他に重量制限がある場合があります。重量オーバーの状態で舟を移動させることはできません。',
-  ],
   category: 'weight-limited',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 5,

@@ -1,6 +1,6 @@
 import PuzzleNavigation from './PuzzleNavigation.vue'
 import PuzzleStage from './PuzzleStage.vue'
-import AppSplash from './navigation/AppSplash.vue'
+import AppIntroduction from './navigation/AppIntroduction.vue'
 import SceneCasts from './navigation/SceneCasts.vue'
 import SceneConditions from './navigation/SceneConditions.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
@@ -17,7 +17,7 @@ import PuzzleCastMenu from './objects/cast/PuzzleCastMenu.vue'
 export {
   PuzzleNavigation,
   PuzzleStage,
-  AppSplash,
+  AppIntroduction,
   SceneCasts,
   SceneConditions,
   SceneMenu,

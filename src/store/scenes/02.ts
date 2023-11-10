@@ -5,11 +5,11 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: 'すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
+    tips: [
+      '舟には定員を超えない範囲で何人でも乗せることができます。',
+      '対岸のキャラクターを舟に乗せる時は、下方向にスワイプします。',
+    ],
   },
-  tips: [
-    '舟には定員を超えない範囲で何人でも乗せることができます。',
-    '対岸のキャラクターを舟に乗せる時は、下方向にスワイプします。',
-  ],
   category: 'unconditioned',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 3,

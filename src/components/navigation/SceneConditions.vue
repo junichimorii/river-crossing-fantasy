@@ -22,14 +22,14 @@ defineProps<{
       {{ scene.description.transportation }}
     </v-list-item>
     <v-list-subheader
-      v-if="scene.tips"
+      v-if="scene.description.tips"
       sticky
     >
       <v-icon icon="mdi-chat-alert"></v-icon>
       Tips
     </v-list-subheader>
     <v-list-item
-      v-for="(tips, i) in scene.tips"
+      v-for="(tips, i) in scene.description.tips"
       :key="i"
       class="text-subtitle-2 py-0"
     >

@@ -5,12 +5,12 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    tips: [
+      'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
+      'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
+      'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。その状態で舟を移動させることはできません。',
+    ],
   },
-  tips: [
-    'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
-    'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-    'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。その状態で舟を移動させることはできません。',
-  ],
   category: 'predators-and-guardians',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 3,
@@ -28,7 +28,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      canRow: true,
+      rower: true,
     }
   }, {
     id: 1,
@@ -38,7 +38,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 2,
         guardian: 0,
@@ -54,7 +54,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
     }
   }]
 })

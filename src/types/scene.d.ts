@@ -15,9 +15,9 @@ export interface Scene {
     conditions: string
     /** ステージに登場する乗り物の説明 */
     transportation: string
+    /** ヒント */
+    tips?: string[]
   }
-  /** ヒント */
-  tips?: string[]
   /** パズル種別 */
   category: Category
   /** 難易度 */

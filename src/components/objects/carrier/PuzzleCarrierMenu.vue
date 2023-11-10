@@ -22,7 +22,7 @@ const downbound = computed(() => isEnabled.value && isCrossed(props.state))
     activator="parent"
     :close-on-content-click="false"
     disabled
-    location="top"
+    location="end bottom"
     v-model="upbound"
     persistent
     transition="scroll-y-reverse-transition"
@@ -43,7 +43,7 @@ const downbound = computed(() => isEnabled.value && isCrossed(props.state))
     activator="parent"
     :close-on-content-click="false"
     disabled
-    location="bottom"
+    location="end bottom"
     v-model="downbound"
     persistent
     transition="scroll-y-transition"

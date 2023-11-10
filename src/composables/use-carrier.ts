@@ -1,3 +1,4 @@
+import { useCastState } from '@/composables'
 import type { Ref } from 'vue'
 import type { Carrier, Scene, State } from '@/types'
 
@@ -8,6 +9,8 @@ const useCarrier = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
+  const { boarding } = useCastState(state)
+
   /**
    * 対岸までの所要時間を算出
    */
@@ -50,7 +53,7 @@ const useCarrier = (
    */
   const isOperable = (
     carrier: Carrier
-  ) => getPassengers(carrier).some(cast => cast.role.canRow === undefined || cast.role.canRow)
+  ) => getPassengers(carrier).some(cast => cast.role.rower === undefined || cast.role.rower)
 
   /**
    * 利用可能かどうか
@@ -71,7 +74,7 @@ const useCarrier = (
    */
   const getPassengers = (
     carrier: Carrier
-  ) => scene.value.casts.filter((cast, i) => state.value.casts[i].boarding === carrier.id)
+  ) => scene.value.casts.filter(cast => boarding(cast) === carrier.id)
 
   return {
     getDuration,

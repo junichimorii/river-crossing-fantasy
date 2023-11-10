@@ -24,7 +24,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      canRow: true
+      rower: true
     },
   }, {
     id: 1,
@@ -35,7 +35,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false
+      rower: false
     }
   }, {
     id: 2,
@@ -45,7 +45,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/knight-a1.png'
     },
     role: {
-      canRow: true,
+      rower: true,
       predators: [{
         predator: 1,
         guardian: 0
@@ -59,7 +59,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0
@@ -76,7 +76,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0
@@ -93,7 +93,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/knight-b1.png'
     },
     role: {
-      canRow: true,
+      rower: true,
       predators: [{
         predator: 1,
         guardian: 0
@@ -107,7 +107,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0
@@ -124,7 +124,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0

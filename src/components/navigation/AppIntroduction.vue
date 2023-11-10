@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { useSettingsStore } from '@/store/settings'
-const settings = useSettingsStore()
+import { useSessionStore } from '@/store/session'
+const session = useSessionStore()
 </script>
 
 <template>
   <v-dialog
-    v-model="settings.state.splash"
+    v-model="session.state.introduction"
     persistent
     :retain-focus="false"
     class="d-flex justify-center align-center"
@@ -80,7 +80,7 @@ const settings = useSettingsStore()
         <v-btn
           color="green"
           variant="elevated"
-          @click="settings.state.splash = false"
+          @click="session.state.introduction = false"
         >
           OK
         </v-btn>

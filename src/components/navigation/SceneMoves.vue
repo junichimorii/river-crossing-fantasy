@@ -40,14 +40,20 @@ defineProps<{
               v-if="i % 2 === 1"
               icon="mdi-arrow-down"
             ></v-icon>
-            <v-avatar
+            <v-chip
               v-for="cast in move.casts"
               :key="cast.id"
+              variant="text"
+              size="large"
             >
-              <v-img
-                :src="cast.appearance.sprite"
-              ></v-img>
-            </v-avatar>
+              <v-avatar start>
+                <v-img
+                  :src="cast.appearance.sprite"
+                  :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
+                ></v-img>
+              </v-avatar>
+              {{ cast.name }}
+            </v-chip>
           </v-list-item-title>
           <template v-slot:append>
             <span v-if="category === 'time-limited'">

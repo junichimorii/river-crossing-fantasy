@@ -23,8 +23,8 @@ defineProps<{
           :title="cast.name"
           class="text-subtitle-2"
         >
-          <span v-if="cast.role.canRow !== undefined">
-            {{ cast.role.canRow ? '舟を漕げる。' : '舟を漕げない。' }}
+          <span v-if="cast.role.rower !== undefined">
+            {{ cast.role.rower ? '舟を漕げる。' : '舟を漕げない。' }}
           </span>
           <span v-if="cast.role.duration !== undefined">
             橋を渡るのに{{ cast.role.duration }}分必要。

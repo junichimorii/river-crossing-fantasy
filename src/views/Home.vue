@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import { useSettingsStore } from '@/store/settings'
+import { useSessionStore } from '@/store/session'
 import { useRecordsStore } from '@/store/records'
-import { AppSplash } from '@/components'
-const settings = useSettingsStore()
+import { AppIntroduction } from '@/components'
+const session = useSessionStore()
 const records = useRecordsStore()
 onMounted(async () => {
   if (!records.has(1)) records.set(1, 0)
@@ -38,7 +38,7 @@ onMounted(async () => {
           </v-list-subheader>
           <v-list-item
             lines="one"
-            :to="`/scene/${scene.id}`"
+            :to="`/${scene.id}`"
             :title="scene.title"
             :subtitle="scene.description.conditions"
             :disabled="false/*!records.has(scene.id)*/"
@@ -87,12 +87,12 @@ onMounted(async () => {
     >
       <template v-slot:actions>
         <v-btn
-          @click="settings.state.splash = true"
+          @click="session.state.introduction = true"
         >
           このゲームについて
         </v-btn>
       </template>
     </v-banner>
   </v-footer>
-  <AppSplash></AppSplash>
+  <AppIntroduction></AppIntroduction>
 </template>

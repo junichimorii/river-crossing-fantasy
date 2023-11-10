@@ -5,10 +5,10 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
+    tips: [
+      '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
+    ],
   },
-  tips: [
-    '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
-  ],
   category: 'escorting-celebrity',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 11,

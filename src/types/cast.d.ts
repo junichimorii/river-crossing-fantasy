@@ -29,7 +29,7 @@ interface Appearance {
  */
 interface Role {
   /** 乗り物を操作できる */
-  canRow?: boolean
+  rower?: boolean
   /** 重量 */
   weight?: number
   /** 所要時間 */

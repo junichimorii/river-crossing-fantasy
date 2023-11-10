@@ -16,14 +16,14 @@ const text = computed(() => hasPassengers(props.state)
       ? `積載量: ${getLoad(props.state)} / ${props.state.weightLimit}`
       : ''
   : '')
-const model = computed(() => text.value !== '')
+const model = computed(() => !store.disabled && text.value !== '')
 </script>
 
 <template>
   <v-tooltip
     activator="parent"
     v-model="model"
-    location="end bottom"
+    location="bottom center"
     content-class="pa-1"
   >
     {{ text }}

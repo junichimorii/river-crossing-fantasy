@@ -5,10 +5,10 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    tips: [
+      '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
+    ],
   },
-  tips: [
-    '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
-  ],
   category: 'predators-and-guardians',
   landscape: '/images/landscapes/daytime-river.png',
   passing: 7,
@@ -26,7 +26,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      canRow: true
+      rower: true
     },
   }, {
     id: 1,
@@ -37,7 +37,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false
+      rower: false
     },
   }, {
     id: 2,
@@ -48,7 +48,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0
@@ -62,7 +62,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      canRow: false,
+      rower: false,
       predators: [{
         predator: 2,
         guardian: 0

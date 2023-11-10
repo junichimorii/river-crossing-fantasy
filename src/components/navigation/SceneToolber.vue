@@ -22,7 +22,7 @@ const showMenu = ref(false)
       <v-chip
         variant="text"
         :color="color"
-        style="font-size: 5vmin;"
+        style="font-size: 4.5vmin;"
       >
         {{ count }}
       </v-chip>
