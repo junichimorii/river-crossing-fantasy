@@ -12,7 +12,7 @@ const scene: Scene = Object.freeze({
     ],
   },
   category: 'predators-and-guardians',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 2,
   passing: 3,
   carriers: [{
     id: 0,

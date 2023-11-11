@@ -10,7 +10,7 @@ const scene: Scene = Object.freeze({
     ],
   },
   category: 'time-limited',
-  landscape: '/images/landscapes/night-bridge.png',
+  level: 3,
   passing: 15,
   carriers: [{
     id: 0,

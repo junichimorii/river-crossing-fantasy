@@ -29,12 +29,12 @@ onMounted(async () => {
           :key="scene.id"
         >
           <v-list-subheader
-            v-if="scene.level"
+            v-if="records.header(scene.id)"
           >
             <v-icon
               icon="mdi-speedometer"
             ></v-icon>
-            {{ scene.level }}
+            {{ records.header(scene.id) }}
           </v-list-subheader>
           <v-list-item
             lines="one"

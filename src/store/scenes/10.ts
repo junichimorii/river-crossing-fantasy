@@ -12,7 +12,7 @@ const scene: Scene = Object.freeze({
     ],
   },
   category: 'escorting-celebrity',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 2,
   passing: 5,
   carriers: [{
     id: 0,

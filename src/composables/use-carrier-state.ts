@@ -1,8 +1,9 @@
 import type { Ref } from 'vue'
 import type { Carrier, State } from '@/types'
-import type { CarrierState } from '@/types/state'
+import type { CarrierState, Bound } from '@/types/state'
 export const carrierState: CarrierState = Object.freeze({
-  isCrossed: false,
+  coord: -1,
+  bound: null
 })
 
 /**
@@ -13,30 +14,46 @@ const useCarrierState = (
 ) => {
 
   /**
-   * 乗り物が開始地点の対岸にいるかどうか
+   * 乗り物の座標
    */
-  const isCrossed = (
+  const coord = (
     carrier: Carrier
-  ) => state.value.carriers[carrier.id].isCrossed
+  ) => state.value.carriers[carrier.id].coord
 
   /**
-   * 乗り物が中州にいるかどうか
+   * 乗り物の行先
    */
-  const isHalfway = (
+  const bound = (
     carrier: Carrier
-  ) => state.value.carriers[carrier.id].isHalfway || false
+  ) => state.value.carriers[carrier.id].bound
 
   /**
-   * 乗り物が川を渡る
+   * 乗り物が出発する
+   * TODO: 中州がある場合の分岐
    */
-  const cross = (
-    carrier: Carrier
-  ) => state.value.carriers[carrier.id].isCrossed = !state.value.carriers[carrier.id].isCrossed
+  const leave = async (
+    carrier: Carrier,
+    bound: Bound,
+  ) => {
+    state.value.carriers[carrier.id].bound = bound
+    state.value.carriers[carrier.id].coord = -(state.value.carriers[carrier.id].coord)
+  }
+
+  /**
+   * 乗り物が到着する
+   * TODO: 中州がある場合の分岐
+   */
+  const arrive = async (
+    carrier: Carrier,
+  ) => {
+    state.value.carriers[carrier.id].bound = null
+  }
 
   return {
-    isCrossed,
-    isHalfway,
-    cross,
+    coord,
+    bound,
+    leave,
+    arrive,
   }
 }
 export default useCarrierState

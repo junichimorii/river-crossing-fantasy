@@ -10,7 +10,7 @@ const scene: Scene = Object.freeze({
     ],
   },
   category: 'weight-limited',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 1,
   passing: 5,
   carriers: [{
     id: 0,

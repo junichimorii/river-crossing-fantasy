@@ -4,11 +4,11 @@ import { SceneCasts, SceneConditions } from '@/components'
 import { useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const store = useSceneStore()
-const { isUnreachEvery } = useCasts(toRef(store.state), toRef(store.scene))
+const { isUnreach } = useCasts(toRef(store.state), toRef(store.scene))
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {
-  dialog.value = isUnreachEvery.value
+  dialog.value = isUnreach.value
 })
 </script>
 

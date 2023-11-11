@@ -7,7 +7,7 @@ const scene: Scene = Object.freeze({
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いAと魔獣Aのみ。',
   },
   category: 'keep-majority',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 3,
   passing: 13,
   carriers: [{
     id: 0,

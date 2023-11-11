@@ -7,7 +7,7 @@ const scene: Scene = Object.freeze({
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは騎士のみ。',
   },
   category: 'escorting-celebrity',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 3,
   passing: 11,
   carriers: [{
     id: 0,

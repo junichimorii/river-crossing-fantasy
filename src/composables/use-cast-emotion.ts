@@ -11,9 +11,9 @@ const useCastEmotion = (
   cast: Cast
 ) => {
   const { emotions } = useCastState(state)
-  const isScared = computed(() => emotions(cast).includes('scared'))  // 怖い、危機に瀕している
-  const isExcited = computed(() => emotions(cast).includes('excited')) // 興奮している、喜んでいる
-  const isSurprised = computed(() => emotions(cast).includes('surprised'))  // 驚いている、困っている
+  const isScared = computed(() => emotions(cast).includes('scared'))
+  const isExcited = computed(() => emotions(cast).includes('excited'))
+  const isSurprised = computed(() => emotions(cast).includes('surprised'))
   const model = computed(() => emotions(cast).length > 0)
   const content = computed(() => `${isScared.value?'😰':''}${isExcited.value?'😈':''}${isSurprised.value?'😖':''}`)
   const color = computed(() => isExcited.value

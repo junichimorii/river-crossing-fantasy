@@ -10,24 +10,19 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { stageSize, gridSize } = useAppearance(store.scene)
-const { isCrossed, isHalfway } = useCarrierState(toRef(store.state))
+const { coord } = useCarrierState(toRef(store.state))
 const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
 const { arrive } = useScene(toRef(store.state), toRef(store.scene))
 
 /**
  * useTransitionで変化させるY座標
  */
-const y = computed(() => isHalfway(props.state)
-  ? 0.5
-  : isCrossed(props.state)
-    ? 1
-    : 0
-)
+ const source = computed(() => coord(props.state))
 
 /**
  * 垂直方向の位置を変化させる
  */
-const amount = useTransition(y, {
+const amount = useTransition(source, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
@@ -42,7 +37,7 @@ const amount = useTransition(y, {
 /**
  * v-cardに適用するCSS transformプロパティ
  */
-const transform = computed(() => `translate(0, ${-amount.value * stageSize.value * 0.3}px)`)
+const transform = computed(() => `translate(0, ${-amount.value * stageSize.value * 0.15}px)`)
 
 /**
  * 乗り物の動作が停止した時

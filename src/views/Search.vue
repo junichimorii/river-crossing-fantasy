@@ -2,12 +2,12 @@
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { SceneCasts, SceneMoves } from '@/components'
-import { useCarrier, useCasts, useScene } from '@/composables'
+import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import type { Ref } from 'vue'
 import type { Cast, Scene, State, Move } from '@/types'
-import type { CarrierState, CastState } from '@/types/state'
+import type { CarrierState, CastState, Bound } from '@/types/state'
 interface ExtendedState extends State {
   count: number
 }
@@ -27,8 +27,8 @@ const scene = ref<Scene>({
     transportation: '',
   },
   category: 'unconditioned',
+  level: 0,
   passing: 0,
-  landscape: '',
   carriers: [],
   casts: [],
 })
@@ -36,6 +36,7 @@ const moves = ref<Set<Move>>(
   new Set<Move>(),
 )
 const solved = ref(true)
+const { bound } = useCarrierState(state)
 const { isReady } = useCarrier(state, scene)
 const { isPeaceable } = useCasts(state, scene)
 const { pickUp, leave, arrive, safetyConfirmation } = useScene(state, scene)
@@ -70,7 +71,7 @@ const search = async () => {
       const isAllReady = scene.value.carriers.every(carrier => isReady(carrier))
       if (!isAllReady) continue
       const increment = await Promise.all(scene.value.carriers.map(async carrier =>
-        await leave(carrier)
+        await leave(carrier, bound(carrier))
         .then(() => arrive(carrier))
       )).then(moves => !moves.includes(undefined)
         ? Array.from(moves as Move[]).reduce((a, b) => a + b.value, 0)
@@ -100,10 +101,10 @@ const lookBack = async (
   const solution: string[][] = []
   const list: string[][] = Array.from(history)
   const finalStates = list.filter(item => {
-    const parsed = JSON.parse(item[0])
-    const carriers: number[] = parsed[0]
-    const casts: number[] = parsed[1]
-    return carriers.every(n => n === 1) && casts.every(n => n === 1)
+    const states: number[][] = JSON.parse(item[0])
+    const carriers: number[] = states[0]
+    const casts: number[] = states[1]
+    return carriers.every(n => n > 0) && casts.every(n => n > 0)
   })
   if (finalStates.length === 0) return
   const finalState = finalStates.reduce((a, b) => {
@@ -120,11 +121,14 @@ const lookBack = async (
     solution.push(target)
   }
   solution.reverse().slice(1).forEach(item => {
+    const states: number[][] = JSON.parse(item[0])
     const ids: number[] = JSON.parse(item[1])
     const casts: Cast[] = ids.map(id => scene.value.casts[id])
     const value: number = Math.max(...casts.map(cast => cast.role.duration || 1))
+    const bound: Bound = states[1][ids[0]] > 0 ? 'inbound' : 'outbound'
     const move: Move = {
       casts: casts,
+      bound: bound,
       value: value
     }
     moves.value.add(move)
@@ -134,8 +138,8 @@ const lookBack = async (
 const parseState = (
   state: Ref<ExtendedState>
 ) => JSON.stringify([
-  state.value.carriers.map(state => state.isCrossed ? 1 : 0),
-  state.value.casts.map(state => state.isCrossed ? 1 : 0),
+  state.value.carriers.map(state => state.coord ),
+  state.value.casts.map(state => state.coord),
   state.value.count,
 ])
 
@@ -147,10 +151,10 @@ const parsePrev = (
   state: Ref<ExtendedState>,
   move: Cast[]
 ) => {
-  const carriers = state.value.carriers.map(state => state.isCrossed ? 0 : 1)
-  const casts = state.value.casts.map(state => state.isCrossed ? 1 : 0)
+  const carriers = state.value.carriers.map(state => -state.coord)
+  const casts = state.value.casts.map(state => state.coord)
   move.forEach(cast => {
-    casts[cast.id] = casts[cast.id] === 1 ? 0 : 1
+    casts[cast.id] = -casts[cast.id]
   })
   const count = scene.value.category === 'time-limited'
     ? state.value.count - Math.max(...move.map(cast => cast.role.duration || 1))
@@ -164,12 +168,13 @@ const restore  = (
   return {
     carriers: currentState.carriers.map(state => {
       return {
-        isCrossed: state.isCrossed
+        coord: state.coord,
+        bound: state.bound,
       }
     }),
     casts: currentState.casts.map(state => {
       return {
-        isCrossed: state.isCrossed,
+        coord: state.coord,
         boarding: state.boarding,
         emotions: state.emotions
       }

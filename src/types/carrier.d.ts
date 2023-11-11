@@ -21,8 +21,3 @@ interface Appearance {
   /** 乗り物の画像の比率 */
   ratio?: number
 }
-
-/**
- * 乗り物の進行方向
- */
-export type Direction = 'up' | 'down'

@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import type { Carrier, Cast, State } from '@/types'
 import type { CastState, Emotion } from '@/types/state'
 export const castState: CastState = Object.freeze({
-  isCrossed: false,
+  coord: -1,
   boarding: null,
   emotions: [],
 })
@@ -15,11 +15,11 @@ const useCastState = (
 ) => {
 
   /** 
-   * 登場人物が開始地点の対岸にいるかどうか
+   * 登場人物の座標
    */
-  const isCrossed = (
+  const coord = (
     cast: Cast
-  ) => state.value.casts[cast.id].isCrossed
+  ) => state.value.casts[cast.id].coord
 
   /**
    * 登場人物が乗っている乗り物
@@ -56,10 +56,13 @@ const useCastState = (
 
   /**
    * 登場人物が川を渡る
+   * TODO: 中州
    */
-  const cross = (
+  const arrive = (
     cast: Cast
-  ) => state.value.casts[cast.id].isCrossed = !state.value.casts[cast.id].isCrossed
+  ) => {
+    state.value.casts[cast.id].coord = -(state.value.casts[cast.id].coord)
+  }
 
   /**
    * 登場人物の感情を追加する
@@ -67,14 +70,18 @@ const useCastState = (
   const feel = (
     cast: Cast,
     emotion: Emotion
-  ) => state.value.casts[cast.id].emotions.push(emotion)
+  ) => {
+    state.value.casts[cast.id].emotions.push(emotion)
+  }
 
   /**
    * 登場人物の感情を削除する
    */
   const calmDown = (
     cast: Cast,
-  ) => state.value.casts[cast.id].emotions = []
+  ) => {
+    state.value.casts[cast.id].emotions = []
+  }
 
   /**
    * 2人の登場人物が隣接しているかどうか
@@ -83,15 +90,15 @@ const useCastState = (
     a: Cast,
     b: Cast,
   ) => (state.value.casts[a.id].boarding === state.value.casts[b.id].boarding)
-    && (state.value.casts[a.id].isCrossed === state.value.casts[b.id].isCrossed)
+    && (state.value.casts[a.id].coord === state.value.casts[b.id].coord)
 
   return {
-    isCrossed,
+    coord,
     boarding,
     emotions,
     getOn,
     getOff,
-    cross,
+    arrive,
     feel,
     calmDown,
     isNeighboring,

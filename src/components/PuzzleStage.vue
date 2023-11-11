@@ -1,17 +1,25 @@
 <script lang="ts" setup>
-import { toRef } from 'vue'
+import { computed, toRef } from 'vue'
 import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
 import { useAppearance, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const store = useSceneStore()
 const { stageSize } = useAppearance(store.scene)
 const { unreachers, reachers } = useCasts(toRef(store.state), toRef(store.scene))
+const landscape = computed(() =>
+  store.scene.category === 'time-limited'
+    ? '/images/landscapes/night-bridge.png'
+    : store.scene.category === 'escorting-celebrity-island'
+      ? '/images/landscapes/daytime-river.png'
+      : '/images/landscapes/daytime-river.png'
+)
+
 </script>
 
 <template>
   <v-img
     cover
-    :src="store.scene.landscape"
+    :src="landscape"
     :height="stageSize"
   >
     <SceneToolber></SceneToolber>
@@ -24,7 +32,7 @@ const { unreachers, reachers } = useCasts(toRef(store.state), toRef(store.scene)
         :width="stageSize * 0.9"
       >
         <v-sheet
-          class="d-flex justify-center align-end order-3 bg-transparent"
+          class="d-flex justify-center align-start order-3 bg-transparent"
           :height="stageSize * 0.4"
         >
           <PuzzleCarrier

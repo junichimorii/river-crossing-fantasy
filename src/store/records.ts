@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import * as scenes from './scenes'
-
+const levels = [ '入門編', '初級編', '中級編', '上級編' ]
 /**
  * 実績管理
  */
@@ -39,6 +39,22 @@ export const useRecordsStore = defineStore('records', () => {
   }
 
   /**
+   * リスト表示のヘッダーを取得
+   */
+  const header = (
+    id: number
+  ) => {
+    const current = Object.values(scenes).find(scene => scene.id === id)
+    if(!current) throw false
+    const previous = Object.values(scenes).find(scene => scene.id === id - 1)
+    if(!previous) return levels[0]
+    const level = current.level
+    return current.level > previous.level
+      ? levels[current.level - 1]
+      : undefined
+  }
+
+  /**
    * ステージのスコアの有無を取得
    */
   const has = (
@@ -65,6 +81,7 @@ export const useRecordsStore = defineStore('records', () => {
     scenes,
     load,
     report,
+    header,
     has,
     get,
     set,

@@ -7,14 +7,20 @@ const props = defineProps<{
   state: Carrier
 }>()
 const store = useSceneStore()
-const { isCrossed } = useCarrierState(toRef(store.state))
+const { coord } = useCarrierState(toRef(store.state))
 const { isReady } = useCarrier(toRef(store.state), toRef(store.scene))
 const { isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
 const { leave } = useScene(toRef(store.state), toRef(store.scene))
 
 const isEnabled = computed(() => isReady(props.state) && isPeaceable.value && !store.disabled)
-const upbound = computed(() => isEnabled.value && !isCrossed(props.state))
-const downbound = computed(() => isEnabled.value && isCrossed(props.state))
+/**
+ * 上り方向に進行可能
+ */
+const inbound = computed(() => isEnabled.value && coord(props.state) < 0)
+/**
+ * 下り方向に進行可能
+ */
+const outbound = computed(() => isEnabled.value && coord(props.state) > 0)
 </script>
 
 <template>
@@ -23,7 +29,7 @@ const downbound = computed(() => isEnabled.value && isCrossed(props.state))
     :close-on-content-click="false"
     disabled
     location="end bottom"
-    v-model="upbound"
+    v-model="inbound"
     persistent
     transition="scroll-y-reverse-transition"
   >
@@ -34,7 +40,7 @@ const downbound = computed(() => isEnabled.value && isCrossed(props.state))
           icon="mdi-arrow-up"
           color="tertiary"
           class="ma-1"
-          @click="leave(state)"
+          @click="leave(state, 'inbound')"
         ></v-btn>
       </v-expand-transition>
     </div>
@@ -44,7 +50,7 @@ const downbound = computed(() => isEnabled.value && isCrossed(props.state))
     :close-on-content-click="false"
     disabled
     location="end bottom"
-    v-model="downbound"
+    v-model="outbound"
     persistent
     transition="scroll-y-transition"
   >
@@ -55,7 +61,7 @@ const downbound = computed(() => isEnabled.value && isCrossed(props.state))
           icon="mdi-arrow-down"
           color="tertiary"
           class="ma-1"
-          @click="leave(state)"
+          @click="leave(state, 'outbound')"
         ></v-btn>
       </v-expand-transition>
     </div>

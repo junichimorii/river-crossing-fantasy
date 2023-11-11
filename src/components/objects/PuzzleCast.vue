@@ -11,7 +11,7 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { gridSize } = useAppearance(store.scene)
-const { isCrossed, boarding } = useCastState(toRef(store.state))
+const { coord, boarding } = useCastState(toRef(store.state))
 const { pickUp, dropOff, safetyConfirmation } = useScene(toRef(store.state), toRef(store.scene))
 const target = ref<HTMLElement | null>(null)
 
@@ -59,10 +59,10 @@ const action = async (
 ) => {
   if (store.disabled) return
   // 登場人物を乗り物から降ろす
-  const canDropOff = (boarding(props.state) !== null && direction === (isCrossed(props.state) ? 'up' : 'down'))
+  const canDropOff = (boarding(props.state) !== null && direction === (coord(props.state) > 0 ? 'up' : 'down'))
   if (canDropOff) await dropOff(props.state)
   // 搭乗可能な乗り物があれば乗せる
-  const canPickUp = (boarding(props.state) === null && direction === (isCrossed(props.state) ? 'down' : 'up'))
+  const canPickUp = (boarding(props.state) === null && direction === (coord(props.state) < 0 ? 'up' : 'down'))
   if (canPickUp) await pickUp(props.state)
   await safetyConfirmation()
 }
@@ -89,7 +89,7 @@ const appearance = computed(() => {
  */
 const transform = computed(() => {
   const ratio = props.state.appearance.ratio || 1
-  return `scale(${isCrossed(props.state) ? -ratio : ratio}, ${ratio})`
+  return `scale(${coord(props.state) > 0 ? -ratio : ratio}, ${ratio})`
 })
 </script>
 

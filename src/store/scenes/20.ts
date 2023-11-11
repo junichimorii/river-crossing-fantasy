@@ -7,7 +7,7 @@ const scene: Scene = Object.freeze({
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
   category: 'time-limited',
-  landscape: '/images/landscapes/night-bridge.png',
+  level: 4,
   passing: 30,
   carriers: [{
     id: 0,

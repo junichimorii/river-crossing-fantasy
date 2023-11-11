@@ -10,30 +10,38 @@ const props = defineProps<{
   swipeDirection: UseSwipeDirection
 }>()
 const store = useSceneStore()
-const { isCrossed, boarding } = useCastState(toRef(store.state))
+const { coord, boarding } = useCastState(toRef(store.state))
 
-/** 行動範囲に関するプロパティ */
+/**
+ * 行動範囲に関するプロパティ
+ */
 const bound = computed(() =>
   // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
-  (boarding(props.state) !== null && isCrossed(props.state)) || (boarding(props.state) === null && !isCrossed(props.state))
-    ? 'up'
+  (boarding(props.state) !== null && coord(props.state) > 0) || (boarding(props.state) === null && coord(props.state) < 0)
+    ? 'inbound'
     // 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる
-    : (boarding(props.state) !== null && !isCrossed(props.state)) || (boarding(props.state) === null && isCrossed(props.state))
-      ? 'down'
+    : (boarding(props.state) !== null && coord(props.state) < 0) || (boarding(props.state) === null && coord(props.state) > 0)
+      ? 'outbound'
       : 'none'
 )
-/** 上方向に進行可能 */
-const upbound = computed(() => props.isSwiping && !store.disabled && bound.value === 'up')
-/** 下方向に進行可能 */
-const downbound = computed(() => props.isSwiping && !store.disabled && bound.value === 'down')
-/** 矢印の色 */
+/**
+ * 上り方向に進行可能
+ */
+const inbound = computed(() => props.isSwiping && !store.disabled && bound.value === 'inbound')
+/**
+ * 下り方向に進行可能
+ */
+const outbound = computed(() => props.isSwiping && !store.disabled && bound.value === 'outbound')
+/**
+ * 矢印の色
+ */
 const color = computed(() => bound.value === props.swipeDirection ? 'tertiary' : 'grey')
 </script>
 
 <template>
   <v-menu
     activator="parent"
-    v-model="upbound"
+    v-model="inbound"
     disabled
     location="top"
     transition="scroll-y-reverse-transition"
@@ -50,7 +58,7 @@ const color = computed(() => bound.value === props.swipeDirection ? 'tertiary' :
   </v-menu>
   <v-menu
     activator="parent"
-    v-model="downbound"
+    v-model="outbound"
     disabled
     location="bottom"
     transition="scroll-y-transition"

@@ -10,8 +10,7 @@ const scene: Scene = Object.freeze({
     ],
   },
   category: 'keep-majority',
-  level: '中級編',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 3,
   passing: 11,
   carriers: [{
     id: 0,

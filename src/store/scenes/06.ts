@@ -7,8 +7,7 @@ const scene: Scene = Object.freeze({
     transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべてのキャラクターが舟を漕げる。',
   },
   category: 'weight-limited',
-  level: '初級編',
-  landscape: '/images/landscapes/daytime-river.png',
+  level: 2,
   passing: 9,
   carriers: [{
     id: 0,

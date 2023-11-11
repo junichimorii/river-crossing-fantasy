@@ -3,6 +3,7 @@ import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
 import type { Ref } from 'vue'
 import type { Carrier, Cast, Scene, State, Move } from '@/types'
+import type { Bound } from '@/types/state'
 
 /**
  * 川渡りパズル
@@ -11,10 +12,10 @@ const useScene = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { isCrossed: isCarrierCrossed, cross: crossCarrier } = useCarrierState(state)
+  const { coord: carrierCoord, bound, leave: leaveCarrier, arrive: arriveCarrier } = useCarrierState(state)
   const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
-  const { isCrossed: isCastCrossed, getOn, getOff, cross: crossCast, feel, calmDown, isNeighboring } = useCastState(state)
-  const { passengers, groups, isPeaceable, isEeachEvery } = useCasts(state, scene)
+  const { coord: castCoord, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
+  const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)
 
   /**
    * シーンの状態を初期化
@@ -29,7 +30,7 @@ const useScene = (
    */
   const reserve = async (
     cast: Cast,
-  ) => scene.value.carriers.find(carrier => (isCarrierCrossed(carrier) === isCastCrossed(cast)) && isAvailable(carrier))
+  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isAvailable(carrier))
 
   /**
    * 乗り物に登場人物を乗せる
@@ -54,17 +55,20 @@ const useScene = (
 
   /**
    * 乗り物が出発する
+   * TODO: 目的地と進行方向の取得
    */
   const leave = async (
     carrier: Carrier,
+    bound: Bound,
   ) => {
     if (!hasPassengers(carrier)) return
     // 乗り物の位置を変化させる
-    crossCarrier(carrier)
+    await leaveCarrier(carrier, bound)
   }
 
   /**
    * 乗り物が対岸に到着する
+   * TODO: 履歴に進行方向を追加
    */
   const arrive = async (
     carrier: Carrier,
@@ -73,18 +77,21 @@ const useScene = (
     // 履歴を追加
     const move: Move = {
       casts: passengers.value[carrier.id],
+      bound: bound(carrier),
       value: getDuration(carrier),
     }
+    // 乗り物が到着する
+    await arriveCarrier(carrier)
     // 登場人物を乗り物から降ろす
     for await (const cast of passengers.value[carrier.id]) {
-      crossCast(cast)
+      arriveCast(cast)
       getOff(cast)
     }
     await safetyConfirmation()
     if (!isPeaceable.value) {
       move.result = 'failed'
     } else {
-      if (isEeachEvery.value) {
+      if (isReached.value) {
         move.result = 'succeeded'
       }
     }

@@ -17,23 +17,24 @@ export interface State {
  */
 export interface CarrierState {
   /**
-   * 開始地点の対岸にいるかどうか
+   * 乗り物の座標
    */
-  isCrossed: boolean
+  coord: number
   /**
-   * 中州にいるかどうか
+   * 乗り物の行先
    */
-  isHalfway?: boolean
+  bound: Bound
 }
 
 /**
  * 登場人物の状態
+ * TODO: boarding=undefined
  */
 export interface CastState {
   /**
-   * 開始地点の対岸にいるかどうか
+   * 登場人物の座標
    */
-  isCrossed: boolean
+  coord: number
   /**
    * 乗っている乗り物
    */
@@ -43,7 +44,16 @@ export interface CastState {
    */
   emotions: Emotion[]
 }
+
+/**
+ * 乗り物の行先
+ */
+export type Bound = 'inbound' | 'outbound' | null
+
 /**
  * 登場人物の感情
+ *   scared: 怖い、危機に瀕している
+ *   excited: 興奮している、喜んでいる
+ *   surprised: 驚いている、困っている
  */
-export type Emotion = 'scared'|'excited'|'surprised'
+export type Emotion = 'scared' | 'excited' | 'surprised'
