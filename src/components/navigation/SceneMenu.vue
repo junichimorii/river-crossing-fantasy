@@ -7,7 +7,7 @@ const store = useSceneStore()
   <v-list>
     <v-list-subheader>
       <v-icon icon="mdi-cog"></v-icon>
-    オプション
+      オプション
     </v-list-subheader>
     <v-row no-gutters>
       <v-col

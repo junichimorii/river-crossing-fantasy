@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, toRef } from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
-import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneResult, SceneSplash } from '@/components'
+import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneResult, SceneSolve, SceneSplash } from '@/components'
 import { useAppearance, useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const { isSupported, orientation } = useScreenOrientation()
@@ -51,6 +51,10 @@ const active = computed(() => orientation.value === 'portrait-primary')
         </v-window-item>
         <v-window-item value="console">
           <SceneMenu></SceneMenu>
+          <v-divider></v-divider>
+          <SceneSolve
+            :scene="store.scene"
+          ></SceneSolve>
         </v-window-item>
       </v-window>
     </v-card-text>

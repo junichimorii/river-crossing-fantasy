@@ -4,7 +4,6 @@ import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
 import List from '@/views/List.vue'
 import Scene from '@/views/Scene.vue'
-import Search from '@/views/Search.vue'
 
 const routes: Array<RouteRecordRaw> = [{
   path: '/',
@@ -16,9 +15,6 @@ const routes: Array<RouteRecordRaw> = [{
   }, {
     path: '/:id(\\d+)',
     component: Scene,
-  }, {
-    path: '/:id(\\d+)/search',
-    component: Search,
   }, {
     path: '/list',
     component: List,

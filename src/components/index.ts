@@ -6,6 +6,7 @@ import SceneConditions from './navigation/SceneConditions.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
 import SceneMoves from './navigation/SceneMoves.vue'
 import SceneResult from './navigation/SceneResult.vue'
+import SceneSolve from './navigation/SceneSolve.vue'
 import SceneSplash from './navigation/SceneSplash.vue'
 import SceneToolber from './navigation/SceneToolber.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
@@ -23,6 +24,7 @@ export {
   SceneMenu,
   SceneMoves,
   SceneResult,
+  SceneSolve,
   SceneSplash,
   SceneToolber,
   PuzzleCarrier,

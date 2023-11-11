@@ -28,7 +28,6 @@ export interface CarrierState {
 
 /**
  * 登場人物の状態
- * TODO: boarding=undefined
  */
 export interface CastState {
   /**

@@ -68,7 +68,6 @@ const useScene = (
 
   /**
    * 乗り物が対岸に到着する
-   * TODO: 履歴に進行方向を追加
    */
   const arrive = async (
     carrier: Carrier,

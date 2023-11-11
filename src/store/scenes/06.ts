@@ -1,57 +1,52 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 6,
-  title: '逃避行（初級編）',
+  title: '闇夜の旅（入門編）',
   description: {
-    conditions: 'すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべてのキャラクターが舟を漕げる。',
+    conditions: 'すべてのキャラクターを7分以内に対岸に渡す',
+    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
+    tips: [
+      '夜のステージは、移動時にたいまつが必要です。また、たいまつが燃え尽きる制限時間も決まっています。',
+      'キャラクターを上方向にスワイプすると、たいまつの近くにセットされます。',
+      '橋を渡るのに必要な所要時間はキャラクター毎に異なります。2人以上で移動する時は、遅いほうに合わせて同時に移動します。',
+    ],
   },
-  category: 'weight-limited',
-  level: 2,
-  passing: 9,
+  category: 'time-limited',
+  level: 1,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
-    weightLimit: 2,
     appearance: {
-      sprite: '/images/carriers/boat2.png'
+      sprite: '/images/carriers/touch.png'
     }
   }],
   casts: [{
     id: 0,
-    name: '騎士A',
+    name: '盗賊',
     appearance: {
-      sprite: '/images/casts/knight-c1.png',
+      sprite: '/images/casts/thief1.png'
     },
     role: {
-      weight: 2,
-    },
+      duration: 1
+    }
   }, {
     id: 1,
-    name: '騎士B',
+    name: '戦士',
     appearance: {
-      sprite: '/images/casts/knight-c2.png'
+      sprite: '/images/casts/fighter1.png'
     },
     role: {
-      weight: 2
+      duration: 2
     }
   }, {
     id: 2,
-    name: '村人A',
+    name: '司祭',
     appearance: {
-      sprite: '/images/casts/villager1.png'
+      sprite: '/images/casts/priest1.png'
     },
     role: {
-      weight: 1
-    }
-  }, {
-    id: 3,
-    name: '村人B',
-    appearance: {
-      sprite: '/images/casts/villager2.png'
-    },
-    role: {
-      weight: 1
+      duration: 4
     }
   }]
 })

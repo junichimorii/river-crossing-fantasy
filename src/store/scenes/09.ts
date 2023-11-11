@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 9,
-  title: '危険なパーティ（初級編2）',
+  title: '危険なパーティ（初級編1）',
   description: {
     conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',

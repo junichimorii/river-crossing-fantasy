@@ -6,6 +6,7 @@ import useCastState from './use-cast-state'
 import useCasts from './use-casts'
 import useMoves from './use-moves'
 import useScene from './use-scene'
+import useSolve from './use-solve'
 export {
   useAppearance,
   useCarrierState,
@@ -15,4 +16,5 @@ export {
   useCasts,
   useMoves,
   useScene,
+  useSolve,
 }

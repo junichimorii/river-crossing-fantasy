@@ -1,19 +1,19 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 7,
-  title: '危険なパーティ（初級編1）',
+  title: '魔獣たちの反乱（初級編）',
   description: {
-    conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
+    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',
     tips: [
-      'キャラクターには、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
-      'あるキャラクターが敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-      'あるキャラクターが危機に瀕している時は、そのキャラクター・敵・保護者に感情を表すマークが表示されます。その状態で舟を移動させることはできません。',
+      '両岸において、魔獣の数が魔獣使いの数より多くなった場合、魔獣が反逆を起こします。',
+      'いずれかのキャラクターが危機に瀕している状況で舟を移動させることはできません。',
+      '岸への到着時、魔獣使いが危機を回避できない場合はその時点でクリア失敗となります。',
     ],
   },
-  category: 'predators-and-guardians',
+  category: 'keep-majority',
   level: 2,
-  passing: 3,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -23,38 +23,39 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
+    name: '魔獣使いA',
     appearance: {
       sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      rower: true,
+      rebel: false,
     }
   }, {
     id: 1,
-    name: '村人',
+    name: '魔獣使いB',
     appearance: {
-      sprite: '/images/casts/villager1.png',
-      ratio: 0.85
+      sprite: '/images/casts/beast-tamer2.png'
     },
     role: {
-      rower: false,
-      predators: [{
-        predator: 2,
-        guardian: 0,
-      }],
-      guardian: 0,
+      rebel: false,
     }
   }, {
     id: 2,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと村人を襲う。',
+    name: '魔獣A',
     appearance: {
-      sprite: '/images/casts/therianthropy1.png',
-      ratio: 0.85
+      sprite: '/images/casts/therianthropy1.png'
     },
     role: {
-      rower: false,
+      rebel: true,
+    }
+  }, {
+    id: 3,
+    name: '魔獣B',
+    appearance: {
+      sprite: '/images/casts/therianthropy2.png'
+    },
+    role: {
+      rebel: true,
     }
   }]
 })
