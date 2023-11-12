@@ -1,9 +1,8 @@
 import type { Ref } from 'vue'
 import type { Carrier, State } from '@/types'
-import type { CarrierState, Bound } from '@/types/state'
+import type { CarrierState } from '@/types/state'
 export const carrierState: CarrierState = Object.freeze({
   coord: -1,
-  bound: null
 })
 
 /**
@@ -21,39 +20,18 @@ const useCarrierState = (
   ) => state.value.carriers[carrier.id].coord
 
   /**
-   * 乗り物の行先
-   */
-  const bound = (
-    carrier: Carrier
-  ) => state.value.carriers[carrier.id].bound
-
-  /**
    * 乗り物が出発する
-   * TODO: 中州がある場合の分岐
    */
   const leave = async (
     carrier: Carrier,
-    bound: Bound,
+    destination: number,
   ) => {
-    state.value.carriers[carrier.id].bound = bound
-    state.value.carriers[carrier.id].coord = -(state.value.carriers[carrier.id].coord)
-  }
-
-  /**
-   * 乗り物が到着する
-   * TODO: 中州がある場合の分岐
-   */
-  const arrive = async (
-    carrier: Carrier,
-  ) => {
-    state.value.carriers[carrier.id].bound = null
+    state.value.carriers[carrier.id].coord = destination
   }
 
   return {
     coord,
-    bound,
     leave,
-    arrive,
   }
 }
 export default useCarrierState

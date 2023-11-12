@@ -7,6 +7,7 @@ export const colors = {
   'weight-limited': '#4caf50', // green 500
   'predators-and-guardians': '#f44336', // red 500
   'escorting-celebrity': '#9c27b0', // purple 500
+  'escorting-celebrity-island': '#9c27b0', // purple 500
   'keep-majority': '#ff9800', // orange 500
   'time-limited': '#3f51b5', // indigo 500
 }

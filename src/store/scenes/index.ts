@@ -18,6 +18,7 @@ import s17 from './17'
 import s18 from './18'
 import s19 from './19'
 import s20 from './20'
+import s21 from './21'
 
 export {
   s01,
@@ -40,4 +41,5 @@ export {
   s18,
   s19,
   s20,
+  s21,
 }

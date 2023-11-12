@@ -33,12 +33,7 @@ defineProps<{
           </template>
           <v-list-item-title>
             <v-icon
-              v-if="i % 2 === 0"
-              icon="mdi-arrow-up"
-            ></v-icon>
-            <v-icon
-              v-if="i % 2 === 1"
-              icon="mdi-arrow-down"
+              :icon="move.bound === 'inbound' ? 'mdi-arrow-up' : 'mdi-arrow-down'"
             ></v-icon>
             <v-chip
               v-for="cast in move.casts"

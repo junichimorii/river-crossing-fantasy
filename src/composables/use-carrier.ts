@@ -1,6 +1,7 @@
-import { useCastState } from '@/composables'
+import { useCarrierState, useCastState } from '@/composables'
 import type { Ref } from 'vue'
 import type { Carrier, Scene, State } from '@/types'
+import type { Bound } from '@/types/state'
 
 /**
  * 川渡りパズルの乗り物
@@ -9,6 +10,7 @@ const useCarrier = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
+  const { coord } = useCarrierState(state)
   const { boarding } = useCastState(state)
 
   /**
@@ -26,6 +28,20 @@ const useCarrier = (
   const getLoad = (
     carrier: Carrier
   ) => getPassengers(carrier).reduce((weight, cast) => weight + (cast.role.weight ? cast.role.weight : 0), 0)
+
+  /**
+   * 乗り物の行先を算出
+   */
+  const getDestination = (
+    carrier: Carrier,
+    bound: Bound,
+  ) => scene.value.category === 'escorting-celebrity-island'
+    ? coord(carrier) === 0
+      ? bound === 'inbound'
+        ? 1
+        : -1
+      : 0
+    : -coord(carrier)
 
   /**
    * 乗員がいるかどうか
@@ -79,6 +95,7 @@ const useCarrier = (
   return {
     getDuration,
     getLoad,
+    getDestination,
     hasPassengers,
     isAvailable,
     isReady,

@@ -59,10 +59,10 @@ const action = async (
 ) => {
   if (store.disabled) return
   // 登場人物を乗り物から降ろす
-  const canDropOff = (boarding(props.state) !== null && direction === (coord(props.state) > 0 ? 'up' : 'down'))
+  const canDropOff = (boarding(props.state) !== null && direction === (coord(props.state) === 0 ? 'left' : coord(props.state) > 0 ? 'up' : 'down'))
   if (canDropOff) await dropOff(props.state)
   // 搭乗可能な乗り物があれば乗せる
-  const canPickUp = (boarding(props.state) === null && direction === (coord(props.state) < 0 ? 'up' : 'down'))
+  const canPickUp = (boarding(props.state) === null && direction === (coord(props.state) === 0 ? 'right' : coord(props.state) < 0 ? 'up' : 'down'))
   if (canPickUp) await pickUp(props.state)
   await safetyConfirmation()
 }

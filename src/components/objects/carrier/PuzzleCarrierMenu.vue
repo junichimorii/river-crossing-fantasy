@@ -1,26 +1,38 @@
 <script lang="ts" setup>
 import { computed, toRef } from 'vue'
-import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
+import { useCarrierState, useCarrier, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import type { Carrier } from '@/types'
+import type { Bound } from '@/types/state'
 const props = defineProps<{
   state: Carrier
 }>()
 const store = useSceneStore()
-const { coord } = useCarrierState(toRef(store.state))
-const { isReady } = useCarrier(toRef(store.state), toRef(store.scene))
+const { coord, leave: leaveCarrier } = useCarrierState(toRef(store.state))
+const { hasPassengers, getDestination, isReady } = useCarrier(toRef(store.state), toRef(store.scene))
 const { isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
-const { leave } = useScene(toRef(store.state), toRef(store.scene))
-
-const isEnabled = computed(() => isReady(props.state) && isPeaceable.value && !store.disabled)
+/**
+ * 進行可能かどうか
+ */
+const isEnabled = computed(() => !store.disabled && isReady(props.state) && isPeaceable.value)
 /**
  * 上り方向に進行可能
  */
-const inbound = computed(() => isEnabled.value && coord(props.state) < 0)
+const inbound = computed(() => isEnabled.value && coord(props.state) <= 0)
 /**
  * 下り方向に進行可能
  */
-const outbound = computed(() => isEnabled.value && coord(props.state) > 0)
+const outbound = computed(() => isEnabled.value && coord(props.state) >= 0)
+/**
+ * 出発する
+ */
+const leave = async (
+  bound: Bound,
+) => {
+  if (!hasPassengers(props.state)) return
+  await leaveCarrier(props.state, getDestination(props.state, bound))
+}
+
 </script>
 
 <template>
@@ -28,7 +40,7 @@ const outbound = computed(() => isEnabled.value && coord(props.state) > 0)
     activator="parent"
     :close-on-content-click="false"
     disabled
-    location="end bottom"
+    location="end top"
     v-model="inbound"
     persistent
     transition="scroll-y-reverse-transition"
@@ -40,7 +52,7 @@ const outbound = computed(() => isEnabled.value && coord(props.state) > 0)
           icon="mdi-arrow-up"
           color="tertiary"
           class="ma-1"
-          @click="leave(state, 'inbound')"
+          @click="leave('inbound')"
         ></v-btn>
       </v-expand-transition>
     </div>
@@ -61,7 +73,7 @@ const outbound = computed(() => isEnabled.value && coord(props.state) > 0)
           icon="mdi-arrow-down"
           color="tertiary"
           class="ma-1"
-          @click="leave(state, 'outbound')"
+          @click="leave('outbound')"
         ></v-btn>
       </v-expand-transition>
     </div>

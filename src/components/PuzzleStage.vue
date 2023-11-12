@@ -5,12 +5,12 @@ import { useAppearance, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const store = useSceneStore()
 const { stageSize } = useAppearance(store.scene)
-const { unreachers, reachers } = useCasts(toRef(store.state), toRef(store.scene))
+const { unreachers, reachers, halfways } = useCasts(toRef(store.state), toRef(store.scene))
 const landscape = computed(() =>
   store.scene.category === 'time-limited'
     ? '/images/landscapes/night-bridge.png'
     : store.scene.category === 'escorting-celebrity-island'
-      ? '/images/landscapes/daytime-river.png'
+      ? '/images/landscapes/daytime-river-island.png'
       : '/images/landscapes/daytime-river.png'
 )
 
@@ -32,17 +32,32 @@ const landscape = computed(() =>
         :width="stageSize * 0.9"
       >
         <v-sheet
-          class="d-flex justify-center align-start order-3 bg-transparent"
+          class="d-flex justify-center align-start order-2 bg-transparent"
           :height="stageSize * 0.4"
         >
-          <PuzzleCarrier
-            v-for="carrier in store.scene.carriers"
-            :key="carrier.id"
-            :state="carrier"
-          ></PuzzleCarrier>
+          <v-row no-gutters>
+            <v-col
+              class="d-flex justify-end"
+            >
+              <PuzzleCast
+                v-for="cast in halfways"
+                :key="cast.id"
+                :state="cast"
+              ></PuzzleCast>
+            </v-col>
+            <v-col>
+              <PuzzleCarrier
+                v-for="carrier in store.scene.carriers"
+                :key="carrier.id"
+                :state="carrier"
+              ></PuzzleCarrier>
+            </v-col>
+            <v-col>
+            </v-col>
+          </v-row>
         </v-sheet>
         <v-sheet
-          class="d-flex justify-end align-end order-2 bg-transparent"
+          class="d-flex justify-end align-end order-1 bg-transparent"
           :height="stageSize * 0.35"
         >
           <PuzzleCast
@@ -52,7 +67,7 @@ const landscape = computed(() =>
           ></PuzzleCast>
         </v-sheet>
         <v-sheet
-          class="d-flex justify-start align-end order-4 bg-transparent"
+          class="d-flex justify-start align-end order-3 bg-transparent"
           :height="stageSize * 0.2"
         >
           <PuzzleCast

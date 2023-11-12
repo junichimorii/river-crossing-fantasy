@@ -20,10 +20,6 @@ export interface CarrierState {
    * 乗り物の座標
    */
   coord: number
-  /**
-   * 乗り物の行先
-   */
-  bound: Bound
 }
 
 /**

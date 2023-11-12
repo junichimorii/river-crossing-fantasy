@@ -17,25 +17,41 @@ const { coord, boarding } = useCastState(toRef(store.state))
  */
 const bound = computed(() =>
   // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
-  (boarding(props.state) !== null && coord(props.state) > 0) || (boarding(props.state) === null && coord(props.state) < 0)
+  (boarding(props.state) !== null && coord(props.state) > 0)
+  || (boarding(props.state) === null && coord(props.state) < 0)
     ? 'inbound'
     // 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる
-    : (boarding(props.state) !== null && coord(props.state) < 0) || (boarding(props.state) === null && coord(props.state) > 0)
+    : (boarding(props.state) !== null && coord(props.state) < 0)
+    || (boarding(props.state) === null && coord(props.state) > 0)
       ? 'outbound'
-      : 'none'
+      // 乗り物の上から中州に降りる時、左方向に移動できる
+      : (boarding(props.state) !== null && coord(props.state) === 0)
+        ? 'stopover'
+        // 中州から乗り物に乗る時、右方向に移動できる
+        : (boarding(props.state) === null && coord(props.state) === 0)
+          ? 'resume'
+          : 'none'
 )
+/**
+ * 進行可能かどうか
+ */
+const isEnabled = computed(() => !store.disabled && props.isSwiping)
 /**
  * 上り方向に進行可能
  */
-const inbound = computed(() => props.isSwiping && !store.disabled && bound.value === 'inbound')
+const inbound = computed(() => isEnabled.value && bound.value === 'inbound')
 /**
  * 下り方向に進行可能
  */
-const outbound = computed(() => props.isSwiping && !store.disabled && bound.value === 'outbound')
+const outbound = computed(() => isEnabled.value && bound.value === 'outbound')
 /**
- * 矢印の色
+ * 舟から中州方向に進行可能
  */
-const color = computed(() => bound.value === props.swipeDirection ? 'tertiary' : 'grey')
+const stopover = computed(() => isEnabled.value && bound.value === 'stopover')
+/**
+ * 中州から舟方向に進行可能
+ */
+const resume = computed(() => isEnabled.value && bound.value === 'resume')
 </script>
 
 <template>
@@ -51,7 +67,41 @@ const color = computed(() => bound.value === props.swipeDirection ? 'tertiary' :
         <v-icon
           size="x-large"
           icon="mdi-arrow-up"
-          :color="color"
+          color="tertiary"
+        ></v-icon>
+      </div>
+    </v-expand-transition>
+  </v-menu>
+  <v-menu
+    activator="parent"
+    v-model="stopover"
+    disabled
+    location="start"
+    transition="scroll-x-reverse-transition"
+  >
+    <v-expand-transition mode="out-in">
+      <div class="d-flex align-center">
+        <v-icon
+          size="x-large"
+          icon="mdi-arrow-left"
+          color="tertiary"
+        ></v-icon>
+      </div>
+    </v-expand-transition>
+  </v-menu>
+  <v-menu
+    activator="parent"
+    v-model="resume"
+    disabled
+    location="end"
+    transition="scroll-x-transition"
+  >
+    <v-expand-transition mode="in-out">
+      <div class="d-flex align-center">
+        <v-icon
+          size="x-large"
+          icon="mdi-arrow-right"
+          color="tertiary"
         ></v-icon>
       </div>
     </v-expand-transition>
@@ -68,7 +118,7 @@ const color = computed(() => bound.value === props.swipeDirection ? 'tertiary' :
         <v-icon
           size="x-large"
           icon="mdi-arrow-down"
-          :color="color"
+          color="tertiary"
         ></v-icon>
       </div>
     </v-expand-transition>

@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
 import type { Ref } from 'vue'
-import type { Cast, Scene, State, Move } from '@/types'
+import type { Carrier, Cast, Scene, State, Move } from '@/types'
 import type { CarrierState, CastState, Bound } from '@/types/state'
 interface ExtendedState extends State {
   count: number
@@ -13,7 +13,6 @@ interface ExtendedState extends State {
 const useSolve = (
   scene: Ref<Scene>,
 ) => {
-
   const state = ref<ExtendedState>({
     carriers: [] as CarrierState[],
     casts: [] as CastState[],
@@ -22,12 +21,10 @@ const useSolve = (
   const moves = ref<Set<Move>>(
     new Set<Move>(),
   )
-  const solved = ref(true)
-  const searching = ref(false)
-  const { bound } = useCarrierState(state)
+  const { coord, leave } = useCarrierState(state)
   const { isReady } = useCarrier(state, scene)
   const { isPeaceable } = useCasts(state, scene)
-  const { pickUp, leave, arrive, safetyConfirmation } = useScene(state, scene)
+  const { pickUp, arrive, safetyConfirmation } = useScene(state, scene)
   const { init: initScene } = useScene(state, scene)
 
   const solve = async () => {
@@ -37,12 +34,11 @@ const useSolve = (
     if (history.size > 0) {
       await lookBack(history)
     } else {
-      solved.value = false
+      console.error('failed.')
     }
   }
 
   const search = async () => {
-    searching.value = true
     const history = new Set<string[]>()
     const visited = new Set<string>()
     const queue: ExtendedState[] = [state.value]
@@ -53,7 +49,7 @@ const useSolve = (
       const currentState = queue.shift() as ExtendedState
       const nextMoves = await generateMoves()
       for await (const move of nextMoves) {
-        state.value = restore(currentState)
+        state.value = restore(currentState) as ExtendedState
         const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
         .then(results => !results.includes(false))
         if (!isAllPickedUp) continue
@@ -61,29 +57,30 @@ const useSolve = (
         if (!isPeaceable.value) continue
         const isAllReady = scene.value.carriers.every(carrier => isReady(carrier))
         if (!isAllReady) continue
-        const increment = await Promise.all(scene.value.carriers.map(async carrier =>
-          await leave(carrier, bound(carrier))
-          .then(() => arrive(carrier))
-        )).then(moves => !moves.includes(undefined)
-          ? Array.from(moves as Move[]).reduce((a, b) => a + b.value, 0)
-          : false
-        )
-        if (!increment) continue
-        await safetyConfirmation()
-        if (!isPeaceable.value) continue
-        state.value.count = scene.value.category === 'time-limited'
-          ? state.value.count + increment
-          : 0
-        if (!visited.has(parseState(state))) {
-          queue.push(state.value)
-          history.add([parseState(state), parseMove(move), parsePrev(state, move)])
-          visited.add(parseState(state))
-          console.log(parseState(state), parseMove(move), parsePrev(state, move))
+        const parsedPreviousState = parseState(state)
+        for await (const carrier of scene.value.carriers) {
+          const destinations = getDestinations(carrier)
+          for await (const destination of destinations) {
+            const move = await leave(carrier, destination).then(() => arrive(carrier))
+            if (!move) continue
+            await safetyConfirmation()
+            if (!isPeaceable.value) continue
+            state.value.count = scene.value.category === 'time-limited'
+              ? state.value.count + move.value
+              : 0
+            const parsedCurrentState = parseState(state)
+            const parsedCurrentMove = parseMove(move)
+            if (!visited.has(parsedCurrentState)) {
+              queue.push(state.value)
+              history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
+              visited.add(parsedCurrentState)
+              console.log(parsedCurrentState, parsedCurrentMove, parsedPreviousState)
+            }
+          }
         }
       }
-      if (state.value.count > 60) break
+      if (state.value.count > 99) break
     }
-    searching.value = false
     return history
   }
 
@@ -115,9 +112,10 @@ const useSolve = (
     solution.reverse().slice(1).forEach(item => {
       const states: number[][] = JSON.parse(item[0])
       const ids: number[] = JSON.parse(item[1])
+      const previousStates: number[][] = JSON.parse(item[2])
       const casts: Cast[] = ids.map(id => scene.value.casts[id])
       const value: number = Math.max(...casts.map(cast => cast.role.duration || 1))
-      const bound: Bound = states[1][ids[0]] > 0 ? 'inbound' : 'outbound' // TODO
+      const bound: Bound = states[0][0] > previousStates[0][0] ? 'inbound' : 'outbound'
       const move: Move = {
         casts: casts,
         bound: bound,
@@ -126,6 +124,14 @@ const useSolve = (
       moves.value.add(move)
     })
   }
+
+  const getDestinations = (
+    carrier: Carrier,
+  ) => scene.value.category === 'escorting-celebrity-island'
+    ? coord(carrier) === 0
+      ? [1, -1]
+      : [0]
+    : [-coord(carrier)]
 
   const parseState = (
     state: Ref<ExtendedState>
@@ -136,23 +142,8 @@ const useSolve = (
   ])
 
   const parseMove = (
-    move: Cast[]
-  ) => JSON.stringify(move.map(cast => cast.id))
-
-  const parsePrev = (
-    state: Ref<ExtendedState>,
-    move: Cast[]
-  ) => {
-    const carriers = state.value.carriers.map(state => -state.coord)
-    const casts = state.value.casts.map(state => state.coord)
-    move.forEach(cast => {
-      casts[cast.id] = -casts[cast.id]
-    })
-    const count = scene.value.category === 'time-limited'
-      ? state.value.count - Math.max(...move.map(cast => cast.role.duration || 1))
-      : 0
-    return JSON.stringify([carriers, casts, count])
-  }
+    move: Move
+  ) => JSON.stringify(move.casts.map(cast => cast.id))
 
   const restore  = (
     currentState: ExtendedState
@@ -161,7 +152,6 @@ const useSolve = (
       carriers: currentState.carriers.map(state => {
         return {
           coord: state.coord,
-          bound: state.bound,
         }
       }),
       casts: currentState.casts.map(state => {
@@ -208,8 +198,6 @@ const useSolve = (
   }
   return {
     moves,
-    searching,
-    solved,
     solve,
   }
 }

@@ -6,7 +6,7 @@ import type { Bound } from '@/types/state'
 export interface Move {
   /** 移動した登場人物 */
   casts: Cast[]
-  /** 行先 */
+  /** 進行方向 */
   bound: Bound
   /** 所要時間 */
   value: number

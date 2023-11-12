@@ -12,7 +12,7 @@ const useScene = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { coord: carrierCoord, bound, leave: leaveCarrier, arrive: arriveCarrier } = useCarrierState(state)
+  const { coord: carrierCoord, leave: leaveCarrier } = useCarrierState(state)
   const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
   const { coord: castCoord, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
   const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)
@@ -54,38 +54,27 @@ const useScene = (
   }
 
   /**
-   * 乗り物が出発する
-   * TODO: 目的地と進行方向の取得
-   */
-  const leave = async (
-    carrier: Carrier,
-    bound: Bound,
-  ) => {
-    if (!hasPassengers(carrier)) return
-    // 乗り物の位置を変化させる
-    await leaveCarrier(carrier, bound)
-  }
-
-  /**
    * 乗り物が対岸に到着する
    */
   const arrive = async (
     carrier: Carrier,
   ) => {
     if (!hasPassengers(carrier)) return
+    const bound: Bound = carrierCoord(carrier) > castCoord(passengers.value[carrier.id][0])
+      ? 'inbound'
+      : 'outbound'
     // 履歴を追加
     const move: Move = {
       casts: passengers.value[carrier.id],
-      bound: bound(carrier),
+      bound: bound,
       value: getDuration(carrier),
     }
-    // 乗り物が到着する
-    await arriveCarrier(carrier)
     // 登場人物を乗り物から降ろす
     for await (const cast of passengers.value[carrier.id]) {
-      arriveCast(cast)
+      arriveCast(cast, carrier)
       getOff(cast)
     }
+    // 安否確認
     await safetyConfirmation()
     if (!isPeaceable.value) {
       move.result = 'failed'
@@ -107,6 +96,7 @@ const useScene = (
     switch (scene.value.category) {
       case 'predators-and-guardians':
       case 'escorting-celebrity':
+      case 'escorting-celebrity-island':
         // 敵と保護者がいるパズルにおける安否確認
         await predation()
         break
@@ -168,7 +158,6 @@ const useScene = (
     init,
     pickUp,
     dropOff,
-    leave,
     arrive,
     safetyConfirmation,
   }

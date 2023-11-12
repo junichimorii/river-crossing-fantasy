@@ -56,12 +56,12 @@ const useCastState = (
 
   /**
    * 登場人物が川を渡る
-   * TODO: 中州
    */
   const arrive = (
-    cast: Cast
+    cast: Cast,
+    carrier: Carrier
   ) => {
-    state.value.casts[cast.id].coord = -(state.value.casts[cast.id].coord)
+    state.value.casts[cast.id].coord = state.value.carriers[carrier.id].coord
   }
 
   /**
