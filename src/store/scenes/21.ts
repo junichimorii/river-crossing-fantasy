@@ -1,10 +1,15 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 21,
-  title: '防衛戦線（上級編）',
+  title: '王女親衛隊の攻防（上級編）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。川の中の島に降りることもできる。',
+    tips: [
+      '川の中間にある中州に降りることができます。',
+      '中州にいるキャラクターを右方向にスワイプすると舟に乗り、左方向にスワイプすると舟から降ります。',
+      '舟を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
+    ],
   },
   category: 'escorting-celebrity-island',
   level: 4,
@@ -102,7 +107,7 @@ const scene: Scene = Object.freeze({
     name: 'D国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/knight-c1.png'
+      sprite: '/images/casts/knight-d1.png'
     },
     role: {
     }
@@ -110,7 +115,7 @@ const scene: Scene = Object.freeze({
     id: 7,
     name: 'D国王女',
     appearance: {
-      sprite: '/images/casts/princess-c1.png'
+      sprite: '/images/casts/princess-d1.png'
     },
     role: {
       predators: [{

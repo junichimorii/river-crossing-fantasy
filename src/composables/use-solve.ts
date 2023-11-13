@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
+import { useCarrierState, useCarrier, useCasts, useMoves, useScene } from '@/composables'
 import type { Ref } from 'vue'
 import type { Carrier, Cast, Scene, State, Move } from '@/types'
 import type { CarrierState, CastState, Bound } from '@/types/state'
@@ -26,6 +26,7 @@ const useSolve = (
   const { isPeaceable } = useCasts(state, scene)
   const { pickUp, arrive, safetyConfirmation } = useScene(state, scene)
   const { init: initScene } = useScene(state, scene)
+  const { count } = useMoves(moves, scene)
 
   const solve = async () => {
     await initScene()
@@ -48,6 +49,7 @@ const useSolve = (
     while (queue.length > 0) {
       const currentState = queue.shift() as ExtendedState
       const nextMoves = await generateMoves()
+      moves:
       for await (const move of nextMoves) {
         state.value = restore(currentState) as ExtendedState
         const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
@@ -58,13 +60,19 @@ const useSolve = (
         const isAllReady = scene.value.carriers.every(carrier => isReady(carrier))
         if (!isAllReady) continue
         const parsedPreviousState = parseState(state)
+        const beforeCarriersState = state.value
+        carriers:
         for await (const carrier of scene.value.carriers) {
+          state.value = restore(beforeCarriersState) as ExtendedState
           const destinations = getDestinations(carrier)
+          const beforeDestinationsState = state.value
+          destinations:
           for await (const destination of destinations) {
+            state.value = restore(beforeDestinationsState) as ExtendedState
             const move = await leave(carrier, destination).then(() => arrive(carrier))
-            if (!move) continue
+            if (!move) continue destinations
             await safetyConfirmation()
-            if (!isPeaceable.value) continue
+            if (!isPeaceable.value) continue destinations
             state.value.count = scene.value.category === 'time-limited'
               ? state.value.count + move.value
               : 0
@@ -198,6 +206,7 @@ const useSolve = (
   }
   return {
     moves,
+    count,
     solve,
   }
 }

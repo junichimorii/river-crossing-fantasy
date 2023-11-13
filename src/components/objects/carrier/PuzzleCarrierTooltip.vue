@@ -21,6 +21,7 @@ const model = computed(() => !store.disabled && text.value !== '')
 
 <template>
   <v-tooltip
+    disabled
     activator="parent"
     v-model="model"
     location="bottom center"

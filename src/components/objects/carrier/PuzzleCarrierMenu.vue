@@ -40,14 +40,15 @@ const leave = async (
     activator="parent"
     :close-on-content-click="false"
     disabled
-    location="end top"
-    v-model="inbound"
+    location="end bottom"
+    v-model="isEnabled"
     persistent
-    transition="scroll-y-reverse-transition"
+    transition="scroll-y-transition"
   >
-    <div class="d-flex justify-center">
+    <div>
       <v-expand-transition mode="out-in">
         <v-btn
+           v-show="inbound"
           size="default"
           icon="mdi-arrow-up"
           color="tertiary"
@@ -56,19 +57,10 @@ const leave = async (
         ></v-btn>
       </v-expand-transition>
     </div>
-  </v-menu>
-  <v-menu
-    activator="parent"
-    :close-on-content-click="false"
-    disabled
-    location="end bottom"
-    v-model="outbound"
-    persistent
-    transition="scroll-y-transition"
-  >
-    <div class="d-flex justify-center">
+    <div>
       <v-expand-transition mode="in-out">
         <v-btn
+           v-show="outbound"
           size="default"
           icon="mdi-arrow-down"
           color="tertiary"

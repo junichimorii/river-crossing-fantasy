@@ -6,7 +6,7 @@ import type { Scene } from '@/types'
 const props = defineProps<{
   scene: Scene
 }>()
-const { moves, solve } = useSolve(toRef(props.scene))
+const { moves, count, solve } = useSolve(toRef(props.scene))
 </script>
 
 <template>
@@ -27,6 +27,9 @@ const { moves, solve } = useSolve(toRef(props.scene))
       >
         探索開始
       </v-btn>
+    </v-card-item>
+    <v-card-item v-if="count > 0">
+      回数: {{ count }}
     </v-card-item>
     <SceneMoves
       v-if="moves.size > 0"
