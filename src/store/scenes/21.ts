@@ -11,9 +11,12 @@ const scene: Scene = Object.freeze({
       '舟を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
     ],
   },
-  category: 'escorting-celebrity-island',
+  category: 'escorting-celebrity',
+  landscape: {
+    island: true
+  },
   level: 4,
-  passing: 11,
+  passing: 26,
   carriers: [{
     id: 0,
     capacity: 2,

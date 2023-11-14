@@ -135,7 +135,7 @@ const useSolve = (
 
   const getDestinations = (
     carrier: Carrier,
-  ) => scene.value.category === 'escorting-celebrity-island'
+  ) => scene.value.landscape?.island
     ? coord(carrier) === 0
       ? [1, -1]
       : [0]

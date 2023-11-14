@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 14,
-  title: '王女親衛隊の攻防（中級編1）',
+  title: '王女親衛隊の攻防（中級編）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。すべてのキャラクターが舟を漕げる。',

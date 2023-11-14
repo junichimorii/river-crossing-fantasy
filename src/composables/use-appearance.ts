@@ -12,9 +12,9 @@ const useAppearance = (
   /** ステージのサイズ */
   const stageSize = computed(() => Math.min(width.value, height.value))
   /** コンテンツの高さ */
-  const navigationHeight = computed(() => height.value - stageSize.value - 56)
+  const navigationHeight = computed(() => height.value - stageSize.value)
   /** 登場人物一人分の幅 */
-  const gridSize = computed(() => Math.min(stageSize.value / config.casts.length, stageSize.value / 10))
+  const gridSize = computed(() => Math.min(stageSize.value * 0.95 / config.casts.length, stageSize.value * 0.95 / 10))
   return {
     stageSize,
     navigationHeight,

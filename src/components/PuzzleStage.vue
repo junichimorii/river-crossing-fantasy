@@ -7,9 +7,9 @@ const store = useSceneStore()
 const { stageSize } = useAppearance(store.scene)
 const { unreachers, reachers, halfways } = useCasts(toRef(store.state), toRef(store.scene))
 const landscape = computed(() =>
-  store.scene.category === 'time-limited'
+  store.scene.landscape?.night
     ? '/images/landscapes/night-bridge.png'
-    : store.scene.category === 'escorting-celebrity-island'
+    : store.scene.landscape?.island
       ? '/images/landscapes/daytime-river-island.png'
       : '/images/landscapes/daytime-river.png'
 )
@@ -29,7 +29,7 @@ const landscape = computed(() =>
     >
       <v-sheet
         class="d-flex flex-column bg-transparent"
-        :width="stageSize * 0.9"
+        :width="stageSize * 0.95"
       >
         <v-sheet
           class="d-flex justify-center align-start order-2 bg-transparent"
@@ -45,7 +45,9 @@ const landscape = computed(() =>
                 :state="cast"
               ></PuzzleCast>
             </v-col>
-            <v-col>
+            <v-col
+              class="d-flex justify-center"
+            >
               <PuzzleCarrier
                 v-for="carrier in store.scene.carriers"
                 :key="carrier.id"

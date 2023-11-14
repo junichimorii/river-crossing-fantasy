@@ -1,6 +1,7 @@
-import PuzzleNavigation from './PuzzleNavigation.vue'
+import PuzzleBottomNavigation from './PuzzleBottomNavigation.vue'
+import PuzzleNavigationDrawer from './PuzzleNavigationDrawer.vue'
 import PuzzleStage from './PuzzleStage.vue'
-import AppIntroduction from './navigation/AppIntroduction.vue'
+import AppIntroduction from './home/AppIntroduction.vue'
 import SceneCasts from './navigation/SceneCasts.vue'
 import SceneConditions from './navigation/SceneConditions.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
@@ -16,7 +17,8 @@ import PuzzleCarrierTooltip from './objects/carrier/PuzzleCarrierTooltip.vue'
 import PuzzleCastEmotion from './objects/cast/PuzzleCastEmotion.vue'
 import PuzzleCastMenu from './objects/cast/PuzzleCastMenu.vue'
 export {
-  PuzzleNavigation,
+  PuzzleBottomNavigation,
+  PuzzleNavigationDrawer,
   PuzzleStage,
   AppIntroduction,
   SceneCasts,

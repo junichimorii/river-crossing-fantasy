@@ -96,7 +96,6 @@ const useScene = (
     switch (scene.value.category) {
       case 'predators-and-guardians':
       case 'escorting-celebrity':
-      case 'escorting-celebrity-island':
         // 敵と保護者がいるパズルにおける安否確認
         await predation()
         break

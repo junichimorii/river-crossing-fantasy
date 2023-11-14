@@ -13,6 +13,8 @@ export interface Scene {
   description: Description
   /** パズル種別 */
   category: Category
+  /** パズルの特徴 */
+  landscape?: Features
   /** 難易度 */
   level: number
   /** 合格基準となる回数または時間 */
@@ -32,9 +34,16 @@ export type Category =
   |'weight-limited'             // 重量制限のある川渡りパズル
   |'predators-and-guardians'    // 敵と保護者がいる川渡りパズル
   |'escorting-celebrity'        // 要人を敵から保護する川渡りパズル
-  |'escorting-celebrity-island' // 要人を敵から保護する川渡りパズル、かつ中州がある
   |'keep-majority'              // 多数派を維持する川渡りパズル
   |'time-limited'               // 制限時間のある川渡りパズル
+
+/**
+ * パズルの特徴
+ */
+type Features = {
+  night?: boolean
+  island?: boolean
+}
 
 /**
  * シーンの説明

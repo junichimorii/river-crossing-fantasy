@@ -6,15 +6,15 @@ defineProps<{
 </script>
 
 <template>
-  <v-list class="bg-transparent">
-    <v-list-subheader sticky>
+  <v-list>
+    <v-list-subheader>
       <v-icon icon="mdi-lock-open"></v-icon>
       クリア条件
     </v-list-subheader>
     <v-list-item class="text-subtitle-2">
       {{ scene.description.conditions }}
     </v-list-item>
-    <v-list-subheader sticky>
+    <v-list-subheader>
       <v-icon icon="mdi-swap-vertical"></v-icon>
       移動手段
     </v-list-subheader>
@@ -23,7 +23,6 @@ defineProps<{
     </v-list-item>
     <v-list-subheader
       v-if="scene.description.tips"
-      sticky
     >
       <v-icon icon="mdi-chat-alert"></v-icon>
       Tips

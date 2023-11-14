@@ -6,6 +6,7 @@ export const useSessionStore = defineStore('session', () => {
     'RIVER_CROSSING_SESSION',
     {
       introduction: false,
+      drawer: false,
     },
     sessionStorage,
   )

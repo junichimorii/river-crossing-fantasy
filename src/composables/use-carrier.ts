@@ -35,7 +35,7 @@ const useCarrier = (
   const getDestination = (
     carrier: Carrier,
     bound: Bound,
-  ) => scene.value.category === 'escorting-celebrity-island'
+  ) => scene.value.landscape?.island
     ? coord(carrier) === 0
       ? bound === 'inbound'
         ? 1

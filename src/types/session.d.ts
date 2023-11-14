@@ -3,4 +3,5 @@
  */
 export interface Session {
   introduction: boolean
+  drawer: boolean
 }
