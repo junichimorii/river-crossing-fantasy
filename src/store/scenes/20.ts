@@ -3,7 +3,7 @@ const scene: Scene = Object.freeze({
   id: 20,
   title: '闇夜の旅（上級編）',
   description: {
-    conditions: 'すべてのキャラクターを30分以内に対岸に渡す',
+    conditions: 'すべての登場人物を30分以内に対岸に渡す',
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
   category: 'time-limited',
@@ -44,7 +44,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/priest1.png'
     },
     role: {
-      duration: 6
+      duration: 7
     }
   }, {
     id: 3,
@@ -53,7 +53,7 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/mage1.png'
     },
     role: {
-      duration: 8
+      duration: 9
     }
   }, {
     id: 4,

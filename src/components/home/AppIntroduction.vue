@@ -26,8 +26,8 @@ const session = useSessionStore()
             このゲームについて:
           </v-card-subtitle>
           <v-card-text class="py-1">
-            このゲームは、川岸にいる一団を、キャラクターたちが持つ特性を考慮しつつ、条件を満たしながら対岸に渡すゲームです。
-            通称「River Crossing Puzzle」（川渡りパズル）と呼ばれています。
+            このゲームは、川岸にいる一団を、登場人物たちが持つ特性を考慮しつつ、条件を満たしながら対岸に渡すゲームです。
+            このようなゲームは通称「River Crossing Puzzle」（川渡りパズル）と呼ばれており、古くから世界中で親しまれています。
           </v-card-text>
         </v-card-item>
         <v-card-item>
@@ -78,7 +78,7 @@ const session = useSessionStore()
       >
         <v-btn
           variant="elevated"
-          @click="session.state.introduction = false"
+          @click.stop="session.state.introduction = false"
         >
           OK
         </v-btn>

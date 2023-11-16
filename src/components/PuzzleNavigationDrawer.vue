@@ -1,12 +1,9 @@
 <script lang="ts" setup>
-import { toRef } from 'vue'
 import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneSolve } from '@/components'
-import { useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const session = useSessionStore()
 const store = useSceneStore()
-const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
 </script>
 
 <template>
@@ -55,14 +52,7 @@ const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
         </v-expansion-panel>
         <v-expansion-panel>
           <v-expansion-panel-title>
-            <v-badge
-              :model-value="count > 0"
-              :content="count"
-              :color="color"
-              offset-x="-6"
-            >
-              <v-icon>mdi-history</v-icon>
-            </v-badge>
+            <v-icon>mdi-history</v-icon>
             履歴
           </v-expansion-panel-title>
           <v-expansion-panel-text>
@@ -87,12 +77,20 @@ const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
             ルート探索
           </v-expansion-panel-title>
           <v-expansion-panel-text>
-            <SceneSolve
-              :scene="store.scene"
-            ></SceneSolve>
+            <v-btn
+              block
+              color="info"
+              prepend-icon="mdi-map-search"
+              @click.stop="session.state.solve = true"
+            >
+              ルート探索
+            </v-btn>
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-card>
+    <SceneSolve
+      :scene="store.scene"
+    ></SceneSolve>
   </v-navigation-drawer>
 </template>

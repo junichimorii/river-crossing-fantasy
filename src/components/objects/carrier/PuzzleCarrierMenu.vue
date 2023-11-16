@@ -53,7 +53,7 @@ const leave = async (
           icon="mdi-arrow-up"
           color="tertiary"
           class="ma-1"
-          @click="leave('inbound')"
+          @click.stop="leave('inbound')"
         ></v-btn>
       </v-expand-transition>
     </div>
@@ -65,7 +65,7 @@ const leave = async (
           icon="mdi-arrow-down"
           color="tertiary"
           class="ma-1"
-          @click="leave('outbound')"
+          @click.stop="leave('outbound')"
         ></v-btn>
       </v-expand-transition>
     </div>

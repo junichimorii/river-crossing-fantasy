@@ -3,7 +3,7 @@ const scene: Scene = Object.freeze({
   id: 9,
   title: '危険なパーティ（初級編1）',
   description: {
-    conditions: '村人を魔獣から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    conditions: '村人を魔獣から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
     tips: [
       '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したもの。',

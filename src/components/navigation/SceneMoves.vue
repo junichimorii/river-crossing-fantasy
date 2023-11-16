@@ -29,6 +29,7 @@ defineProps<{
           v-for="cast in move.casts"
           :key="cast.id"
           variant="text"
+          class="pa-2"
         >
           <v-avatar start>
             <v-img

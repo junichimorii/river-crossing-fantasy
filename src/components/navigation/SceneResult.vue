@@ -74,7 +74,7 @@ watch(result, async (value) => {
             v-if="result === 'failed'"
             color="error"
             variant="elevated"
-            @click="store.init()"
+            @click.stop="store.init()"
           >
             Retry
           </v-btn>

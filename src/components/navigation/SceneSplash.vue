@@ -52,7 +52,7 @@ onMounted(async () => {
         <v-btn
           color="green"
           variant="elevated"
-          @click="dialog = false"
+          @click.stop="dialog = false"
         >
           Start
         </v-btn>

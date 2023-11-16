@@ -1,6 +1,6 @@
 {
   "name": "river-crossing-puzzles",
-  "packageManager": "yarn@4.0.1",
+  "packageManager": "yarn@4.0.2",
   "version": "0.3.0",
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,7 @@
     "roboto-fontface": "*",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5",
-    "vuetify": "^3.4.0"
+    "vuetify": "^3.4.1"
   },
   "devDependencies": {
     "@babel/types": "^7.23.3",

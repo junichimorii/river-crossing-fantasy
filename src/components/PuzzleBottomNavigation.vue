@@ -3,7 +3,9 @@ import { ref, toRef } from 'vue'
 import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneSolve } from '@/components'
 import { useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
+import { useSessionStore } from '@/store/session'
 const store = useSceneStore()
+const session = useSessionStore()
 const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
 const tab = ref(null)
 </script>
@@ -74,10 +76,16 @@ const tab = ref(null)
         </v-window-item>
         <v-window-item value="menu">
           <SceneMenu></SceneMenu>
-          <v-divider></v-divider>
-          <SceneSolve
-            :scene="store.scene"
-          ></SceneSolve>
+          <v-divider class="my-4"></v-divider>
+          <v-btn
+            block
+            color="info"
+            size="large"
+            prepend-icon="mdi-map-search"
+            @click.stop="session.state.solve = true"
+          >
+            ルート探索
+          </v-btn>
         </v-window-item>
       </v-window>
     </v-card-text>

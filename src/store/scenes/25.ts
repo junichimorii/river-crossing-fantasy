@@ -1,17 +1,20 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 22,
+  id: 25,
   title: '魔獣たちの反乱（上級編）',
   description: {
     conditions: '両岸および舟の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '3人乗りの舟が1艘。すべての登場人物が舟を漕げる。',
+    transportation: '2人乗りの舟が1艘。すべての登場人物が舟を漕げる。',
   },
   category: 'keep-majority',
-  level: 3,
-  passing: 11,
+  landscape: {
+    island: true
+  },
+  level: 4,
+  passing: 34,
   carriers: [{
     id: 0,
-    capacity: 3,
+    capacity: 2,
     appearance: {
       sprite: '/images/carriers/boat3.png'
     }

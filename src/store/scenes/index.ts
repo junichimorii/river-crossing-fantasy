@@ -9,7 +9,7 @@ import s08 from './08'
 import s09 from './09'
 import s10 from './10'
 import s11 from './11'
-// import s12 from './12'
+import s12 from './12'
 import s13 from './13'
 import s14 from './14'
 import s15 from './15'
@@ -20,6 +20,10 @@ import s19 from './19'
 import s20 from './20'
 import s21 from './21'
 import s22 from './22'
+import s23 from './23'
+import s24 from './24'
+import s25 from './25'
+import s26 from './26'
 
 export {
   s01,
@@ -33,7 +37,7 @@ export {
   s09,
   s10,
   s11,
-  // s12,
+  s12,
   s13,
   s14,
   s15,
@@ -44,4 +48,8 @@ export {
   s20,
   s21,
   s22,
+  s23,
+  s24,
+  s25,
+  s26,
 }

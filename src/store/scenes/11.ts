@@ -3,7 +3,7 @@ const scene: Scene = Object.freeze({
   id: 11,
   title: '危険なパーティ（初級編2）',
   description: {
-    conditions: 'キャラクターを敵から保護しつつ、すべてのキャラクターを最小回数で対岸に渡す',
+    conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いのみ。',
     tips: [
       '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',

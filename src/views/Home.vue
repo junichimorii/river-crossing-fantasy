@@ -87,7 +87,7 @@ onMounted(async () => {
     >
       <template v-slot:actions>
         <v-btn
-          @click="session.state.introduction = true"
+          @click.stop="session.state.introduction = true"
         >
           このゲームについて
         </v-btn>

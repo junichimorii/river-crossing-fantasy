@@ -7,6 +7,7 @@ export const useSessionStore = defineStore('session', () => {
     {
       introduction: false,
       drawer: false,
+      solve: false,
     },
     sessionStorage,
   )

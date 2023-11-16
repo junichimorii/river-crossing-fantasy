@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { useCarrierState, useCarrier, useCasts, useMoves, useScene } from '@/composables'
+import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
 import type { Ref } from 'vue'
 import type { Carrier, Cast, Scene, State, Move } from '@/types'
 import type { CarrierState, CastState, Bound } from '@/types/state'
@@ -13,30 +13,24 @@ interface ExtendedState extends State {
 const useSolve = (
   scene: Ref<Scene>,
 ) => {
+  const solved = ref<boolean>(true)
+  const solutions = ref<Set<Move>[]>([])
   const state = ref<ExtendedState>({
     carriers: [] as CarrierState[],
     casts: [] as CastState[],
     count: 0,
   })
-  const moves = ref<Set<Move>>(
-    new Set<Move>(),
-  )
   const { coord, leave } = useCarrierState(state)
   const { isReady } = useCarrier(state, scene)
   const { isPeaceable } = useCasts(state, scene)
   const { pickUp, arrive, safetyConfirmation } = useScene(state, scene)
   const { init: initScene } = useScene(state, scene)
-  const { count } = useMoves(moves, scene)
 
   const solve = async () => {
     await initScene()
-    moves.value.clear()
+    solutions.value = []
     const history = await search()
-    if (history.size > 0) {
-      await lookBack(history)
-    } else {
-      console.error('failed.')
-    }
+    solved.value = await lookBack(history)
   }
 
   const search = async () => {
@@ -82,12 +76,12 @@ const useSolve = (
               queue.push(state.value)
               history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
               visited.add(parsedCurrentState)
-              console.log(parsedCurrentState, parsedCurrentMove, parsedPreviousState)
+              console.log(parsedCurrentState, parsedCurrentMove)
             }
           }
         }
       }
-      if (state.value.count > 99) break
+      if (state.value.count > 50) break
     }
     return history
   }
@@ -95,42 +89,45 @@ const useSolve = (
   const lookBack = async (
     history: Set<string[]>
   ) => {
-    const solution: string[][] = []
+    if (history.size === 0) return false
     const list: string[][] = Array.from(history)
-    const finalStates = list.filter(item => {
+    const finalStateList = list.filter(item => {
       const states: number[][] = JSON.parse(item[0])
       const carriers: number[] = states[0]
       const casts: number[] = states[1]
       return carriers.every(n => n > 0) && casts.every(n => n > 0)
     })
-    if (finalStates.length === 0) return
-    const finalState = finalStates.reduce((a, b) => {
-      const countA: number = JSON.parse(a[0])[2]
-      const countB: number = JSON.parse(b[0])[2]
-      return countA < countB ? a : b
-    })
-    solution.push(finalState)
-    while (true) {
-      const latest = solution.slice(-1)[0][2]
-      if (!latest) break
-      const target = list.find(item => item[0] === latest)
-      if (!target) break
-      solution.push(target)
-    }
-    solution.reverse().slice(1).forEach(item => {
-      const states: number[][] = JSON.parse(item[0])
-      const ids: number[] = JSON.parse(item[1])
-      const previousStates: number[][] = JSON.parse(item[2])
-      const casts: Cast[] = ids.map(id => scene.value.casts[id])
-      const value: number = Math.max(...casts.map(cast => cast.role.duration || 1))
-      const bound: Bound = states[0][0] > previousStates[0][0] ? 'inbound' : 'outbound'
-      const move: Move = {
-        casts: casts,
-        bound: bound,
-        value: value
+    if (finalStateList.length === 0) return false
+    const min = Math.min(...finalStateList.map(state => JSON.parse(state[0])[2]))
+    const finalStates = finalStateList.filter(state => JSON.parse(state[0])[2] === min)
+    for await (const finalState of finalStates) {
+      const moves: Set<Move> = new Set<Move>
+      const solution: string[][] = []
+      solution.push(finalState)
+      while (true) {
+        const latest = solution.slice(-1)[0][2]
+        if (!latest) break
+        const target = list.find(item => item[0] === latest)
+        if (!target) break
+        solution.push(target)
       }
-      moves.value.add(move)
-    })
+      solution.reverse().slice(1).forEach(item => {
+        const states: number[][] = JSON.parse(item[0])
+        const ids: number[] = JSON.parse(item[1])
+        const previousStates: number[][] = JSON.parse(item[2])
+        const casts: Cast[] = ids.map(id => scene.value.casts[id])
+        const value: number = Math.max(...casts.map(cast => cast.role.duration || 1))
+        const bound: Bound = states[0][0] > previousStates[0][0] ? 'inbound' : 'outbound'
+        const move: Move = {
+          casts: casts,
+          bound: bound,
+          value: value
+        }
+        moves.add(move)
+      })
+      solutions.value.push(moves)
+    }
+    return true
   }
 
   const getDestinations = (
@@ -144,7 +141,7 @@ const useSolve = (
   const parseState = (
     state: Ref<ExtendedState>
   ) => JSON.stringify([
-    state.value.carriers.map(state => state.coord ),
+    state.value.carriers.map(state => state.coord),
     state.value.casts.map(state => state.coord),
     state.value.count,
   ])
@@ -205,8 +202,8 @@ const useSolve = (
     return result
   }
   return {
-    moves,
-    count,
+    solutions,
+    solved,
     solve,
   }
 }

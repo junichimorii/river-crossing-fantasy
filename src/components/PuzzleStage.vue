@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { computed, toRef } from 'vue'
+import { computed, onMounted, toRef } from 'vue'
 import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
 import { useAppearance, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
+import { useSessionStore } from '@/store/session'
 const store = useSceneStore()
+const session = useSessionStore()
 const { stageSize } = useAppearance(store.scene)
 const { unreachers, reachers, halfways } = useCasts(toRef(store.state), toRef(store.scene))
 const landscape = computed(() =>
@@ -13,7 +15,10 @@ const landscape = computed(() =>
       ? '/images/landscapes/daytime-river-island.png'
       : '/images/landscapes/daytime-river.png'
 )
-
+onMounted(async () => {
+  session.state.drawer = false
+  session.state.solve = false
+})
 </script>
 
 <template>
