@@ -1,10 +1,10 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 4,
-  title: '逃避行(2)',
+  title: '逃避行（入門編2）',
   description: {
     conditions: 'すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべての登場人物が舟を漕げる。',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし騎士の重量は定員2人分。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
       '舟には、定員の他に重量制限が設定されている場合があります。重量オーバーの状態で舟を移動させることはできません。',
     ],

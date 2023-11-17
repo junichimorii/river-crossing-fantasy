@@ -4,7 +4,7 @@ const records = useRecordsStore()
 const items = Object.values(records.scenes)
 const headers = [
   { title: 'id', value: 'id', width: '5%', sortable: true },
-  { title: 'title', value: 'title', width: '10%' },
+  { title: 'title', value: 'title', width: '12%' },
   // { title: 'description', value: 'description', width: '25%' },
   { title: 'category', value: 'category', width: '10%', sortable: true },
   { title: 'level', value: 'level', width: '5%' },

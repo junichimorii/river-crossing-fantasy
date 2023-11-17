@@ -12,14 +12,14 @@ defineProps<{
       クリア条件
     </v-list-subheader>
     <v-list-item class="text-subtitle-2">
-      {{ scene.description.conditions }}
+      <div v-html="scene.description.conditions"></div>
     </v-list-item>
     <v-list-subheader>
       <v-icon icon="mdi-swap-vertical"></v-icon>
       移動手段
     </v-list-subheader>
     <v-list-item class="text-subtitle-2">
-      {{ scene.description.transportation }}
+      <div v-html="scene.description.transportation"></div>
     </v-list-item>
     <v-list-subheader
       v-if="scene.description.tips"
@@ -32,7 +32,7 @@ defineProps<{
       :key="i"
       class="text-subtitle-2 py-0"
     >
-      {{ tips }}
+      <div v-html="tips"></div>
     </v-list-item>
   </v-list>
 </template>

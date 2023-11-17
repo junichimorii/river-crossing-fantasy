@@ -42,6 +42,7 @@ onMounted(async () => {
         >
           <v-row no-gutters>
             <v-col
+              :cols="store.scene.landscape?.island ? 5 : false"
               class="d-flex justify-end"
             >
               <PuzzleCast

@@ -47,7 +47,7 @@ export type Bound = 'inbound' | 'outbound' | null
 
 /**
  * 登場人物の感情
- *   scared: 怖い、危機に瀕している
+ *   scared: 怖い、危機に<ruby>瀕<rt>ひん</rt></ruby>している
  *   excited: 興奮している、喜んでいる
  *   surprised: 驚いている、困っている
  */

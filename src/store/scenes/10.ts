@@ -4,7 +4,7 @@ const scene: Scene = Object.freeze({
   title: '逃避行（初級編）',
   description: {
     conditions: 'すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし騎士の重量は定員2人分。すべての登場人物が舟を漕げる。',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし騎士の重量は定員2人分。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
   },
   category: 'weight-limited',
   level: 2,

@@ -4,9 +4,9 @@ const scene: Scene = Object.freeze({
   title: '王女親衛隊の攻防（中級編）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。すべての登場人物が舟を漕げる。',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
-      '古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
+      '古くから「jealous husbands problem」（<ruby>嫉妬<rt>しっと</rt></ruby>深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
     ],
   },
   category: 'escorting-celebrity',

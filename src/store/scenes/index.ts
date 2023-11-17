@@ -22,7 +22,7 @@ import s21 from './21'
 import s22 from './22'
 import s23 from './23'
 import s24 from './24'
-import s25 from './25'
+// import s25 from './25'
 import s26 from './26'
 
 export {
@@ -50,6 +50,6 @@ export {
   s22,
   s23,
   s24,
-  s25,
+  // s25,
   s26,
 }

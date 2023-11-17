@@ -14,7 +14,7 @@ defineProps<{
       class="text-subtitle-2"
     >
       <span v-if="cast.role.rower !== undefined">
-        {{ cast.role.rower ? '舟を漕げる。' : '舟を漕げない。' }}
+        {{ cast.role.rower ? '舟を<ruby>漕<rt>こ</rt></ruby>げる。' : '舟を<ruby>漕<rt>こ</rt></ruby>げない。' }}
       </span>
       <span v-if="cast.role.duration !== undefined">
         橋を渡るのに{{ cast.role.duration }}分必要。

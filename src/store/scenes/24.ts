@@ -4,7 +4,7 @@ const scene: Scene = Object.freeze({
   title: '危険なパーティ（上級編3）',
   description: {
     conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1艘。ただし舟を漕げるのは魔獣使いと騎士のみ。川の中の島に降りることもできる。',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。川の中の島に降りることもできる。',
   },
   category: 'predators-and-guardians',
   landscape: {
