@@ -1,22 +1,20 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 5,
-  title: '闇夜の旅路（入門編）',
+  id: 17,
+  title: '闇夜の旅路（中級編）',
   description: {
-    conditions: 'すべての登場人物を7分以内に対岸に渡す',
+    conditions: 'すべての登場人物を15分以内に対岸に渡す',
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
     tips: [
-      '夜のステージは、移動時にたいまつが必要です。また、たいまつが燃え尽きる制限時間も決まっています。',
-      '登場人物を上方向にスワイプすると、たいまつの近くにセットされます。',
-      '橋を渡るのに必要な所要時間は登場人物毎に異なります。2人以上で移動する時は、遅いほうに合わせて同時に移動します。',
+      '古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したもの。',
     ],
   },
   category: 'time-limited',
   landscape: {
     night: true
   },
-  level: 1,
-  passing: 7,
+  level: 3,
+  passing: 15,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -49,7 +47,16 @@ const scene: Scene = Object.freeze({
       sprite: '/images/casts/priest1.png'
     },
     role: {
-      duration: 4
+      duration: 5
+    }
+  }, {
+    id: 3,
+    name: '魔法使い',
+    appearance: {
+      sprite: '/images/casts/mage1.png'
+    },
+    role: {
+      duration: 8
     }
   }]
 })

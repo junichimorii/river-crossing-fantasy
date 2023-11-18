@@ -1,19 +1,22 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 23,
-  title: '危険なパーティ（上級編2）',
+  title: '危険なパーティ（最上級編）',
   description: {
     conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。川の中の島に降りることもできる。',
   },
   category: 'predators-and-guardians',
-  level: 4,
-  passing: 9,
+  landscape: {
+    island: true
+  },
+  level: 5,
+  passing: 34,
   carriers: [{
     id: 0,
-    capacity: 3,
+    capacity: 2,
     appearance: {
-      sprite: '/images/carriers/boat3.png'
+      sprite: '/images/carriers/boat2.png'
     }
   }],
   casts: [{
@@ -27,7 +30,7 @@ const scene: Scene = Object.freeze({
     },
   }, {
     id: 1,
-    name: '魔獣A',
+    name: '魔獣',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
       sprite: '/images/casts/therianthropy1.png',
@@ -38,19 +41,8 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '魔獣B',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: {
-      sprite: '/images/casts/therianthropy1.png',
-      ratio: 0.85
-    },
-    role: {
-      rower: false
-    }
-  }, {
-    id: 3,
     name: 'A国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    description: 'B国騎士が目を離すとB国王女を襲う。',
     appearance: {
       sprite: '/images/casts/knight-a1.png'
     },
@@ -59,13 +51,10 @@ const scene: Scene = Object.freeze({
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 2,
-        guardian: 0
       }]
     }
   }, {
-    id: 4,
+    id: 3,
     name: 'A国王女1',
     appearance: {
       sprite: '/images/casts/princess-a1.png',
@@ -77,20 +66,48 @@ const scene: Scene = Object.freeze({
         predator: 1,
         guardian: 0
       }, {
-        predator: 2,
+        predator: 6,
+        guardian: 2
+      }]
+    }
+  }, {
+    id: 4,
+    name: 'A国王女2',
+    appearance: {
+      sprite: '/images/casts/princess-a2.png',
+      ratio: 0.85
+    },
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
         guardian: 0
       }, {
-        predator: 5,
-        guardian: 3
-      }, {
-        predator: 7,
-        guardian: 3
+        predator: 6,
+        guardian: 2
       }]
     }
   }, {
     id: 5,
+    name: 'A国王女3',
+    appearance: {
+      sprite: '/images/casts/princess-a3.png',
+      ratio: 0.85
+    },
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 6,
+        guardian: 2
+      }]
+    }
+  }, {
+    id: 6,
     name: 'B国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    description: 'A国騎士が目を離すとA国王女を襲う。',
     appearance: {
       sprite: '/images/casts/knight-b1.png'
     },
@@ -99,13 +116,10 @@ const scene: Scene = Object.freeze({
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 2,
-        guardian: 0
       }]
     }
   }, {
-    id: 6,
+    id: 7,
     name: 'B国王女1',
     appearance: {
       sprite: '/images/casts/princess-b1.png',
@@ -118,37 +132,14 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 0
-      }, {
-        predator: 3,
-        guardian: 5
-      }, {
-        predator: 7,
-        guardian: 5
-      }]
-    }
-  }, {
-    id: 7,
-    name: 'C国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: '/images/casts/knight-c1.png'
-    },
-    role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 0
+        guardian: 6
       }]
     }
   }, {
     id: 8,
-    name: 'C国王女1',
+    name: 'B国王女2',
     appearance: {
-      sprite: '/images/casts/princess-c1.png',
+      sprite: '/images/casts/princess-b2.png',
       ratio: 0.85
     },
     role: {
@@ -158,20 +149,14 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 0
-      }, {
-        predator: 3,
-        guardian: 7
-      }, {
-        predator: 5,
-        guardian: 7
+        guardian: 6
       }]
     }
   }, {
     id: 9,
-    name: '村人',
+    name: 'B国王女3',
     appearance: {
-      sprite: '/images/casts/villager1.png',
+      sprite: '/images/casts/princess-b3.png',
       ratio: 0.85
     },
     role: {
@@ -181,7 +166,7 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 0
+        guardian: 6
       }]
     }
   }]

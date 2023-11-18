@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 10,
-  title: '逃避行（初級編）',
+  title: '逃避行（初級編2）',
   description: {
     conditions: 'すべての登場人物を最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし騎士の重量は定員2人分。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',

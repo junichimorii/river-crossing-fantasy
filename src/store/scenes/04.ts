@@ -1,51 +1,59 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 4,
-  title: '逃避行（入門編2）',
+  title: '危険なパーティ（入門編）',
   description: {
-    conditions: 'すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし騎士の重量は定員2人分。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
+    conditions: '村人を魔獣から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いのみ。',
     tips: [
-      '舟には、定員の他に重量制限が設定されている場合があります。重量オーバーの状態で舟を移動させることはできません。',
+      '登場人物には、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
+      'ある登場人物が敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
+      'ある登場人物が危機に<ruby>瀕<rt>ひん</rt></ruby>している時は、その登場人物・敵・保護者に感情を表すマークが表示されます。その状態で舟を移動させることはできません。',
     ],
   },
-  category: 'weight-limited',
+  category: 'predators-and-guardians',
   level: 1,
-  passing: 5,
+  passing: 3,
   carriers: [{
     id: 0,
     capacity: 2,
-    weightLimit: 2,
     appearance: {
       sprite: '/images/carriers/boat2.png'
     }
   }],
   casts: [{
     id: 0,
-    name: '騎士A',
+    name: '魔獣使い',
     appearance: {
-      sprite: '/images/casts/knight-b1.png',
+      sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      weight: 2,
-    },
+      rower: true,
+    }
   }, {
     id: 1,
-    name: '村人A',
+    name: '村人',
     appearance: {
-      sprite: '/images/casts/villager1.png'
+      sprite: '/images/casts/villager1.png',
+      ratio: 0.85
     },
     role: {
-      weight: 1
+      rower: false,
+      predators: [{
+        predator: 2,
+        guardian: 0,
+      }],
     }
   }, {
     id: 2,
-    name: '村人B',
+    name: '魔獣',
+    description: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
-      sprite: '/images/casts/villager2.png'
+      sprite: '/images/casts/therianthropy1.png',
+      ratio: 0.85
     },
     role: {
-      weight: 1
+      rower: false,
     }
   }]
 })

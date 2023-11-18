@@ -13,17 +13,12 @@ const headers = [
   { title: 'carriers', value: 'carriers', width: '5%' },
   { title: 'casts', value: 'casts', width: '35%' },
 ]
-const sortBy = [
-  { key: 'category', order: true },
-  { key: 'id', order: true }
-]
 </script>
 
 <template>
   <v-main>
     <v-container fluid>
       <v-data-table
-        :sort-by="sortBy"
         :headers="headers"
         :items="items"
         :items-per-page="50"

@@ -1,17 +1,17 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 7,
-  title: '魔獣たちの反乱（初級編）',
+  title: '王女親衛隊の攻防（初級編）',
   description: {
-    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
+    conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
-      '両岸において、魔獣の数が魔獣使いの数より多くなった場合、魔獣が反乱を起こします。',
+      '騎士達が同国の王女を保護しながら川を渡るパズルです。',
+      '王女は、他国の騎士が近くにいて、かつ同国の騎士が近くにいない場合、他国の騎士に襲われてしまいます。',
       'いずれかの登場人物が危機に<ruby>瀕<rt>ひん</rt></ruby>している状況で舟を移動させることはできません。',
-      '岸への到着時、魔獣使いが危機を回避できない場合はその時点でクリア失敗となります。',
     ],
   },
-  category: 'keep-majority',
+  category: 'escorting-celebrity',
   level: 2,
   passing: 5,
   carriers: [{
@@ -23,39 +23,45 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使いA',
+    name: 'A国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/beast-tamer1.png'
+      sprite: '/images/casts/knight-a1.png'
     },
     role: {
-      rebel: false,
     }
   }, {
     id: 1,
-    name: '魔獣使いB',
+    name: 'A国王女',
     appearance: {
-      sprite: '/images/casts/beast-tamer2.png'
+      sprite: '/images/casts/princess-a1.png'
     },
     role: {
-      rebel: false,
+      predators: [{
+        predator: 2,
+        guardian: 0,
+      }]
     }
   }, {
     id: 2,
-    name: '魔獣A',
+    name: 'B国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/therianthropy1.png'
+      sprite: '/images/casts/knight-b1.png'
     },
     role: {
-      rebel: true,
     }
   }, {
     id: 3,
-    name: '魔獣B',
+    name: 'B国王女',
     appearance: {
-      sprite: '/images/casts/therianthropy2.png'
+      sprite: '/images/casts/princess-b1.png'
     },
     role: {
-      rebel: true,
+      predators: [{
+        predator: 0,
+        guardian: 2,
+      }]
     }
   }]
 })

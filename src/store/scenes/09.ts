@@ -30,7 +30,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '村人A',
+    name: '村人a',
     appearance: {
       sprite: '/images/casts/villager1.png',
       ratio: 0.85
@@ -44,7 +44,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '村人B',
+    name: '村人b',
     appearance: {
       sprite: '/images/casts/villager2.png',
       ratio: 0.85

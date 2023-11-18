@@ -1,101 +1,136 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 15,
-  title: '危険なパーティ（中級編）',
+  title: '王女親衛隊の攻防（中級編）',
   description: {
-    conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
+    conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
+    transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
   },
-  category: 'predators-and-guardians',
+  category: 'escorting-celebrity',
   level: 3,
-  passing: 9,
+  passing: 7,
   carriers: [{
     id: 0,
-    capacity: 2,
+    capacity: 3,
     appearance: {
       sprite: '/images/carriers/boat2.png'
     }
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
-    appearance: {
-      sprite: '/images/casts/beast-tamer1.png'
-    },
-    role: {
-      rower: true,
-    }
-  }, {
-    id: 1,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: {
-      sprite: '/images/casts/therianthropy1.png',
-      ratio: 0.85
-    },
-    role: {
-      rower: false
-    }
-  }, {
-    id: 2,
     name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: '/images/casts/knight-a1.png'
     },
     role: {
-      rower: true,
+    }
+  }, {
+    id: 1,
+    name: 'A国王女1',
+    appearance: {
+      sprite: '/images/casts/princess-a1.png'
+    },
+    role: {
       predators: [{
-        predator: 1,
-        guardian: 0,
+        predator: 3,
+        guardian: 0
+      }, {
+        predator: 6,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 2,
+    name: 'A国王女2',
+    appearance: {
+      sprite: '/images/casts/princess-a2.png'
+    },
+    role: {
+      predators: [{
+        predator: 3,
+        guardian: 0
+      }, {
+        predator: 6,
+        guardian: 0
       }]
     }
   }, {
     id: 3,
-    name: 'A国王女',
-    appearance: {
-      sprite: '/images/casts/princess-a1.png',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 4,
-        guardian: 2
-      }]
-    }
-  }, {
-    id: 4,
     name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: '/images/casts/knight-b1.png'
     },
     role: {
-      rower: true,
+    }
+  }, {
+    id: 4,
+    name: 'B国王女1',
+    appearance: {
+      sprite: '/images/casts/princess-b1.png'
+    },
+    role: {
       predators: [{
-        predator: 1,
-        guardian: 0,
+        predator: 0,
+        guardian: 3
+      }, {
+        predator: 6,
+        guardian: 3
       }]
     }
   }, {
     id: 5,
-    name: 'B国王女',
+    name: 'B国王女2',
     appearance: {
-      sprite: '/images/casts/princess-b1.png',
-      ratio: 0.85
+      sprite: '/images/casts/princess-b2.png'
     },
     role: {
-      rower: false,
       predators: [{
-        predator: 1,
-        guardian: 0
+        predator: 0,
+        guardian: 3
       }, {
-        predator: 2,
-        guardian: 4
+        predator: 6,
+        guardian: 3
+      }]
+    }
+  }, {
+    id: 6,
+    name: 'C国騎士',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    appearance: {
+      sprite: '/images/casts/knight-c1.png'
+    },
+    role: {
+    }
+  }, {
+    id: 7,
+    name: 'C国王女1',
+    appearance: {
+      sprite: '/images/casts/princess-c1.png'
+    },
+    role: {
+      predators: [{
+        predator: 0,
+        guardian: 6
+      }, {
+        predator: 3,
+        guardian: 6
+      }]
+    }
+  }, {
+    id: 8,
+    name: 'C国王女2',
+    appearance: {
+      sprite: '/images/casts/princess-c2.png'
+    },
+    role: {
+      predators: [{
+        predator: 0,
+        guardian: 6
+      }, {
+        predator: 3,
+        guardian: 6
       }]
     }
   }]

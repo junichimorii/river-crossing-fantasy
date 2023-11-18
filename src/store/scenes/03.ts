@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 3,
-  title: '逃避行（入門編1）',
+  title: '逃避行（入門編）',
   description: {
     conditions: 'すべての登場人物を最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは騎士のみ。',
@@ -31,7 +31,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '王女A',
+    name: '王女a',
     appearance: {
       sprite: '/images/casts/princess-a1.png',
       ratio: 0.85
@@ -41,7 +41,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '王女B',
+    name: '王女b',
     appearance: {
       sprite: '/images/casts/princess-a2.png',
       ratio: 0.85

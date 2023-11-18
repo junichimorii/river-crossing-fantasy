@@ -1,55 +1,61 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 6,
-  title: '闇夜の旅路（入門編）',
+  title: '魔獣たちの反乱（初級編）',
   description: {
-    conditions: 'すべての登場人物を7分以内に対岸に渡す',
-    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
+    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
-      '夜のステージは、移動時にたいまつが必要です。また、たいまつが燃え尽きる制限時間も決まっています。',
-      '登場人物を上方向にスワイプすると、たいまつの近くにセットされます。',
-      '橋を渡るのに必要な所要時間は登場人物毎に異なります。2人以上で移動する時は、遅いほうに合わせて同時に移動します。',
+      '両岸において、魔獣の数が魔獣使いの数より多くなった場合、魔獣が反乱を起こします。',
+      'いずれかの登場人物が危機に<ruby>瀕<rt>ひん</rt></ruby>している状況で舟を移動させることはできません。',
+      '岸への到着時、魔獣使いが危機を回避できない場合はその時点でクリア失敗となります。',
     ],
   },
-  category: 'time-limited',
-  landscape: {
-    night: true
-  },
-  level: 1,
-  passing: 7,
+  category: 'keep-majority',
+  level: 2,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: '/images/carriers/touch.png'
+      sprite: '/images/carriers/boat2.png'
     }
   }],
   casts: [{
     id: 0,
-    name: '盗賊',
+    name: '魔獣使いA',
     appearance: {
-      sprite: '/images/casts/thief1.png'
+      sprite: '/images/casts/beast-tamer1.png'
     },
     role: {
-      duration: 1
+      rebel: false,
     }
   }, {
     id: 1,
-    name: '戦士',
+    name: '魔獣使いB',
     appearance: {
-      sprite: '/images/casts/fighter1.png'
+      sprite: '/images/casts/beast-tamer2.png'
     },
     role: {
-      duration: 2
+      rebel: false,
     }
   }, {
     id: 2,
-    name: '司祭',
+    name: '魔獣A',
     appearance: {
-      sprite: '/images/casts/priest1.png'
+      sprite: '/images/casts/therianthropy1.png'
     },
     role: {
-      duration: 4
+      rebel: true,
+    }
+  }, {
+    id: 3,
+    name: '魔獣B',
+    appearance: {
+      sprite: '/images/casts/therianthropy2.png'
+    },
+    role: {
+      rebel: true,
     }
   }]
 })
