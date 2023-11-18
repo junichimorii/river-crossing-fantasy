@@ -1,9 +1,13 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneSolve } from '@/components'
+import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const session = useSessionStore()
 const store = useSceneStore()
+const records = useRecordsStore()
+const panel = ref(3)
 </script>
 
 <template>
@@ -26,6 +30,7 @@ const store = useSceneStore()
       </template>
       <v-divider></v-divider>
       <v-expansion-panels
+        v-model="panel"
         variant="accordion"
       >
         <v-expansion-panel>
@@ -81,6 +86,7 @@ const store = useSceneStore()
               block
               color="info"
               prepend-icon="mdi-map-search"
+              :disabled="!records.isCleared(store.scene.id)"
               @click.stop="session.state.solve = true"
             >
               ルート探索

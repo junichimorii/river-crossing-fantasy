@@ -6,7 +6,7 @@ import { AppIntroduction } from '@/components'
 const session = useSessionStore()
 const records = useRecordsStore()
 onMounted(async () => {
-  if (!records.has(1)) records.set(1, 0)
+  if (!records.state.level.has(1)) records.state.level.add(1)
 })
 </script>
 
@@ -41,7 +41,7 @@ onMounted(async () => {
             :to="`/${scene.id}`"
             :title="scene.title"
             :subtitle="scene.description.conditions"
-            :disabled="false/*!records.has(scene.id)*/"
+            :disabled="!records.state.level.has(scene.level)"
             class="elevation-4 rounded my-1"
             style="background-color: hsla(0, 0%, 100%, 0.95)"
           >
@@ -56,16 +56,16 @@ onMounted(async () => {
             </template>
             <template v-slot:append>
               <v-icon
-                v-if="!records.has(scene.id)"
+                v-if="!records.state.level.has(scene.level)"
                 icon="mdi-lock"
               ></v-icon>
               <v-rating
-                v-if="records.has(scene.id)"
+                v-if="records.state.level.has(scene.level)"
                 readonly
                 density="compact"
                 size="small"
                 :length="2"
-                :model-value="records.get(scene.id)"
+                :model-value="records.getScore(scene.id)"
                 active-color="tertiary"
               />
             </template>

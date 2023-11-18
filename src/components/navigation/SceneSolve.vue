@@ -64,7 +64,6 @@ const { solutions, solved, solve } = useSolve(toRef(props.scene))
             :category="scene.category"
           ></SceneMoves>
         </v-card-item>
-
       </v-card-text>
     </v-card>
   </v-dialog>

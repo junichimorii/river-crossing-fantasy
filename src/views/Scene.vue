@@ -19,9 +19,11 @@ onMounted(async () => {
   const id = parseInt(route.params.id)
   if(!store.scene || store.scene.id !== id) {
     const config = await records.load(id)
-    await store.load(config).catch(() => {
+    if (!config) {
       router.push({ path: '/home' })
-    })
+      return
+    }
+    await store.load(config)
     await store.init()
   }
   loading.value = false

@@ -2,8 +2,10 @@
 import { ref, toRef } from 'vue'
 import { SceneCasts, SceneConditions, SceneMenu, SceneMoves, SceneSolve } from '@/components'
 import { useMoves } from '@/composables'
+import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
+const records = useRecordsStore()
 const store = useSceneStore()
 const session = useSessionStore()
 const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
@@ -82,6 +84,7 @@ const tab = ref(null)
             color="info"
             size="large"
             prepend-icon="mdi-map-search"
+            :disabled="!records.isCleared(store.scene.id)"
             @click.stop="session.state.solve = true"
           >
             ルート探索

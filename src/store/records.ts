@@ -2,7 +2,8 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import * as scenes from './scenes'
-const levels = [ '入門編', '初級編', '中級編', '上級編' ]
+import type { Scene } from '@/types'
+const levels = [ '入門編', '初級編', '中級編', '上級編', '最上級編' ]
 /**
  * 実績管理
  */
@@ -12,6 +13,10 @@ export const useRecordsStore = defineStore('records', () => {
       'RIVER_CROSSING_SCENES',
       new Map<number, number>()
     ),
+    level: useStorage<Set<number>>(
+      'RIVER_CROSSING_LEVEL',
+      new Set<number>()
+    )
   })
 
   /**
@@ -21,7 +26,8 @@ export const useRecordsStore = defineStore('records', () => {
     id: number
   ) => {
     const config = Object.values(scenes).find(scene => scene.id === id)
-    if(!config) throw false
+    if (!config) return undefined
+    if (!state.value.level.has(config.level)) return undefined
     return config
   }
 
@@ -29,12 +35,12 @@ export const useRecordsStore = defineStore('records', () => {
    * 各ステージをクリアした結果を格納する
    */
   const report = async (
-    id: number,
+    scene: Scene,
     score: number,
   ) => {
-    set(id, Math.max(get(id), score))
-    if (!has(id + 1)) {
-      set(id + 1, 0)
+    state.value.scenes.set(scene.id, Math.max(getScore(scene.id), score))
+    if (isLevelCompleted(scene.level)) {
+      state.value.level.add(scene.level + 1)
     }
   }
 
@@ -48,33 +54,31 @@ export const useRecordsStore = defineStore('records', () => {
     if(!current) throw false
     const previous = Object.values(scenes).find(scene => scene.id === id - 1)
     if(!previous) return levels[0]
-    const level = current.level
     return current.level > previous.level
       ? levels[current.level - 1]
-      : undefined
+      : null
   }
 
   /**
    * ステージのスコアの有無を取得
    */
-  const has = (
+  const isCleared = (
     id: number
   ) => state.value.scenes.has(id)
 
   /**
    * ステージのスコアを取得
    */
-  const get = (
+  const getScore = (
     id: number
   ) => state.value.scenes.get(id) || 0
 
   /**
-   * ステージのスコアを格納
+   * 同一レベルのステージをすべてクリアしたかどうか
    */
-  const set = (
-    id: number,
-    score: number,
-  ) => state.value.scenes.set(id, score)
+  const isLevelCompleted = (
+    level: number
+  ) => Object.values(scenes).filter(scene => scene.level === level).every(scene => isCleared(scene.id))
 
   return {
     state,
@@ -82,8 +86,7 @@ export const useRecordsStore = defineStore('records', () => {
     load,
     report,
     header,
-    has,
-    get,
-    set,
+    isCleared,
+    getScore,
   }
 })

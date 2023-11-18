@@ -16,7 +16,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: '/images/carriers/boat3.png'
+      sprite: '/images/carriers/boat2.png'
     }
   }],
   casts: [{

@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { onMounted, ref, toRef } from 'vue'
+import { onMounted, ref } from 'vue'
 import { SceneCasts, SceneConditions } from '@/components'
-import { useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const store = useSceneStore()
-const { isUnreach } = useCasts(toRef(store.state), toRef(store.scene))
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {
-  dialog.value = isUnreach.value
+  dialog.value = true
 })
 </script>
 
@@ -41,6 +39,10 @@ onMounted(async () => {
         <SceneConditions
           :scene="store.scene"
         ></SceneConditions>
+        <v-card-subtitle>
+          <v-icon>mdi-account-multiple</v-icon>
+          登場人物
+        </v-card-subtitle>
         <SceneCasts
           :casts="store.scene.casts"
         ></SceneCasts>

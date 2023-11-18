@@ -5,7 +5,7 @@ const items = Object.values(records.scenes)
 const headers = [
   { title: 'id', value: 'id', width: '5%', sortable: true },
   { title: 'title', value: 'title', width: '12%' },
-  // { title: 'description', value: 'description', width: '25%' },
+  { title: 'description', value: 'description', width: '25%' },
   { title: 'category', value: 'category', width: '10%', sortable: true },
   { title: 'level', value: 'level', width: '5%' },
   { title: 'landscape', value: 'landscape', width: '5%' },
@@ -34,8 +34,14 @@ const headers = [
           </v-chip>
         </template>
         <template v-slot:item.description="{ value }">
-          <div class="text-caption">{{ value.conditions }}</div>
-          <div class="text-caption">{{ value.transportation }}</div>
+          <!-- <div class="text-caption">{{ value.conditions }}</div>
+          <div class="text-caption">{{ value.transportation }}</div> -->
+          <div
+            v-for="(tip, i) in value.tips"
+            :key="i"
+            class="text-caption"
+            v-html="tip"
+          ></div>
         </template>
         <template v-slot:item.landscape="{ value }">
           <v-icon v-if="value && value.island">mdi-island</v-icon>
@@ -47,7 +53,7 @@ const headers = [
             :key="carrier.id"
             variant="text"
           >
-            <v-avatar start>
+            <v-avatar start rounded="0" size="large">
               <v-img
                 :src="carrier.appearance.sprite"
               ></v-img>

@@ -24,7 +24,7 @@ watch(result, async (value) => {
   /** ステージクリア */
   if (value === 'succeeded') {
     score.value = count.value <= store.scene.passing ? 2 : 1
-    records.report(store.scene.id, score.value)
+    records.report(store.scene, score.value)
   }
 })
 </script>

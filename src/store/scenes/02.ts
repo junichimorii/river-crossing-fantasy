@@ -7,7 +7,7 @@ const scene: Scene = Object.freeze({
     transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
       '舟には定員を超えない範囲で何人でも乗せることができます。',
-      '対岸の登場人物を舟に乗せる時は、下方向にスワイプします。',
+      '対岸の登場人物を舟に乗せる時は、下方向にスワイプします。上方向にスワイプすると舟から降ります。',
     ],
   },
   category: 'unconditioned',

@@ -23,9 +23,11 @@ const useSolve = (
   const { coord, leave } = useCarrierState(state)
   const { isReady } = useCarrier(state, scene)
   const { isPeaceable } = useCasts(state, scene)
-  const { pickUp, arrive, safetyConfirmation } = useScene(state, scene)
-  const { init: initScene } = useScene(state, scene)
+  const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
 
+  /**
+   * パズルを解く
+   */
   const solve = async () => {
     await initScene()
     solutions.value = []
@@ -33,6 +35,10 @@ const useSolve = (
     solved.value = await lookBack(history)
   }
 
+  /**
+   * 幅優先探索を開始
+   * @returns 
+   */
   const search = async () => {
     const history = new Set<string[]>()
     const visited = new Set<string>()
@@ -86,6 +92,11 @@ const useSolve = (
     return history
   }
 
+  /**
+   * 探索結果から手順を算出
+   * @param history 
+   * @returns 
+   */
   const lookBack = async (
     history: Set<string[]>
   ) => {
@@ -130,6 +141,11 @@ const useSolve = (
     return true
   }
 
+  /**
+   * 行先の選択肢を算出
+   * @param carrier 
+   * @returns 
+   */
   const getDestinations = (
     carrier: Carrier,
   ) => scene.value.landscape?.island

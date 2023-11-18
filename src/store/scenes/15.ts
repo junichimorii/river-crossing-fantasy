@@ -5,6 +5,9 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
     transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
+    tips: [
+      '舟には3人まで乗せることができます。',
+    ],
   },
   category: 'escorting-celebrity',
   level: 3,
@@ -13,7 +16,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 3,
     appearance: {
-      sprite: '/images/carriers/boat2.png'
+      sprite: '/images/carriers/boat3.png'
     }
   }],
   casts: [{

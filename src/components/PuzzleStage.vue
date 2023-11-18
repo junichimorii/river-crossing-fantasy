@@ -36,9 +36,21 @@ onMounted(async () => {
         class="d-flex flex-column bg-transparent"
         :width="stageSize * 0.95"
       >
+        <!-- destination -->
+        <v-sheet
+          class="d-flex justify-end align-end order-1 bg-transparent"
+          :height="stageSize * 0.3"
+        >
+          <PuzzleCast
+            v-for="cast in reachers"
+            :key="cast.id"
+            :state="cast"
+          ></PuzzleCast>
+        </v-sheet>
+        <!-- river -->
         <v-sheet
           class="d-flex justify-center align-start order-2 bg-transparent"
-          :height="stageSize * 0.4"
+          :height="stageSize * 0.45"
         >
           <v-row no-gutters>
             <v-col
@@ -64,16 +76,7 @@ onMounted(async () => {
             </v-col>
           </v-row>
         </v-sheet>
-        <v-sheet
-          class="d-flex justify-end align-end order-1 bg-transparent"
-          :height="stageSize * 0.35"
-        >
-          <PuzzleCast
-            v-for="cast in reachers"
-            :key="cast.id"
-            :state="cast"
-          ></PuzzleCast>
-        </v-sheet>
+        <!-- origin -->
         <v-sheet
           class="d-flex justify-start align-end order-3 bg-transparent"
           :height="stageSize * 0.2"
