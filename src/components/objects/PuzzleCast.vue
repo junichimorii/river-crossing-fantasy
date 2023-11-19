@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { computed, ref, toRef } from 'vue'
 import { usePointerSwipe, useSwipe } from '@vueuse/core'
+import { computed, ref, toRef } from 'vue'
+import type { Cast } from '@/types'
+import type { UseSwipeDirection } from '@vueuse/core'
 import { PuzzleCastEmotion, PuzzleCastMenu } from '@/components'
 import { useAppearance, useCastState, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
-import type { UseSwipeDirection } from '@vueuse/core'
-import type { Cast } from '@/types'
 const props = defineProps<{
   state: Cast
 }>()
@@ -20,8 +20,6 @@ const target = ref<HTMLElement | null>(null)
  */
 const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
   target, {
-    onSwipe(event: TouchEvent) {
-    },
     onSwipeEnd(event: TouchEvent, direction: UseSwipeDirection) {
       action(direction)
     },
@@ -33,8 +31,6 @@ const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
  */
 const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerSwipe(
   target, {
-    onSwipe(event: PointerEvent) {
-    },
     onSwipeEnd(event: PointerEvent, direction: UseSwipeDirection) {
       action(direction)
     },

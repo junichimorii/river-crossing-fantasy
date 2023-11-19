@@ -36,7 +36,7 @@ const session = useSessionStore()
             推奨環境:
           </v-card-subtitle>
           <v-card-text class="py-1">
-            スマートフォンまたはタブレットの縦向きでのプレイを想定しています。
+            スマートフォンまたはタブレットの縦向きでのプレイを想定していますが、横向きでもPCでもプレイは可能です。
           </v-card-text>
         </v-card-item>
         <v-card-item>
@@ -68,6 +68,22 @@ const session = useSessionStore()
               class="text-decoration-none"
             >
               8amjp
+            </a>
+          </v-card-text>
+        </v-card-item>
+        <v-card-item>
+          <v-card-subtitle>
+            <v-icon icon="mdi-music"></v-icon>
+            素材:
+          </v-card-subtitle>
+          <v-card-text class="py-1">
+            BGM:
+            <a
+              href="https://dova-s.jp/bgm/play12675.html"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              White River
             </a>
           </v-card-text>
         </v-card-item>

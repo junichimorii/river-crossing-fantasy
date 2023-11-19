@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import { useScreenOrientation } from '@vueuse/core'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useScreenOrientation } from '@vueuse/core'
-import { PuzzleBottomNavigation, PuzzleNavigationDrawer, PuzzleStage, SceneResult, SceneSplash } from '@/components'
+import { PuzzleBottomMenu, PuzzleNavigationDrawer, PuzzleStage, SceneResult, SceneSplash } from '@/components'
 import { useAppearance } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
@@ -13,7 +13,6 @@ const records = useRecordsStore()
 const store = useSceneStore()
 const loading = ref(true)
 const { navigationHeight } = useAppearance(store.scene)
-
 onMounted(async () => {
   if(Array.isArray(route.params.id)) throw `id: ${route.params.id}`
   const id = parseInt(route.params.id)
@@ -28,7 +27,6 @@ onMounted(async () => {
   }
   loading.value = false
 })
-
 onUnmounted(async () => {
   await store.unload()
 })
@@ -43,10 +41,10 @@ onUnmounted(async () => {
       @contextmenu.prevent
     >
       <PuzzleStage></PuzzleStage>
-      <PuzzleBottomNavigation
-        v-show="orientation === 'portrait-primary'"
+      <PuzzleBottomMenu
+        v-show="isSupported && orientation === 'portrait-primary'"
         :height="navigationHeight"
-      ></PuzzleBottomNavigation>
+      ></PuzzleBottomMenu>
     </v-main>
     <SceneSplash></SceneSplash>
     <SceneResult></SceneResult>

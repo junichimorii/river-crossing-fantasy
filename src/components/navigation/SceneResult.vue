@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, toRef, watch } from 'vue'
-import { useRecordsStore } from '@/store/records'
 import { useAppearance, useMoves } from '@/composables'
+import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 const records = useRecordsStore()
 const store = useSceneStore()

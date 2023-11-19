@@ -17,6 +17,7 @@ const landscape = computed(() =>
 )
 onMounted(async () => {
   session.state.drawer = false
+  session.state.sound = false
   session.state.solve = false
 })
 </script>

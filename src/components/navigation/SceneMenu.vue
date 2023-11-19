@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useSceneStore } from '@/store/scene'
+import { useSettingsStore } from '@/store/settings'
+const settings = useSettingsStore()
 const store = useSceneStore()
 </script>
 
 <template>
   <v-list>
-    <v-list-item
-      class="pa-0"
-    >
+    <v-list-item>
       <v-btn
         block
         color="warning"
@@ -18,9 +18,7 @@ const store = useSceneStore()
         最初から始める
       </v-btn>
     </v-list-item>
-    <v-list-item
-      class="pa-0"
-    >
+    <v-list-item>
       <v-btn
         block
         color="success"
@@ -30,6 +28,21 @@ const store = useSceneStore()
       >
         パズル一覧に戻る
       </v-btn>
+    </v-list-item>
+    <v-divider class="my-4"></v-divider>
+    <v-list-subheader>
+      BGM音量
+    </v-list-subheader>
+    <v-list-item>
+      <v-slider
+        v-model="settings.state.sound.volume"
+        color="primary"
+        :max="1"
+        :min="0"
+        :step="0.05"
+        prepend-icon="mdi-volume-high"
+        class="py-1"
+      ></v-slider>
     </v-list-item>
   </v-list>
 </template>

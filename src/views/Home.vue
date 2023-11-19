@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import { useSessionStore } from '@/store/session'
-import { useRecordsStore } from '@/store/records'
 import { AppIntroduction } from '@/components'
+import { useRecordsStore } from '@/store/records'
+import { useSessionStore } from '@/store/session'
 const session = useSessionStore()
 const records = useRecordsStore()
 onMounted(async () => {

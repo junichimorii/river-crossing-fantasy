@@ -1,6 +1,6 @@
 import useAppearance from './use-appearance'
-import useCarrierState from './use-carrier-state'
 import useCarrier from './use-carrier'
+import useCarrierState from './use-carrier-state'
 import useCastEmotion from './use-cast-emotion'
 import useCastState from './use-cast-state'
 import useCasts from './use-casts'

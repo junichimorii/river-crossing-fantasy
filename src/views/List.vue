@@ -23,17 +23,17 @@ const headers = [
         :items="items"
         :items-per-page="50"
       >
-        <template v-slot:item.id="{ value }">
+        <template #[`item.id`]="{ value }">
           <v-chip>
             Q{{value}}
           </v-chip>
         </template>
-        <template v-slot:item.category="{ value }">
+        <template #[`item.category`]="{ value }">
           <v-chip :color="value">
             {{ value }}
           </v-chip>
         </template>
-        <template v-slot:item.description="{ value }">
+        <template #[`item.description`]="{ value }">
           <!-- <div class="text-caption">{{ value.conditions }}</div>
           <div class="text-caption">{{ value.transportation }}</div> -->
           <div
@@ -43,11 +43,11 @@ const headers = [
             v-html="tip"
           ></div>
         </template>
-        <template v-slot:item.landscape="{ value }">
+        <template #[`item.landscape`]="{ value }">
           <v-icon v-if="value && value.island">mdi-island</v-icon>
           <v-icon v-if="value && value.night">mdi-weather-night</v-icon>
         </template>
-        <template v-slot:item.carriers="{ value }">
+        <template #[`item.carriers`]="{ value }">
           <v-chip
             v-for="carrier in value"
             :key="carrier.id"
@@ -61,7 +61,7 @@ const headers = [
             <span class="text-caption">{{ carrier.capacity }}</span>
           </v-chip>
         </template>
-        <template v-slot:item.casts="{ value }">
+        <template #[`item.casts`]="{ value }">
           <v-chip
             v-for="cast in value"
             :key="cast.id"

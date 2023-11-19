@@ -4,5 +4,7 @@
 export interface Session {
   introduction: boolean
   drawer: boolean
+  navigation: number
+  sound: boolean
   solve: boolean
 }

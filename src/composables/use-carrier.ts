@@ -1,7 +1,7 @@
-import { useCarrierState, useCastState } from '@/composables'
-import type { Ref } from 'vue'
 import type { Carrier, Scene, State } from '@/types'
 import type { Bound } from '@/types/state'
+import type { Ref } from 'vue'
+import { useCarrierState, useCastState } from '@/composables'
 
 /**
  * 川渡りパズルの乗り物

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, toRef } from 'vue'
+import type { Carrier } from '@/types'
 import { useCarrier } from '@/composables'
 import { useSceneStore } from '@/store/scene'
-import type { Carrier } from '@/types'
 const props = defineProps<{
   state: Carrier
 }>()

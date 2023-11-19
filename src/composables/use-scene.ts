@@ -1,9 +1,9 @@
+import type { Carrier, Cast, Scene, State, Move } from '@/types'
+import type { Bound } from '@/types/state'
+import type { Ref } from 'vue'
 import { useCarrierState, useCarrier, useCastState, useCasts } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
-import type { Ref } from 'vue'
-import type { Carrier, Cast, Scene, State, Move } from '@/types'
-import type { Bound } from '@/types/state'
 
 /**
  * 川渡りパズル
@@ -12,7 +12,7 @@ const useScene = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { coord: carrierCoord, leave: leaveCarrier } = useCarrierState(state)
+  const { coord: carrierCoord } = useCarrierState(state)
   const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
   const { coord: castCoord, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
   const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)

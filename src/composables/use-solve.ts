@@ -1,8 +1,8 @@
 import { ref } from 'vue'
-import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
-import type { Ref } from 'vue'
 import type { Carrier, Cast, Scene, State, Move } from '@/types'
 import type { CarrierState, CastState, Bound } from '@/types/state'
+import type { Ref } from 'vue'
+import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
 interface ExtendedState extends State {
   count: number
 }
@@ -49,7 +49,6 @@ const useSolve = (
     while (queue.length > 0) {
       const currentState = queue.shift() as ExtendedState
       const nextMoves = await generateMoves()
-      moves:
       for await (const move of nextMoves) {
         state.value = restore(currentState) as ExtendedState
         const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
@@ -61,7 +60,6 @@ const useSolve = (
         if (!isAllReady) continue
         const parsedPreviousState = parseState(state)
         const beforeCarriersState = state.value
-        carriers:
         for await (const carrier of scene.value.carriers) {
           state.value = restore(beforeCarriersState) as ExtendedState
           const destinations = getDestinations(carrier)
@@ -115,7 +113,7 @@ const useSolve = (
       const moves: Set<Move> = new Set<Move>
       const solution: string[][] = []
       solution.push(finalState)
-      while (true) {
+      for (;;) {
         const latest = solution.slice(-1)[0][2]
         if (!latest) break
         const target = list.find(item => item[0] === latest)

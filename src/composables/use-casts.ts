@@ -1,7 +1,7 @@
 import { computed } from 'vue'
-import { useCastState } from '@/composables'
-import type { Ref } from 'vue'
 import type { Scene, State } from '@/types'
+import type { Ref } from 'vue'
+import { useCastState } from '@/composables'
 
 /**
  * 川渡りパズル

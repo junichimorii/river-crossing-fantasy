@@ -2,12 +2,18 @@
 import { onMounted, ref } from 'vue'
 import { SceneCasts, SceneConditions } from '@/components'
 import { useSceneStore } from '@/store/scene'
+import { useSessionStore } from '@/store/session'
 const store = useSceneStore()
+const session = useSessionStore()
 const dialog = ref(false)
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {
   dialog.value = true
 })
+const start = () => {
+  dialog.value = false
+  session.state.sound = true
+}
 </script>
 
 <template>
@@ -54,7 +60,7 @@ onMounted(async () => {
         <v-btn
           color="green"
           variant="elevated"
-          @click.stop="dialog = false"
+          @click.stop="start()"
         >
           Start
         </v-btn>

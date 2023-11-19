@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ref, toRef } from 'vue'
 import { useScreenOrientation } from '@vueuse/core'
+import { toRef } from 'vue'
+import { SceneSound } from '@/components'
 import { useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
@@ -14,6 +15,7 @@ const btnColor = store.scene.category === 'time-limited' ? 'white' : 'black'
 <template>
   <v-toolbar
     absolute
+    density="compact"
     class="bg-transparent"
   >
     <template v-slot:prepend>
@@ -26,10 +28,12 @@ const btnColor = store.scene.category === 'time-limited' ? 'white' : 'black'
       </v-chip>
     </template>
     <template v-slot:append>
+      <SceneSound></SceneSound>
       <v-app-bar-nav-icon
         variant="text"
+        size="small"
         :color="btnColor"
-        v-show="orientation === 'landscape-primary'"
+        v-show="isSupported && orientation === 'landscape-primary'"
         @click.stop="session.state.drawer = !session.state.drawer"
       ></v-app-bar-nav-icon>
     </template>

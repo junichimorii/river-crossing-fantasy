@@ -13,6 +13,7 @@
   "dependencies": {
     "@mdi/font": "7.3.67",
     "@vueuse/core": "^10.6.1",
+    "@vueuse/sound": "^2.0.1",
     "pinia": "^2.1.7",
     "roboto-fontface": "*",
     "vue": "^3.3.8",
@@ -25,6 +26,7 @@
     "@vitejs/plugin-vue": "^4.5.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "eslint": "^8.53.0",
+    "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-vue": "^9.18.1",
     "typescript": "^5.2.2",
     "unplugin-fonts": "^1.0.3",
