@@ -16,14 +16,14 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: '/images/carriers/boat2.png'
+      sprite: 'boat2'
     }
   }],
   casts: [{
     id: 0,
     name: '魔獣使い',
     appearance: {
-      sprite: '/images/casts/beast-tamer1.png'
+      sprite: 'beasttamer1'
     },
     role: {
       rower: true
@@ -33,7 +33,7 @@ const scene: Scene = Object.freeze({
     name: '魔獣',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
-      sprite: '/images/casts/therianthropy1.png',
+      sprite: 'therianthropy1',
       ratio: 0.85
     },
     role: {
@@ -44,7 +44,7 @@ const scene: Scene = Object.freeze({
     name: 'A国騎士',
     description: 'B国騎士が目を離すとB国王女を襲う。',
     appearance: {
-      sprite: '/images/casts/knight-a1.png'
+      sprite: 'knight11'
     },
     role: {
       rower: true,
@@ -57,7 +57,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: 'A国王女1',
     appearance: {
-      sprite: '/images/casts/princess-a1.png',
+      sprite: 'princess11',
       ratio: 0.85
     },
     role: {
@@ -74,7 +74,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: 'A国王女2',
     appearance: {
-      sprite: '/images/casts/princess-a2.png',
+      sprite: 'princess12',
       ratio: 0.85
     },
     role: {
@@ -91,7 +91,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: 'A国王女3',
     appearance: {
-      sprite: '/images/casts/princess-a3.png',
+      sprite: 'princess13',
       ratio: 0.85
     },
     role: {
@@ -109,7 +109,7 @@ const scene: Scene = Object.freeze({
     name: 'B国騎士',
     description: 'A国騎士が目を離すとA国王女を襲う。',
     appearance: {
-      sprite: '/images/casts/knight-b1.png'
+      sprite: 'knight21'
     },
     role: {
       rower: true,
@@ -122,7 +122,7 @@ const scene: Scene = Object.freeze({
     id: 7,
     name: 'B国王女1',
     appearance: {
-      sprite: '/images/casts/princess-b1.png',
+      sprite: 'princess21',
       ratio: 0.85
     },
     role: {
@@ -139,7 +139,7 @@ const scene: Scene = Object.freeze({
     id: 8,
     name: 'B国王女2',
     appearance: {
-      sprite: '/images/casts/princess-b2.png',
+      sprite: 'princess22',
       ratio: 0.85
     },
     role: {
@@ -156,7 +156,7 @@ const scene: Scene = Object.freeze({
     id: 9,
     name: 'B国王女3',
     appearance: {
-      sprite: '/images/casts/princess-b3.png',
+      sprite: 'princess23',
       ratio: 0.85
     },
     role: {

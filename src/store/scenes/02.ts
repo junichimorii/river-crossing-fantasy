@@ -17,14 +17,14 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: '/images/carriers/boat2.png'
+      sprite: 'boat2'
     }
   }],
   casts: [{
     id: 0,
     name: '戦士',
     appearance: {
-      sprite: '/images/casts/fighter1.png'
+      sprite: 'fighter1'
     },
     role: {
     }
@@ -32,7 +32,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '盗賊',
     appearance: {
-      sprite: '/images/casts/thief1.png'
+      sprite: 'thief1'
     },
     role: {
     }
@@ -40,7 +40,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '魔法使い',
     appearance: {
-      sprite: '/images/casts/mage1.png'
+      sprite: 'mage1'
     },
     role: {
     }

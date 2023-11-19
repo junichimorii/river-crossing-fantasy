@@ -16,7 +16,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 3,
     appearance: {
-      sprite: '/images/carriers/boat3.png'
+      sprite: 'boat3'
     }
   }],
   casts: [{
@@ -24,7 +24,7 @@ const scene: Scene = Object.freeze({
     name: 'A国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/knight-a1.png'
+      sprite: 'knight11'
     },
     role: {
     }
@@ -32,7 +32,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: 'A国王女1',
     appearance: {
-      sprite: '/images/casts/princess-a1.png'
+      sprite: 'princess11'
     },
     role: {
       predators: [{
@@ -47,7 +47,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: 'A国王女2',
     appearance: {
-      sprite: '/images/casts/princess-a2.png'
+      sprite: 'princess12'
     },
     role: {
       predators: [{
@@ -63,7 +63,7 @@ const scene: Scene = Object.freeze({
     name: 'B国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/knight-b1.png'
+      sprite: 'knight21'
     },
     role: {
     }
@@ -71,7 +71,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: 'B国王女1',
     appearance: {
-      sprite: '/images/casts/princess-b1.png'
+      sprite: 'princess21'
     },
     role: {
       predators: [{
@@ -86,7 +86,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: 'B国王女2',
     appearance: {
-      sprite: '/images/casts/princess-b2.png'
+      sprite: 'princess22'
     },
     role: {
       predators: [{
@@ -102,7 +102,7 @@ const scene: Scene = Object.freeze({
     name: 'C国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
-      sprite: '/images/casts/knight-c1.png'
+      sprite: 'knight31'
     },
     role: {
     }
@@ -110,7 +110,7 @@ const scene: Scene = Object.freeze({
     id: 7,
     name: 'C国王女1',
     appearance: {
-      sprite: '/images/casts/princess-c1.png'
+      sprite: 'princess31'
     },
     role: {
       predators: [{
@@ -125,7 +125,7 @@ const scene: Scene = Object.freeze({
     id: 8,
     name: 'C国王女2',
     appearance: {
-      sprite: '/images/casts/princess-c2.png'
+      sprite: 'princess32'
     },
     role: {
       predators: [{

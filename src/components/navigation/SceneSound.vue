@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { computed, onUnmounted, watch } from 'vue'
 import { useSound } from '@vueuse/sound'
+import { computed, onUnmounted, watch } from 'vue'
+import bgm from '@/assets/sounds/White_River.mp3'
+import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 import { useSettingsStore } from '@/store/settings'
-import { useSceneStore } from '@/store/scene'
-import bgm from '/sounds/White_River.mp3'
 const store = useSceneStore()
 const settings = useSettingsStore()
 const session = useSessionStore()

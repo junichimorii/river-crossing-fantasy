@@ -18,14 +18,14 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 1,
     appearance: {
-      sprite: '/images/carriers/boat1.png'
+      sprite: 'boat1'
     }
   }],
   casts: [{
     id: 0,
     name: '村人',
     appearance: {
-      sprite: '/images/casts/villager1.png'
+      sprite: 'villager1'
     },
     role: {
     }

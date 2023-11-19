@@ -13,14 +13,14 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 3,
     appearance: {
-      sprite: '/images/carriers/boat3.png'
+      sprite: 'boat3'
     }
   }],
   casts: [{
     id: 0,
     name: '魔獣使いA',
     appearance: {
-      sprite: '/images/casts/beast-tamer1.png'
+      sprite: 'beasttamer1'
     },
     role: {
       rebel: false
@@ -29,7 +29,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '魔獣使いB',
     appearance: {
-      sprite: '/images/casts/beast-tamer2.png'
+      sprite: 'beasttamer2'
     },
     role: {
       rebel: false
@@ -38,7 +38,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '魔獣使いC',
     appearance: {
-      sprite: '/images/casts/beast-tamer3.png'
+      sprite: 'beasttamer3'
     },
     role: {
       rebel: false
@@ -47,7 +47,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '魔獣使いD',
     appearance: {
-      sprite: '/images/casts/beast-tamer4.png'
+      sprite: 'beasttamer4'
     },
     role: {
       rebel: false
@@ -56,7 +56,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: '魔獣使いE',
     appearance: {
-      sprite: '/images/casts/beast-tamer5.png'
+      sprite: 'beasttamer5'
     },
     role: {
       rebel: false
@@ -65,7 +65,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: '魔獣A',
     appearance: {
-      sprite: '/images/casts/therianthropy1.png'
+      sprite: 'therianthropy1'
     },
     role: {
       rebel: true
@@ -74,7 +74,7 @@ const scene: Scene = Object.freeze({
     id: 6,
     name: '魔獣B',
     appearance: {
-      sprite: '/images/casts/therianthropy2.png'
+      sprite: 'therianthropy2'
     },
     role: {
       rebel: true
@@ -83,7 +83,7 @@ const scene: Scene = Object.freeze({
     id: 7,
     name: '魔獣C',
     appearance: {
-      sprite: '/images/casts/therianthropy3.png'
+      sprite: 'therianthropy3'
     },
     role: {
       rebel: true
@@ -92,7 +92,7 @@ const scene: Scene = Object.freeze({
     id: 8,
     name: '魔獣D',
     appearance: {
-      sprite: '/images/casts/therianthropy4.png'
+      sprite: 'therianthropy4'
     },
     role: {
       rebel: true
@@ -101,7 +101,7 @@ const scene: Scene = Object.freeze({
     id: 9,
     name: '魔獣E',
     appearance: {
-      sprite: '/images/casts/therianthropy5.png'
+      sprite: 'therianthropy5'
     },
     role: {
       rebel: true

@@ -20,7 +20,7 @@ onMounted(async () => {
   ></v-app-bar>
   <v-main>
     <v-parallax
-      src="/images/landscapes/daytime-river.png"
+      src="@/assets/images/landscapes/daytime-river.png"
       class="h-100"
     >
       <v-container>

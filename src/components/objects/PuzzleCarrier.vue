@@ -2,14 +2,15 @@
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { computed, toRef } from 'vue'
 import type { Carrier } from '@/types'
-import { PuzzleCast, PuzzleCarrierMenu, PuzzleCarrierTooltip } from '@/components'
-import { useAppearance, useCarrierState, useCasts, useScene } from '@/composables'
+import { PuzzleCast, PuzzleCarrierAppearance, PuzzleCarrierMenu, PuzzleCarrierTooltip } from '@/components'
+import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const props = defineProps<{
   state: Carrier
 }>()
 const store = useSceneStore()
-const { stageSize, gridSize } = useAppearance(store.scene)
+const { stageSize } = useAppearance(store.scene)
+const { width, height } = useCarrierAppearance(store.scene, props.state)
 const { coord } = useCarrierState(toRef(store.state))
 const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
 const { arrive } = useScene(toRef(store.state), toRef(store.scene))
@@ -34,6 +35,7 @@ const amount = useTransition(source, {
   },
 })
 
+
 /**
  * v-cardに適用するCSS transformプロパティ
  */
@@ -48,40 +50,21 @@ const finished = async () => {
     store.moves.add(result)
   }
 }
-
-/**
- * 乗り物の外観
- */
-const appearance = computed(() => {
-  // 幅（登場人物の幅 * （登場人物の人数 + 1））
-  const width = gridSize.value * (props.state.capacity + 1)
-  // 高さ（登場人物の高さ * 2.5）
-  const height = gridSize.value * 2.5
-  // アスペクト比
-  const aspectRatio = width / height
-  return {
-    width: width,
-    height: height,
-    aspectRatio: aspectRatio,
-  }
-})
 </script>
 
 <template>
   <v-card
     flat
-    :width="appearance.width"
+    :width="width"
     :style="{ transform: transform }"
     class="d-flex justify-center align-start bg-transparent"
   >
-    <v-img
-      :aspect-ratio="appearance.aspectRatio"
-      :src="state.appearance.sprite"
-      :height="appearance.height"
-      >
+    <PuzzleCarrierAppearance
+      :state="state"
+    >
       <v-sheet
         class="d-flex justify-center align-center bg-transparent"
-        :height="appearance.height"
+        :height="height"
       >
         <PuzzleCast
           v-for="cast in passengers[state.id]"
@@ -89,7 +72,7 @@ const appearance = computed(() => {
           :state="cast"
         ></PuzzleCast>
       </v-sheet>
-    </v-img>
+    </PuzzleCarrierAppearance>
     <PuzzleCarrierMenu :state="state"></PuzzleCarrierMenu>
     <PuzzleCarrierTooltip :state="state"></PuzzleCarrierTooltip>
   </v-card>

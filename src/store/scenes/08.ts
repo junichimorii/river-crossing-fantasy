@@ -17,14 +17,14 @@ const scene: Scene = Object.freeze({
     capacity: 2,
     weightLimit: 2,
     appearance: {
-      sprite: '/images/carriers/boat2.png'
+      sprite: 'boat2'
     }
   }],
   casts: [{
     id: 0,
     name: '騎士A',
     appearance: {
-      sprite: '/images/casts/knight-b1.png',
+      sprite: 'knight21',
     },
     role: {
       weight: 2,
@@ -33,7 +33,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '村人A',
     appearance: {
-      sprite: '/images/casts/villager1.png'
+      sprite: 'villager1'
     },
     role: {
       weight: 1
@@ -42,7 +42,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '村人B',
     appearance: {
-      sprite: '/images/casts/villager2.png'
+      sprite: 'villager2'
     },
     role: {
       weight: 1

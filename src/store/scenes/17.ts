@@ -19,14 +19,14 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: '/images/carriers/touch.png'
+      sprite: 'touch'
     }
   }],
   casts: [{
     id: 0,
     name: '盗賊',
     appearance: {
-      sprite: '/images/casts/thief1.png'
+      sprite: 'thief1'
     },
     role: {
       duration: 1
@@ -35,7 +35,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '戦士',
     appearance: {
-      sprite: '/images/casts/fighter1.png'
+      sprite: 'fighter1'
     },
     role: {
       duration: 2
@@ -44,7 +44,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '司祭',
     appearance: {
-      sprite: '/images/casts/priest1.png'
+      sprite: 'priest1'
     },
     role: {
       duration: 5
@@ -53,7 +53,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '魔法使い',
     appearance: {
-      sprite: '/images/casts/mage1.png'
+      sprite: 'mage1'
     },
     role: {
       duration: 8
