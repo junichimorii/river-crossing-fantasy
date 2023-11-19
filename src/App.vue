@@ -7,7 +7,9 @@
 </template>
 
 <style>
-html {
+html,
+body {
   touch-action: manipulation;
+  overscroll-behavior-y: none;
 }
 </style>
