@@ -3,6 +3,7 @@
 ## Project setup
 
 ```
+yarn create vuetify
 √ Project name: ... river-crossing-puzzles
 √ Which preset would you like to install? » Custom (Choose your features)
 √ Use TypeScript? ... Yes
