@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Move } from '@/types'
 import type { Category } from '@/types/scene'
+import sprites from '@/assets/images/casts'
 defineProps<{
   moves: Set<Move>,
   category: Category
@@ -33,7 +34,7 @@ defineProps<{
         >
           <v-avatar start>
             <v-img
-              :src="cast.appearance.sprite"
+              :src="sprites[cast.appearance.sprite]"
               :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
             ></v-img>
           </v-avatar>

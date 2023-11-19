@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, toRef } from 'vue'
-import { daytimeRiverIsland,  daytimeRiver, nightBridge } from '@/assets/images/landscapes'
+import sprites from '@/assets/images/landscapes'
 import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
 import { useAppearance, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
@@ -10,10 +10,10 @@ const session = useSessionStore()
 const { stageSize } = useAppearance(store.scene)
 const { unreachers, reachers, halfways } = useCasts(toRef(store.state), toRef(store.scene))
 const landscape = computed(() => store.scene.landscape?.night
-  ? nightBridge
+  ? sprites.nightBridge
   : store.scene.landscape?.island
-    ? daytimeRiverIsland
-    : daytimeRiver
+    ? sprites.daytimeRiverIsland
+    : sprites.daytimeRiver
 )
 onMounted(async () => {
   session.state.drawer = false

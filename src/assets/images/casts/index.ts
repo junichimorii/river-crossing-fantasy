@@ -35,7 +35,10 @@ import thief1 from './thief1.png'
 import villager1 from './villager1.png'
 import villager2 from './villager2.png'
 import villager3 from './villager3.png'
-export {
+
+const sprites: {
+  [key:string]: string
+} = {
   beasttamer1,
   beasttamer2,
   beasttamer3,
@@ -74,3 +77,5 @@ export {
   villager2,
   villager3,
 }
+
+export default sprites

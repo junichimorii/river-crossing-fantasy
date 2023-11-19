@@ -3,7 +3,8 @@ import { usePointerSwipe, useSwipe } from '@vueuse/core'
 import { computed, ref, toRef } from 'vue'
 import type { Cast } from '@/types'
 import type { UseSwipeDirection } from '@vueuse/core'
-import { PuzzleCastAppearance, PuzzleCastEmotion, PuzzleCastMenu } from '@/components'
+import sprites from '@/assets/images/casts'
+import { PuzzleCastEmotion, PuzzleCastMenu } from '@/components'
 import { useCastAppearance, useCastState, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const props = defineProps<{
@@ -14,6 +15,14 @@ const store = useSceneStore()
 const { width, height, aspectRatio } = useCastAppearance(store.scene)
 const { coord, boarding } = useCastState(toRef(store.state))
 const { pickUp, dropOff, safetyConfirmation } = useScene(toRef(store.state), toRef(store.scene))
+
+/**
+ * v-imgに適用するCSS transformプロパティ
+ */
+ const transform = computed(() => {
+  const ratio = props.state.appearance.ratio || 1
+  return `scale(${coord(props.state) > 0 ? -ratio : ratio}, ${ratio})`
+})
 
 /**
  * タッチイベントの検知
@@ -77,9 +86,16 @@ const action = async (
       :aspect-ratio="aspectRatio"
       class="d-flex justify-center align-end bg-transparent"
     >
-      <PuzzleCastAppearance
-        :state="state"
-      ></PuzzleCastAppearance>
+      <v-img
+        :src="sprites[state.appearance.sprite]"
+        :width="width"
+        :height="height"
+        :aspect-ratio="aspectRatio"
+        :style="{ transform: transform }"
+        style="transform-origin: bottom center;"
+      >
+        <div class="d-flex justify-center align-end fill-height"></div>
+      </v-img>
       <PuzzleCastMenu
         :state="state"
         :isSwiping="isSwiping"

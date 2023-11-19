@@ -9,10 +9,8 @@ import SceneSolve from './navigation/SceneSolve.vue'
 import SceneSound from './navigation/SceneSound.vue'
 import SceneSplash from './navigation/SceneSplash.vue'
 import SceneToolber from './navigation/SceneToolber.vue'
-import PuzzleCarrierAppearance from './objects/carrier/PuzzleCarrierAppearance.vue'
 import PuzzleCarrierMenu from './objects/carrier/PuzzleCarrierMenu.vue'
 import PuzzleCarrierTooltip from './objects/carrier/PuzzleCarrierTooltip.vue'
-import PuzzleCastAppearance from './objects/cast/PuzzleCastAppearance.vue'
 import PuzzleCastEmotion from './objects/cast/PuzzleCastEmotion.vue'
 import PuzzleCastMenu from './objects/cast/PuzzleCastMenu.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
@@ -37,10 +35,8 @@ export {
   SceneToolber,
   PuzzleCarrier,
   PuzzleCast,
-  PuzzleCarrierAppearance,
   PuzzleCarrierMenu,
   PuzzleCarrierTooltip,
-  PuzzleCastAppearance,
   PuzzleCastEmotion,
   PuzzleCastMenu,
 }

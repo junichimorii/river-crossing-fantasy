@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Cast } from '@/types'
+import sprites from '@/assets/images/casts'
 defineProps<{
   casts: Cast[]
 }>()
@@ -29,7 +30,7 @@ defineProps<{
       <template v-slot:prepend>
         <v-avatar>
           <v-img
-            :src="cast.appearance.sprite"
+            :src="sprites[cast.appearance.sprite]"
             :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
           ></v-img>
         </v-avatar>

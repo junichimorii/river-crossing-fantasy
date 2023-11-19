@@ -2,7 +2,8 @@
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { computed, toRef } from 'vue'
 import type { Carrier } from '@/types'
-import { PuzzleCast, PuzzleCarrierAppearance, PuzzleCarrierMenu, PuzzleCarrierTooltip } from '@/components'
+import sprites from '@/assets/images/carriers'
+import { PuzzleCast, PuzzleCarrierMenu, PuzzleCarrierTooltip } from '@/components'
 import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const props = defineProps<{
@@ -10,7 +11,7 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { stageSize } = useAppearance(store.scene)
-const { width, height } = useCarrierAppearance(store.scene, props.state)
+const { width, height, aspectRatio } = useCarrierAppearance(store.scene, props.state)
 const { coord } = useCarrierState(toRef(store.state))
 const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
 const { arrive } = useScene(toRef(store.state), toRef(store.scene))
@@ -59,9 +60,12 @@ const finished = async () => {
     :style="{ transform: transform }"
     class="d-flex justify-center align-start bg-transparent"
   >
-    <PuzzleCarrierAppearance
-      :state="state"
-    >
+    <v-img
+      :src="sprites[state.appearance.sprite]"
+      :width="width"
+      :aspect-ratio="aspectRatio"
+      :height="height"
+      >
       <v-sheet
         class="d-flex justify-center align-center bg-transparent"
         :height="height"
@@ -72,7 +76,7 @@ const finished = async () => {
           :state="cast"
         ></PuzzleCast>
       </v-sheet>
-    </PuzzleCarrierAppearance>
+    </v-img>
     <PuzzleCarrierMenu :state="state"></PuzzleCarrierMenu>
     <PuzzleCarrierTooltip :state="state"></PuzzleCarrierTooltip>
   </v-card>
