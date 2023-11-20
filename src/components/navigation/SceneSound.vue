@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useSound } from '@vueuse/sound'
 import { computed, onUnmounted, watch } from 'vue'
-import bgm from '@/assets/sounds/White_River.mp3'
+import bgm from '@/assets/sounds/RiversideEnd.mp3'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 import { useSettingsStore } from '@/store/settings'

@@ -3,6 +3,8 @@ import { onMounted } from 'vue'
 import { AppIntroduction } from '@/components'
 import { useRecordsStore } from '@/store/records'
 import { useSessionStore } from '@/store/session'
+import { useSettingsStore } from '@/store/settings'
+const settings = useSettingsStore()
 const session = useSessionStore()
 const records = useRecordsStore()
 onMounted(async () => {
@@ -41,7 +43,7 @@ onMounted(async () => {
             :to="`/${scene.id}`"
             :title="scene.title"
             :subtitle="scene.description.conditions"
-            :disabled="!records.state.level.has(scene.level)"
+            :disabled="!settings.state.debug && !records.isQualified(scene.level)"
             class="elevation-4 rounded my-1"
             style="background-color: hsla(0, 0%, 100%, 0.95)"
           >

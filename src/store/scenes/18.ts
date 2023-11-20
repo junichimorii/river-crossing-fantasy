@@ -4,16 +4,16 @@ const scene: Scene = Object.freeze({
   title: '一触即発パーティ（上級編1）',
   description: {
     conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
+    transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
   },
   category: 'predators-and-guardians',
   level: 4,
-  passing: 17,
+  passing: 9,
   carriers: [{
     id: 0,
-    capacity: 2,
+    capacity: 3,
     appearance: {
-      sprite: 'boat2'
+      sprite: 'boat3'
     }
   }],
   casts: [{
@@ -27,7 +27,7 @@ const scene: Scene = Object.freeze({
     },
   }, {
     id: 1,
-    name: '魔獣',
+    name: '魔獣a',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
       sprite: 'therianthropy1',
@@ -38,8 +38,19 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
+    name: '魔獣b',
+    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    appearance: {
+      sprite: 'therianthropy1',
+      ratio: 0.85
+    },
+    role: {
+      rower: false
+    }
+  }, {
+    id: 3,
     name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -48,10 +59,13 @@ const scene: Scene = Object.freeze({
       predators: [{
         predator: 1,
         guardian: 0
+      }, {
+        predator: 2,
+        guardian: 0
       }]
     }
   }, {
-    id: 3,
+    id: 4,
     name: 'A国王女1',
     appearance: {
       sprite: 'princess11',
@@ -63,31 +77,20 @@ const scene: Scene = Object.freeze({
         predator: 1,
         guardian: 0
       }, {
-        predator: 5,
-        guardian: 2
-      }]
-    }
-  }, {
-    id: 4,
-    name: 'A国王女2',
-    appearance: {
-      sprite: 'princess12',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
+        predator: 2,
         guardian: 0
       }, {
         predator: 5,
-        guardian: 2
+        guardian: 3
+      }, {
+        predator: 7,
+        guardian: 3
       }]
     }
   }, {
     id: 5,
     name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },
@@ -95,6 +98,9 @@ const scene: Scene = Object.freeze({
       rower: true,
       predators: [{
         predator: 1,
+        guardian: 0
+      }, {
+        predator: 2,
         guardian: 0
       }]
     }
@@ -112,14 +118,37 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
+        guardian: 0
+      }, {
+        predator: 3,
+        guardian: 5
+      }, {
+        predator: 7,
         guardian: 5
       }]
     }
   }, {
     id: 7,
-    name: 'B国王女2',
+    name: 'C国騎士',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
-      sprite: 'princess22',
+      sprite: 'knight31'
+    },
+    role: {
+      rower: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 2,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 8,
+    name: 'C国王女1',
+    appearance: {
+      sprite: 'princess31',
       ratio: 0.85
     },
     role: {
@@ -129,7 +158,30 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 5
+        guardian: 0
+      }, {
+        predator: 3,
+        guardian: 7
+      }, {
+        predator: 5,
+        guardian: 7
+      }]
+    }
+  }, {
+    id: 9,
+    name: '村人',
+    appearance: {
+      sprite: 'villager1',
+      ratio: 0.85
+    },
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 2,
+        guardian: 0
       }]
     }
   }]

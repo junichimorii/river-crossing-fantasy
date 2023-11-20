@@ -26,8 +26,6 @@ export const useRecordsStore = defineStore('records', () => {
     id: number
   ) => {
     const config = Object.values(scenes).find(scene => scene.id === id)
-    if (!config) return undefined
-    if (!state.value.level.has(config.level)) return undefined
     return config
   }
 
@@ -67,6 +65,14 @@ export const useRecordsStore = defineStore('records', () => {
   ) => state.value.scenes.has(id)
 
   /**
+   * 挑戦資格の有無を取得
+   */
+  const isQualified = (
+    level: number
+  ) => state.value.level.has(level)
+
+
+  /**
    * ステージのスコアを取得
    */
   const getScore = (
@@ -87,6 +93,7 @@ export const useRecordsStore = defineStore('records', () => {
     report,
     header,
     isCleared,
+    isQualified,
     getScore,
   }
 })

@@ -1,17 +1,17 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 23,
-  title: '一触即発パーティ（最上級編）',
+  title: '魔獣たちの反乱（最上級編）',
   description: {
-    conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。川の中の島に降りることもできる。',
+    conditions: '両岸および舟の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
+    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
   },
-  category: 'predators-and-guardians',
+  category: 'keep-majority',
   landscape: {
     island: true
   },
   level: 5,
-  passing: 34,
+  passing: 26,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -21,153 +21,75 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
+    name: '魔獣使いA',
     appearance: {
       sprite: 'beasttamer1'
     },
     role: {
-      rower: true
-    },
+      rebel: false
+    }
   }, {
     id: 1,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    name: '魔獣使いB',
     appearance: {
-      sprite: 'therianthropy1',
-      ratio: 0.85
+      sprite: 'beasttamer2'
     },
     role: {
-      rower: false
+      rebel: false
     }
   }, {
     id: 2,
-    name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    name: '魔獣使いC',
     appearance: {
-      sprite: 'knight11'
+      sprite: 'beasttamer3'
     },
     role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: false
     }
   }, {
     id: 3,
-    name: 'A国王女1',
+    name: '魔獣使いD',
     appearance: {
-      sprite: 'princess11',
-      ratio: 0.85
+      sprite: 'beasttamer4'
     },
     role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 6,
-        guardian: 2
-      }]
+      rebel: false
     }
   }, {
     id: 4,
-    name: 'A国王女2',
+    name: '魔獣A',
     appearance: {
-      sprite: 'princess12',
-      ratio: 0.85
+      sprite: 'therianthropy1'
     },
     role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 6,
-        guardian: 2
-      }]
+      rebel: true
     }
   }, {
     id: 5,
-    name: 'A国王女3',
+    name: '魔獣B',
     appearance: {
-      sprite: 'princess13',
-      ratio: 0.85
+      sprite: 'therianthropy2'
     },
     role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 6,
-        guardian: 2
-      }]
+      rebel: true
     }
   }, {
     id: 6,
-    name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    name: '魔獣C',
     appearance: {
-      sprite: 'knight21'
+      sprite: 'therianthropy3'
     },
     role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: true
     }
   }, {
     id: 7,
-    name: 'B国王女1',
+    name: '魔獣D',
     appearance: {
-      sprite: 'princess21',
-      ratio: 0.85
+      sprite: 'therianthropy4'
     },
     role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 6
-      }]
-    }
-  }, {
-    id: 8,
-    name: 'B国王女2',
-    appearance: {
-      sprite: 'princess22',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 6
-      }]
-    }
-  }, {
-    id: 9,
-    name: 'B国王女3',
-    appearance: {
-      sprite: 'princess23',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 6
-      }]
+      rebel: true
     }
   }]
 })

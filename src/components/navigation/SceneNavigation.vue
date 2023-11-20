@@ -3,11 +3,9 @@ import { useScreenOrientation } from '@vueuse/core'
 import { toRef } from 'vue'
 import { SceneCasts, SceneConditions, SceneMenu, SceneMoves } from '@/components'
 import { useMoves } from '@/composables'
-import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const { isSupported, orientation } = useScreenOrientation()
-const records = useRecordsStore()
 const store = useSceneStore()
 const session = useSessionStore()
 const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
@@ -34,6 +32,7 @@ const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
       align-tabs="center"
       density="compact"
       stacked
+      class="mb-1"
     >
       <v-tab>
         <v-icon>mdi-help</v-icon>
@@ -81,36 +80,39 @@ const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
         v-model="session.state.navigation"
       >
         <v-window-item>
+          <v-card-subtitle>
+            <v-icon>mdi-help</v-icon>
+            条件
+          </v-card-subtitle>
           <SceneConditions
             :scene="store.scene"
           ></SceneConditions>
         </v-window-item>
         <v-window-item>
+          <v-card-subtitle>
+            <v-icon>mdi-account-multiple</v-icon>
+            登場人物
+          </v-card-subtitle>
           <SceneCasts
             :casts="store.scene.casts"
           ></SceneCasts>
         </v-window-item>
         <v-window-item>
+          <v-card-subtitle>
+            <v-icon>mdi-history</v-icon>
+            履歴
+          </v-card-subtitle>
           <SceneMoves
             :moves="store.moves"
             :category="store.scene.category"
           ></SceneMoves>
         </v-window-item>
         <v-window-item>
+          <v-card-subtitle>
+            <v-icon>mdi-cog</v-icon>
+            オプション
+          </v-card-subtitle>
           <SceneMenu></SceneMenu>
-          <v-divider class="my-4"></v-divider>
-          <v-card-item>
-            <v-btn
-              block
-              color="info"
-              size="large"
-              prepend-icon="mdi-map-search"
-              :disabled="!records.isCleared(store.scene.id)"
-              @click.stop="session.state.solve = true"
-            >
-              ルート探索
-            </v-btn>
-          </v-card-item>
         </v-window-item>
       </v-window>
     </v-card-text>

@@ -42,6 +42,10 @@ const start = () => {
       <v-card-text
         class="pa-1"
       >
+        <v-card-subtitle>
+          <v-icon>mdi-help</v-icon>
+          条件
+        </v-card-subtitle>
         <SceneConditions
           :scene="store.scene"
         ></SceneConditions>
@@ -58,8 +62,7 @@ const start = () => {
         class="d-flex justify-center"
       >
         <v-btn
-          color="green"
-          variant="elevated"
+          color="success"
           @click.stop="start()"
         >
           Start

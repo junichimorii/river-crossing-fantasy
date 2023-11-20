@@ -79,11 +79,11 @@ const session = useSessionStore()
           <v-card-text class="py-1">
             BGM:
             <a
-              href="https://dova-s.jp/bgm/play12675.html"
+              href="https://dova-s.jp/bgm/play14344.html"
               target="_blank"
               class="text-decoration-none"
             >
-              White River
+              RiversideEnd
             </a>
           </v-card-text>
         </v-card-item>
@@ -93,7 +93,6 @@ const session = useSessionStore()
         class="d-flex justify-center"
       >
         <v-btn
-          variant="elevated"
           @click.stop="session.state.introduction = false"
         >
           OK

@@ -5,6 +5,9 @@ const scene: Scene = Object.freeze({
   description: {
     conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
     transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いAと魔獣Aのみ。',
+    tips: [
+      'Q13とよく似ていますが、舟を<ruby>漕<rt>こ</rt></ruby>げる登場人物が限定されています。',
+    ],
   },
   category: 'keep-majority',
   level: 3,

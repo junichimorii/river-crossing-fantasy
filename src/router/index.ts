@@ -1,7 +1,9 @@
 // Composables
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router';
 import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
+import List from '@/views/List.vue'
 import Scene from '@/views/Scene.vue'
 
 const routes: Array<RouteRecordRaw> = [{
@@ -14,6 +16,9 @@ const routes: Array<RouteRecordRaw> = [{
   }, {
     path: '/:id(\\d+)',
     component: Scene,
+  }, {
+    path: '/list',
+    component: List,
   }]
 }]
 

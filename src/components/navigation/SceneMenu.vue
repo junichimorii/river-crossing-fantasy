@@ -30,6 +30,10 @@ const store = useSceneStore()
       </v-btn>
     </v-list-item>
     <v-divider class="my-4"></v-divider>
+    <v-card-subtitle>
+      <v-icon>mdi-cog</v-icon>
+      設定
+    </v-card-subtitle>
     <v-list-subheader>
       BGM音量
     </v-list-subheader>

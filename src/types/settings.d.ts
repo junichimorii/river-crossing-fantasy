@@ -5,4 +5,5 @@ export interface Settings {
   sound: {
     volume: number
   }
+  debug: boolean
 }
