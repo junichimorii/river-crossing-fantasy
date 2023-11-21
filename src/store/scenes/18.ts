@@ -4,7 +4,7 @@ const scene: Scene = Object.freeze({
   title: '一触即発パーティ（上級編1）',
   description: {
     conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
+    transportation: '3人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。ただし<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
   },
   category: 'predators-and-guardians',
   level: 4,
@@ -13,7 +13,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 3,
     appearance: {
-      sprite: 'boat3'
+      sprite: 'raft3'
     }
   }],
   casts: [{

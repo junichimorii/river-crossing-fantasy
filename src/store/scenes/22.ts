@@ -4,11 +4,11 @@ const scene: Scene = Object.freeze({
   title: '王女親衛隊の攻防（最上級編）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。川の中の島に降りることもできる。',
+    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。川の中の島に降りることもできる。',
     tips: [
       '川の中間にある中州に降りることができます。',
-      '中州にいる登場人物を右方向にスワイプすると舟に乗り、左方向にスワイプすると舟から降ります。',
-      '舟を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
+      '中州にいる登場人物を右方向にスワイプすると<ruby>筏<rt>いかだ</rt></ruby>に乗り、左方向にスワイプすると<ruby>筏<rt>いかだ</rt></ruby>から降ります。',
+      '<ruby>筏<rt>いかだ</rt></ruby>を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
     ],
   },
   category: 'escorting-celebrity',
@@ -21,7 +21,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: 'boat2'
+      sprite: 'raft2'
     }
   }],
   casts: [{

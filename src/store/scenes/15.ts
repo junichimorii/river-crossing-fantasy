@@ -4,9 +4,9 @@ const scene: Scene = Object.freeze({
   title: '王女親衛隊の攻防（中級編）',
   description: {
     conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
+    transportation: '3人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
-      '舟には3人まで乗せることができます。',
+      '<ruby>筏<rt>いかだ</rt></ruby>には3人まで乗せることができます。',
     ],
   },
   category: 'escorting-celebrity',
@@ -16,7 +16,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 3,
     appearance: {
-      sprite: 'boat3'
+      sprite: 'raft3'
     }
   }],
   casts: [{

@@ -3,8 +3,8 @@ const scene: Scene = Object.freeze({
   id: 19,
   title: '魔獣たちの反乱（上級編）',
   description: {
-    conditions: '両岸および舟の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '3人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
+    conditions: '両岸および<ruby>筏<rt>いかだ</rt></ruby>の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
+    transportation: '3人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
   },
   category: 'keep-majority',
   level: 4,
@@ -13,7 +13,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 3,
     appearance: {
-      sprite: 'boat3'
+      sprite: 'raft3'
     }
   }],
   casts: [{

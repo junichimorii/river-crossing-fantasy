@@ -1,14 +1,14 @@
-import boat1 from './boat1.png'
-import boat2 from './boat2.png'
-import boat3 from './boat3.png'
+import raft1 from './raft1.png'
+import raft2 from './raft2.png'
+import raft3 from './raft3.png'
 import touch from './touch.png'
 
 const sprites: {
   [key:string]: string
 } = {
-  boat1,
-  boat2,
-  boat3,
+  raft1,
+  raft2,
+  raft3,
   touch,
 }
 

@@ -4,11 +4,11 @@ const scene: Scene = Object.freeze({
   title: '一人旅',
   description: {
     conditions: '登場人物を対岸に渡す',
-    transportation: '1人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が舟を<ruby>漕<rt>こ</rt></ruby>げる。',
+    transportation: '1人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
     tips: [
-      '登場人物を上方向にスワイプすると、舟の上にセットされます。',
-      '舟を<ruby>漕<rt>こ</rt></ruby>げる登場人物が乗ると、ボタンが表示されます。ボタンをタップすると対岸へ移動します。',
-      '舟の上の登場人物を下方向にスワイプすると舟から降ります。',
+      '登場人物を上方向にスワイプすると、<ruby>筏<rt>いかだ</rt></ruby>の上にセットされます。',
+      '<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる登場人物が乗ると、ボタンが表示されます。ボタンをタップすると対岸へ移動します。',
+      '<ruby>筏<rt>いかだ</rt></ruby>の上の登場人物を下方向にスワイプすると<ruby>筏<rt>いかだ</rt></ruby>から降ります。',
     ],
   },
   category: 'unconditioned',
@@ -18,7 +18,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 1,
     appearance: {
-      sprite: 'boat1'
+      sprite: 'raft1'
     }
   }],
   casts: [{

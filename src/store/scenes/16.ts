@@ -4,9 +4,9 @@ const scene: Scene = Object.freeze({
   title: '魔獣たちの反乱（中級編2）',
   description: {
     conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの舟が1<ruby>艘<rt>そう</rt></ruby>。ただし舟を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いAと魔獣Aのみ。',
+    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。ただし<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いAと魔獣Aのみ。',
     tips: [
-      'Q13とよく似ていますが、舟を<ruby>漕<rt>こ</rt></ruby>げる登場人物が限定されています。',
+      'Q13とよく似ていますが、<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる登場人物が限定されています。',
     ],
   },
   category: 'keep-majority',
@@ -16,7 +16,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: 'boat2'
+      sprite: 'raft2'
     }
   }],
   casts: [{
