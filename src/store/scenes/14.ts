@@ -2,9 +2,12 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 14,
   title: '一触即発パーティ（中級編）',
-  description: {
-    conditions: '登場人物を敵から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。ただし<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いと騎士のみ。',
+  rules: {
+    conditions: [
+      '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '最小回数でクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
   },
   category: 'predators-and-guardians',
   level: 3,
@@ -28,7 +31,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    rules: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
       sprite: 'therianthropy1',
       ratio: 0.85
@@ -39,7 +42,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    rules: 'B国騎士が目を離すとB国王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -70,7 +73,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    rules: 'A国騎士が目を離すとA国王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },

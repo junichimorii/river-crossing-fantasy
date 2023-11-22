@@ -2,12 +2,15 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 3,
   title: '逃避行（入門編）',
-  description: {
-    conditions: 'すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。ただし<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げるのは騎士のみ。',
+  rules: {
+    conditions: [
+      'すべての登場人物を対岸に渡す',
+      '3回以内にクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは騎士のみ。',
     tips: [
-      '<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる登場人物と<ruby>漕<rt>こ</rt></ruby>げない登場人物がいます。',
-      '<ruby>筏<rt>いかだ</rt></ruby>を移動させるボタンは、<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる登場人物が乗っている時のみ表示されます。',
+      '筏（いかだ）を漕（こ）げる登場人物と漕（こ）げない登場人物がいます。',
+      '筏（いかだ）を移動させるボタンは、筏（いかだ）を漕（こ）げる登場人物が乗っている時のみ表示されます。',
     ],
   },
   category: 'qualified',

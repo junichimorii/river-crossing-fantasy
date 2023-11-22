@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useScreenOrientation } from '@vueuse/core'
 import { toRef } from 'vue'
-import { SceneCasts, SceneConditions, SceneMenu, SceneMoves } from '@/components'
+import { SceneCasts, SceneMenu, SceneMoves, SceneRules } from '@/components'
 import { useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
@@ -36,7 +36,7 @@ const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
     >
       <v-tab>
         <v-icon>mdi-help</v-icon>
-        条件
+        ルール
       </v-tab>
       <v-tab>
         <v-icon>mdi-account-multiple</v-icon>
@@ -82,11 +82,11 @@ const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
         <v-window-item>
           <v-card-subtitle>
             <v-icon>mdi-help</v-icon>
-            条件
+            ルール
           </v-card-subtitle>
-          <SceneConditions
+          <SceneRules
             :scene="store.scene"
-          ></SceneConditions>
+          ></SceneRules>
         </v-window-item>
         <v-window-item>
           <v-card-subtitle>

@@ -2,13 +2,16 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 22,
   title: '王女親衛隊の攻防（最上級編）',
-  description: {
-    conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。川の中の島に降りることもできる。',
+  rules: {
+    conditions: [
+      '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
+      '最小回数でクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
     tips: [
       '川の中間にある中州に降りることができます。',
-      '中州にいる登場人物を右方向にスワイプすると<ruby>筏<rt>いかだ</rt></ruby>に乗り、左方向にスワイプすると<ruby>筏<rt>いかだ</rt></ruby>から降ります。',
-      '<ruby>筏<rt>いかだ</rt></ruby>を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
+      '中州にいる登場人物を右方向にスワイプすると筏（いかだ）に乗り、左方向にスワイプすると筏（いかだ）から降ります。',
+      '筏（いかだ）を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
     ],
   },
   category: 'escorting-celebrity',
@@ -27,7 +30,7 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: 'A国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    rules: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -54,7 +57,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'B国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    rules: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },
@@ -81,7 +84,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: 'C国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    rules: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight31'
     },
@@ -108,7 +111,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 6,
     name: 'D国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    rules: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight41'
     },

@@ -9,8 +9,8 @@ export interface Scene {
   id: number
   /** シーンの表題 */
   title: string
-  /** シーンの説明 */
-  description: Description
+  /** パズルのルール */
+  rules: Rules
   /** パズル種別 */
   category: Category
   /** パズルの特徴 */
@@ -46,11 +46,11 @@ type Features = {
 }
 
 /**
- * シーンの説明
+ * パズルのルール
  */
-interface Description {
+interface Rules {
   /** ステージのクリア条件 */
-  conditions: string
+  conditions: string[]
   /** ステージに登場する乗り物の説明 */
   transportation: string
   /** ヒント */

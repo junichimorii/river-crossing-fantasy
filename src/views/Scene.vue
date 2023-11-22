@@ -14,7 +14,7 @@ const settings = useSettingsStore()
 const records = useRecordsStore()
 const store = useSceneStore()
 const loading = ref(true)
-const { navigationHeight } = useAppearance(store.scene)
+const { navigationHeight } = useAppearance()
 onMounted(async () => {
   if(Array.isArray(route.params.id)) throw `id: ${route.params.id}`
   const id = parseInt(route.params.id)

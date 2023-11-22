@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { SceneCasts, SceneConditions } from '@/components'
+import { SceneCasts, SceneRules } from '@/components'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const store = useSceneStore()
@@ -44,11 +44,11 @@ const start = () => {
       >
         <v-card-subtitle>
           <v-icon>mdi-help</v-icon>
-          条件
+          ルール
         </v-card-subtitle>
-        <SceneConditions
+        <SceneRules
           :scene="store.scene"
-        ></SceneConditions>
+        ></SceneRules>
         <v-card-subtitle>
           <v-icon>mdi-account-multiple</v-icon>
           登場人物

@@ -2,8 +2,11 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 5,
   title: '闇夜の旅路（入門編）',
-  description: {
-    conditions: 'すべての登場人物を7分以内に対岸に渡す',
+  rules: {
+    conditions: [
+      'すべての登場人物を対岸に渡す',
+      '7分以内にクリアする'
+    ],
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
     tips: [
       '夜のステージは、移動時にたいまつが必要です。また、たいまつが燃え尽きる制限時間も決まっています。',

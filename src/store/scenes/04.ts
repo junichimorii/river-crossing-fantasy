@@ -2,13 +2,16 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 4,
   title: '一触即発パーティ（入門編）',
-  description: {
-    conditions: '村人を魔獣から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。ただし<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いのみ。',
+  rules: {
+    conditions: [
+      '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',
+      '3回以内にクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
       '登場人物には、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
       'ある登場人物が敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-      'ある登場人物が危機に<ruby>瀕<rt>ひん</rt></ruby>している時は、その登場人物・敵・保護者に感情を表すマークが表示されます。その状態で<ruby>筏<rt>いかだ</rt></ruby>を移動させることはできません。',
+      'ある登場人物が危機に瀕（ひん）している時は、その登場人物・敵・保護者に感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
   category: 'predators-and-guardians',
@@ -47,7 +50,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '魔獣',
-    description: '魔獣使いが目を離すと村人を襲う。',
+    rules: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
       sprite: 'therianthropy1',
       ratio: 0.85

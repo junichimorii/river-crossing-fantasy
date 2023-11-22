@@ -2,9 +2,12 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 7,
   title: '王女親衛隊の攻防（初級編）',
-  description: {
-    conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
+  rules: {
+    conditions: [
+      '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
+      '5回以内にクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '騎士達が同国の王女を保護しながら川を渡るパズルです。',
       '王女は、他国の騎士が近くにいて、かつ同国の騎士が近くにいない場合、他国の騎士に襲われてしまいます。',
@@ -23,7 +26,7 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: 'A国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    rules: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -44,7 +47,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'B国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    rules: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },

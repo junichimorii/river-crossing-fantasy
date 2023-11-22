@@ -7,7 +7,7 @@ const props = defineProps<{
   state: Cast
 }>()
 const store = useSceneStore()
-const { gridSize } = useAppearance(store.scene)
+const { gridSize } = useAppearance()
 const { model, content, color } = useCastEmotion(toRef(store.state), props.state)
 const offset = computed(() => gridSize.value * 0.1 * (3 - (props.state.appearance.ratio || 2)))
 </script>

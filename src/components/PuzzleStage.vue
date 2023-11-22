@@ -7,7 +7,7 @@ import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const store = useSceneStore()
 const session = useSessionStore()
-const { stageSize } = useAppearance(store.scene)
+const { stageSize } = useAppearance()
 const { unreachers, reachers, halfways } = useCasts(toRef(store.state), toRef(store.scene))
 const landscape = computed(() => store.scene.landscape?.night
   ? sprites.nightBridge

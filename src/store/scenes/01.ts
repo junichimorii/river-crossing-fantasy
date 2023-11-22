@@ -2,13 +2,16 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 1,
   title: '一人旅',
-  description: {
-    conditions: '登場人物を対岸に渡す',
-    transportation: '1人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
+  rules: {
+    conditions: [
+      '登場人物を対岸に渡す',
+      '1回以内にクリアする'
+    ],
+    transportation: '1人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '登場人物を上方向にスワイプすると、<ruby>筏<rt>いかだ</rt></ruby>の上にセットされます。',
-      '<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる登場人物が乗ると、ボタンが表示されます。ボタンをタップすると対岸へ移動します。',
-      '<ruby>筏<rt>いかだ</rt></ruby>の上の登場人物を下方向にスワイプすると<ruby>筏<rt>いかだ</rt></ruby>から降ります。',
+      '登場人物を上方向にスワイプすると、筏（いかだ）の上にセットされます。',
+      '筏（いかだ）を漕（こ）げる登場人物が乗ると、ボタンが表示されます。ボタンをタップすると対岸へ移動します。',
+      '筏（いかだ）の上の登場人物を下方向にスワイプすると筏（いかだ）から降ります。',
     ],
   },
   category: 'unconditioned',

@@ -10,8 +10,8 @@ const props = defineProps<{
   state: Carrier
 }>()
 const store = useSceneStore()
-const { stageSize } = useAppearance(store.scene)
-const { width, height, aspectRatio } = useCarrierAppearance(store.scene, props.state)
+const { stageSize } = useAppearance()
+const { width, height, aspectRatio } = useCarrierAppearance(props.state)
 const { coord } = useCarrierState(toRef(store.state))
 const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
 const { arrive } = useScene(toRef(store.state), toRef(store.scene))

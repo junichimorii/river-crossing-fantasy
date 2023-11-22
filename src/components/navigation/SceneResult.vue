@@ -5,7 +5,7 @@ import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 const records = useRecordsStore()
 const store = useSceneStore()
-const { stageSize } = useAppearance(store.scene)
+const { stageSize } = useAppearance()
 const { count } = useMoves(toRef(store.moves))
 const score = ref(0)
 const result = computed(() => includes('failed')

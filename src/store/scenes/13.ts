@@ -2,9 +2,12 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 13,
   title: '魔獣たちの反乱（中級編1）',
-  description: {
-    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
+  rules: {
+    conditions: [
+      '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
+      '最小回数でクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したもの。',
     ],

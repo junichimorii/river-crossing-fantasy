@@ -45,11 +45,11 @@ const inbound = computed(() => isEnabled.value && bound.value === 'inbound')
  */
 const outbound = computed(() => isEnabled.value && bound.value === 'outbound')
 /**
- * <ruby>筏<rt>いかだ</rt></ruby>から中州方向に進行可能
+ * 筏（いかだ）から中州方向に進行可能
  */
 const stopover = computed(() => isEnabled.value && bound.value === 'stopover')
 /**
- * 中州から<ruby>筏<rt>いかだ</rt></ruby>方向に進行可能
+ * 中州から筏（いかだ）方向に進行可能
  */
 const resume = computed(() => isEnabled.value && bound.value === 'resume')
 </script>

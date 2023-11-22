@@ -2,11 +2,14 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 15,
   title: '王女親衛隊の攻防（中級編）',
-  description: {
-    conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '3人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
+  rules: {
+    conditions: [
+      '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
+      '最小回数でクリアする'
+    ],
+    transportation: '3人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '<ruby>筏<rt>いかだ</rt></ruby>には3人まで乗せることができます。',
+      '筏（いかだ）には3人まで乗せることができます。',
     ],
   },
   category: 'escorting-celebrity',
@@ -22,7 +25,7 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: 'A国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    rules: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -61,7 +64,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: 'B国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    rules: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },
@@ -100,7 +103,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 6,
     name: 'C国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    rules: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight31'
     },

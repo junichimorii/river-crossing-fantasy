@@ -12,7 +12,7 @@ const props = defineProps<{
 }>()
 const target = ref<HTMLElement | null>(null)
 const store = useSceneStore()
-const { width, height, aspectRatio } = useCastAppearance(store.scene)
+const { width, height, aspectRatio } = useCastAppearance()
 const { coord, boarding } = useCastState(toRef(store.state))
 const { pickUp, dropOff, safetyConfirmation } = useScene(toRef(store.state), toRef(store.scene))
 

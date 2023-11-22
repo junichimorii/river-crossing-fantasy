@@ -2,9 +2,12 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 6,
   title: '魔獣たちの反乱（初級編）',
-  description: {
-    conditions: '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
+  rules: {
+    conditions: [
+      '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
+      '5回以内にクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '魔獣使い側が半数以上を維持しつつ川を渡るパズルです。',
       '両岸において、魔獣の数が魔獣使いの数より多くなった場合、魔獣が反乱を起こします。',

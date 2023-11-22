@@ -1,10 +1,10 @@
 import AppIntroduction from './home/AppIntroduction.vue'
 import SceneCasts from './navigation/SceneCasts.vue'
-import SceneConditions from './navigation/SceneConditions.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
 import SceneMoves from './navigation/SceneMoves.vue'
 import SceneNavigation from './navigation/SceneNavigation.vue'
 import SceneResult from './navigation/SceneResult.vue'
+import SceneRules from './navigation/SceneRules.vue'
 import SceneSolve from './navigation/SceneSolve.vue'
 import SceneSound from './navigation/SceneSound.vue'
 import SceneSplash from './navigation/SceneSplash.vue'
@@ -24,11 +24,11 @@ export {
   PuzzleStage,
   AppIntroduction,
   SceneCasts,
-  SceneConditions,
   SceneMenu,
   SceneMoves,
   SceneNavigation,
   SceneResult,
+  SceneRules,
   SceneSolve,
   SceneSound,
   SceneSplash,

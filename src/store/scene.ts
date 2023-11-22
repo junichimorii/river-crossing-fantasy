@@ -30,8 +30,8 @@ export const useSceneStore = defineStore('scene', () => {
     {
       id: 0,
       title: '',
-      description: {
-        conditions: '',
+      rules: {
+        conditions: [],
         transportation: '',
       },
       category: 'unconditioned',

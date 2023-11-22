@@ -12,7 +12,7 @@ const items = Object.values(records.scenes)
 const headers = [
   { title: 'id', value: 'id', width: '5%', sortable: true },
   { title: 'title', value: 'title', width: '10%' },
-  { title: 'description', value: 'description', width: '25%' },
+  { title: 'rules', value: 'rules', width: '25%' },
   { title: 'category', value: 'category', width: '10%', sortable: true },
   { title: 'level', value: 'level', width: '5%' },
   { title: 'landscape', value: 'landscape', width: '5%' },
@@ -45,7 +45,7 @@ onMounted(async () => {
             {{ value }}
           </v-chip>
         </template>
-        <template #[`item.description`]="{ value }">
+        <template #[`item.rules`]="{ value }">
           <div
             v-for="(tip, i) in value.tips"
             :key="i"

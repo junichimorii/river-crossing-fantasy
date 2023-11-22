@@ -2,9 +2,12 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 12,
   title: '王女親衛隊の攻防（中級編）',
-  description: {
-    conditions: '王女を他国の騎士から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。すべての登場人物が<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げる。',
+  rules: {
+    conditions: [
+      '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
+      '最小回数でクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '古くから「jealous husbands problem」（<ruby>嫉妬<rt>しっと</rt></ruby>深い夫の問題）の名で知られる川渡りパズルを改変したもの。',
     ],
@@ -22,7 +25,7 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: 'A国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    rules: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -46,7 +49,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'B国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    rules: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },
@@ -70,7 +73,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: 'C国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    rules: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: {
       sprite: 'knight31'
     },

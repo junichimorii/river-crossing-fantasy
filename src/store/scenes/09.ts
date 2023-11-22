@@ -2,9 +2,12 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 9,
   title: '一触即発パーティ（初級編1）',
-  description: {
-    conditions: '村人を魔獣から保護しつつ、すべての登場人物を最小回数で対岸に渡す',
-    transportation: '2人乗りの<ruby>筏<rt>いかだ</rt></ruby>が1<ruby>艘<rt>そう</rt></ruby>。ただし<ruby>筏<rt>いかだ</rt></ruby>を<ruby>漕<rt>こ</rt></ruby>げるのは魔獣使いのみ。',
+  rules: {
+    conditions: [
+      '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',
+      '7回以内にクリアする'
+    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
       '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したもの。',
     ],
@@ -59,7 +62,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '魔獣',
-    description: '魔獣使いが目を離すと村人を襲う。',
+    rules: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
       sprite: 'therianthropy1',
       ratio: 0.85
