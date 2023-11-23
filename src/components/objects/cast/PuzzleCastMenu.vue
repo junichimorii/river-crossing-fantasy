@@ -67,7 +67,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
         <v-icon
           size="x-large"
           icon="mdi-arrow-up"
-          color="tertiary"
+          color="amber"
         ></v-icon>
       </div>
     </v-expand-transition>
@@ -84,7 +84,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
         <v-icon
           size="x-large"
           icon="mdi-arrow-left"
-          color="tertiary"
+          color="amber"
         ></v-icon>
       </div>
     </v-expand-transition>
@@ -101,7 +101,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
         <v-icon
           size="x-large"
           icon="mdi-arrow-right"
-          color="tertiary"
+          color="amber"
         ></v-icon>
       </div>
     </v-expand-transition>
@@ -118,7 +118,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
         <v-icon
           size="x-large"
           icon="mdi-arrow-down"
-          color="tertiary"
+          color="amber"
         ></v-icon>
       </div>
     </v-expand-transition>

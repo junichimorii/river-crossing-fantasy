@@ -26,7 +26,7 @@ defineProps<{
           :length="2"
           :size="20"
           :model-value="i + 1"
-          active-color="tertiary"
+          active-color="orange"
         />
         <span
           v-html="convert(rule)"

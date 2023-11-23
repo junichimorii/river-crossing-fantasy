@@ -1,58 +1,62 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 5,
-  title: '闇夜の旅路（入門編）',
+  title: '一触即発パーティ（入門編）',
+  level: 1,
+  category: 'predators-and-guardians',
   rules: {
     conditions: [
-      'すべての登場人物を対岸に渡す',
-      '7分以内にクリアする'
+      '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',
+      '3回以内にクリアする'
     ],
-    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
-      '夜のステージは、移動時にたいまつが必要です。また、たいまつが燃え尽きる制限時間も決まっています。',
-      '登場人物を上方向にスワイプすると、たいまつの近くにセットされます。',
-      '橋を渡るのに必要な所要時間は登場人物毎に異なります。2人以上で移動する時は、遅いほうに合わせて同時に移動します。',
+      '登場人物には、苦手とする天敵、およびその敵から守ってくれる保護者がいます。今回のケースでは、魔獣が村人の天敵、魔獣使いが村人の保護者です。',
+      'ある登場人物が天敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
+      'ある登場人物が危険な状態の時は、その登場人物・天敵・保護者に感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
-  category: 'time-limited',
-  landscape: {
-    night: true
-  },
-  level: 1,
-  passing: 7,
+  passing: 3,
   carriers: [{
     id: 0,
     capacity: 2,
     appearance: {
-      sprite: 'touch'
+      sprite: 'raft2'
     }
   }],
   casts: [{
     id: 0,
-    name: '盗賊',
+    name: '魔獣使い',
     appearance: {
-      sprite: 'thief1'
+      sprite: 'beasttamer1'
     },
     role: {
-      duration: 1
+      rower: true,
     }
   }, {
     id: 1,
-    name: '戦士',
+    name: '村人',
     appearance: {
-      sprite: 'fighter1'
+      sprite: 'villager1',
+      ratio: 0.85
     },
     role: {
-      duration: 2
+      rower: false,
+      predators: [{
+        predator: 2,
+        guardian: 0,
+      }],
     }
   }, {
     id: 2,
-    name: '司祭',
+    name: '魔獣',
+    rules: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
-      sprite: 'priest1'
+      sprite: 'therianthropy1',
+      ratio: 0.85
     },
     role: {
-      duration: 4
+      rower: false,
     }
   }]
 })

@@ -2,14 +2,11 @@
 import { useSound } from '@vueuse/sound'
 import { computed, onUnmounted, watch } from 'vue'
 import bgm from '@/assets/sounds/RiversideEnd.mp3'
-import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 import { useSettingsStore } from '@/store/settings'
-const store = useSceneStore()
 const settings = useSettingsStore()
 const session = useSessionStore()
 const volume = computed(() => settings.state.sound.volume)
-const color = computed(() => store.scene.landscape?.night ? 'grey-lighten-2' : 'grey-darken-2')
 const icon = computed(() => isPlaying.value ? 'mdi-music' : 'mdi-music-off')
 const { play, stop, isPlaying } = useSound(bgm, {
   loop: true,
@@ -33,8 +30,8 @@ watch(
 <template>
   <v-btn
     :icon=icon
-    :color=color
     size="small"
+    color="primary"
     @click.stop="session.state.sound = !session.state.sound"
   >
   </v-btn>

@@ -11,7 +11,7 @@ const settings = useSettingsStore()
 const session = useSessionStore()
 const store = useSceneStore()
 const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
-const btnColor = store.scene.category === 'time-limited' ? 'white' : 'black'
+const btnColor = store.scene.landscape?.night ? 'white' : 'black'
 </script>
 
 <template>
@@ -38,7 +38,9 @@ const btnColor = store.scene.category === 'time-limited' ? 'white' : 'black'
         icon="mdi-map-search"
         @click.stop="session.state.solve = true"
       ></v-btn>
-      <SceneSound></SceneSound>
+      <SceneSound
+        :color="btnColor"
+      ></SceneSound>
       <v-app-bar-nav-icon
         variant="text"
         size="small"

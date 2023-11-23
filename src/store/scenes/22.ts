@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 22,
   title: '王女親衛隊の攻防（最上級編）',
+  level: 5,
+  category: 'escorting-celebrity',
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
@@ -14,11 +16,9 @@ const scene: Scene = Object.freeze({
       '筏（いかだ）を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
     ],
   },
-  category: 'escorting-celebrity',
   landscape: {
     island: true
   },
-  level: 5,
   passing: 26,
   carriers: [{
     id: 0,

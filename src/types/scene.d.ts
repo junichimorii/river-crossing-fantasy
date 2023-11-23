@@ -9,14 +9,14 @@ export interface Scene {
   id: number
   /** シーンの表題 */
   title: string
-  /** パズルのルール */
-  rules: Rules
-  /** パズル種別 */
-  category: Category
-  /** パズルの特徴 */
-  landscape?: Features
   /** 難易度 */
   level: number
+  /** パズル種別 */
+  category: Category
+  /** パズルのルール */
+  rules: Rules
+  /** パズルの特徴 */
+  landscape?: Features
   /** 合格基準となる回数または時間 */
   passing: number
   /** 乗り物 */

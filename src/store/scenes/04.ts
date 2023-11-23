@@ -1,62 +1,54 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 4,
-  title: '一触即発パーティ（入門編）',
+  title: '重量制限（入門編）',
+  level: 1,
+  category: 'weight-limited',
   rules: {
     conditions: [
-      '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',
-      '3回以内にクリアする'
+      'すべての登場人物を対岸に渡す',
+      '5回以内にクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
+    transportation: '2人まで乗れる筏（いかだ）が1艘（そう）あるが、積載（せきさい）重量に制限がある。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '登場人物には、苦手とする敵、およびその敵から守ってくれる保護者がいます。',
-      'ある登場人物が敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
-      'ある登場人物が危機に瀕（ひん）している時は、その登場人物・敵・保護者に感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
+      '筏（いかだ）には、定員の他に重量制限が設定されている場合があります。重量オーバーの状態で筏（いかだ）を移動させることはできません。',
     ],
   },
-  category: 'predators-and-guardians',
-  level: 1,
-  passing: 3,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
+    weightLimit: 1,
     appearance: {
       sprite: 'raft2'
     }
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
+    name: '騎士A',
     appearance: {
-      sprite: 'beasttamer1'
+      sprite: 'knight21',
     },
     role: {
-      rower: true,
-    }
+      weight: 1,
+    },
   }, {
     id: 1,
-    name: '村人',
+    name: '村人A',
     appearance: {
-      sprite: 'villager1',
-      ratio: 0.85
+      sprite: 'villager1'
     },
     role: {
-      rower: false,
-      predators: [{
-        predator: 2,
-        guardian: 0,
-      }],
+      weight: 0.5
     }
   }, {
     id: 2,
-    name: '魔獣',
-    rules: '魔獣使いが目を離すと村人を襲う。',
+    name: '村人B',
     appearance: {
-      sprite: 'therianthropy1',
-      ratio: 0.85
+      sprite: 'villager2'
     },
     role: {
-      rower: false,
+      weight: 0.5
     }
   }]
 })

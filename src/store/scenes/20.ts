@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 20,
   title: '闇夜の旅路（上級編）',
+  level: 4,
+  category: 'time-limited',
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
@@ -9,11 +11,9 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
   },
-  category: 'time-limited',
   landscape: {
     night: true
   },
-  level: 4,
   passing: 30,
   carriers: [{
     id: 0,

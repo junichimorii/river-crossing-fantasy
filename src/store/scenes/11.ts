@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 11,
   title: '一触即発パーティ（初級編2）',
+  level: 2,
+  category: 'predators-and-guardians',
   rules: {
     conditions: [
       '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
@@ -12,8 +14,6 @@ const scene: Scene = Object.freeze({
       '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したもの。',
     ],
   },
-  category: 'predators-and-guardians',
-  level: 2,
   passing: 7,
   carriers: [{
     id: 0,

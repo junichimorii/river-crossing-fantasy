@@ -19,14 +19,15 @@ defineProps<{
     >
       <span
         v-if="cast.role.rower !== undefined"
-        v-html="convert(cast.role.rower ? '筏（いかだ）を漕（こ）げる。' : '筏（いかだ）を漕（こ）げない。')"
+        v-html="convert(`筏（いかだ）を漕（こ）げ${cast.role.rower ? 'る' : 'ない'}。`)"
       ></span>
       <span v-if="cast.role.duration !== undefined">
         橋を渡るのに{{ cast.role.duration }}分必要。
       </span>
-      <span v-if="cast.role.weight !== undefined">
-        重量は定員{{ cast.role.weight }}人分。
-      </span>
+      <span
+        v-if="cast.role.weight !== undefined"
+        v-html="convert(`重量は筏（いかだ）の最大｜積載（せきさい）重量の${ cast.role.weight * 100 }%。`)"
+      ></span>
       <span>
         {{ cast.description }}
       </span>

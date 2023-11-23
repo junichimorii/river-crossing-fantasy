@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import carriers from '@/assets/images/carriers'
 import casts from '@/assets/images/casts'
+import { convert } from '@/composables/use-text'
 import { useRecordsStore } from '@/store/records'
 import { useSettingsStore } from '@/store/settings'
 const router = useRouter()
@@ -10,15 +11,15 @@ const settings = useSettingsStore()
 const records = useRecordsStore()
 const items = Object.values(records.scenes)
 const headers = [
-  { title: 'id', value: 'id', width: '5%', sortable: true },
+  { title: 'id', value: 'id', width: '4%', sortable: true },
   { title: 'title', value: 'title', width: '10%' },
-  { title: 'rules', value: 'rules', width: '25%' },
-  { title: 'category', value: 'category', width: '10%', sortable: true },
-  { title: 'level', value: 'level', width: '5%' },
-  { title: 'landscape', value: 'landscape', width: '5%' },
-  { title: 'passing', value: 'passing', width: '5%' },
-  { title: 'carriers', value: 'carriers', width: '5%' },
-  { title: 'casts', value: 'casts', width: '35%' },
+  { title: 'level', value: 'level', width: '4%' },
+  { title: 'category', value: 'category', width: '6%', sortable: true },
+  { title: 'rules', value: 'rules', width: '34%' },
+  { title: 'landscape', value: 'landscape', width: '4%' },
+  { title: 'passing', value: 'passing', width: '4%' },
+  { title: 'carriers', value: 'carriers', width: '4%' },
+  { title: 'casts', value: 'casts', width: '30%' },
 ]
 onMounted(async () => {
   if (!settings.state.debug) {
@@ -34,23 +35,23 @@ onMounted(async () => {
         :headers="headers"
         :items="items"
         :items-per-page="50"
+        class="text-caption"
       >
         <template #[`item.id`]="{ value }">
-          <v-chip>
-            Q{{value}}
-          </v-chip>
+          Q{{value}}
         </template>
         <template #[`item.category`]="{ value }">
-          <v-chip :color="value">
+          <div
+            :class="`text-${value}`"
+          >
             {{ value }}
-          </v-chip>
+          </div>
         </template>
         <template #[`item.rules`]="{ value }">
           <div
             v-for="(tip, i) in value.tips"
             :key="i"
-            class="text-caption"
-            v-html="tip"
+            v-html="convert(tip)"
           ></div>
         </template>
         <template #[`item.landscape`]="{ value }">
@@ -58,33 +59,51 @@ onMounted(async () => {
           <v-icon v-if="value && value.night">mdi-weather-night</v-icon>
         </template>
         <template #[`item.carriers`]="{ value }">
-          <v-chip
-            v-for="carrier in value"
-            :key="carrier.id"
-            variant="text"
-          >
-            <v-avatar start rounded="0" size="large">
-              <v-img
-                :src="carriers[carrier.appearance.sprite]"
-              ></v-img>
-            </v-avatar>
-            <span class="text-caption">{{ carrier.capacity }}</span>
-          </v-chip>
+          <div class="d-flex">
+            <div
+              v-for="carrier in value"
+              :key="carrier.id"
+              class="text-center"
+            >
+              <div>
+                <v-avatar
+                  rounded="0"
+                >
+                  <v-img
+                    :src="carriers[carrier.appearance.sprite]"
+                  >
+                    {{ carrier.capacity }}
+                  </v-img>
+                </v-avatar>
+              </div>
+            </div>
+          </div>
         </template>
         <template #[`item.casts`]="{ value }">
-          <v-chip
-            v-for="cast in value"
-            :key="cast.id"
-            variant="text"
-          >
-            <v-avatar start>
-              <v-img
-                :src="casts[cast.appearance.sprite]"
-                :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
-              ></v-img>
-            </v-avatar>
-            <span class="text-caption">{{ cast.name }}</span>
-          </v-chip>
+          <div class="d-flex">
+            <div
+              v-for="cast in value"
+              :key="cast.id"
+              class="text-center"
+            >
+              <v-avatar
+                rounded="0"
+                class="d-block"
+              >
+                <v-img
+                  :src="casts[cast.appearance.sprite]"
+                  :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
+                >
+                </v-img>
+              </v-avatar>
+              <div
+                style="font-size: 0.6rem;"
+                class="px-1"
+              >
+                {{ cast.name }}
+              </div>
+            </div>
+          </div>
         </template>
       </v-data-table>
     </v-container>

@@ -1,21 +1,21 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 10,
-  title: '逃避行（初級編2）',
+  title: '重量制限（初級編）',
+  level: 2,
+  category: 'weight-limited',
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
       '9回以内にクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし騎士の重量は定員2人分。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '2人まで乗れる筏（いかだ）が1艘（そう）あるが、積載（せきさい）重量に制限がある。すべての登場人物が筏（いかだ）を漕（こ）げる。',
   },
-  category: 'weight-limited',
-  level: 2,
   passing: 9,
   carriers: [{
     id: 0,
     capacity: 2,
-    weightLimit: 2,
+    weightLimit: 1,
     appearance: {
       sprite: 'raft2'
     }
@@ -27,7 +27,7 @@ const scene: Scene = Object.freeze({
       sprite: 'knight31',
     },
     role: {
-      weight: 2,
+      weight: 1,
     },
   }, {
     id: 1,
@@ -36,7 +36,7 @@ const scene: Scene = Object.freeze({
       sprite: 'knight32'
     },
     role: {
-      weight: 2
+      weight: 1
     }
   }, {
     id: 2,
@@ -45,7 +45,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager1'
     },
     role: {
-      weight: 1
+      weight: 0.5
     }
   }, {
     id: 3,
@@ -54,7 +54,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager2'
     },
     role: {
-      weight: 1
+      weight: 0.5
     }
   }]
 })

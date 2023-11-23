@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 21,
   title: '一触即発パーティ（上級編2）',
+  level: 4,
+  category: 'predators-and-guardians',
   rules: {
     conditions: [
       '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
@@ -9,8 +11,6 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
   },
-  category: 'predators-and-guardians',
-  level: 4,
   passing: 17,
   carriers: [{
     id: 0,

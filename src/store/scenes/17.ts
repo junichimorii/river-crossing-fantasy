@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 17,
   title: '闇夜の旅路（中級編）',
+  level: 3,
+  category: 'time-limited',
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
@@ -12,11 +14,9 @@ const scene: Scene = Object.freeze({
       '古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したもの。',
     ],
   },
-  category: 'time-limited',
   landscape: {
     night: true
   },
-  level: 3,
   passing: 15,
   carriers: [{
     id: 0,

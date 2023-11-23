@@ -48,10 +48,9 @@ const leave = async (
     <div>
       <v-expand-transition mode="out-in">
         <v-btn
-           v-show="inbound"
-          size="default"
+          v-show="inbound"
           icon="mdi-arrow-up"
-          color="tertiary"
+          color="amber"
           class="ma-1"
           @click.stop="leave('inbound')"
         ></v-btn>
@@ -60,10 +59,9 @@ const leave = async (
     <div>
       <v-expand-transition mode="in-out">
         <v-btn
-           v-show="outbound"
-          size="default"
+          v-show="outbound"
           icon="mdi-arrow-down"
-          color="tertiary"
+          color="amber"
           class="ma-1"
           @click.stop="leave('outbound')"
         ></v-btn>

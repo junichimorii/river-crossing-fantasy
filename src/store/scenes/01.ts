@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 1,
   title: '一人旅',
+  level: 1,
+  category: 'unconditioned',
   rules: {
     conditions: [
       '登場人物を対岸に渡す',
@@ -14,8 +16,6 @@ const scene: Scene = Object.freeze({
       '筏（いかだ）の上の登場人物を下方向にスワイプすると筏（いかだ）から降ります。',
     ],
   },
-  category: 'unconditioned',
-  level: 1,
   passing: 1,
   carriers: [{
     id: 0,

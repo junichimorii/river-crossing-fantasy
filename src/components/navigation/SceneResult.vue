@@ -64,7 +64,7 @@ watch(result, async (value) => {
             :length="2"
             size="x-large"
             :model-value="score"
-            active-color="tertiary"
+            active-color="orange"
           />
         </v-card-item>
         <v-card-actions

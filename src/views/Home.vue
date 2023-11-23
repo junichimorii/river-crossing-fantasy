@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
+import casts from '@/assets/images/casts'
 import { AppIntroduction } from '@/components'
+import { convert } from '@/composables/use-text'
 import { useRecordsStore } from '@/store/records'
 import { useSessionStore } from '@/store/session'
 import { useSettingsStore } from '@/store/settings'
@@ -42,11 +44,28 @@ onMounted(async () => {
             lines="one"
             :to="`/${scene.id}`"
             :title="scene.title"
-            :subtitle="scene.rules.conditions[0]"
             :disabled="!settings.state.debug && !records.isQualified(scene.level)"
             class="elevation-4 rounded my-1"
             style="background-color: hsla(0, 0%, 100%, 0.95)"
           >
+            <v-list-item-subtitle>
+              <div v-html="convert(scene.rules.conditions[0])"></div>
+            </v-list-item-subtitle>
+            <v-list-item-subtitle
+              class="d-flex justify-end align-end"
+            >
+              <v-avatar
+                v-for="cast in scene.casts"
+                :key="cast.id"
+                size="24"
+              >
+                <v-img
+                  :src="casts[cast.appearance.sprite]"
+                  :style="{ transform: `scale(${-(cast.appearance.ratio || 1)}, ${cast.appearance.ratio || 1})` }"
+                  style="transform-origin: bottom center;"
+                ></v-img>
+              </v-avatar>
+            </v-list-item-subtitle>
             <template v-slot:prepend>
               <v-chip
                 rounded
@@ -68,8 +87,8 @@ onMounted(async () => {
                 size="small"
                 :length="2"
                 :model-value="records.getScore(scene.id)"
-                active-color="tertiary"
-              />
+                active-color="orange"
+              ></v-rating>
             </template>
           </v-list-item>
         </template>

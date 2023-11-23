@@ -2,6 +2,8 @@ import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 23,
   title: '魔獣たちの反乱（最上級編）',
+  level: 5,
+  category: 'keep-majority',
   rules: {
     conditions: [
       '両岸および筏（いかだ）の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
@@ -9,11 +11,9 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
   },
-  category: 'keep-majority',
   landscape: {
     island: true
   },
-  level: 5,
   passing: 26,
   carriers: [{
     id: 0,
