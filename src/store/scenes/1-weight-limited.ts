@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 4,
+  id: 5,
   title: '重量制限（入門編）',
   level: 1,
   category: 'weight-limited',

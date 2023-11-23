@@ -18,7 +18,7 @@ defineProps<{
       <div
         v-for="(rule, i) in scene.rules.conditions"
         :key="i"
-        class="d-flex align-self-center"
+        class="d-flex align-self-end"
       >
         <v-rating
           readonly
@@ -27,7 +27,7 @@ defineProps<{
           :size="20"
           :model-value="i + 1"
           active-color="orange"
-        />
+        ></v-rating>
         <span
           v-html="convert(rule)"
           class="ml-3"

@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 21,
+  id: 23,
   title: '一触即発パーティ（上級編2）',
   level: 4,
   category: 'predators-and-guardians',
@@ -31,7 +31,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    rules: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
       sprite: 'therianthropy1',
       ratio: 0.85
@@ -42,7 +42,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'A国騎士',
-    rules: 'B国騎士が目を離すとB国王女を襲う。',
+    description: 'B国騎士が目を離すとB国王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -90,7 +90,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: 'B国騎士',
-    rules: 'A国騎士が目を離すとA国王女を襲う。',
+    description: 'A国騎士が目を離すとA国王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },

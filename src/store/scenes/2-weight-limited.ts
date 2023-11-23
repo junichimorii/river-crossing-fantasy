@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 10,
+  id: 11,
   title: '重量制限（初級編）',
   level: 2,
   category: 'weight-limited',
@@ -10,6 +10,9 @@ const scene: Scene = Object.freeze({
       '9回以内にクリアする'
     ],
     transportation: '2人まで乗れる筏（いかだ）が1艘（そう）あるが、積載（せきさい）重量に制限がある。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    tips: [
+      '筏（いかだ）に重量制限のあるパズルです。',
+    ],
   },
   passing: 9,
   carriers: [{

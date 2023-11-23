@@ -14,8 +14,14 @@ const useScene = (
 ) => {
   const { coord: carrierCoord } = useCarrierState(state)
   const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
-  const { coord: castCoord, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
+  const { coord: castCoord, boarding, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
   const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)
+  // 嫌悪の対象がいるパズル
+  const hasAversions = scene.value.casts.some(cast => cast.role.aversions)
+  // 敵と保護者がいるパズル
+  const hasPredators = scene.value.casts.some(cast => cast.role.predators)
+  // 半数以上を維持するパズル
+  const hasRebels = scene.value.casts.some(cast => cast.role.rebel)
 
   /**
    * シーンの状態を初期化
@@ -85,7 +91,7 @@ const useScene = (
     }
     return move
   }
-
+  
   /**
    * 安否確認
    */
@@ -93,16 +99,35 @@ const useScene = (
     for await (const cast of scene.value.casts) {
       calmDown(cast)
     }
-    switch (scene.value.category) {
-      case 'predators-and-guardians':
-      case 'escorting-celebrity':
-        // 敵と保護者がいるパズルにおける安否確認
-        await predation()
-        break
-      case 'keep-majority':
-        // 半数以上を維持するパズルにおける安否確認
-        await rebellion()
-        break
+    // 嫌悪の対象がいるパズルにおける安否確認
+    if (hasAversions) {
+      await antagonism()
+    }
+    // 敵と保護者がいるパズルにおける安否確認
+    if (hasPredators) {
+      await predation()
+    }
+    // 半数以上を維持するパズルにおける安否確認
+    if (hasRebels) {
+      await rebellion()
+    }
+  }
+
+  /**
+   * 嫌いな登場人物と乗り物に同乗しているかどうか
+   */
+  const antagonism = async () => {
+    for await (const myself of scene.value.casts) {
+      if (!myself.role.aversions) continue
+      if (boarding(myself) === null) continue
+      for await (const id of myself.role.aversions) {
+        const aversion = scene.value.casts[id]
+        // 嫌悪対象と隣接している
+        if (isNeighboring(myself, aversion)) {
+          // 感情を追加
+          feel(myself, 'surprised')
+        }
+      }
     }
   }
 

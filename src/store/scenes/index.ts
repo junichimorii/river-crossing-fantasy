@@ -1,28 +1,31 @@
-import s01 from './01'
-import s02 from './02'
-import s03 from './03'
-import s04 from './04'
-import s05 from './05'
-import s06 from './06'
-import s07 from './07'
-import s08 from './08'
-import s09 from './09'
-import s10 from './10'
-import s11 from './11'
-import s12 from './12'
-import s13 from './13'
-import s14 from './14'
-import s15 from './15'
-import s16 from './16'
-import s17 from './17'
-import s18 from './18'
-import s19 from './19'
-import s20 from './20'
-import s21 from './21'
-import s22 from './22'
-import s23 from './23'
-import s24 from './24'
-// import s25 from './25'
+import s03 from './1-conditioned-1'
+import s04 from './1-conditioned-2'
+import s06 from './1-predators-and-guardians'
+import s07 from './1-time-limited'
+import s01 from './1-unconditioned-1'
+import s02 from './1-unconditioned-2'
+import s05 from './1-weight-limited'
+import s12 from './2-conditioned'
+import s09 from './2-escorting-celebrity'
+import s08 from './2-keep-majority'
+import s10 from './2-predators-and-guardians-1'
+import s13 from './2-predators-and-guardians-2'
+import s11 from './2-weight-limited'
+import s14 from './3-escorting-celebrity-1'
+import s17 from './3-escorting-celebrity-2'
+import s15 from './3-keep-majority-1'
+import s18 from './3-keep-majority-2'
+import s16 from './3-predators-and-guardians-1'
+import s19 from './3-predators-and-guardians-2'
+import s20 from './3-time-limited'
+import s22 from './4-keep-majority'
+import s21 from './4-predators-and-guardians-1'
+import s23 from './4-predators-and-guardians-2'
+import s25 from './4-predators-and-guardians-3'
+import s24 from './4-time-limited'
+import s26 from './5-escorting-celebrity'
+import s27 from './5-keep-majority'
+import s28 from './5-predators-and-guardians'
 
 export {
   s01,
@@ -49,5 +52,9 @@ export {
   s22,
   s23,
   s24,
-  // s25,
+  s25,
+  s26,
+  s27,
+  s28
 }
+

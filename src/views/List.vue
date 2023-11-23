@@ -15,7 +15,7 @@ const headers = [
   { title: 'title', value: 'title', width: '10%' },
   { title: 'level', value: 'level', width: '4%' },
   { title: 'category', value: 'category', width: '6%', sortable: true },
-  { title: 'rules', value: 'rules', width: '34%' },
+  { title: 'rules', value: 'rules', width: '36%' },
   { title: 'landscape', value: 'landscape', width: '4%' },
   { title: 'passing', value: 'passing', width: '4%' },
   { title: 'carriers', value: 'carriers', width: '4%' },

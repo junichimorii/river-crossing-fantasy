@@ -1,20 +1,21 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 23,
-  title: '魔獣たちの反乱（最上級編）',
-  level: 5,
+  id: 15,
+  title: '魔獣たちの反乱（中級編1）',
+  level: 3,
   category: 'keep-majority',
   rules: {
     conditions: [
-      '両岸および筏（いかだ）の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
+      '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    tips: [
+      '魔獣使い側が半数以上を維持しつつ川を渡るパズルです。',
+      '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したものです。',
+    ],
   },
-  landscape: {
-    island: true
-  },
-  passing: 26,
+  passing: 11,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -51,15 +52,6 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: '魔獣使いD',
-    appearance: {
-      sprite: 'beasttamer4'
-    },
-    role: {
-      rebel: false
-    }
-  }, {
-    id: 4,
     name: '魔獣A',
     appearance: {
       sprite: 'therianthropy1'
@@ -68,7 +60,7 @@ const scene: Scene = Object.freeze({
       rebel: true
     }
   }, {
-    id: 5,
+    id: 4,
     name: '魔獣B',
     appearance: {
       sprite: 'therianthropy2'
@@ -77,19 +69,10 @@ const scene: Scene = Object.freeze({
       rebel: true
     }
   }, {
-    id: 6,
+    id: 5,
     name: '魔獣C',
     appearance: {
       sprite: 'therianthropy3'
-    },
-    role: {
-      rebel: true
-    }
-  }, {
-    id: 7,
-    name: '魔獣D',
-    appearance: {
-      sprite: 'therianthropy4'
     },
     role: {
       rebel: true

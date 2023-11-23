@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 5,
+  id: 6,
   title: '一触即発パーティ（入門編）',
   level: 1,
   category: 'predators-and-guardians',
@@ -11,7 +11,7 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
-      '登場人物には、苦手とする天敵、およびその敵から守ってくれる保護者がいます。今回のケースでは、魔獣が村人の天敵、魔獣使いが村人の保護者です。',
+      '登場人物には、苦手とする天敵、およびその天敵から守ってくれる保護者がいます。今回のケースでは、魔獣が村人の天敵、魔獣使いが村人の保護者です。',
       'ある登場人物が天敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
       'ある登場人物が危険な状態の時は、その登場人物・天敵・保護者に感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
@@ -50,7 +50,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '魔獣',
-    rules: '魔獣使いが目を離すと村人を襲う。',
+    description: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
       sprite: 'therianthropy1',
       ratio: 0.85

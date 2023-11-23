@@ -71,7 +71,6 @@ export const useRecordsStore = defineStore('records', () => {
     level: number
   ) => state.value.level.has(level)
 
-
   /**
    * ステージのスコアを取得
    */

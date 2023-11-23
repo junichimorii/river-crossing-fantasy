@@ -3,7 +3,7 @@ const scene: Scene = Object.freeze({
   id: 3,
   title: '逃避行',
   level: 1,
-  category: 'qualified',
+  category: 'conditioned',
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',

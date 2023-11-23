@@ -34,6 +34,8 @@ interface Role {
   weight?: number
   /** 所要時間 */
   duration?: number
+  /** 嫌悪の対象 */
+  aversions?: number[]
   /** 天敵と保護者 */
   predators?: {
     predator: number  // 敵のID

@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 22,
+  id: 26,
   title: '王女親衛隊の攻防（最上級編）',
   level: 5,
   category: 'escorting-celebrity',
@@ -30,7 +30,7 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: 'A国騎士',
-    rules: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight11'
     },
@@ -57,7 +57,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'B国騎士',
-    rules: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight21'
     },
@@ -84,7 +84,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: 'C国騎士',
-    rules: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight31'
     },
@@ -111,7 +111,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 6,
     name: 'D国騎士',
-    rules: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: {
       sprite: 'knight41'
     },

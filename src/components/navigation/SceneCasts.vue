@@ -28,9 +28,10 @@ defineProps<{
         v-if="cast.role.weight !== undefined"
         v-html="convert(`重量は筏（いかだ）の最大｜積載（せきさい）重量の${ cast.role.weight * 100 }%。`)"
       ></span>
-      <span>
-        {{ cast.description }}
-      </span>
+      <span
+        v-if="cast.description"
+        v-html="convert(cast.description)"
+      ></span>
       <template v-slot:prepend>
         <v-avatar>
           <v-img

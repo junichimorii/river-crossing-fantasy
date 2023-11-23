@@ -3,6 +3,9 @@ import beasttamer2 from './beasttamer2.png'
 import beasttamer3 from './beasttamer3.png'
 import beasttamer4 from './beasttamer4.png'
 import beasttamer5 from './beasttamer5.png'
+import elf1 from './elf1.png'
+import elf2 from './elf2.png'
+import elf3 from './elf3.png'
 import fighter1 from './fighter1.png'
 import knight11 from './knight11.png'
 import knight12 from './knight12.png'
@@ -44,6 +47,9 @@ const sprites: {
   beasttamer3,
   beasttamer4,
   beasttamer5,
+  elf1,
+  elf2,
+  elf3,
   fighter1,
   knight11,
   knight12,

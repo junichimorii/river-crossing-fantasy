@@ -1,8 +1,8 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 20,
-  title: '闇夜の旅路（上級編）',
-  level: 4,
+  title: '闇夜の旅路（中級編）',
+  level: 3,
   category: 'time-limited',
   rules: {
     conditions: [
@@ -10,11 +10,15 @@ const scene: Scene = Object.freeze({
       '最短時間でクリアする'
     ],
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
+    tips: [
+      '制限時間のある川渡りパズルです。',
+      '古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したものです。',
+    ],
   },
   landscape: {
     night: true
   },
-  passing: 30,
+  passing: 15,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -38,7 +42,7 @@ const scene: Scene = Object.freeze({
       sprite: 'fighter1'
     },
     role: {
-      duration: 3
+      duration: 2
     }
   }, {
     id: 2,
@@ -47,7 +51,7 @@ const scene: Scene = Object.freeze({
       sprite: 'priest1'
     },
     role: {
-      duration: 7
+      duration: 5
     }
   }, {
     id: 3,
@@ -56,16 +60,7 @@ const scene: Scene = Object.freeze({
       sprite: 'mage1'
     },
     role: {
-      duration: 9
-    }
-  }, {
-    id: 4,
-    name: '王女',
-    appearance: {
-      sprite: 'princess11'
-    },
-    role: {
-      duration: 12
+      duration: 8
     }
   }]
 })

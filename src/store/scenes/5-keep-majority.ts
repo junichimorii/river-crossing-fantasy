@@ -1,22 +1,25 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 19,
-  title: '魔獣たちの反乱（上級編）',
-  level: 4,
+  id: 27,
+  title: '魔獣たちの反乱（最上級編）',
+  level: 5,
   category: 'keep-majority',
   rules: {
     conditions: [
       '両岸および筏（いかだ）の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '3人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
   },
-  passing: 11,
+  landscape: {
+    island: true
+  },
+  passing: 26,
   carriers: [{
     id: 0,
-    capacity: 3,
+    capacity: 2,
     appearance: {
-      sprite: 'raft3'
+      sprite: 'raft2'
     }
   }],
   casts: [{
@@ -57,15 +60,6 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 4,
-    name: '魔獣使いE',
-    appearance: {
-      sprite: 'beasttamer5'
-    },
-    role: {
-      rebel: false
-    }
-  }, {
-    id: 5,
     name: '魔獣A',
     appearance: {
       sprite: 'therianthropy1'
@@ -74,7 +68,7 @@ const scene: Scene = Object.freeze({
       rebel: true
     }
   }, {
-    id: 6,
+    id: 5,
     name: '魔獣B',
     appearance: {
       sprite: 'therianthropy2'
@@ -83,7 +77,7 @@ const scene: Scene = Object.freeze({
       rebel: true
     }
   }, {
-    id: 7,
+    id: 6,
     name: '魔獣C',
     appearance: {
       sprite: 'therianthropy3'
@@ -92,19 +86,10 @@ const scene: Scene = Object.freeze({
       rebel: true
     }
   }, {
-    id: 8,
+    id: 7,
     name: '魔獣D',
     appearance: {
       sprite: 'therianthropy4'
-    },
-    role: {
-      rebel: true
-    }
-  }, {
-    id: 9,
-    name: '魔獣E',
-    appearance: {
-      sprite: 'therianthropy5'
     },
     role: {
       rebel: true
