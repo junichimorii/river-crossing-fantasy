@@ -5,6 +5,7 @@ import ViteFonts from 'unplugin-fonts/vite'
 
 // Utilities
 import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
@@ -25,6 +26,39 @@ export default defineConfig({
         }],
       },
     }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true
+      },
+      manifest: {
+        theme_color: '#00c853',
+        background_color: '#69f0ae',
+        display: 'standalone',
+        scope: 'https://8amjp.github.io/river-crossing-puzzles/',
+        start_url: 'https://8amjp.github.io/river-crossing-puzzles/',
+        name: 'River Crossing Puzzles',
+        short_name: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
+        description: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
+        icons: [{
+          src: '/icon-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        }, {
+          src: '/icon-256x256.png',
+          sizes: '256x256',
+          type: 'image/png'
+        }, {
+          src: '/icon-384x384.png',
+          sizes: '384x384',
+          type: 'image/png'
+        }, {
+          src: '/icon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        }]
+      }
+    })
   ],
   define: { 'process.env': {} },
   resolve: {
