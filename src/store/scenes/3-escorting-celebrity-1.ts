@@ -11,7 +11,6 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '騎士達が同国の王女を保護しながら川を渡るパズルです。',
       '古くから「jealous husbands problem」（嫉妬（しっと）深い夫の問題）の名で知られる川渡りパズルを改変したものです。',
     ],
   },

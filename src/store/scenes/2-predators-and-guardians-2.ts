@@ -6,12 +6,11 @@ const scene: Scene = Object.freeze({
   category: 'predators-and-guardians',
   rules: {
     conditions: [
-      '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '7回以内にクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
-      '登場人物をそれぞれの天敵から保護しながら川を渡るパズルです。',
       '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したものです。',
     ],
   },

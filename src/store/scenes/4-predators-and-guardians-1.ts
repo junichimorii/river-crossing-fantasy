@@ -6,7 +6,7 @@ const scene: Scene = Object.freeze({
   category: 'predators-and-guardians',
   rules: {
     conditions: [
-      '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '3人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',

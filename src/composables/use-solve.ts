@@ -33,6 +33,8 @@ const useSolve = (
     solutions.value = []
     const history = await search()
     solved.value = await lookBack(history)
+    console.info(solved.value)
+    console.info(solutions.value)
   }
 
   /**

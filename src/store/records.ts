@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import * as scenes from './scenes'
 import type { Scene } from '@/types'
-const levels = [ '入門編', '初級編', '中級編', '上級編', '最上級編' ]
+const levels = [ 'Beginner', 'Easy', 'Normal', 'Hard', 'Ultimate' ]
 /**
  * 実績管理
  */

@@ -30,13 +30,14 @@ import s45 from './4-time-limited'
 
 import s51 from './5-escorting-celebrity'
 import s52 from './5-keep-majority'
-import s53 from './5-predators-and-guardians'
+import s53 from './5-predators-and-guardians-1'
+import s54 from './5-predators-and-guardians-2'
 
 export {
   s11, s12, s13, s14, s15, s16, s17,
   s21, s22, s23, s24, s25, s26,
   s31, s32, s33, s34, s35, s36, s37,
   s41, s42, s43, s44, s45, s46,
-  s51, s52, s53,
+  s51, s52, s53, s54
 }
 

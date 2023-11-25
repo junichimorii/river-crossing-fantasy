@@ -6,7 +6,7 @@ const scene: Scene = Object.freeze({
   category: 'conditioned',
   rules: {
     conditions: [
-      'すべての登場人物を対岸に渡す',
+      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '5回以内にクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',

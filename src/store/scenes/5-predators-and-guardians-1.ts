@@ -1,12 +1,12 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 29,
-  title: '一触即発パーティ（最上級編）',
+  title: '一触即発パーティ（最上級編1）',
   level: 5,
   category: 'predators-and-guardians',
   rules: {
     conditions: [
-      '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。川の中の島に降りることもできる。',

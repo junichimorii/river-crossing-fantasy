@@ -44,6 +44,15 @@ onMounted(async () => {
         </template>
         <template #[`item.rules`]="{ value }">
           <div
+            v-for="(condition, i) in value.conditions"
+            :key="i"
+            v-html="convert(condition)"
+            class="font-weight-bold"
+          ></div>
+          <div
+            v-html="convert(value.transportation)"
+          ></div>
+          <div
             v-for="(tip, i) in value.tips"
             :key="i"
             v-html="convert(tip)"

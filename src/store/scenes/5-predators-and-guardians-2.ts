@@ -1,20 +1,20 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 24,
-  title: '一触即発パーティ（上級編3）',
-  level: 4,
+  id: 30,
+  title: '一触即発パーティ（最上級編2）',
+  level: 5,
   category: 'predators-and-guardians',
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ筏（いかだ）を修理しながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
-    tips: [
-      '家族の川渡りとして知られているパズルを改変したものです。',
-    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
   },
-  passing: 17,
+  landscape: {
+    island: true
+  },
+  passing: 38,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -37,10 +37,9 @@ const scene: Scene = Object.freeze({
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
       sprite: 'therianthropy1',
-      ratio: 0.85
     },
     role: {
-      rower: false
+      rower: true
     }
   }, {
     id: 2,
@@ -58,40 +57,22 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: 'A国王女1',
+    name: 'A国王女',
     appearance: {
       sprite: 'princess11',
-      ratio: 0.85
     },
     role: {
-      rower: false,
+      rower: true,
       predators: [{
         predator: 1,
         guardian: 0
       }, {
-        predator: 5,
+        predator: 4,
         guardian: 2
       }]
     }
   }, {
     id: 4,
-    name: 'A国王女2',
-    appearance: {
-      sprite: 'princess12',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 5,
-        guardian: 2
-      }]
-    }
-  }, {
-    id: 5,
     name: 'B国騎士',
     description: 'A国騎士が目を離すとA国王女を襲う。',
     appearance: {
@@ -105,37 +86,75 @@ const scene: Scene = Object.freeze({
       }]
     }
   }, {
-    id: 6,
-    name: 'B国王女1',
+    id: 5,
+    name: 'B国王女',
     appearance: {
       sprite: 'princess21',
-      ratio: 0.85
     },
     role: {
-      rower: false,
+      rower: true,
       predators: [{
         predator: 1,
         guardian: 0
       }, {
         predator: 2,
-        guardian: 5
+        guardian: 4
+      }]
+    }
+  }, {
+    id: 6,
+    name: '村人',
+    appearance: {
+      sprite: 'villager1',
+    },
+    role: {
+      rower: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
       }]
     }
   }, {
     id: 7,
-    name: 'B国王女2',
+    name: 'エルフ',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: {
-      sprite: 'princess22',
-      ratio: 0.85
+      sprite: 'elf1',
     },
     role: {
-      rower: false,
+      rower: true,
+      aversions: [0, 2, 3, 4, 5, 6, 8, 9],
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 2,
-        guardian: 5
+      }]
+    }
+  }, {
+    id: 8,
+    name: '大工A',
+    appearance: {
+      sprite: 'carpenter1',
+    },
+    role: {
+      rower: true,
+      repairer: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 9,
+    name: '大工B',
+    appearance: {
+      sprite: 'carpenter2',
+    },
+    role: {
+      rower: true,
+      repairer: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
       }]
     }
   }]
