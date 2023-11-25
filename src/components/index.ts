@@ -2,7 +2,9 @@ import AppIntroduction from './home/AppIntroduction.vue'
 import SceneCasts from './navigation/SceneCasts.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
 import SceneMoves from './navigation/SceneMoves.vue'
-import SceneNavigation from './navigation/SceneNavigation.vue'
+import SceneNavigationDialog from './navigation/SceneNavigationDialog.vue'
+import SceneNavigationTabs from './navigation/SceneNavigationTabs.vue'
+import SceneNavigationWindows from './navigation/SceneNavigationWindows.vue'
 import SceneResult from './navigation/SceneResult.vue'
 import SceneRules from './navigation/SceneRules.vue'
 import SceneSolve from './navigation/SceneSolve.vue'
@@ -16,17 +18,17 @@ import PuzzleCastMenu from './objects/cast/PuzzleCastMenu.vue'
 import PuzzleCarrier from './objects/PuzzleCarrier.vue'
 import PuzzleCast from './objects/PuzzleCast.vue'
 import PuzzleBottomMenu from './PuzzleBottomMenu.vue'
-import PuzzleNavigationDrawer from './PuzzleNavigationDrawer.vue'
 import PuzzleStage from './PuzzleStage.vue'
 export {
   PuzzleBottomMenu,
-  PuzzleNavigationDrawer,
   PuzzleStage,
   AppIntroduction,
   SceneCasts,
   SceneMenu,
   SceneMoves,
-  SceneNavigation,
+  SceneNavigationDialog,
+  SceneNavigationTabs,
+  SceneNavigationWindows,
   SceneResult,
   SceneRules,
   SceneSolve,

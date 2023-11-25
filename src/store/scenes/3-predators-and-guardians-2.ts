@@ -112,6 +112,7 @@ const scene: Scene = Object.freeze({
       sprite: 'elf1',
     },
     role: {
+      rower: true,
       aversions: [0, 1, 2, 3, 4, 5]
     }
   }]

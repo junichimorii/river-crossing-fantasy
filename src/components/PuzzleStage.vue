@@ -16,7 +16,7 @@ const landscape = computed(() => store.scene.landscape?.night
     : sprites.daytimeRiver
 )
 onMounted(async () => {
-  session.state.drawer = false
+  session.state.navigation = false
   session.state.sound = false
   session.state.solve = false
 })

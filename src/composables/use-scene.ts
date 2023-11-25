@@ -13,7 +13,7 @@ const useScene = (
   scene: Ref<Scene>,
 ) => {
   const { coord: carrierCoord } = useCarrierState(state)
-  const { getDuration, hasPassengers, isAvailable } = useCarrier(state, scene)
+  const { getDuration, hasPassengers, isVacancy } = useCarrier(state, scene)
   const { coord: castCoord, boarding, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
   const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)
   // 嫌悪の対象がいるパズル
@@ -22,6 +22,8 @@ const useScene = (
   const hasPredators = scene.value.casts.some(cast => cast.role.predators)
   // 半数以上を維持するパズル
   const hasRebels = scene.value.casts.some(cast => cast.role.rebel)
+  // 乗り物の耐久性があるパズル
+  const hasRepairers = scene.value.casts.some(cast => cast.role.repairer)
 
   /**
    * シーンの状態を初期化
@@ -36,7 +38,7 @@ const useScene = (
    */
   const reserve = async (
     cast: Cast,
-  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isAvailable(carrier))
+  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isVacancy(carrier))
 
   /**
    * 乗り物に登場人物を乗せる
@@ -111,6 +113,10 @@ const useScene = (
     if (hasRebels) {
       await rebellion()
     }
+    // 乗り物の耐久性があるパズルにおける安否確認
+    if (hasRepairers) {
+      await workout()
+    }
   }
 
   /**
@@ -176,6 +182,20 @@ const useScene = (
         }
       }
     }
+  }
+
+  /**
+   * 乗り物の耐久試験
+   */
+  const workout = async () => {
+    const repairers = scene.value.casts.filter(cast => cast.role.repairer)
+    const others = scene.value.casts.filter(cast => !cast.role.repairer)
+    const isRepaired = scene.value.carriers.every(carrier =>
+      repairers.some(repairer => carrierCoord(carrier) === castCoord(repairer))
+    )
+    if (isRepaired) return
+    for (const cast of repairers) feel(cast, 'surprised')
+    for (const cast of others) feel(cast, 'scared')
   }
 
   return {

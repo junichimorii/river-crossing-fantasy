@@ -21,7 +21,7 @@ const useSolve = (
     count: 0,
   })
   const { coord, leave } = useCarrierState(state)
-  const { isReady } = useCarrier(state, scene)
+  const { isOperable } = useCarrier(state, scene)
   const { isPeaceable } = useCasts(state, scene)
   const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
 
@@ -56,7 +56,7 @@ const useSolve = (
         if (!isAllPickedUp) continue
         await safetyConfirmation()
         if (!isPeaceable.value) continue
-        const isAllReady = scene.value.carriers.every(carrier => isReady(carrier))
+        const isAllReady = scene.value.carriers.every(carrier => isOperable(carrier))
         if (!isAllReady) continue
         const parsedPreviousState = parseState(state)
         const beforeCarriersState = state.value

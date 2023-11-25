@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { useSceneStore } from '@/store/scene'
+import { useSessionStore } from '@/store/session'
 import { useSettingsStore } from '@/store/settings'
 const settings = useSettingsStore()
 const store = useSceneStore()
+const session = useSessionStore()
 </script>
 
 <template>
@@ -13,7 +15,7 @@ const store = useSceneStore()
         color="warning"
         size="large"
         prepend-icon="mdi-check-circle"
-        @click.stop="store.init()"
+        @click.stop="store.init();session.state.navigation=false"
       >
         最初から始める
       </v-btn>

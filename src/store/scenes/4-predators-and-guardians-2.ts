@@ -9,9 +9,12 @@ const scene: Scene = Object.freeze({
       '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、エルフ、大工のみ。',
+    tips: [
+      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ筏（いかだ）を修理しながら川を渡るパズルです。',
+    ],
   },
-  passing: 17,
+  passing: 13,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -26,8 +29,8 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer1'
     },
     role: {
-      rower: true
-    },
+      rower: true,
+    }
   }, {
     id: 1,
     name: '魔獣',
@@ -41,13 +44,13 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    name: '村人a',
     appearance: {
-      sprite: 'knight11'
+      sprite: 'villager1',
+      ratio: 0.85
     },
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0
@@ -55,9 +58,9 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: 'A国王女1',
+    name: '村人b',
     appearance: {
-      sprite: 'princess11',
+      sprite: 'villager2',
       ratio: 0.85
     },
     role: {
@@ -65,74 +68,49 @@ const scene: Scene = Object.freeze({
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 5,
-        guardian: 2
       }]
     }
   }, {
     id: 4,
-    name: 'A国王女2',
+    name: 'エルフ',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: {
-      sprite: 'princess12',
-      ratio: 0.85
+      sprite: 'elf1',
     },
     role: {
-      rower: false,
+      rower: true,
+      aversions: [0, 2, 3, 5, 6],
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 5,
-        guardian: 2
       }]
     }
   }, {
     id: 5,
-    name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    name: '大工A',
     appearance: {
-      sprite: 'knight21'
+      sprite: 'carpenter1',
     },
     role: {
       rower: true,
+      repairer: true,
       predators: [{
         predator: 1,
-        guardian: 0
+        guardian: 0,
       }]
     }
   }, {
     id: 6,
-    name: 'B国王女1',
+    name: '大工B',
     appearance: {
-      sprite: 'princess21',
-      ratio: 0.85
+      sprite: 'carpenter2',
     },
     role: {
-      rower: false,
+      rower: true,
+      repairer: true,
       predators: [{
         predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 5
-      }]
-    }
-  }, {
-    id: 7,
-    name: 'B国王女2',
-    appearance: {
-      sprite: 'princess22',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 5
+        guardian: 0,
       }]
     }
   }]

@@ -9,12 +9,12 @@ const props = defineProps<{
 }>()
 const store = useSceneStore()
 const { coord, leave: leaveCarrier } = useCarrierState(toRef(store.state))
-const { hasPassengers, getDestination, isReady } = useCarrier(toRef(store.state), toRef(store.scene))
+const { hasPassengers, getDestination, isOperable } = useCarrier(toRef(store.state), toRef(store.scene))
 const { isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
 /**
  * 進行可能かどうか
  */
-const isEnabled = computed(() => !store.disabled && isReady(props.state) && isPeaceable.value)
+const isEnabled = computed(() => !store.disabled && isOperable(props.state) && isPeaceable.value)
 /**
  * 上り方向に進行可能
  */

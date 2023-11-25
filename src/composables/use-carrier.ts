@@ -23,13 +23,6 @@ const useCarrier = (
     : 1
 
   /**
-   * 積載重量を算出
-   */
-  const getLoad = (
-    carrier: Carrier
-  ) => getPassengers(carrier).reduce((weight, cast) => weight + (cast.role.weight ? cast.role.weight : 0), 0)
-
-  /**
    * 乗り物の行先を算出
    */
   const getDestination = (
@@ -58,32 +51,11 @@ const useCarrier = (
   ) => getPassengers(carrier).length < carrier.capacity
 
   /**
-   * 最大積載重量未満かどうか
-   */
-  const isUnderweight = (
-    carrier: Carrier
-  ) => carrier.weightLimit === undefined || getLoad(carrier) <= carrier.weightLimit
-
-  /**
    * 操作可能かどうか
    */
   const isOperable = (
     carrier: Carrier
   ) => getPassengers(carrier).some(cast => cast.role.rower === undefined || cast.role.rower)
-
-  /**
-   * 利用可能かどうか
-   */
-  const isAvailable = (
-    carrier: Carrier
-  ) => isVacancy(carrier) && isUnderweight(carrier)
-
-  /**
-   * 出発可能かどうか
-   */
-  const isReady = (
-    carrier: Carrier
-  ) => isOperable(carrier) && isUnderweight(carrier)
 
   /**
    * 乗り物に乗っている登場人物
@@ -94,11 +66,10 @@ const useCarrier = (
 
   return {
     getDuration,
-    getLoad,
     getDestination,
     hasPassengers,
-    isAvailable,
-    isReady,
+    isVacancy,
+    isOperable,
   }
 }
 export default useCarrier

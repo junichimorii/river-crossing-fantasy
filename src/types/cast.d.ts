@@ -28,12 +28,12 @@ interface Appearance {
  * 登場人物の役割
  */
 interface Role {
-  /** 乗り物を操作できる */
-  rower?: boolean
-  /** 重量 */
-  weight?: number
   /** 所要時間 */
   duration?: number
+  /** 乗り物を操作できる */
+  rower?: boolean
+  /** 乗り物を修理できる */
+  repairer?: boolean
   /** 嫌悪の対象 */
   aversions?: number[]
   /** 天敵と保護者 */

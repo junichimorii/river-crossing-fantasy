@@ -31,7 +31,6 @@ export interface Scene {
 export type Category =
   'unconditioned'             // 乗り物の定員以外の制限がない川渡りパズル
   |'conditioned'              // 簡単な条件のある川渡りパズル
-  |'weight-limited'           // 重量制限のある川渡りパズル
   |'predators-and-guardians'  // 敵と保護者がいる川渡りパズル
   |'escorting-celebrity'      // 要人を敵から保護する川渡りパズル
   |'keep-majority'            // 多数派を維持する川渡りパズル

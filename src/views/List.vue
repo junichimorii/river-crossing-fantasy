@@ -37,13 +37,8 @@ onMounted(async () => {
         :items-per-page="50"
         class="text-caption"
       >
-        <template #[`item.id`]="{ value }">
-          Q{{value}}
-        </template>
         <template #[`item.category`]="{ value }">
-          <div
-            :class="`text-${value}`"
-          >
+          <div :class="`text-${value}`">
             {{ value }}
           </div>
         </template>

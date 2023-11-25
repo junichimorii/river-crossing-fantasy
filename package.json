@@ -17,7 +17,7 @@
     "@vueuse/sound": "^2.0.1",
     "pinia": "^2.1.7",
     "roboto-fontface": "*",
-    "vue": "^3.3.8",
+    "vue": "^3.3.9",
     "vue-router": "^4.2.5",
     "vuetify": "^3.4.3"
   },

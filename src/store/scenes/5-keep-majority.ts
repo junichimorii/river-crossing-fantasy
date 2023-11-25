@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 27,
+  id: 28,
   title: '魔獣たちの反乱（最上級編）',
   level: 5,
   category: 'keep-majority',

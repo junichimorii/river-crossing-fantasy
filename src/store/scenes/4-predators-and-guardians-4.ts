@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 24,
-  title: '一触即発パーティ（上級編3）',
+  id: 26,
+  title: '一触即発パーティ（上級編4）',
   level: 4,
   category: 'predators-and-guardians',
   rules: {
@@ -9,12 +9,9 @@ const scene: Scene = Object.freeze({
       '登場人物を敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
-    tips: [
-      '家族の川渡りとして知られているパズルを改変したものです。',
-    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフのみ。',
   },
-  passing: 17,
+  passing: 21,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -136,6 +133,21 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
+      }]
+    }
+  }, {
+    id: 8,
+    name: 'エルフ',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    appearance: {
+      sprite: 'elf1',
+    },
+    role: {
+      rower: true,
+      aversions: [0, 2, 3, 4, 5, 6, 7],
+      predators: [{
+        predator: 1,
+        guardian: 0
       }]
     }
   }]

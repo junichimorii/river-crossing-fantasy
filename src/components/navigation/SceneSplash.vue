@@ -30,18 +30,8 @@ const start = () => {
       class="overflow-y-auto"
       style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
-      <template v-slot:prepend>
-        <v-chip
-          rounded
-          :color="store.scene.category"
-        >
-          Q{{store.scene.id}}
-        </v-chip>
-      </template>
-      <v-divider class="mt-3"></v-divider>
-      <v-card-text
-        class="pa-1"
-      >
+      <v-divider class="my-3"></v-divider>
+      <v-card-text class="pa-1">
         <v-card-subtitle>
           <v-icon>mdi-help</v-icon>
           ルール
@@ -68,6 +58,14 @@ const start = () => {
           Start
         </v-btn>
       </v-card-actions>
+      <template v-slot:prepend>
+        <v-chip
+          rounded
+          :color="store.scene.category"
+        >
+          Q{{store.scene.id}}
+        </v-chip>
+      </template>
     </v-card>
   </v-dialog>
 </template>

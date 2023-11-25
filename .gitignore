@@ -2,4 +2,5 @@
 !.yarn/cache
 !.yarn/releases
 node_modules
+/dev-dist
 /dist

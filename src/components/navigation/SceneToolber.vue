@@ -46,7 +46,7 @@ const btnColor = store.scene.landscape?.night ? 'white' : 'black'
         size="small"
         :color="btnColor"
         v-show="isSupported && orientation === 'landscape-primary'"
-        @click.stop="session.state.drawer = !session.state.drawer"
+        @click.stop="session.state.navigation = !session.state.navigation"
       ></v-app-bar-nav-icon>
     </template>
     <SceneSolve

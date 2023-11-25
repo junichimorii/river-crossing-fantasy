@@ -2,7 +2,7 @@
 import { useScreenOrientation } from '@vueuse/core'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { PuzzleBottomMenu, PuzzleNavigationDrawer, PuzzleStage, SceneResult, SceneSplash } from '@/components'
+import { PuzzleBottomMenu, PuzzleStage, SceneNavigationDialog, SceneResult, SceneSplash } from '@/components'
 import { useAppearance } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
@@ -38,7 +38,6 @@ onUnmounted(async () => {
   <template
     v-if="!loading"
   >
-    <PuzzleNavigationDrawer></PuzzleNavigationDrawer>
     <v-main
       @contextmenu.prevent
     >
@@ -48,6 +47,7 @@ onUnmounted(async () => {
         :height="navigationHeight"
       ></PuzzleBottomMenu>
     </v-main>
+    <SceneNavigationDialog></SceneNavigationDialog>
     <SceneSplash></SceneSplash>
     <SceneResult></SceneResult>
   </template>
