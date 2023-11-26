@@ -1,4 +1,5 @@
 import AppIntroduction from './home/AppIntroduction.vue'
+import AppSettings from './home/AppSettings.vue'
 import SceneCasts from './navigation/SceneCasts.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
 import SceneMoves from './navigation/SceneMoves.vue'
@@ -23,6 +24,7 @@ export {
   PuzzleBottomMenu,
   PuzzleStage,
   AppIntroduction,
+  AppSettings,
   SceneCasts,
   SceneMenu,
   SceneMoves,

@@ -7,6 +7,10 @@ export interface Session {
    */
   introduction: boolean
   /**
+   * 設定ダイアログ表示
+   */
+  settings: boolean
+  /**
    * ナビゲーションダイアログ表示
    */
   navigation: boolean

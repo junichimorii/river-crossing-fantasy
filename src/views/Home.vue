@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
 import casts from '@/assets/images/casts'
-import { AppIntroduction } from '@/components'
+import { AppIntroduction, AppSettings } from '@/components'
 import { convert } from '@/composables/use-text'
 import { useRecordsStore } from '@/store/records'
 import { useSessionStore } from '@/store/session'
@@ -112,8 +112,14 @@ onMounted(async () => {
         >
           このゲームについて
         </v-btn>
+        <v-btn
+          @click.stop="session.state.settings = true"
+        >
+          設定
+        </v-btn>
       </template>
     </v-banner>
   </v-footer>
   <AppIntroduction></AppIntroduction>
+  <AppSettings></AppSettings>
 </template>
