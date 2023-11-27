@@ -35,6 +35,7 @@ export const useRecordsStore = defineStore('records', () => {
   const clear = async () => {
     state.value.scenes = new Map<number, number>()
     state.value.level = new Set<number>()
+    state.value.level.add(1)
   }
 
   /**
