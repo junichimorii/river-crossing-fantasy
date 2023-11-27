@@ -41,19 +41,19 @@ export default defineConfig({
         short_name: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
         description: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
         icons: [{
-          src: '/icon-192x192.png',
+          src: './icon-192x192.png',
           sizes: '192x192',
           type: 'image/png'
         }, {
-          src: '/icon-256x256.png',
+          src: './icon-256x256.png',
           sizes: '256x256',
           type: 'image/png'
         }, {
-          src: '/icon-384x384.png',
+          src: './icon-384x384.png',
           sizes: '384x384',
           type: 'image/png'
         }, {
-          src: '/icon-512x512.png',
+          src: './icon-512x512.png',
           sizes: '512x512',
           type: 'image/png'
         }]
