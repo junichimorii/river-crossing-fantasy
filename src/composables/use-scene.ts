@@ -13,12 +13,14 @@ const useScene = (
   scene: Ref<Scene>,
 ) => {
   const { coord: carrierCoord } = useCarrierState(state)
-  const { getDuration, hasPassengers, isVacancy } = useCarrier(state, scene)
+  const { getElapsedTime, hasPassengers, isVacancy } = useCarrier(state, scene)
   const { coord: castCoord, boarding, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
   const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)
-  // 嫌悪の対象がいるパズル
+  // エルフ（人間嫌い）が登場するパズル
   const hasAversions = scene.value.casts.some(cast => cast.role.aversions)
-  // 敵と保護者がいるパズル
+  // 吟遊詩人（孤独嫌い）が登場するパズル
+  const hasMonophobia = scene.value.casts.some(cast => cast.role.monophobia)
+  // 敵と保護者が登場するパズル
   const hasPredators = scene.value.casts.some(cast => cast.role.predators)
   // 半数以上を維持するパズル
   const hasRebels = scene.value.casts.some(cast => cast.role.rebel)
@@ -38,7 +40,7 @@ const useScene = (
    */
   const reserve = async (
     cast: Cast,
-  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isVacancy(carrier))
+  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isVacancy(carrier, cast))
 
   /**
    * 乗り物に登場人物を乗せる
@@ -75,7 +77,7 @@ const useScene = (
     const move: Move = {
       casts: passengers.value[carrier.id],
       bound: bound,
-      value: getDuration(carrier),
+      value: getElapsedTime(carrier),
     }
     // 登場人物を乗り物から降ろす
     for await (const cast of passengers.value[carrier.id]) {
@@ -101,19 +103,23 @@ const useScene = (
     for await (const cast of scene.value.casts) {
       calmDown(cast)
     }
-    // 嫌悪の対象がいるパズルにおける安否確認
+    // エルフ（人間嫌い）が登場するパズル
     if (hasAversions) {
       await antagonism()
     }
-    // 敵と保護者がいるパズルにおける安否確認
+    // 吟遊詩人（孤独嫌い）が登場するパズル
+    if (hasMonophobia) {
+      await swarming()
+    }
+    // 敵と保護者が登場するパズル
     if (hasPredators) {
       await predation()
     }
-    // 半数以上を維持するパズルにおける安否確認
+    // 半数以上を維持するパズル
     if (hasRebels) {
       await rebellion()
     }
-    // 乗り物の耐久性があるパズルにおける安否確認
+    // 乗り物の耐久性があるパズル
     if (hasRepairers) {
       await workout()
     }
@@ -132,6 +138,33 @@ const useScene = (
         if (isNeighboring(myself, aversion)) {
           // 感情を追加
           feel(myself, 'surprised')
+        }
+      }
+    }
+  }
+
+  /**
+   * 近くに人がいるかどうか
+   */
+  const swarming = async () => {
+    for await (const myself of scene.value.casts) {
+      if (!myself.role.monophobia) continue
+      const others = scene.value.casts.filter(cast => cast !== myself)
+      // 乗り物に乗っている
+      if (boarding(myself) !== null) {
+        if (!others.some(cast => boarding(myself) === boarding(cast))) {
+          feel(myself, 'scared')
+          for await (const cast of others) {
+            feel(cast, 'surprised')
+          }
+        }
+      // 乗り物に乗っていない
+      } else {
+        if (others.filter(cast => boarding(cast) === null && castCoord(myself) === castCoord(cast)).length === 0) {
+          feel(myself, 'scared')
+          for await (const cast of others) {
+            feel(cast, 'surprised')
+          }
         }
       }
     }

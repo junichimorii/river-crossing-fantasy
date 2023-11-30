@@ -28,14 +28,12 @@ interface Appearance {
  * 登場人物の役割
  */
 interface Role {
-  /** 所要時間 */
-  duration?: number
-  /** 乗り物を操作できる */
-  rower?: boolean
-  /** 乗り物を修理できる */
-  repairer?: boolean
   /** 嫌悪の対象 */
   aversions?: number[]
+  /** 所要時間 */
+  duration?: number
+  /** 孤独が嫌い */
+  monophobia?: boolean
   /** 天敵と保護者 */
   predators?: {
     predator: number  // 敵のID
@@ -43,4 +41,10 @@ interface Role {
   }[]
   /** （半数以上を維持するパズルにおける）反逆者 */
   rebel?: boolean
+  /** 乗り物を修理できる */
+  repairer?: boolean
+  /** 乗り物を操作できる */
+  rower?: boolean
+  /** 重量 */
+  weight?: number
 }

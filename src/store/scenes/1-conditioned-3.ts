@@ -1,22 +1,22 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 5,
-  title: '定期点検を忘れずに（入門編）',
+  title: '商人は荷物が多い（入門編）',
   level: 1,
   category: 'conditioned',
   rules: {
     conditions: [
-      '筏（いかだ）が故障しないよう修理しつつ、すべての登場人物を対岸に渡す',
-      '3回以内にクリアする'
+      '重量制限に気を付けながら、すべての登場人物を対岸に渡す',
+      '5回以内にクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）あるが、1回乗る度に修理が必要。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '今回登場する筏（いかだ）は、1回乗る度に修理しないと壊れてしまいます。',
-      '筏（いかだ）と同じ岸に大工がいないと、筏（いかだ）を修理することができません。',
-      '岸への到着時、筏（いかだ）を修理できない場合はその時点でクリア失敗となります。',
+      '筏（いかだ）には、定員の他に重量制限が設定されています。',
+      '今回登場する商人は、荷物が多いため、定員2人分の重量があります。',
+      '重量オーバーになる場合は、登場人物を筏（いかだ）に乗せることはできません。',
     ],
   },
-  passing: 3,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -31,6 +31,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager1'
     },
     role: {
+      weight: 1
     }
   }, {
     id: 1,
@@ -39,16 +40,17 @@ const scene: Scene = Object.freeze({
       sprite: 'villager2'
     },
     role: {
+      weight: 1
     }
   }, {
     id: 2,
-    name: '大工',
+    name: '商人',
     appearance: {
-      sprite: 'carpenter1',
+      sprite: 'merchant1',
     },
     role: {
-      repairer: true
-    }
+      weight: 2,
+    },
   }]
 })
 export default scene

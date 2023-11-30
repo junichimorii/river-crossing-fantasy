@@ -1,7 +1,7 @@
-import type { Carrier, Scene, State } from '@/types'
+import type { Carrier, Cast, Scene, State } from '@/types'
 import type { Bound } from '@/types/state'
 import type { Ref } from 'vue'
-import { useCarrierState, useCastState } from '@/composables'
+import { useCarrierState, useCast, useCastState } from '@/composables'
 
 /**
  * 川渡りパズルの乗り物
@@ -12,15 +12,23 @@ const useCarrier = (
 ) => {
   const { coord } = useCarrierState(state)
   const { boarding } = useCastState(state)
+  const { isRower, getWeight, getDuration } = useCast()
 
   /**
    * 対岸までの所要時間を算出
    */
-  const getDuration = (
+  const getElapsedTime = (
     carrier: Carrier
   ) => getPassengers(carrier).length > 0
-    ? Math.max(...getPassengers(carrier).map(cast => cast.role.duration || 1))
+    ? Math.max(...getPassengers(carrier).map(cast => getDuration(cast)))
     : 1
+
+  /**
+   * 積載重量を算出
+   */
+  const getLoad = (
+    carrier: Carrier
+  ) => getPassengers(carrier).reduce((weight, cast) => weight + getWeight(cast), 0)
 
   /**
    * 乗り物の行先を算出
@@ -47,15 +55,16 @@ const useCarrier = (
    * 空席があるかどうか
    */
   const isVacancy = (
-    carrier: Carrier
-  ) => getPassengers(carrier).length < carrier.capacity
+    carrier: Carrier,
+    cast: Cast,
+  ) => (getLoad(carrier) + getWeight(cast)) <= carrier.capacity
 
   /**
    * 操作可能かどうか
    */
   const isOperable = (
     carrier: Carrier
-  ) => getPassengers(carrier).some(cast => cast.role.rower === undefined || cast.role.rower)
+  ) => getPassengers(carrier).some(cast => isRower(cast))
 
   /**
    * 乗り物に乗っている登場人物
@@ -65,7 +74,8 @@ const useCarrier = (
   ) => scene.value.casts.filter(cast => boarding(cast) === carrier.id)
 
   return {
-    getDuration,
+    getElapsedTime,
+    getLoad,
     getDestination,
     hasPassengers,
     isVacancy,

@@ -27,6 +27,9 @@ defineProps<{
           v-if="cast.role.duration !== undefined"
           v-text="`橋を渡るのに${cast.role.duration}分必要。`"
         ></span>
+        <span v-if="cast.role.weight !== undefined"
+          v-text="`重量は定員${cast.role.weight}人分。`"
+        ></span>
         <span
           v-if="cast.role.repairer"
           v-html="convert('筏（いかだ）を修理できる。')"

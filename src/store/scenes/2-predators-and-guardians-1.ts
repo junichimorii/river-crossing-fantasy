@@ -1,20 +1,22 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 10,
-  title: '一触即発パーティ（初級編1）',
+  id: 8,
+  title: '魔獣使いは苦労が絶えない（初級編）',
   level: 2,
   category: 'predators-and-guardians',
   rules: {
     conditions: [
       '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',
-      '7回以内にクリアする'
+      '3回以内にクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
-      '古くから「虎の子渡し」の名で知られる川渡りパズルを改変したものです。',
+      '登場人物には、苦手とする天敵、およびその天敵から守ってくれる保護者がいます。今回のケースでは、魔獣が村人の天敵、魔獣使いが村人の保護者です。',
+      'ある登場人物が天敵と同じ場所にいる時は、保護者も必ず同じ場所にいる必要があります。',
+      'ある登場人物が危険な状態の時は、その関係者に感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
-  passing: 7,
+  passing: 3,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -33,7 +35,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '村人a',
+    name: '村人',
     appearance: {
       sprite: 'villager1',
       ratio: 0.85
@@ -41,26 +43,12 @@ const scene: Scene = Object.freeze({
     role: {
       rower: false,
       predators: [{
-        predator: 3,
+        predator: 2,
         guardian: 0,
-      }]
+      }],
     }
   }, {
     id: 2,
-    name: '村人b',
-    appearance: {
-      sprite: 'villager2',
-      ratio: 0.85
-    },
-    role: {
-      rower: false,
-      predators: [{
-        predator: 3,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 3,
     name: '魔獣',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
@@ -68,7 +56,7 @@ const scene: Scene = Object.freeze({
       ratio: 0.85
     },
     role: {
-      rower: false
+      rower: false,
     }
   }]
 })
