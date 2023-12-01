@@ -1,19 +1,18 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 5,
-  title: '商人は荷物が多い（入門編）',
+  id: 7,
+  title: 'エルフは人間がお嫌い（入門編）',
   level: 1,
   category: 'conditioned',
   rules: {
     conditions: [
-      '重量制限に気を付けながら、すべての登場人物を対岸に渡す',
+      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '5回以内にクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '筏（いかだ）には、定員の他に重量制限が設定されています。',
-      '今回登場する商人は、荷物が多いため、定員2人分の重量があります。',
-      '重量オーバーになる場合は、登場人物を筏（いかだ）に乗せることはできません。',
+      '今回登場するエルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      'エルフが不快な状態の時は、感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
   passing: 5,
@@ -31,7 +30,6 @@ const scene: Scene = Object.freeze({
       sprite: 'villager1'
     },
     role: {
-      weight: 1
     }
   }, {
     id: 1,
@@ -40,17 +38,17 @@ const scene: Scene = Object.freeze({
       sprite: 'villager2'
     },
     role: {
-      weight: 1
     }
   }, {
     id: 2,
-    name: '商人',
+    name: 'エルフ',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: {
-      sprite: 'merchant1',
+      sprite: 'elf1',
     },
     role: {
-      weight: 2,
-    },
+      aversions: [0, 1]
+    }
   }]
 })
 export default scene

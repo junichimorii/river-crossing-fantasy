@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 7,
+  id: 5,
   title: '闇夜の旅路（入門編）',
   level: 1,
   category: 'time-limited',

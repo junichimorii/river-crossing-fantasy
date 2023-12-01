@@ -7,14 +7,14 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       '重量制限に注意しながら、すべての登場人物を対岸に渡す',
-      '5回以内にクリアする'
+      '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '重量制限に注意しながら川を渡るパズルです。',
     ],
   },
-  passing: 5,
+  passing: 9,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -42,6 +42,15 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
+    name: '村人C',
+    appearance: {
+      sprite: 'villager3'
+    },
+    role: {
+      weight: 1
+    }
+  }, {
+    id: 3,
     name: '商人A',
     appearance: {
       sprite: 'merchant1',
@@ -50,10 +59,19 @@ const scene: Scene = Object.freeze({
       weight: 2,
     },
   }, {
-    id: 3,
+    id: 4,
     name: '商人B',
     appearance: {
       sprite: 'merchant2',
+    },
+    role: {
+      weight: 2,
+    },
+  }, {
+    id: 5,
+    name: '商人C',
+    appearance: {
+      sprite: 'merchant3',
     },
     role: {
       weight: 2,

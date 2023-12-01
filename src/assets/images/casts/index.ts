@@ -22,6 +22,7 @@ import knight42 from './knight42.png'
 import mage1 from './mage1.png'
 import merchant1 from './merchant1.png'
 import merchant2 from './merchant2.png'
+import merchant3 from './merchant3.png'
 import priest1 from './priest1.png'
 import princess11 from './princess11.png'
 import princess12 from './princess12.png'
@@ -72,6 +73,7 @@ const sprites: {
   mage1,
   merchant1,
   merchant2,
+  merchant3,
   priest1,
   princess11,
   princess12,

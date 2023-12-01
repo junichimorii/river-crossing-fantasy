@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 20,
+  id: 22,
   title: '魔獣たちの反乱（中級編2）',
   level: 3,
   category: 'keep-majority',
@@ -11,7 +11,7 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いAと魔獣Aのみ。',
     tips: [
-      'Q17とよく似ていますが、筏（いかだ）を漕（こ）げる登場人物が限定されています。',
+      '「魔獣たちの反乱 （中級編1）」とよく似ていますが、筏（いかだ）を漕（こ）げる登場人物が限定されています。',
     ],
   },
   passing: 13,

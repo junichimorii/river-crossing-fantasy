@@ -23,8 +23,8 @@ const btnColor = store.scene.landscape?.night ? 'white' : 'black'
     <template v-slot:prepend>
       <v-chip
         variant="text"
+        size="x-large"
         :color="color"
-        style="font-size: 4.5vmin;"
       >
         {{ count }}
       </v-chip>

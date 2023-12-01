@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 18,
+  id: 19,
   title: '一触即発パーティ（中級編1）',
   level: 3,
   category: 'predators-and-guardians',
@@ -11,7 +11,7 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
     tips: [
-      'おそらく近年になって作成された、家族の川渡りとして知られているパズルを改変したものです。',
+      'おそらく近年になって生まれた、家族の川渡りとして知られているパズルを改変したものです。',
     ],
   },
   passing: 9,

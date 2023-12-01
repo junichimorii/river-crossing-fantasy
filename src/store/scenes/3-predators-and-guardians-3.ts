@@ -1,17 +1,17 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 27,
-  title: '一触即発パーティ（上級編2）',
-  level: 4,
+  id: 23,
+  title: '一触即発パーティ（中級編3）',
+  level: 3,
   category: 'predators-and-guardians',
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ筏（いかだ）を修理しながら、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、エルフ、大工のみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、吟遊詩人のみ。',
   },
-  passing: 13,
+  passing: 11,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -41,23 +41,23 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '村人a',
+    name: 'A国騎士',
+    description: 'B国騎士が目を離すとB国王女を襲う。',
     appearance: {
-      sprite: 'villager1',
-      ratio: 0.85
+      sprite: 'knight11'
     },
     role: {
-      rower: false,
+      rower: true,
       predators: [{
         predator: 1,
-        guardian: 0
+        guardian: 0,
       }]
     }
   }, {
     id: 3,
-    name: '村人b',
+    name: 'A国王女',
     appearance: {
-      sprite: 'villager2',
+      sprite: 'princess11',
       ratio: 0.85
     },
     role: {
@@ -65,50 +65,52 @@ const scene: Scene = Object.freeze({
       predators: [{
         predator: 1,
         guardian: 0
+      }, {
+        predator: 4,
+        guardian: 2
       }]
     }
   }, {
     id: 4,
-    name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    name: 'B国騎士',
+    description: 'A国騎士が目を離すとA国王女を襲う。',
     appearance: {
-      sprite: 'elf1',
+      sprite: 'knight21'
     },
     role: {
       rower: true,
-      aversions: [0, 2, 3, 5, 6],
       predators: [{
         predator: 1,
-        guardian: 0
+        guardian: 0,
       }]
     }
   }, {
     id: 5,
-    name: '大工A',
+    name: 'B国王女',
     appearance: {
-      sprite: 'carpenter1',
+      sprite: 'princess21',
+      ratio: 0.85
     },
     role: {
-      rower: true,
-      repairer: true,
+      rower: false,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
+      }, {
+        predator: 2,
+        guardian: 4
       }]
     }
   }, {
     id: 6,
-    name: '大工B',
+    name: '吟遊詩人',
+    description: '独りぼっちを嫌う。',
     appearance: {
-      sprite: 'carpenter2',
+      sprite: 'bard1',
     },
     role: {
       rower: true,
-      repairer: true,
-      predators: [{
-        predator: 1,
-        guardian: 0,
-      }]
+      monophobia: true
     }
   }]
 })

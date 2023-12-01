@@ -1,8 +1,8 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 9,
-  title: '吟遊詩人は孤独がお嫌い（初級編）',
-  level: 2,
+  title: '吟遊詩人は孤独がお嫌い（入門編）',
+  level: 1,
   category: 'conditioned',
   rules: {
     conditions: [
