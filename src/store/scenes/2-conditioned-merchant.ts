@@ -29,6 +29,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager1'
     },
     role: {
+      rower: true,
       weight: 1
     }
   }, {
@@ -38,6 +39,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager2'
     },
     role: {
+      rower: true,
       weight: 1
     }
   }, {
@@ -47,6 +49,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager3'
     },
     role: {
+      rower: true,
       weight: 1
     }
   }, {
@@ -56,6 +59,7 @@ const scene: Scene = Object.freeze({
       sprite: 'merchant1',
     },
     role: {
+      rower: true,
       weight: 2,
     },
   }, {
@@ -65,6 +69,7 @@ const scene: Scene = Object.freeze({
       sprite: 'merchant2',
     },
     role: {
+      rower: true,
       weight: 2,
     },
   }, {
@@ -74,6 +79,7 @@ const scene: Scene = Object.freeze({
       sprite: 'merchant3',
     },
     role: {
+      rower: true,
       weight: 2,
     },
   }]

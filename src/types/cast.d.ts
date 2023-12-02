@@ -20,8 +20,6 @@ export interface Cast {
 interface Appearance {
   /** 登場人物の画像URL */
   sprite: string
-  /** 登場人物の画像の比率 */
-  ratio?: number
 }
 
 /**

@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 32,
+  id: 33,
   title: '魔獣たちの反乱（最上級編）',
   level: 5,
   category: 'keep-majority',
@@ -29,6 +29,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer1'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -38,6 +39,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer2'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -47,6 +49,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer3'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -56,6 +59,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer4'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -65,6 +69,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy1'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }, {
@@ -74,6 +79,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy2'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }, {
@@ -83,6 +89,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy3'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }, {
@@ -92,6 +99,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy4'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }]

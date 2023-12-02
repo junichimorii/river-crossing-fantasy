@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import casts from '@/assets/images/casts'
 import { AppIntroduction, AppSettings } from '@/components'
+import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
 import { useRecordsStore } from '@/store/records'
 import { useSessionStore } from '@/store/session'
@@ -9,6 +10,7 @@ import { useSettingsStore } from '@/store/settings'
 const settings = useSettingsStore()
 const session = useSessionStore()
 const records = useRecordsStore()
+const { getTransform } = useCast()
 onMounted(async () => {
   if (!records.state.level.has(1)) records.state.level.add(1)
 })
@@ -61,7 +63,7 @@ onMounted(async () => {
               >
                 <v-img
                   :src="casts[cast.appearance.sprite]"
-                  :style="{ transform: `scale(${-(cast.appearance.ratio || 1)}, ${cast.appearance.ratio || 1})` }"
+                  :style="{ transform: getTransform(cast, 1) }"
                   style="transform-origin: bottom center;"
                 ></v-img>
               </v-avatar>

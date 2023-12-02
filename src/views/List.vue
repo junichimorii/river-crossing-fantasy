@@ -3,12 +3,14 @@ import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import carriers from '@/assets/images/carriers'
 import casts from '@/assets/images/casts'
+import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
 import { useRecordsStore } from '@/store/records'
 import { useSettingsStore } from '@/store/settings'
 const router = useRouter()
 const settings = useSettingsStore()
 const records = useRecordsStore()
+const { getTransform } = useCast()
 const items = Object.values(records.scenes)
 const headers = [
   { title: 'id', value: 'id', width: '4%', sortable: true },
@@ -96,7 +98,7 @@ onMounted(async () => {
               >
                 <v-img
                   :src="casts[cast.appearance.sprite]"
-                  :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
+                  :style="{ transform: getTransform(cast, -1)}"
                 >
                 </v-img>
               </v-avatar>

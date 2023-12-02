@@ -23,25 +23,26 @@ import s22 from './3-keep-majority-2'
 import s19 from './3-predators-and-guardians-1'
 import s21 from './3-predators-and-guardians-2'
 import s23 from './3-predators-and-guardians-3'
+import s25 from './3-predators-and-guardians-4'
 import s24 from './3-time-limited'
 
-import s26 from './4-keep-majority'
-import s25 from './4-predators-and-guardians-1'
-import s27 from './4-predators-and-guardians-2'
-import s28 from './4-predators-and-guardians-3'
-import s30 from './4-predators-and-guardians-4'
-import s29 from './4-time-limited'
+import s27 from './4-keep-majority'
+import s26 from './4-predators-and-guardians-1'
+import s28 from './4-predators-and-guardians-2'
+import s29 from './4-predators-and-guardians-3'
+import s31 from './4-predators-and-guardians-4'
+import s30 from './4-time-limited'
 
-import s31 from './5-escorting-celebrity'
-import s32 from './5-keep-majority'
-import s33 from './5-predators-and-guardians-1'
-import s34 from './5-predators-and-guardians-2'
+import s32 from './5-escorting-celebrity'
+import s33 from './5-keep-majority'
+import s34 from './5-predators-and-guardians-1'
+import s35 from './5-predators-and-guardians-2'
 
 export {
   s01, s02, s03, s04, s05, s06, s07, s08, s09,
   s10, s11, s12, s13, s14, s15, s16,
-  s17, s18, s19, s20, s21, s22, s23, s24,
-  s25, s26, s27, s28, s29, s30,
-  s31, s32, s33, s34
+  s17, s18, s19, s20, s21, s22, s23, s24, s25,
+  s26, s27, s28, s29, s30, s31,
+  s32, s33, s34, s35
 }
 

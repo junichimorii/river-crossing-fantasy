@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import type { Cast } from '@/types'
 import sprites from '@/assets/images/casts'
+import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
+const { getTransform } = useCast()
 defineProps<{
   casts: Cast[]
 }>()
@@ -42,7 +44,7 @@ defineProps<{
           <v-avatar>
             <v-img
               :src="sprites[cast.appearance.sprite]"
-              :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
+              :style="{ transform: getTransform(cast, -1) }"
             ></v-img>
           </v-avatar>
         </template>

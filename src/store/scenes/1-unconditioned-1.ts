@@ -31,6 +31,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager1'
     },
     role: {
+      rower: true
     }
   }]
 })

@@ -26,15 +26,14 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer1'
     },
     role: {
-      rower: true,
+      rower: true
     }
   }, {
     id: 1,
     name: '魔獣',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
-      sprite: 'therianthropy1',
-      ratio: 0.85
+      sprite: 'therianthropy1'
     },
     role: {
       rower: false
@@ -57,8 +56,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: 'A国王女',
     appearance: {
-      sprite: 'princess11',
-      ratio: 0.85
+      sprite: 'princess11'
     },
     role: {
       rower: false,
@@ -88,8 +86,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: 'B国王女',
     appearance: {
-      sprite: 'princess21',
-      ratio: 0.85
+      sprite: 'princess21'
     },
     role: {
       rower: false,

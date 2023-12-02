@@ -5,11 +5,22 @@ import type { Cast } from '@/types'
  */
 const useCast = () => {
   /**
-   * 乗り物をを操作できる
+   * 乗り物を操作できる
    */
   const isRower = (
     cast: Cast
   ) => cast.role.rower === undefined || cast.role.rower
+
+  /**
+   * CSS transformプロパティ
+   */
+  const getTransform = (
+    cast: Cast,
+    coord: number
+  ) => {
+    const ratio = isRower(cast) ? 1 : 0.85
+    return `scale(${coord > 0 ? -ratio : ratio}, ${ratio})`
+  }
 
   /**
    * 重量
@@ -27,6 +38,7 @@ const useCast = () => {
 
   return {
     isRower,
+    getTransform,
     getWeight,
     getDuration,
   }

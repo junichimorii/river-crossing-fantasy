@@ -27,7 +27,7 @@ const scene: Scene = Object.freeze({
     id: 0,
     name: '騎士',
     appearance: {
-      sprite: 'knight11',
+      sprite: 'knight11'
     },
     role: {
       rower: true,
@@ -36,8 +36,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '王女a',
     appearance: {
-      sprite: 'princess11',
-      ratio: 0.85
+      sprite: 'princess11'
     },
     role: {
       rower: false,
@@ -46,8 +45,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '王女b',
     appearance: {
-      sprite: 'princess12',
-      ratio: 0.85
+      sprite: 'princess12'
     },
     role: {
       rower: false,

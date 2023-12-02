@@ -30,6 +30,7 @@ const scene: Scene = Object.freeze({
       sprite: 'knight11'
     },
     role: {
+      rower: true
     }
   }, {
     id: 1,
@@ -38,6 +39,7 @@ const scene: Scene = Object.freeze({
       sprite: 'princess11'
     },
     role: {
+      rower: true,
       predators: [{
         predator: 2,
         guardian: 0
@@ -54,6 +56,7 @@ const scene: Scene = Object.freeze({
       sprite: 'knight21'
     },
     role: {
+      rower: true
     }
   }, {
     id: 3,
@@ -62,6 +65,7 @@ const scene: Scene = Object.freeze({
       sprite: 'princess21'
     },
     role: {
+      rower: true,
       predators: [{
         predator: 0,
         guardian: 2
@@ -78,6 +82,7 @@ const scene: Scene = Object.freeze({
       sprite: 'knight31'
     },
     role: {
+      rower: true
     }
   }, {
     id: 5,
@@ -86,6 +91,7 @@ const scene: Scene = Object.freeze({
       sprite: 'princess31'
     },
     role: {
+      rower: true,
       predators: [{
         predator: 0,
         guardian: 4

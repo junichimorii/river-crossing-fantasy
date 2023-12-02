@@ -53,8 +53,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '大工a',
     appearance: {
-      sprite: 'carpenter1',
-      ratio: 0.85
+      sprite: 'carpenter1'
     },
     role: {
       rower: false,
@@ -64,8 +63,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: '大工b',
     appearance: {
-      sprite: 'carpenter2',
-      ratio: 0.85
+      sprite: 'carpenter2'
     },
     role: {
       rower: false,
@@ -75,8 +73,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: '大工c',
     appearance: {
-      sprite: 'carpenter3',
-      ratio: 0.85
+      sprite: 'carpenter3'
     },
     role: {
       rower: false,

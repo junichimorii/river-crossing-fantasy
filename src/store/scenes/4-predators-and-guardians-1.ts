@@ -1,6 +1,6 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 25,
+  id: 26,
   title: '一触即発パーティ（上級編1）',
   level: 4,
   category: 'predators-and-guardians',
@@ -34,7 +34,6 @@ const scene: Scene = Object.freeze({
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
       sprite: 'therianthropy1',
-      ratio: 0.85
     },
     role: {
       rower: false
@@ -44,8 +43,7 @@ const scene: Scene = Object.freeze({
     name: '魔獣b',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: {
-      sprite: 'therianthropy1',
-      ratio: 0.85
+      sprite: 'therianthropy1'
     },
     role: {
       rower: false
@@ -71,8 +69,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: 'A国王女1',
     appearance: {
-      sprite: 'princess11',
-      ratio: 0.85
+      sprite: 'princess11'
     },
     role: {
       rower: false,
@@ -111,8 +108,7 @@ const scene: Scene = Object.freeze({
     id: 6,
     name: 'B国王女1',
     appearance: {
-      sprite: 'princess21',
-      ratio: 0.85
+      sprite: 'princess21'
     },
     role: {
       rower: false,
@@ -151,8 +147,7 @@ const scene: Scene = Object.freeze({
     id: 8,
     name: 'C国王女1',
     appearance: {
-      sprite: 'princess31',
-      ratio: 0.85
+      sprite: 'princess31'
     },
     role: {
       rower: false,
@@ -174,8 +169,7 @@ const scene: Scene = Object.freeze({
     id: 9,
     name: '村人',
     appearance: {
-      sprite: 'villager1',
-      ratio: 0.85
+      sprite: 'villager1'
     },
     role: {
       rower: false,

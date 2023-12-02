@@ -36,8 +36,7 @@ const scene: Scene = Object.freeze({
     name: '騎士',
     description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
     appearance: {
-      sprite: 'knight11',
-      ratio: 0.85
+      sprite: 'knight11'
     },
     role: {
       rower: false
@@ -47,8 +46,7 @@ const scene: Scene = Object.freeze({
     name: '魔獣',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
-      sprite: 'therianthropy1',
-      ratio: 0.85
+      sprite: 'therianthropy1'
     },
     role: {
       rower: false,
@@ -61,8 +59,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '村人',
     appearance: {
-      sprite: 'villager1',
-      ratio: 0.85
+      sprite: 'villager1'
     },
     role: {
       rower: false,

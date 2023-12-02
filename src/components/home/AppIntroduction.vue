@@ -36,7 +36,7 @@ const session = useSessionStore()
             推奨環境:
           </v-card-subtitle>
           <v-card-text class="py-1">
-            スマートフォンまたはタブレットの縦向きでのプレイを想定していますが、横向きでもPCでもプレイは可能です。
+            スマートフォンまたはタブレットの縦向きでのプレイを想定していますが、横向きでもPC（マウス操作）でもプレイは可能です。
           </v-card-text>
         </v-card-item>
         <v-card-item>

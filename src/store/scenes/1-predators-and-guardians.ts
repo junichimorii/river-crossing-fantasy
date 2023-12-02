@@ -31,32 +31,30 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer1'
     },
     role: {
-      rower: true,
+      rower: true
     }
   }, {
     id: 1,
     name: '村人',
     appearance: {
-      sprite: 'villager1',
-      ratio: 0.85
+      sprite: 'villager1'
     },
     role: {
       rower: false,
       predators: [{
         predator: 2,
         guardian: 0,
-      }],
+      }]
     }
   }, {
     id: 2,
     name: '魔獣',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: {
-      sprite: 'therianthropy1',
-      ratio: 0.85
+      sprite: 'therianthropy1'
     },
     role: {
-      rower: false,
+      rower: false
     }
   }]
 })

@@ -30,6 +30,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager1'
     },
     role: {
+      rower: true
     }
   }, {
     id: 1,
@@ -38,6 +39,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager2'
     },
     role: {
+      rower: true
     }
   }, {
     id: 2,
@@ -46,6 +48,7 @@ const scene: Scene = Object.freeze({
       sprite: 'villager3'
     },
     role: {
+      rower: true
     }
   }, {
     id: 3,
@@ -55,6 +58,7 @@ const scene: Scene = Object.freeze({
       sprite: 'bard1',
     },
     role: {
+      rower: true,
       monophobia: true
     }
   }]

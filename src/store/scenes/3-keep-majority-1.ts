@@ -29,6 +29,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer1'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -38,6 +39,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer2'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -47,6 +49,7 @@ const scene: Scene = Object.freeze({
       sprite: 'beasttamer3'
     },
     role: {
+      rower: true,
       rebel: false
     }
   }, {
@@ -56,6 +59,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy1'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }, {
@@ -65,6 +69,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy2'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }, {
@@ -74,6 +79,7 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy3'
     },
     role: {
+      rower: true,
       rebel: true
     }
   }]

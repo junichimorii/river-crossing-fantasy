@@ -36,8 +36,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '魔獣使いb',
     appearance: {
-      sprite: 'beasttamer2',
-      ratio: 0.85
+      sprite: 'beasttamer2'
     },
     role: {
       rower: false,
@@ -47,8 +46,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '魔獣使いc',
     appearance: {
-      sprite: 'beasttamer3',
-      ratio: 0.85
+      sprite: 'beasttamer3'
     },
     role: {
       rower: false,
@@ -68,8 +66,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: '魔獣b',
     appearance: {
-      sprite: 'therianthropy2',
-      ratio: 0.85
+      sprite: 'therianthropy2'
     },
     role: {
       rower: false,
@@ -79,8 +76,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: '魔獣c',
     appearance: {
-      sprite: 'therianthropy3',
-      ratio: 0.85
+      sprite: 'therianthropy3'
     },
     role: {
       rower: false,

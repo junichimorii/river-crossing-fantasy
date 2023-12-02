@@ -5,7 +5,7 @@ import type { Cast } from '@/types'
 import type { UseSwipeDirection } from '@vueuse/core'
 import sprites from '@/assets/images/casts'
 import { PuzzleCastEmotion, PuzzleCastMenu } from '@/components'
-import { useCastAppearance, useCastState, useScene } from '@/composables'
+import { useCastAppearance, useCast, useCastState, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const props = defineProps<{
   state: Cast
@@ -13,16 +13,14 @@ const props = defineProps<{
 const target = ref<HTMLElement | null>(null)
 const store = useSceneStore()
 const { width, height, aspectRatio } = useCastAppearance()
+const { getTransform } = useCast()
 const { coord, boarding } = useCastState(toRef(store.state))
 const { pickUp, dropOff, safetyConfirmation } = useScene(toRef(store.state), toRef(store.scene))
 
 /**
  * v-imgに適用するCSS transformプロパティ
  */
- const transform = computed(() => {
-  const ratio = props.state.appearance.ratio || 1
-  return `scale(${coord(props.state) > 0 ? -ratio : ratio}, ${ratio})`
-})
+ const transform = computed(() => getTransform(props.state, coord(props.state)))
 
 /**
  * タッチイベントの検知
