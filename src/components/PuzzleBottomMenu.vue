@@ -1,27 +1,38 @@
 <script lang="ts" setup>
-import { SceneNavigationTabs, SceneNavigationWindows } from '@/components'
-import { useSceneStore } from '@/store/scene'
-const store = useSceneStore()
+import { SceneNavigationWindows } from '@/components'
+import { useSessionStore } from '@/store/session'
+const session = useSessionStore()
 </script>
 
 <template>
   <v-card
     flat
-    :title="store.scene.title"
     class="overflow-y-auto"
   >
-    <v-divider></v-divider>
     <v-card-text class="pa-1">
-      <SceneNavigationTabs></SceneNavigationTabs>
       <SceneNavigationWindows></SceneNavigationWindows>
     </v-card-text>
-    <template v-slot:prepend>
-      <v-chip
-        rounded
-        :color="store.scene.category"
-      >
-        Q{{store.scene.id}}
-      </v-chip>
-    </template>
+    <v-bottom-navigation
+      v-model="session.state.tab"
+      active
+      color="primary"
+    >
+      <v-btn>
+        <v-icon>mdi-help</v-icon>
+        ルール
+      </v-btn>
+      <v-btn>
+        <v-icon>mdi-account-multiple</v-icon>
+        登場人物
+      </v-btn>
+      <v-btn>
+        <v-icon>mdi-history</v-icon>
+        履歴
+      </v-btn>
+      <v-btn>
+        <v-icon>mdi-cog</v-icon>
+        オプション
+      </v-btn>
+    </v-bottom-navigation>
   </v-card>
 </template>

@@ -4,7 +4,6 @@ import SceneCasts from './navigation/SceneCasts.vue'
 import SceneMenu from './navigation/SceneMenu.vue'
 import SceneMoves from './navigation/SceneMoves.vue'
 import SceneNavigationDialog from './navigation/SceneNavigationDialog.vue'
-import SceneNavigationTabs from './navigation/SceneNavigationTabs.vue'
 import SceneNavigationWindows from './navigation/SceneNavigationWindows.vue'
 import SceneResult from './navigation/SceneResult.vue'
 import SceneRules from './navigation/SceneRules.vue'
@@ -29,7 +28,6 @@ export {
   SceneMenu,
   SceneMoves,
   SceneNavigationDialog,
-  SceneNavigationTabs,
   SceneNavigationWindows,
   SceneResult,
   SceneRules,

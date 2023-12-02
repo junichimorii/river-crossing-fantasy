@@ -32,17 +32,9 @@ const start = () => {
     >
       <v-divider class="my-3"></v-divider>
       <v-card-text class="pa-1">
-        <v-card-subtitle>
-          <v-icon>mdi-help</v-icon>
-          ルール
-        </v-card-subtitle>
         <SceneRules
           :scene="store.scene"
         ></SceneRules>
-        <v-card-subtitle>
-          <v-icon>mdi-account-multiple</v-icon>
-          登場人物
-        </v-card-subtitle>
         <SceneCasts
           :casts="store.scene.casts"
         ></SceneCasts>
