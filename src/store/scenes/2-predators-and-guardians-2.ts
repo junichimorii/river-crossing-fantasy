@@ -11,6 +11,8 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
     tips: [
+      '戦士は、魔獣使いが目を離すと、近くにいる魔獣を襲います。',
+      'また魔獣は、魔獣使いが目を離すと、近くにいる村人を襲います。',
       '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルを改変したものです。',
     ],
   },
@@ -33,10 +35,10 @@ const scene: Scene = Object.freeze({
     },
   }, {
     id: 1,
-    name: '騎士',
+    name: '戦士',
     description: '魔獣使いが目を離すと魔獣を討伐しようとする。',
     appearance: {
-      sprite: 'knight11'
+      sprite: 'fighter1'
     },
     role: {
       rower: false
