@@ -80,7 +80,7 @@ const session = useSessionStore()
                 target="_blank"
                 class="text-decoration-none"
               >
-                8amjp
+                [Github] 8amjp
               </a>
             </div>
             <div>
@@ -90,7 +90,17 @@ const session = useSessionStore()
                 target="_blank"
                 class="text-decoration-none"
               >
-                8amjp
+                [X] 8amjp
+              </a>
+            </div>
+            <div>
+              <v-icon icon="mdi-email-open-heart-outline"></v-icon>
+              <a
+                href="https://ofuse.me/8amjp"
+                target="_blank"
+                class="text-decoration-none"
+              >
+                [OFUSE] 8amjp
               </a>
             </div>
             <div>
