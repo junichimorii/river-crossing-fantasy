@@ -58,16 +58,6 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-book-open-variant"></v-icon>
-            ガイドライン:
-          </v-card-subtitle>
-          <v-card-text class="py-1">
-            動画投稿サイトでの配信等については、営利・非営利を問わず自由にご利用ください。
-            報告は不要ですが、寄付は大歓迎です。
-          </v-card-text>
-        </v-card-item>
-        <v-card-item>
-          <v-card-subtitle>
             <v-icon icon="mdi-account"></v-icon>
             作者:
           </v-card-subtitle>
@@ -82,30 +72,6 @@ const session = useSessionStore()
               >
                 [Github] 8amjp
               </a>
-            </div>
-            <div>
-              <v-icon icon="mdi-twitter"></v-icon>
-              <a
-                href="https://twitter.com/8amjp"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                [X] 8amjp
-              </a>
-            </div>
-            <div>
-              <v-icon icon="mdi-email-open-heart-outline"></v-icon>
-              <a
-                href="https://ofuse.me/8amjp"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                [OFUSE] 8amjp
-              </a>
-            </div>
-            <div>
-              <v-icon icon="mdi-mail"></v-icon>
-              at8amjp@gmail.com
             </div>
           </v-card-text>
         </v-card-item>
