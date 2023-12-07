@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import casts from '@/assets/images/casts'
 import { AppIntroduction, AppSettings } from '@/components'
 import { useCast } from '@/composables'
@@ -15,7 +15,8 @@ onMounted(async () => {
   if (!records.state.level.has(1)) records.state.level.add(1)
   const nextSceneId = records.getNextSceneId()
   document.getElementById(`s${nextSceneId}`)?.scrollIntoView({
-    behavior: 'smooth'
+    behavior: 'smooth',
+    block: 'center'
   })
 })
 </script>
