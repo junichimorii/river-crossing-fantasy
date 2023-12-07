@@ -14,7 +14,7 @@ const scene: Scene = Object.freeze({
       '重量制限に注意しながら川を渡るパズルです。',
     ],
   },
-  passing: 9,
+  passing: 15,
   carriers: [{
     id: 0,
     capacity: 2,

@@ -5674,16 +5674,16 @@ __metadata:
     eslint-plugin-vue: "npm:^9.19.2"
     pinia: "npm:^2.1.7"
     roboto-fontface: "npm:*"
-    typescript: "npm:^5.3.2"
+    typescript: "npm:^5.3.3"
     unplugin-fonts: "npm:^1.1.1"
     vite: "npm:^5.0.6"
-    vite-plugin-pwa: "npm:^0.17.3"
+    vite-plugin-pwa: "npm:^0.17.4"
     vite-plugin-vuetify: "npm:^1.0.2"
     vitest: "npm:^1.0.1"
     vue: "npm:^3.3.10"
     vue-router: "npm:^4.2.5"
     vue-tsc: "npm:^1.8.25"
-    vuetify: "npm:^3.4.5"
+    vuetify: "npm:^3.4.6"
   languageName: unknown
   linkType: soft
 
@@ -6393,23 +6393,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.3.2":
-  version: 5.3.2
-  resolution: "typescript@npm:5.3.2"
+"typescript@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "typescript@npm:5.3.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: d7dbe1fbe19039e36a65468ea64b5d338c976550394ba576b7af9c68ed40c0bc5d12ecce390e4b94b287a09a71bd3229f19c2d5680611f35b7c53a3898791159
+  checksum: e33cef99d82573624fc0f854a2980322714986bc35b9cb4d1ce736ed182aeab78e2cb32b385efa493b2a976ef52c53e20d6c6918312353a91850e2b76f1ea44f
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.3.2#optional!builtin<compat/typescript>":
-  version: 5.3.2
-  resolution: "typescript@patch:typescript@npm%3A5.3.2#optional!builtin<compat/typescript>::version=5.3.2&hash=e012d7"
+"typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>":
+  version: 5.3.3
+  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 73c8bad74e732d93211c9d77f28b03307e2f5fc6a0afc73f4b783261ab567686a16d6ae958bdaef383a00be1b0b8c8b6741dd6ca3d13af4963fa7e47456d49c7
+  checksum: 1d0a5f4ce496c42caa9a30e659c467c5686eae15d54b027ee7866744952547f1be1262f2d40de911618c242b510029d51d43ff605dba8fb740ec85ca2d3f9500
   languageName: node
   linkType: hard
 
@@ -6591,9 +6591,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-pwa@npm:^0.17.3":
-  version: 0.17.3
-  resolution: "vite-plugin-pwa@npm:0.17.3"
+"vite-plugin-pwa@npm:^0.17.4":
+  version: 0.17.4
+  resolution: "vite-plugin-pwa@npm:0.17.4"
   dependencies:
     debug: "npm:^4.3.4"
     fast-glob: "npm:^3.3.2"
@@ -6604,7 +6604,7 @@ __metadata:
     vite: ^3.1.0 || ^4.0.0 || ^5.0.0
     workbox-build: ^7.0.0
     workbox-window: ^7.0.0
-  checksum: 29f4e2be131c348b8f7afb1474303c615acb1fc5352af6ea01a84bddf0f5c1d4d801b9fbc515adf9bf74f0b4e541753ad1fd621efecea1e3b570886a7710c8dd
+  checksum: 092da93c53fac8f90028c9412ee647944b59dcd2dbdfabd5c2c4a344dd2e09b1abde66bb8c2dd85022ba0fa68e77f7a8fb67e2659199b4effe549c0d7c46f681
   languageName: node
   linkType: hard
 
@@ -6800,9 +6800,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vuetify@npm:^3.4.5":
-  version: 3.4.5
-  resolution: "vuetify@npm:3.4.5"
+"vuetify@npm:^3.4.6":
+  version: 3.4.6
+  resolution: "vuetify@npm:3.4.6"
   peerDependencies:
     typescript: ">=4.7"
     vite-plugin-vuetify: ^1.0.0-alpha.12
@@ -6818,7 +6818,7 @@ __metadata:
       optional: true
     webpack-plugin-vuetify:
       optional: true
-  checksum: 2488bb0f4fdbcb778449a5c385900a1cf66d97f202e2710891773a4e4a0763ddc19a5b94a8eed14898e3bb461b4e384d65d719f2e12c3de7b80f4b304e6ef81d
+  checksum: 5cba79cb4eadf83ee61606865bd9a69fb24ffad44f39d627c8cd39b38bda3e58556485a89acc94a87ab4d512038b6e6d4061146b878a878ab609dd39315f67fd
   languageName: node
   linkType: hard
 

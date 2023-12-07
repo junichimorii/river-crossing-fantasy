@@ -15,6 +15,13 @@ const useCarrier = (
   const { isRower, getWeight, getDuration } = useCast()
 
   /**
+   * 乗り物に乗っている登場人物
+   */
+  const getPassengers = (
+    carrier: Carrier
+  ) => scene.value.casts.filter(cast => boarding(cast) === carrier.id)
+
+  /**
    * 対岸までの所要時間を算出
    */
   const getElapsedTime = (
@@ -64,14 +71,7 @@ const useCarrier = (
    */
   const isOperable = (
     carrier: Carrier
-  ) => getPassengers(carrier).some(cast => isRower(cast))
-
-  /**
-   * 乗り物に乗っている登場人物
-   */
-  const getPassengers = (
-    carrier: Carrier
-  ) => scene.value.casts.filter(cast => boarding(cast) === carrier.id)
+  ) => getPassengers(carrier).some(cast => isRower(cast)) && getLoad(carrier) <= carrier.capacity
 
   return {
     getElapsedTime,
