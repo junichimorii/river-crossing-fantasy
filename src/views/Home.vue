@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import casts from '@/assets/images/casts'
 import { AppIntroduction, AppSettings } from '@/components'
 import { useCast } from '@/composables'
@@ -13,6 +13,10 @@ const records = useRecordsStore()
 const { getTransform } = useCast()
 onMounted(async () => {
   if (!records.state.level.has(1)) records.state.level.add(1)
+  const nextSceneId = records.getNextSceneId()
+  document.getElementById(`s${nextSceneId}`)?.scrollIntoView({
+    behavior: 'smooth'
+  })
 })
 </script>
 
@@ -44,6 +48,7 @@ onMounted(async () => {
           </v-list-subheader>
           <v-list-item
             lines="one"
+            :id="`s${scene.id}`"
             :to="`/${scene.id}`"
             :title="scene.title"
             :disabled="!settings.state.debug && !records.isQualified(scene.level)"
