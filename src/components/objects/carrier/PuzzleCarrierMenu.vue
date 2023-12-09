@@ -40,7 +40,7 @@ const leave = async (
     activator="parent"
     :close-on-content-click="false"
     disabled
-    location="end bottom"
+    location="end center"
     v-model="isEnabled"
     persistent
     transition="scroll-y-transition"

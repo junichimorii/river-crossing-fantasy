@@ -23,7 +23,7 @@ const model = computed(() => !store.disabled && text.value !== '')
     disabled
     activator="parent"
     v-model="model"
-    location="bottom center"
+    location="top"
     content-class="pa-1"
   >
     {{ text }}
