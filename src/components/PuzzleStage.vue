@@ -56,7 +56,7 @@ onMounted(async () => {
           <v-row no-gutters>
             <v-col
               :cols="store.scene.landscape?.island ? 5 : false"
-              class="d-flex justify-end"
+              class="d-flex justify-end align-self-center"
             >
               <PuzzleCast
                 v-for="cast in halfways"
@@ -74,6 +74,11 @@ onMounted(async () => {
               ></PuzzleCarrier>
             </v-col>
             <v-col>
+              <v-sheet
+                class="bg-transparent"
+                :height="stageSize * 0.45"
+              >
+              </v-sheet>
             </v-col>
           </v-row>
         </v-sheet>
