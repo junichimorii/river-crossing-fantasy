@@ -37,7 +37,7 @@ export default defineConfig({
         display: 'standalone',
         scope: 'https://8amjp.github.io/river-crossing-puzzles/',
         start_url: 'https://8amjp.github.io/river-crossing-puzzles/',
-        name: 'River Crossing Puzzles',
+        name: 'River Crossing Fantasy',
         short_name: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
         description: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
         icons: [{
