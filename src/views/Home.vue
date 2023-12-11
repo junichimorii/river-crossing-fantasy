@@ -26,7 +26,7 @@ onMounted(async () => {
     :elevation="2"
     density="compact"
     color="secondary"
-    title="River Crossing Puzzles"
+    title="River Crossing Fantasy"
     style="font-family: 'Architects Daughter', cursive;"
   ></v-app-bar>
   <v-main>
@@ -109,7 +109,7 @@ onMounted(async () => {
   >
     <v-banner
       lines="one"
-      text="River Crossing Puzzles"
+      text="River Crossing Fantasy"
       color="primary"
       class="px-3 py-0"
       style="font-family: 'Architects Daughter', cursive;"

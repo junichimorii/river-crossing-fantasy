@@ -12,7 +12,7 @@ const session = useSessionStore()
   >
     <v-card
       flat
-      title="River Crossing Puzzles"
+      title="River Crossing Fantasy"
       class="overflow-y-auto"
       style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
