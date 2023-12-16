@@ -81,7 +81,7 @@ watch(result, async (value) => {
           <v-btn
             color="success"
             variant="elevated"
-            to="/home"
+            to="/scenes"
           >
             OK
           </v-btn>

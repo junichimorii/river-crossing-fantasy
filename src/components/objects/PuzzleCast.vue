@@ -86,13 +86,21 @@ const action = async (
     >
       <v-img
         :src="sprites[state.appearance.sprite]"
+        cover
         :width="width"
         :height="height"
         :aspect-ratio="aspectRatio"
         :style="{ transform: transform }"
         style="transform-origin: bottom center;"
       >
-        <div class="d-flex justify-center align-end fill-height"></div>
+        <div class="d-flex justify-center align-end fill-height">
+          <span
+            class="text-white"
+            style="font-size: 1.2vmin;"
+          >
+            {{ state.name }}
+          </span>
+        </div>
       </v-img>
       <PuzzleCastMenu
         :state="state"

@@ -90,6 +90,16 @@ const session = useSessionStore()
               RiversideEnd
             </a>
           </v-card-text>
+          <v-card-text class="py-1">
+            イラスト:
+            <a
+              href="https://aipicasso.app/"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              AI Picasso
+            </a>
+          </v-card-text>
         </v-card-item>
       </v-card-text>
       <v-divider></v-divider>

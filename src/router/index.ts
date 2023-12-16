@@ -5,6 +5,7 @@ import Default from '@/layouts/default/Default.vue'
 import Home from '@/views/Home.vue'
 import List from '@/views/List.vue'
 import Scene from '@/views/Scene.vue'
+import Scenes from '@/views/Scenes.vue'
 
 const routes: Array<RouteRecordRaw> = [{
   path: '/',
@@ -13,6 +14,9 @@ const routes: Array<RouteRecordRaw> = [{
   children: [{
     path: '/home',
     component: Home,
+  }, {
+    path: '/scenes',
+    component: Scenes,
   }, {
     path: '/:id(\\d+)',
     component: Scene,

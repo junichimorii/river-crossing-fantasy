@@ -36,7 +36,7 @@ const session = useSessionStore()
           color="success"
           size="large"
           prepend-icon="mdi-home"
-          to="/home"
+          to="/scenes"
         >
           パズル一覧に戻る
         </v-btn>
