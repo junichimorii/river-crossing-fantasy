@@ -81,24 +81,26 @@ const session = useSessionStore()
             素材:
           </v-card-subtitle>
           <v-card-text class="py-1">
-            BGM:
-            <a
-              href="https://dova-s.jp/bgm/play14344.html"
-              target="_blank"
-              class="text-decoration-none"
-            >
-              RiversideEnd
-            </a>
-          </v-card-text>
-          <v-card-text class="py-1">
-            イラスト:
-            <a
-              href="https://aipicasso.app/"
-              target="_blank"
-              class="text-decoration-none"
-            >
-              AI Picasso
-            </a>
+            <div>
+              BGM:
+              <a
+                href="https://dova-s.jp/bgm/play14344.html"
+                target="_blank"
+                class="text-decoration-none"
+              >
+                RiversideEnd
+              </a>
+            </div>
+            <div>
+              イラスト協力:
+              <a
+                href="https://aipicasso.app/"
+                target="_blank"
+                class="text-decoration-none"
+              >
+                AI Picasso
+              </a>
+            </div>
           </v-card-text>
         </v-card-item>
       </v-card-text>

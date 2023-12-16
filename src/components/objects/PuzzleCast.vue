@@ -89,23 +89,31 @@ const action = async (
       class="d-flex justify-center align-end bg-transparent"
     >
       <v-img
-        :src="sprites[state.appearance.sprite]"
+        src="@/assets/images/shadow.png"
         cover
         :width="width"
         :height="height"
         :aspect-ratio="aspectRatio"
-        :style="{ transform: transform }"
-        style="transform-origin: bottom center;"
       >
-        <div class="d-flex justify-center align-end fill-height">
-          <span
-            v-if="isOrigin"
-            class="text-white"
-            style="font-size: 1.2vmin;"
-          >
-            {{ state.name }}
-          </span>
-        </div>
+        <v-img
+          :src="sprites[state.appearance.sprite]"
+          cover
+          :width="width"
+          :height="height"
+          :aspect-ratio="aspectRatio"
+          :style="{ transform: transform }"
+          style="transform-origin: bottom center;"
+        >
+          <div class="d-flex justify-center align-end fill-height">
+            <span
+              v-if="isOrigin"
+              class="text-white"
+              style="font-size: 1.2vmin;"
+            >
+              {{ state.name }}
+            </span>
+          </div>
+        </v-img>
       </v-img>
       <PuzzleCastMenu
         :state="state"
