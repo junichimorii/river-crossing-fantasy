@@ -54,6 +54,10 @@ const isSwiping = computed(() => isTouchSwiping.value || isPointerSwiping.value)
  */
 const swipeDirection = computed(() => directionSwipe.value || directionPointer.value)
 
+/**
+ * 初期位置にいるかどうか
+ */
+const isOrigin = computed(() => coord(props.state) === -1 && boarding(props.state) === null)
 
 /**
  * 登場人物のスワイプが終了した時
@@ -95,6 +99,7 @@ const action = async (
       >
         <div class="d-flex justify-center align-end fill-height">
           <span
+            v-if="isOrigin"
             class="text-white"
             style="font-size: 1.2vmin;"
           >
