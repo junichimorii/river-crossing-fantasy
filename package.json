@@ -12,6 +12,7 @@
     "ncu": "npx -p npm-check-updates -c 'ncu -u'"
   },
   "dependencies": {
+    "@fontsource/architects-daughter": "^5.0.8",
     "@mdi/font": "7.3.67",
     "@vueuse/core": "^10.7.0",
     "@vueuse/sound": "^2.0.1",

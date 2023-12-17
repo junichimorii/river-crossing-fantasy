@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
+import "@fontsource/architects-daughter"
 import casts from '@/assets/images/casts'
 import { AppIntroduction, AppSettings } from '@/components'
 import { useCast } from '@/composables'
