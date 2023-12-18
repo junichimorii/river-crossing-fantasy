@@ -58,7 +58,8 @@ const scene: Scene = Object.freeze({
     },
     role: {
       rower: true,
-      aversions: [0, 1, 2]
+      demihuman: true,
+      misanthrope: true
     }
   }, {
     id: 4,
@@ -69,7 +70,8 @@ const scene: Scene = Object.freeze({
     },
     role: {
       rower: true,
-      aversions: [0, 1, 2]
+      demihuman: true,
+      misanthrope: true
     }
   }, {
     id: 5,
@@ -80,7 +82,8 @@ const scene: Scene = Object.freeze({
     },
     role: {
       rower: true,
-      aversions: [0, 1, 2]
+      demihuman: true,
+      misanthrope: true
     }
   }]
 })

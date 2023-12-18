@@ -17,7 +17,7 @@ const useScene = (
   const { coord: castCoord, boarding, getOn, getOff, arrive: arriveCast, feel, calmDown, isNeighboring } = useCastState(state)
   const { passengers, groups, isPeaceable, isReached } = useCasts(state, scene)
   // エルフ（人間嫌い）が登場するパズル
-  const hasAversions = scene.value.casts.some(cast => cast.role.aversions)
+  const hasMisanthrope = scene.value.casts.some(cast => cast.role.misanthrope)
   // 吟遊詩人（孤独嫌い）が登場するパズル
   const hasMonophobia = scene.value.casts.some(cast => cast.role.monophobia)
   // 敵と保護者が登場するパズル
@@ -104,7 +104,7 @@ const useScene = (
       calmDown(cast)
     }
     // エルフ（人間嫌い）が登場するパズル
-    if (hasAversions) {
+    if (hasMisanthrope) {
       await antagonism()
     }
     // 吟遊詩人（孤独嫌い）が登場するパズル
@@ -129,13 +129,14 @@ const useScene = (
    * 嫌いな登場人物と乗り物に同乗しているかどうか
    */
   const antagonism = async () => {
+    // 人間（亜人以外）
+    const humans = scene.value.casts.filter(cast => !cast.role.demihuman)
     for await (const myself of scene.value.casts) {
-      if (!myself.role.aversions) continue
+      if (!myself.role.misanthrope) continue
       if (boarding(myself) === null) continue
-      for await (const id of myself.role.aversions) {
-        const aversion = scene.value.casts[id]
+      for await (const human of humans) {
         // 嫌悪対象と隣接している
-        if (isNeighboring(myself, aversion)) {
+        if (isNeighboring(myself, human)) {
           // 感情を追加
           feel(myself, 'surprised')
         }

@@ -50,7 +50,8 @@ const scene: Scene = Object.freeze({
     },
     role: {
       rower: true,
-      aversions: [0, 1]
+      demihuman: true,
+      misanthrope: true
     }
   }]
 })

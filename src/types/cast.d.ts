@@ -26,10 +26,12 @@ interface Appearance {
  * 登場人物の役割
  */
 interface Role {
-  /** 嫌悪の対象 */
-  aversions?: number[]
+  /** 亜人 */
+  demihuman?: boolean
   /** 所要時間 */
   duration?: number
+  /** 人間嫌い */
+  misanthrope?: boolean
   /** 孤独が嫌い */
   monophobia?: boolean
   /** 天敵と保護者 */

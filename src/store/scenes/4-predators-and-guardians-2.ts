@@ -36,7 +36,8 @@ const scene: Scene = Object.freeze({
       sprite: 'therianthropy1'
     },
     role: {
-      rower: false
+      rower: false,
+      demihuman: true
     }
   }, {
     id: 2,
@@ -73,7 +74,8 @@ const scene: Scene = Object.freeze({
     },
     role: {
       rower: true,
-      aversions: [0, 2, 3, 5, 6],
+      demihuman: true,
+      misanthrope: true,
       predators: [{
         predator: 1,
         guardian: 0
