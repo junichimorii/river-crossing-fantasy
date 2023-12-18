@@ -49,7 +49,10 @@ defineProps<{
             v-html="convert(cast.description)"
           ></span>
           <template v-slot:prepend>
-            <v-avatar>
+            <v-avatar
+              rounded="0"
+              size="x-large"
+            >
               <v-img
                 :src="sprites[cast.appearance.sprite]"
                 :style="{ transform: getTransform(cast, -1) }"
