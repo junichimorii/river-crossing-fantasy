@@ -40,7 +40,10 @@ const amount = useTransition(source, {
 /**
  * v-cardに適用するCSS transformプロパティ
  */
-const transform = computed(() => `translate(0, ${-amount.value * stageSize.value * 0.1 + stageSize.value * 0.1}px)`)
+const transform = computed(() => {
+  const ratio = 1 - ((amount.value + 1) * 0.05)
+  return `translate(0, ${-amount.value * stageSize.value * 0.1 + stageSize.value * 0.1}px) scale(${ratio}, ${ratio})`
+})
 
 /**
  * 乗り物の動作が停止した時

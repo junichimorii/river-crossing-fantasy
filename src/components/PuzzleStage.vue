@@ -41,6 +41,7 @@ onMounted(async () => {
         <v-sheet
           class="d-flex justify-end align-end order-1 bg-transparent"
           :height="stageSize * 0.3"
+          :style="{ transform: 'scale(0.85, 0.85)' }"
         >
           <PuzzleCast
             v-for="cast in reachers"
