@@ -76,7 +76,7 @@ onMounted(async () => {
                   rounded="0"
                 >
                   <v-img
-                    :src="carriers[carrier.appearance.sprite]"
+                    :src="carriers[carrier.appearance]"
                   >
                     {{ carrier.capacity }}
                   </v-img>
@@ -97,7 +97,7 @@ onMounted(async () => {
                 class="d-block"
               >
                 <v-img
-                  :src="casts[cast.appearance.sprite]"
+                  :src="casts[cast.appearance]"
                   :style="{ transform: getTransform(cast, -1)}"
                 >
                 </v-img>

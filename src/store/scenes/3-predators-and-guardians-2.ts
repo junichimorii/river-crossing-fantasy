@@ -15,16 +15,12 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '魔獣使い',
-    appearance: {
-      sprite: 'beasttamer1'
-    },
+    appearance: 'beasttamer1',
     role: {
       rower: true
     }
@@ -32,9 +28,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '魔獣',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: {
-      sprite: 'therianthropy1'
-    },
+    appearance: 'therianthropy1',
     role: {
       rower: false,
       demihuman: true
@@ -42,9 +36,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '村人',
-    appearance: {
-      sprite: 'villager1',
-    },
+    appearance: 'villager1',
     role: {
       rower: true,
       predators: [{
@@ -56,9 +48,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: 'エルフ',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: {
-      sprite: 'elf1',
-    },
+    appearance: 'elf1',
     role: {
       rower: true,
       demihuman: true,
@@ -72,9 +62,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: '吟遊詩人',
     description: '独りぼっちを嫌う。',
-    appearance: {
-      sprite: 'bard1',
-    },
+    appearance: 'bard1',
     role: {
       rower: true,
       monophobia: true,

@@ -96,7 +96,7 @@ const action = async (
         :aspect-ratio="aspectRatio"
       >
         <v-img
-          :src="sprites[state.appearance.sprite]"
+          :src="sprites[state.appearance]"
           cover
           :width="width"
           :height="height"

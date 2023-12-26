@@ -18,34 +18,26 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '村人A',
-    appearance: {
-      sprite: 'villager1'
-    },
+    appearance: 'villager1',
     role: {
       rower: true
     }
   }, {
     id: 1,
     name: '村人B',
-    appearance: {
-      sprite: 'villager2'
-    },
+    appearance: 'villager2',
     role: {
       rower: true
     }
   }, {
     id: 2,
     name: '村人C',
-    appearance: {
-      sprite: 'villager3'
-    },
+    appearance: 'villager3',
     role: {
       rower: true
     }
@@ -53,9 +45,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: 'エルフA',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: {
-      sprite: 'elf1',
-    },
+    appearance: 'elf1',
     role: {
       rower: true,
       demihuman: true,
@@ -65,9 +55,7 @@ const scene: Scene = Object.freeze({
     id: 4,
     name: 'エルフB',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: {
-      sprite: 'elf2',
-    },
+    appearance: 'elf2',
     role: {
       rower: true,
       demihuman: true,
@@ -77,9 +65,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: 'エルフC',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: {
-      sprite: 'elf3',
-    },
+    appearance: 'elf3',
     role: {
       rower: true,
       demihuman: true,

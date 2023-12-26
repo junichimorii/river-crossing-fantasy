@@ -18,52 +18,40 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'touch'
-    }
+    appearance: 'touch'
   }],
   casts: [{
     id: 0,
     name: '盗賊',
-    appearance: {
-      sprite: 'thief1'
-    },
+    appearance: 'thief1',
     role: {
       duration: 1
     }
   }, {
     id: 1,
     name: '戦士',
-    appearance: {
-      sprite: 'fighter1'
-    },
+    appearance: 'fighter1',
     role: {
       duration: 3
     }
   }, {
     id: 2,
     name: '司祭',
-    appearance: {
-      sprite: 'priest1'
-    },
+    appearance: 'priest1',
     role: {
       duration: 7
     }
   }, {
     id: 3,
     name: '魔法使い',
-    appearance: {
-      sprite: 'mage1'
-    },
+    appearance: 'mage1',
     role: {
       duration: 9
     }
   }, {
     id: 4,
     name: '王女',
-    appearance: {
-      sprite: 'princess11'
-    },
+    appearance: 'princess11',
     role: {
       duration: 12
     }

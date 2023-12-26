@@ -64,7 +64,7 @@ const finished = async () => {
     class="d-flex justify-center align-start bg-transparent"
   >
     <v-img
-      :src="sprites[state.appearance.sprite]"
+      :src="sprites[state.appearance]"
       :width="width"
       :aspect-ratio="aspectRatio"
       :height="height"

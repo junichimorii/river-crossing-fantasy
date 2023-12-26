@@ -19,34 +19,26 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '村人A',
-    appearance: {
-      sprite: 'villager1'
-    },
+    appearance: 'villager1',
     role: {
       rower: true
     }
   }, {
     id: 1,
     name: '村人B',
-    appearance: {
-      sprite: 'villager2'
-    },
+    appearance: 'villager2',
     role: {
       rower: true
     }
   }, {
     id: 2,
     name: '村人C',
-    appearance: {
-      sprite: 'villager3'
-    },
+    appearance: 'villager3',
     role: {
       rower: true
     }
@@ -54,9 +46,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '吟遊詩人',
     description: '独りぼっちを嫌う。',
-    appearance: {
-      sprite: 'bard1',
-    },
+    appearance: 'bard1',
     role: {
       rower: true,
       monophobia: true

@@ -19,34 +19,26 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '戦士',
-    appearance: {
-      sprite: 'fighter1'
-    },
+    appearance: 'fighter1',
     role: {
       rower: true
     }
   }, {
     id: 1,
     name: '盗賊',
-    appearance: {
-      sprite: 'thief1'
-    },
+    appearance: 'thief1',
     role: {
       rower: true
     }
   }, {
     id: 2,
     name: '魔法使い',
-    appearance: {
-      sprite: 'mage1'
-    },
+    appearance: 'mage1',
     role: {
       rower: true
     }

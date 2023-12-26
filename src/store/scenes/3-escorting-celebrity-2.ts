@@ -18,26 +18,20 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 3,
-    appearance: {
-      sprite: 'raft3'
-    }
+    appearance: 'raft3'
   }],
   casts: [{
     id: 0,
     name: 'A国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: 'knight11'
-    },
+    appearance: 'knight11',
     role: {
       rower: true
     }
   }, {
     id: 1,
     name: 'A国王女1',
-    appearance: {
-      sprite: 'princess11'
-    },
+    appearance: 'princess11',
     role: {
       rower: true,
       predators: [{
@@ -51,9 +45,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'A国王女2',
-    appearance: {
-      sprite: 'princess12'
-    },
+    appearance: 'princess12',
     role: {
       rower: true,
       predators: [{
@@ -68,18 +60,14 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: 'B国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: 'knight21'
-    },
+    appearance: 'knight21',
     role: {
       rower: true
     }
   }, {
     id: 4,
     name: 'B国王女1',
-    appearance: {
-      sprite: 'princess21'
-    },
+    appearance: 'princess21',
     role: {
       rower: true,
       predators: [{
@@ -93,9 +81,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: 'B国王女2',
-    appearance: {
-      sprite: 'princess22'
-    },
+    appearance: 'princess22',
     role: {
       rower: true,
       predators: [{
@@ -110,18 +96,14 @@ const scene: Scene = Object.freeze({
     id: 6,
     name: 'C国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: 'knight31'
-    },
+    appearance: 'knight31',
     role: {
       rower: true
     }
   }, {
     id: 7,
     name: 'C国王女1',
-    appearance: {
-      sprite: 'princess31'
-    },
+    appearance: 'princess31',
     role: {
       rower: true,
       predators: [{
@@ -135,9 +117,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 8,
     name: 'C国王女2',
-    appearance: {
-      sprite: 'princess32'
-    },
+    appearance: 'princess32',
     role: {
       rower: true,
       predators: [{

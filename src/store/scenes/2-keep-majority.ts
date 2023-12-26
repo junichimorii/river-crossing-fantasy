@@ -20,16 +20,12 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '魔獣使いA',
-    appearance: {
-      sprite: 'beasttamer1'
-    },
+    appearance: 'beasttamer1',
     role: {
       rower: true,
       rebel: false,
@@ -37,9 +33,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣使いB',
-    appearance: {
-      sprite: 'beasttamer2'
-    },
+    appearance: 'beasttamer2',
     role: {
       rower: true,
       rebel: false,
@@ -47,9 +41,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '魔獣A',
-    appearance: {
-      sprite: 'therianthropy1'
-    },
+    appearance: 'therianthropy1',
     role: {
       rower: true,
       rebel: true,
@@ -57,9 +49,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '魔獣B',
-    appearance: {
-      sprite: 'therianthropy2'
-    },
+    appearance: 'therianthropy2',
     role: {
       rower: true,
       rebel: true,

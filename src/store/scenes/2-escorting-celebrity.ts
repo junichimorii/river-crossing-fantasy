@@ -19,26 +19,20 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: 'A国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: {
-      sprite: 'knight11'
-    },
+    appearance: 'knight11',
     role: {
       rower: true
     }
   }, {
     id: 1,
     name: 'A国王女',
-    appearance: {
-      sprite: 'princess11'
-    },
+    appearance: 'princess11',
     role: {
       rower: true,
       predators: [{
@@ -50,18 +44,14 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: 'B国騎士',
     description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: {
-      sprite: 'knight21'
-    },
+    appearance: 'knight21',
     role: {
       rower: true
     }
   }, {
     id: 3,
     name: 'B国王女',
-    appearance: {
-      sprite: 'princess21'
-    },
+    appearance: 'princess21',
     role: {
       rower: true,
       predators: [{

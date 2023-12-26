@@ -18,43 +18,33 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '村人A',
-    appearance: {
-      sprite: 'villager1'
-    },
+    appearance: 'villager1',
     role: {
       rower: true,
     }
   }, {
     id: 1,
     name: '村人B',
-    appearance: {
-      sprite: 'villager2'
-    },
+    appearance: 'villager2',
     role: {
       rower: true,
     }
   }, {
     id: 2,
     name: '村人C',
-    appearance: {
-      sprite: 'villager3'
-    },
+    appearance: 'villager3',
     role: {
       rower: true,
     }
   }, {
     id: 3,
     name: '大工a',
-    appearance: {
-      sprite: 'carpenter1'
-    },
+    appearance: 'carpenter1',
     role: {
       rower: false,
       repairer: true
@@ -62,9 +52,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: '大工b',
-    appearance: {
-      sprite: 'carpenter2'
-    },
+    appearance: 'carpenter2',
     role: {
       rower: false,
       repairer: true
@@ -72,9 +60,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: '大工c',
-    appearance: {
-      sprite: 'carpenter3'
-    },
+    appearance: 'carpenter3',
     role: {
       rower: false,
       repairer: true

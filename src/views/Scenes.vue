@@ -69,7 +69,7 @@ onMounted(async () => {
                 size="24"
               >
                 <v-img
-                  :src="casts[cast.appearance.sprite]"
+                  :src="casts[cast.appearance]"
                   :style="{ transform: getTransform(cast, 1) }"
                   style="transform-origin: bottom center;"
                 ></v-img>

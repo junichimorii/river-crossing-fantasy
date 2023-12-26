@@ -19,25 +19,19 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '魔獣使い',
-    appearance: {
-      sprite: 'beasttamer1'
-    },
+    appearance: 'beasttamer1',
     role: {
       rower: true
     }
   }, {
     id: 1,
     name: '村人a',
-    appearance: {
-      sprite: 'villager1'
-    },
+    appearance: 'villager1',
     role: {
       rower: false,
       predators: [{
@@ -48,9 +42,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '村人b',
-    appearance: {
-      sprite: 'villager2'
-    },
+    appearance: 'villager2',
     role: {
       rower: false,
       predators: [{
@@ -62,9 +54,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '魔獣',
     description: '魔獣使いが目を離すと村人を襲う。',
-    appearance: {
-      sprite: 'therianthropy1'
-    },
+    appearance: 'therianthropy1',
     role: {
       rower: false
     }

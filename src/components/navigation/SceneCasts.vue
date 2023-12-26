@@ -54,7 +54,7 @@ defineProps<{
               size="x-large"
             >
               <v-img
-                :src="sprites[cast.appearance.sprite]"
+                :src="sprites[cast.appearance]"
                 :style="{ transform: getTransform(cast, -1) }"
               ></v-img>
             </v-avatar>

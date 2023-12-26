@@ -15,16 +15,12 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 3,
-    appearance: {
-      sprite: 'raft3'
-    }
+    appearance: 'raft3'
   }],
   casts: [{
     id: 0,
     name: '魔獣使い',
-    appearance: {
-      sprite: 'beasttamer1'
-    },
+    appearance: 'beasttamer1',
     role: {
       rower: true
     },
@@ -32,9 +28,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: '魔獣a',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: {
-      sprite: 'therianthropy1',
-    },
+    appearance: 'therianthropy1',
     role: {
       rower: false
     }
@@ -42,9 +36,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '魔獣b',
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: {
-      sprite: 'therianthropy1'
-    },
+    appearance: 'therianthropy2',
     role: {
       rower: false
     }
@@ -52,9 +44,7 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: 'A国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: 'knight11'
-    },
+    appearance: 'knight11',
     role: {
       rower: true,
       predators: [{
@@ -68,9 +58,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: 'A国王女1',
-    appearance: {
-      sprite: 'princess11'
-    },
+    appearance: 'princess11',
     role: {
       rower: false,
       predators: [{
@@ -91,9 +79,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: 'B国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: 'knight21'
-    },
+    appearance: 'knight21',
     role: {
       rower: true,
       predators: [{
@@ -107,9 +93,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 6,
     name: 'B国王女1',
-    appearance: {
-      sprite: 'princess21'
-    },
+    appearance: 'princess21',
     role: {
       rower: false,
       predators: [{
@@ -130,9 +114,7 @@ const scene: Scene = Object.freeze({
     id: 7,
     name: 'C国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: {
-      sprite: 'knight31'
-    },
+    appearance: 'knight31',
     role: {
       rower: true,
       predators: [{
@@ -146,9 +128,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 8,
     name: 'C国王女1',
-    appearance: {
-      sprite: 'princess31'
-    },
+    appearance: 'princess31',
     role: {
       rower: false,
       predators: [{
@@ -168,9 +148,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 9,
     name: '村人',
-    appearance: {
-      sprite: 'villager1'
-    },
+    appearance: 'villager1',
     role: {
       rower: false,
       predators: [{

@@ -20,16 +20,12 @@ const scene: Scene = Object.freeze({
   carriers: [{
     id: 0,
     capacity: 2,
-    appearance: {
-      sprite: 'raft2'
-    }
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
     name: '村人A',
-    appearance: {
-      sprite: 'villager1'
-    },
+    appearance: 'villager1',
     role: {
       rower: true,
       weight: 1
@@ -37,9 +33,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '村人B',
-    appearance: {
-      sprite: 'villager2'
-    },
+    appearance: 'villager2',
     role: {
       rower: true,
       weight: 1
@@ -47,13 +41,11 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '商人',
-    appearance: {
-      sprite: 'merchant1',
-    },
+    appearance: 'merchant1',
     role: {
       rower: true,
       weight: 2,
-    },
+    }
   }]
 })
 export default scene

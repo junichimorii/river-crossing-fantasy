@@ -37,8 +37,8 @@ defineProps<{
             >
               <v-avatar start>
                 <v-img
-                  :src="sprites[cast.appearance.sprite]"
-                  :style="{ transform: `scale(${cast.appearance.ratio}, ${cast.appearance.ratio})` }"
+                  :src="sprites[cast.appearance]"
+                  :style="{ transform: `scale(${cast.role.rower === false ? 0.85 : 1}, ${cast.role.rower === false ? 0.85 : 1})` }"
                 ></v-img>
               </v-avatar>
               <span class="text-caption">{{ cast.name }}</span>

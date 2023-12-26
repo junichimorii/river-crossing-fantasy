@@ -9,17 +9,9 @@ export interface Cast {
   /** 登場人物の説明 */
   description?: string
   /** 登場人物の外観 */
-  appearance: Appearance
+  appearance: string
   /** 登場人物の役割 */
   role: Role
-}
-
-/**
- * 登場人物の外観
- */
-interface Appearance {
-  /** 登場人物の画像URL */
-  sprite: string
 }
 
 /**
