@@ -35,8 +35,8 @@ export default defineConfig({
         theme_color: '#00c853',
         background_color: '#69f0ae',
         display: 'standalone',
-        scope: 'https://8amjp.github.io/river-crossing-puzzles',
-        start_url: 'https://8amjp.github.io/river-crossing-puzzles',
+        scope: 'https://8amjp.github.io/river-crossing-fantasy',
+        start_url: 'https://8amjp.github.io/river-crossing-fantasy',
         name: 'River Crossing Fantasy',
         short_name: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
         description: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
@@ -79,7 +79,4 @@ export default defineConfig({
     port: 3000,
   },
   base: './',
-  build: {
-    outDir: './docs'
-  }
 })

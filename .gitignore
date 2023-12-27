@@ -3,5 +3,3 @@
 !.yarn/releases
 node_modules
 /dev-dist
-/dist
-docs.zip
