@@ -4,13 +4,16 @@ import beasttamer2 from './beasttamer2.png'
 import beasttamer3 from './beasttamer3.png'
 import beasttamer4 from './beasttamer4.png'
 import beasttamer5 from './beasttamer5.png'
+import cabbage1 from './cabbage1.png'
 import carpenter1 from './carpenter1.png'
 import carpenter2 from './carpenter2.png'
 import carpenter3 from './carpenter3.png'
 import elf1 from './elf1.png'
 import elf2 from './elf2.png'
 import elf3 from './elf3.png'
+import farmer1 from './farmer1.png'
 import fighter1 from './fighter1.png'
+import goat1 from './goat1.png'
 import knight11 from './knight11.png'
 import knight12 from './knight12.png'
 import knight21 from './knight21.png'
@@ -45,6 +48,7 @@ import thief1 from './thief1.png'
 import villager1 from './villager1.png'
 import villager2 from './villager2.png'
 import villager3 from './villager3.png'
+import wolf1 from './wolf1.png'
 
 const sprites: {
   [key:string]: string
@@ -55,13 +59,16 @@ const sprites: {
   beasttamer3,
   beasttamer4,
   beasttamer5,
+  cabbage1,
   carpenter1,
   carpenter2,
   carpenter3,
   elf1,
   elf2,
   elf3,
+  farmer1,
   fighter1,
+  goat1,
   knight11,
   knight12,
   knight21,
@@ -96,6 +103,7 @@ const sprites: {
   villager1,
   villager2,
   villager3,
+  wolf1,
 }
 
 export default sprites
