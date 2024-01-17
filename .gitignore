@@ -1,6 +1,7 @@
 .yarn/*
 !.yarn/cache
 !.yarn/releases
+dist.zip
 /dev-dist
 /dist
 /node_modules
