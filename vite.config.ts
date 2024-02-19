@@ -1,8 +1,9 @@
 // Plugins
 import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
 import ViteFonts from 'unplugin-fonts/vite'
-
+import Components from 'unplugin-vue-components/vite'
 // Utilities
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -25,6 +26,17 @@ export default defineConfig({
           styles: 'wght@100;300;400;500;700;900',
         }],
       },
+    }),
+    AutoImport({
+      imports: [
+        'vue',
+        'vue-router',
+        '@vueuse/core',
+      ],
+      dts: './src/auto-imports.d.ts'
+    }),
+    Components({
+      dts: './src/components.d.ts'
     }),
     VitePWA({
       registerType: 'autoUpdate',
@@ -58,7 +70,7 @@ export default defineConfig({
           type: 'image/png'
         }]
       }
-    })
+    }),
   ],
   define: { 'process.env': {} },
   resolve: {

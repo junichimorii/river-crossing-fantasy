@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed, toRef } from 'vue'
 import type { Cast } from '@/types'
 import { useAppearance, useCast, useCastEmotion } from '@/composables'
 import { useSceneStore } from '@/store/scene'

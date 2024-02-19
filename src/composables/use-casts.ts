@@ -1,6 +1,4 @@
-import { computed } from 'vue'
 import type { Scene, State } from '@/types'
-import type { Ref } from 'vue'
 import { useCastState } from '@/composables'
 
 /**

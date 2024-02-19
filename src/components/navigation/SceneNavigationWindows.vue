@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { SceneCasts, SceneMenu, SceneMoves, SceneRules } from '@/components'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const store = useSceneStore()

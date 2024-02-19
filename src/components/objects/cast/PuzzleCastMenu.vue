@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed, toRef } from 'vue'
 import type { Cast } from '@/types'
 import type { UseSwipeDirection } from '@vueuse/core'
 import { useCastState } from '@/composables'

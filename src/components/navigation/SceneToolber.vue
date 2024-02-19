@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { useScreenOrientation } from '@vueuse/core'
-import { toRef } from 'vue'
-import { SceneSound, SceneSolve } from '@/components'
 import { useMoves } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'

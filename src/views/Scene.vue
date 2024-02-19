@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import { useScreenOrientation } from '@vueuse/core'
-import { onMounted, onUnmounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { PuzzleBottomMenu, PuzzleStage, SceneNavigationDialog, SceneResult, SceneSplash } from '@/components'
 import { useAppearance } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'

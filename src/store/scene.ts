@@ -1,6 +1,4 @@
-import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import type { Scene, State, Move } from '@/types'
 import type { CarrierState, CastState } from '@/types/state'
 import { useMoves, useScene } from '@/composables'

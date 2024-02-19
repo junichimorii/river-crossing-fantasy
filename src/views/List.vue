@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import carriers from '@/assets/images/carriers'
 import casts from '@/assets/images/casts'
 import { useCast } from '@/composables'

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import "@fontsource/architects-daughter"
-import { AppIntroduction, AppSettings } from '@/components'
 import { useAppearance } from '@/composables'
 import { useSessionStore } from '@/store/session'
 const session = useSessionStore()

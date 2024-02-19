@@ -1,6 +1,5 @@
 import type { Carrier, State } from '@/types'
 import type { CarrierState } from '@/types/state'
-import type { Ref } from 'vue'
 export const carrierState: CarrierState = Object.freeze({
   coord: -1,
 })

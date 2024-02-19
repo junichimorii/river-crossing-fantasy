@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed, ref, toRef, watch } from 'vue'
 import { useAppearance, useMoves } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'

@@ -1,6 +1,4 @@
-import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import * as scenes from './scenes'
 import type { Scene } from '@/types'
 const levels = [ 'Beginner', 'Easy', 'Normal', 'Hard', 'Ultimate' ]

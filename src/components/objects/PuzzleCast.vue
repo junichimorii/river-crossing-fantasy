@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import { usePointerSwipe, useSwipe } from '@vueuse/core'
-import { computed, ref, toRef } from 'vue'
 import type { Cast } from '@/types'
 import type { UseSwipeDirection } from '@vueuse/core'
 import sprites from '@/assets/images/casts'
-import { PuzzleCastEmotion, PuzzleCastMenu } from '@/components'
 import { useCastAppearance, useCast, useCastState, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const props = defineProps<{

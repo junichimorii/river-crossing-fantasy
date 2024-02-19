@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { toRef } from 'vue'
 import type { Scene } from '@/types'
-import { SceneMoves } from '@/components'
 import { useSolve } from '@/composables'
 import { useSessionStore } from '@/store/session'
 const props = defineProps<{

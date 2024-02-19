@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { SceneNavigationWindows } from '@/components'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const store = useSceneStore()

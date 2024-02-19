@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import type { Carrier } from '@/types'
 import { useAppearance } from '@/composables'
 

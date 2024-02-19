@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import { useAppearance } from '@/composables'
 
 /**

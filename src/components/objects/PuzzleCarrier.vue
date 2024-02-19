@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { TransitionPresets, useTransition } from '@vueuse/core'
-import { computed, toRef } from 'vue'
+import { TransitionPresets } from '@vueuse/core'
 import type { Carrier } from '@/types'
 import sprites from '@/assets/images/carriers'
-import { PuzzleCast, PuzzleCarrierMenu, PuzzleCarrierTooltip } from '@/components'
 import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 const props = defineProps<{

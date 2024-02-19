@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, toRef } from 'vue'
 import sprites from '@/assets/images/landscapes'
-import { SceneToolber, PuzzleCast, PuzzleCarrier } from '@/components'
 import { useAppearance, useCasts } from '@/composables'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'

@@ -1,6 +1,5 @@
 import type { Carrier, Cast, Scene, State } from '@/types'
 import type { Bound } from '@/types/state'
-import type { Ref } from 'vue'
 import { useCarrierState, useCast, useCastState } from '@/composables'
 
 /**

@@ -1,4 +1,3 @@
-import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import type { Settings } from '@/types'
 /**

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
-import { SceneCasts, SceneRules } from '@/components'
 import { useSceneStore } from '@/store/scene'
 import { useSessionStore } from '@/store/session'
 const store = useSceneStore()
