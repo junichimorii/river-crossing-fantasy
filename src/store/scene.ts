@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import type { Scene, State, Move } from '@/types'
 import type { CarrierState, CastState } from '@/types/state'
 import { useMoves, useScene } from '@/composables'

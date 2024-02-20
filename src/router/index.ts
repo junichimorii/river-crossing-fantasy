@@ -1,11 +1,11 @@
 // Composables
 import { createRouter, createWebHashHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router';
-import Default from '@/layouts/default/Default.vue'
-import Home from '@/views/Home.vue'
-import List from '@/views/List.vue'
-import Scene from '@/views/Scene.vue'
-import Scenes from '@/views/Scenes.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import Default from '@/layouts/default.vue'
+import Home from '@/pages/home.vue'
+import List from '@/pages/list.vue'
+import Scene from '@/pages/scene.vue'
+import Scenes from '@/pages/scenes.vue'
 
 const routes: Array<RouteRecordRaw> = [{
   path: '/',

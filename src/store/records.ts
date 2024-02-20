@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import * as scenes from './scenes'
 import type { Scene } from '@/types'
 const levels = [ 'Beginner', 'Easy', 'Normal', 'Hard', 'Ultimate' ]

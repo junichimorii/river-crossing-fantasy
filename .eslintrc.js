@@ -1,3 +1,9 @@
+/**
+ * .eslint.js
+ *
+ * ESLint configuration file.
+ */
+
 module.exports = {
   root: true,
   env: {
@@ -12,6 +18,7 @@ module.exports = {
     'import',
   ],
   rules: {
+    'vue/multi-word-component-names': 'off',
     'import/order': [
       'error',
       {
@@ -37,7 +44,6 @@ module.exports = {
         prefer: 'type-imports'
       }
     ],
-    'vue/multi-word-component-names': 'off',
   },
   ignorePatterns: [
     'dev-dist',

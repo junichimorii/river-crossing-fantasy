@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import type { Settings } from '@/types'
 /**
  * 設定管理
