@@ -1,18 +1,26 @@
 // Plugins
-import { fileURLToPath, URL } from 'node:url'
-import Vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import Fonts from 'unplugin-fonts/vite'
 import Components from 'unplugin-vue-components/vite'
+import Fonts from 'unplugin-fonts/vite'
+import Layouts from 'vite-plugin-vue-layouts'
+import Vue from '@vitejs/plugin-vue'
+import VueRouter from 'unplugin-vue-router/vite'
+import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // Utilities
 import { defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'node:url'
+
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { VitePWA } from 'vite-plugin-pwa'
-import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    VueRouter({
+      dts: './src/typed-router.d.ts'
+    }),
+    Layouts(),
     Vue({
       template: { transformAssetUrls },
     }),
@@ -36,10 +44,14 @@ export default defineConfig({
     }),
     AutoImport({
       imports: [
+        'vue',
+        // 'vue-router',
+        VueRouterAutoImports,
         '@vueuse/core',
         'pinia',
-        'vue',
-        'vue-router',
+        {
+          '@vueuse/sound': [ 'useSound' ]
+        }
       ],
       dts: './src/auto-imports.d.ts',
       eslintrc: {

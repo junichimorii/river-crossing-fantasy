@@ -9,7 +9,7 @@ yarn create vuetify
 √ Project name: ... river-crossing-fantasy
 √ Which preset would you like to install? » Essentials (Base, Layouts, Pinia)
 √ Use TypeScript? ... Yes
-√ Would you like to install dependencies with yarn, npm, pnpm, or bun? » yarn```
+√ Would you like to install dependencies with yarn, npm, pnpm, or bun? » yarn
 ```
 
 

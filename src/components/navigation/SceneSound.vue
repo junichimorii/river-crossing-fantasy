@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useSound } from '@vueuse/sound'
 import bgm from '@/assets/sounds/RiversideEnd.mp3'
 import { useSessionStore } from '@/store/session'
 import { useSettingsStore } from '@/store/settings'

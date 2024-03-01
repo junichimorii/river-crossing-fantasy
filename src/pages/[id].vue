@@ -3,7 +3,7 @@ import { useAppearance } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
 import { useSettingsStore } from '@/store/settings'
-const route = useRoute()
+const route = useRoute('/[id]')
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
 const settings = useSettingsStore()

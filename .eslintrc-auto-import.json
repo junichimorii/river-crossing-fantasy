@@ -37,6 +37,7 @@
     "debouncedWatch": true,
     "defineAsyncComponent": true,
     "defineComponent": true,
+    "definePage": true,
     "defineStore": true,
     "eagerComputed": true,
     "effectScope": true,
@@ -199,7 +200,6 @@
     "useIntervalFn": true,
     "useKeyModifier": true,
     "useLastChanged": true,
-    "useLink": true,
     "useLocalStorage": true,
     "useMagicKeys": true,
     "useManualRefHistory": true,
@@ -300,6 +300,7 @@
     "watchThrottled": true,
     "watchTriggerable": true,
     "watchWithFilter": true,
-    "whenever": true
+    "whenever": true,
+    "useSound": true
   }
 }
