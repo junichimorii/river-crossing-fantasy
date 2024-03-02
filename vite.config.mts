@@ -40,8 +40,8 @@ export default defineConfig({
           name: 'Roboto',
           styles: 'wght@100;300;400;500;700;900',
         }, {
-          name: 'Architects Daughter',
-          styles: 'wght@400;',
+          name: 'Architects+Daughter',
+          styles: 'wght@400',
         }],
       },
     }),

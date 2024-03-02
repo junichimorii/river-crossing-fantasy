@@ -18,7 +18,7 @@
        "src/*"
       ]
     },
-    "types": ["unplugin-vue-router/client", "vite-plugin-vue-layouts/client"]
+    "types": ["unplugin-fonts/client", "unplugin-vue-router/client", "vite-plugin-vue-layouts/client"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }],
