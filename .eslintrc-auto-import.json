@@ -301,6 +301,8 @@
     "watchTriggerable": true,
     "watchWithFilter": true,
     "whenever": true,
-    "useSound": true
+    "useSound": true,
+    "useTheme": true,
+    "useGoTo": true
   }
 }

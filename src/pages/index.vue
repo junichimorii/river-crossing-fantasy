@@ -23,6 +23,11 @@ const { stageSize } = useAppearance()
             Start
           </v-btn>
         </div>
+        <template v-slot:placeholder>
+          <div class="d-flex align-center justify-center fill-height text-h4">
+            River Crossing Fantasy
+          </div>
+        </template>
       </v-img>
     </div>
   </v-main>

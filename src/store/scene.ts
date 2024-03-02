@@ -11,7 +11,7 @@ export const useSceneStore = defineStore('scene', () => {
    * シーンの状態
    */
   const state = useStorage<State>(
-    'RIVER_CROSSING_STATE',
+    'RIVER_CROSSING_FANTASY_STATE',
     {
       carriers: [] as CarrierState[],
       casts: [] as CastState[],
@@ -23,7 +23,7 @@ export const useSceneStore = defineStore('scene', () => {
    * シーンの設定
    */
   const scene = useStorage<Scene>(
-    'RIVER_CROSSING_SCENE',
+    'RIVER_CROSSING_FANTASY_SCENE',
     {
       id: 0,
       title: '',
@@ -44,7 +44,7 @@ export const useSceneStore = defineStore('scene', () => {
    * シーンの行動履歴
    */
   const moves = useStorage<Set<Move>>(
-    'RIVER_CROSSING_MOVES',
+    'RIVER_CROSSING_FANTASY_MOVES',
     new Set<Move>(),
     sessionStorage,
   )

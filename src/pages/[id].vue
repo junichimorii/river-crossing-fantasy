@@ -2,11 +2,9 @@
 import { useAppearance } from '@/composables'
 import { useRecordsStore } from '@/store/records'
 import { useSceneStore } from '@/store/scene'
-import { useSettingsStore } from '@/store/settings'
 const route = useRoute('/[id]')
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()
-const settings = useSettingsStore()
 const records = useRecordsStore()
 const store = useSceneStore()
 const loading = ref(true)
@@ -16,7 +14,7 @@ onMounted(async () => {
   const id = parseInt(route.params.id)
   if(!store.scene || store.scene.id !== id) {
     const config = await records.load(id)
-    if (!config || (!settings.state.debug && !records.isQualified(config.level))) {
+    if (!config) {
       router.push({ path: '/home' })
       return
     }

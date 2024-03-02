@@ -5,17 +5,15 @@ import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
 import { useRecordsStore } from '@/store/records'
 import { useSessionStore } from '@/store/session'
-import { useSettingsStore } from '@/store/settings'
-const settings = useSettingsStore()
+const goTo = useGoTo()
 const session = useSessionStore()
 const records = useRecordsStore()
 const { getTransform } = useCast()
 onMounted(async () => {
-  if (!records.state.level.has(1)) records.state.level.add(1)
   const nextSceneId = records.getNextSceneId()
-  document.getElementById(`s${nextSceneId}`)?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center'
+  goTo(`#s${nextSceneId}`, {
+    easing: 'easeInOutCubic',
+    offset: -100
   })
 })
 </script>
@@ -51,7 +49,6 @@ onMounted(async () => {
             :id="`s${scene.id}`"
             :to="`/${scene.id}`"
             :title="scene.title"
-            :disabled="!settings.state.debug && !records.isQualified(scene.level)"
             class="elevation-4 rounded my-1"
             style="background-color: hsla(0, 0%, 100%, 0.95)"
           >
@@ -83,12 +80,7 @@ onMounted(async () => {
               </v-chip>
             </template>
             <template v-slot:append>
-              <v-icon
-                v-if="!records.state.level.has(scene.level)"
-                icon="mdi-lock"
-              ></v-icon>
               <v-rating
-                v-if="records.state.level.has(scene.level)"
                 readonly
                 density="compact"
                 size="small"
