@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import "@fontsource/architects-daughter"
 import casts from '@/assets/images/casts'
 import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
