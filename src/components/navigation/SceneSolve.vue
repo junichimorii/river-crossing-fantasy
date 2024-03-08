@@ -20,8 +20,8 @@ const { solutions, solved, solve } = useSolve(toRef(props.scene))
       flat
       title="ルート探索"
     >
-      <template v-slot:prepend>
-        <v-icon icon="mdi-map-search"></v-icon>
+      <template #prepend>
+        <v-icon icon="mdi-map-search" />
       </template>
       <v-card-actions
         class="d-flex justify-center"
@@ -45,7 +45,7 @@ const { solutions, solved, solve } = useSolve(toRef(props.scene))
         v-if="!solved"
         type="error"
         title="Failed."
-      ></v-alert>
+      />
       <v-card-text
         class="pa-0"
       >
@@ -60,7 +60,7 @@ const { solutions, solved, solve } = useSolve(toRef(props.scene))
           <SceneMoves
             :moves="moves"
             :category="scene.category"
-          ></SceneMoves>
+          />
         </v-card-item>
       </v-card-text>
     </v-card>

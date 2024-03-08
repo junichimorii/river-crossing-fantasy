@@ -66,7 +66,7 @@ const finished = async () => {
       :width="width"
       :aspect-ratio="aspectRatio"
       :height="height"
-      >
+    >
       <v-sheet
         class="d-flex justify-center align-center bg-transparent"
         :height="height"
@@ -75,11 +75,11 @@ const finished = async () => {
           v-for="cast in passengers[state.id]"
           :key="cast.id"
           :state="cast"
-        ></PuzzleCast>
+        />
       </v-sheet>
     </v-img>
-    <PuzzleCarrierMenu :state="state"></PuzzleCarrierMenu>
-    <PuzzleCarrierTooltip :state="state"></PuzzleCarrierTooltip>
+    <PuzzleCarrierMenu :state="state" />
+    <PuzzleCarrierTooltip :state="state" />
   </v-card>
 </template>
 

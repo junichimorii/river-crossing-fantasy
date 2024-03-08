@@ -36,11 +36,11 @@ const leave = async (
 
 <template>
   <v-menu
+    v-model="isEnabled"
     activator="parent"
     :close-on-content-click="false"
     disabled
     location="end center"
-    v-model="isEnabled"
     persistent
     transition="scroll-y-transition"
   >
@@ -52,7 +52,7 @@ const leave = async (
           color="amber"
           class="ma-1"
           @click.stop="leave('inbound')"
-        ></v-btn>
+        />
       </v-expand-transition>
     </div>
     <div>
@@ -63,7 +63,7 @@ const leave = async (
           color="amber"
           class="ma-1"
           @click.stop="leave('outbound')"
-        ></v-btn>
+        />
       </v-expand-transition>
     </div>
   </v-menu>

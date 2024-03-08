@@ -78,8 +78,8 @@ const action = async (
     :state="state"
   >
     <v-card
-      flat
       ref="target"
+      flat
       :width="width"
       :height="height"
       :aspect-ratio="aspectRatio"
@@ -114,9 +114,9 @@ const action = async (
       </v-img>
       <PuzzleCastMenu
         :state="state"
-        :isSwiping="isSwiping"
-        :swipeDirection="swipeDirection"
-      ></PuzzleCastMenu>
+        :is-swiping="isSwiping"
+        :swipe-direction="swipeDirection"
+      />
     </v-card>
   </PuzzleCastEmotion>
 </template>

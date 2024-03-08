@@ -20,6 +20,6 @@ const offset = computed(() => gridSize.value * 0.1 * (isRower(props.state) ? 1 :
     :offset-x="offset"
     :offset-y="offset"
   >
-    <slot></slot>
+    <slot />
   </v-badge>
 </template>

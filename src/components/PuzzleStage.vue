@@ -26,7 +26,7 @@ onMounted(async () => {
     :src="landscape"
     :height="stageSize"
   >
-    <SceneToolber></SceneToolber>
+    <SceneToolber />
     <v-sheet
       class="d-flex justify-center align-start bg-transparent"
       :height="stageSize"
@@ -45,7 +45,7 @@ onMounted(async () => {
             v-for="cast in reachers"
             :key="cast.id"
             :state="cast"
-          ></PuzzleCast>
+          />
         </v-sheet>
         <!-- river -->
         <v-sheet
@@ -61,7 +61,7 @@ onMounted(async () => {
                 v-for="cast in halfways"
                 :key="cast.id"
                 :state="cast"
-              ></PuzzleCast>
+              />
             </v-col>
             <v-col
               class="d-flex justify-center"
@@ -70,14 +70,13 @@ onMounted(async () => {
                 v-for="carrier in store.scene.carriers"
                 :key="carrier.id"
                 :state="carrier"
-              ></PuzzleCarrier>
+              />
             </v-col>
             <v-col>
               <v-sheet
                 class="bg-transparent"
                 :height="stageSize * 0.45"
-              >
-              </v-sheet>
+              />
             </v-col>
           </v-row>
         </v-sheet>
@@ -90,7 +89,7 @@ onMounted(async () => {
             v-for="cast in unreachers"
             :key="cast.id"
             :state="cast"
-          ></PuzzleCast>
+          />
         </v-sheet>
       </v-sheet>
     </v-sheet>

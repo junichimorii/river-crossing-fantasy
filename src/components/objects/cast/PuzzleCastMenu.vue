@@ -55,8 +55,8 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
 
 <template>
   <v-menu
-    activator="parent"
     v-model="inbound"
+    activator="parent"
     disabled
     location="top"
     transition="scroll-y-reverse-transition"
@@ -67,13 +67,13 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
           size="x-large"
           icon="mdi-arrow-up"
           color="amber"
-        ></v-icon>
+        />
       </div>
     </v-expand-transition>
   </v-menu>
   <v-menu
-    activator="parent"
     v-model="stopover"
+    activator="parent"
     disabled
     location="start"
     transition="scroll-x-reverse-transition"
@@ -84,13 +84,13 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
           size="x-large"
           icon="mdi-arrow-left"
           color="amber"
-        ></v-icon>
+        />
       </div>
     </v-expand-transition>
   </v-menu>
   <v-menu
-    activator="parent"
     v-model="resume"
+    activator="parent"
     disabled
     location="end"
     transition="scroll-x-transition"
@@ -101,13 +101,13 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
           size="x-large"
           icon="mdi-arrow-right"
           color="amber"
-        ></v-icon>
+        />
       </div>
     </v-expand-transition>
   </v-menu>
   <v-menu
-    activator="parent"
     v-model="outbound"
+    activator="parent"
     disabled
     location="bottom"
     transition="scroll-y-transition"
@@ -118,7 +118,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
           size="x-large"
           icon="mdi-arrow-down"
           color="amber"
-        ></v-icon>
+        />
       </div>
     </v-expand-transition>
   </v-menu>

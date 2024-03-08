@@ -7,27 +7,27 @@ const session = useSessionStore()
 
 <template>
   <v-window
-    disabled
     v-model="session.state.tab"
+    disabled
   >
     <v-window-item>
       <SceneRules
         :scene="store.scene"
-      ></SceneRules>
+      />
     </v-window-item>
     <v-window-item>
       <SceneCasts
         :casts="store.scene.casts"
-      ></SceneCasts>
+      />
     </v-window-item>
     <v-window-item>
       <SceneMoves
         :moves="store.moves"
         :category="store.scene.category"
-      ></SceneMoves>
+      />
     </v-window-item>
     <v-window-item>
-      <SceneMenu></SceneMenu>
+      <SceneMenu />
     </v-window-item>
   </v-window>
 </template>

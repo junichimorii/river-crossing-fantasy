@@ -16,13 +16,13 @@ const session = useSessionStore()
       class="overflow-y-auto"
       style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-text
         class="overflow-y-auto pa-0"
       >
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-information"></v-icon>
+            <v-icon icon="mdi-information" />
             このゲームについて:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -32,7 +32,7 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-tablet-cellphone"></v-icon>
+            <v-icon icon="mdi-tablet-cellphone" />
             推奨環境:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -41,7 +41,7 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-script-text"></v-icon>
+            <v-icon icon="mdi-script-text" />
             開発環境:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -58,13 +58,13 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-account"></v-icon>
+            <v-icon icon="mdi-account" />
             作者:
           </v-card-subtitle>
           <v-card-text class="py-1">
             <div>足羽川永都/8amjp</div>
             <div>
-              <v-icon icon="mdi-github"></v-icon>
+              <v-icon icon="mdi-github" />
               <a
                 href="https://github.com/8amjp"
                 target="_blank"
@@ -77,7 +77,7 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-music"></v-icon>
+            <v-icon icon="mdi-music" />
             素材:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -104,7 +104,7 @@ const session = useSessionStore()
           </v-card-text>
         </v-card-item>
       </v-card-text>
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-actions
         class="d-flex justify-center"
       >

@@ -17,7 +17,7 @@ const btnColor = store.scene.landscape?.night ? 'white' : 'black'
     density="compact"
     class="bg-transparent"
   >
-    <template v-slot:prepend>
+    <template #prepend>
       <v-chip
         variant="text"
         size="x-large"
@@ -32,20 +32,20 @@ const btnColor = store.scene.landscape?.night ? 'white' : 'black'
         :color="btnColor"
         icon="mdi-map-search"
         @click.stop="session.state.solve = true"
-      ></v-btn>
+      />
       <SceneSound
         :color="btnColor"
-      ></SceneSound>
+      />
       <v-app-bar-nav-icon
+        v-show="isSupported && orientation === 'landscape-primary'"
         variant="text"
         size="small"
         :color="btnColor"
-        v-show="isSupported && orientation === 'landscape-primary'"
         @click.stop="session.state.navigation = !session.state.navigation"
-      ></v-app-bar-nav-icon>
+      />
     </template>
     <SceneSolve
-      :scene=store.scene
-    ></SceneSolve>
+      :scene="store.scene"
+    />
   </v-toolbar>
 </template>

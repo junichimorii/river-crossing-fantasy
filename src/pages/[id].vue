@@ -37,26 +37,26 @@ onUnmounted(async () => {
       :title="store.scene.title"
       :elevation="4"
     >
-      <template v-slot:prepend>
+      <template #prepend>
         <v-chip
           rounded
           :color="store.scene.category"
         >
-          Q{{store.scene.id}}
+          Q{{ store.scene.id }}
         </v-chip>
       </template>
     </v-app-bar>
     <v-main
       @contextmenu.prevent
     >
-      <PuzzleStage></PuzzleStage>
+      <PuzzleStage />
       <PuzzleBottomMenu
         v-if="isSupported && orientation === 'portrait-primary'"
         :height="navigationHeight"
-      ></PuzzleBottomMenu>
+      />
     </v-main>
-    <SceneNavigationDialog></SceneNavigationDialog>
-    <SceneSplash></SceneSplash>
-    <SceneResult></SceneResult>
+    <SceneNavigationDialog />
+    <SceneSplash />
+    <SceneResult />
   </template>
 </template>

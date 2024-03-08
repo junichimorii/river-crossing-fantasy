@@ -9,7 +9,7 @@ const session = useSessionStore()
     class="overflow-y-auto"
   >
     <v-card-text class="pa-1">
-      <SceneNavigationWindows></SceneNavigationWindows>
+      <SceneNavigationWindows />
     </v-card-text>
     <v-bottom-navigation
       v-model="session.state.tab"

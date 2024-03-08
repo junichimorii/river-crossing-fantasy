@@ -13,7 +13,7 @@ const session = useSessionStore()
     title="オプション"
     class="bg-transparent"
   >
-    <template v-slot:prepend>
+    <template #prepend>
       <v-icon>mdi-cog</v-icon>
     </template>
     <v-list
@@ -41,7 +41,7 @@ const session = useSessionStore()
           パズル一覧に戻る
         </v-btn>
       </v-list-item>
-      <v-divider class="my-4"></v-divider>
+      <v-divider class="my-4" />
       <v-card-subtitle>
         <v-icon>mdi-cog</v-icon>
         設定
@@ -58,7 +58,7 @@ const session = useSessionStore()
           :step="0.05"
           prepend-icon="mdi-volume-high"
           class="py-1"
-        ></v-slider>
+        />
       </v-list-item>
     </v-list>
   </v-card>

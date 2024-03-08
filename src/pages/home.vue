@@ -24,7 +24,7 @@ onMounted(async () => {
     color="secondary"
     title="River Crossing Fantasy"
     style="font-family: 'Architects Daughter', cursive;"
-  ></v-app-bar>
+  />
   <v-main>
     <v-parallax
       src="@/assets/images/title.png"
@@ -40,19 +40,21 @@ onMounted(async () => {
           >
             <v-icon
               icon="mdi-speedometer"
-            ></v-icon>
+            />
             {{ records.header(scene.id) }}
           </v-list-subheader>
           <v-list-item
-            lines="one"
             :id="`s${scene.id}`"
+            lines="one"
             :to="`/${scene.id}`"
             :title="scene.title"
             class="elevation-4 rounded my-1"
             style="background-color: hsla(0, 0%, 100%, 0.95)"
           >
             <v-list-item-subtitle>
-              <div v-html="convert(scene.rules.conditions[0])"></div>
+              <!-- eslint-disable vue/no-v-html -->
+              <div v-html="convert(scene.rules.conditions[0])" />
+              <!-- eslint-enable -->
             </v-list-item-subtitle>
             <v-list-item-subtitle
               class="d-flex justify-end align-end"
@@ -66,19 +68,19 @@ onMounted(async () => {
                   :src="casts[cast.appearance]"
                   :style="{ transform: getTransform(cast, 1) }"
                   style="transform-origin: bottom center;"
-                ></v-img>
+                />
               </v-avatar>
             </v-list-item-subtitle>
-            <template v-slot:prepend>
+            <template #prepend>
               <v-chip
                 rounded
                 :color="scene.category"
                 class="mr-3"
               >
-                Q{{scene.id}}
+                Q{{ scene.id }}
               </v-chip>
             </template>
-            <template v-slot:append>
+            <template #append>
               <v-rating
                 readonly
                 density="compact"
@@ -86,7 +88,7 @@ onMounted(async () => {
                 :length="2"
                 :model-value="records.getScore(scene.id)"
                 active-color="orange"
-              ></v-rating>
+              />
             </template>
           </v-list-item>
         </template>
@@ -104,7 +106,7 @@ onMounted(async () => {
       class="px-3 py-0"
       style="font-family: 'Architects Daughter', cursive;"
     >
-      <template v-slot:actions>
+      <template #actions>
         <v-btn
           @click.stop="session.state.introduction = true"
         >
@@ -118,6 +120,6 @@ onMounted(async () => {
       </template>
     </v-banner>
   </v-footer>
-  <AppIntroduction></AppIntroduction>
-  <AppSettings></AppSettings>
+  <AppIntroduction />
+  <AppSettings />
 </template>

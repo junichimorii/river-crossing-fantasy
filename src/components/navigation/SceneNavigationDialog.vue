@@ -21,23 +21,23 @@ const session = useSessionStore()
         :title="store.scene.title"
         class="bg-transparent"
       >
-        <template v-slot:prepend>
+        <template #prepend>
           <v-chip
             rounded
             :color="store.scene.category"
           >
-            Q{{store.scene.id}}
+            Q{{ store.scene.id }}
           </v-chip>
         </template>
-        <template v-slot:append>
+        <template #append>
           <v-btn
             icon="mdi-close-box"
             variant="text"
             color="primary"
             @click.stop="session.state.navigation=false"
-          ></v-btn>
+          />
         </template>
-        <template v-slot:extension>
+        <template #extension>
           <v-tabs
             v-model="session.state.tab"
             align-tabs="title"
@@ -63,7 +63,7 @@ const session = useSessionStore()
         </template>
       </v-toolbar>
       <v-card-text class="pa-1">
-        <SceneNavigationWindows></SceneNavigationWindows>
+        <SceneNavigationWindows />
       </v-card-text>
     </v-card>
   </v-dialog>

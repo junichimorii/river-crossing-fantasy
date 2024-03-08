@@ -12,14 +12,14 @@ defineProps<{
     title="ルール"
     class="bg-transparent"
   >
-    <template v-slot:prepend>
+    <template #prepend>
       <v-icon>mdi-help</v-icon>
     </template>
     <v-list
       class="bg-transparent"
     >
       <v-list-subheader>
-        <v-icon icon="mdi-lock-open"></v-icon>
+        <v-icon icon="mdi-lock-open" />
         クリア条件
       </v-list-subheader>
       <v-list-item class="text-subtitle-2">
@@ -35,24 +35,28 @@ defineProps<{
             :size="20"
             :model-value="i + 1"
             active-color="orange"
-          ></v-rating>
+          />
+          <!-- eslint-disable vue/no-v-html -->
           <span
-            v-html="convert(rule)"
             class="ml-3"
-          ></span>
+            v-html="convert(rule)"
+          />
+          <!-- eslint-enable -->
         </div>
       </v-list-item>
       <v-list-subheader>
-        <v-icon icon="mdi-swap-vertical"></v-icon>
+        <v-icon icon="mdi-swap-vertical" />
         移動手段
       </v-list-subheader>
       <v-list-item class="text-subtitle-2">
-        <div v-html="convert(scene.rules.transportation)"></div>
+        <!-- eslint-disable vue/no-v-html -->
+        <div v-html="convert(scene.rules.transportation)" />
+        <!-- eslint-enable -->
       </v-list-item>
       <v-list-subheader
         v-if="scene.rules.tips"
       >
-        <v-icon icon="mdi-chat-alert"></v-icon>
+        <v-icon icon="mdi-chat-alert" />
         Tips
       </v-list-subheader>
       <v-list-item
@@ -62,7 +66,7 @@ defineProps<{
           v-for="(tips, i) in scene.rules.tips"
           :key="i"
           v-html="convert(tips)"
-        ></div>
+        />
       </v-list-item>
     </v-list>
   </v-card>

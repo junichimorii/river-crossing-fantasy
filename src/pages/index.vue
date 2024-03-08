@@ -22,7 +22,7 @@ const { stageSize } = useAppearance()
             Start
           </v-btn>
         </div>
-        <template v-slot:placeholder>
+        <template #placeholder>
           <div class="d-flex align-center justify-center fill-height text-h4">
             River Crossing Fantasy
           </div>
@@ -41,7 +41,7 @@ const { stageSize } = useAppearance()
       class="px-3 py-0"
       style="font-family: 'Architects Daughter', cursive;"
     >
-      <template v-slot:actions>
+      <template #actions>
         <v-btn
           @click.stop="session.state.introduction = true"
         >
@@ -55,6 +55,6 @@ const { stageSize } = useAppearance()
       </template>
     </v-banner>
   </v-footer>
-  <AppIntroduction></AppIntroduction>
-  <AppSettings></AppSettings>
+  <AppIntroduction />
+  <AppSettings />
 </template>

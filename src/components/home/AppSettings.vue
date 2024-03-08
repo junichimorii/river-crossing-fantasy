@@ -20,7 +20,7 @@ const settings = useSettingsStore()
       class="overflow-y-auto"
       style="background-color: hsla(0, 0%, 100%, 0.95)"
     >
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-text
         class="overflow-y-auto pa-0"
       >
@@ -37,7 +37,7 @@ const settings = useSettingsStore()
               記録を消去する
             </v-btn>
           </v-list-item>
-          <v-divider class="my-4"></v-divider>
+          <v-divider class="my-4" />
           <v-card-subtitle>
             <v-icon>mdi-cog</v-icon>
             設定
@@ -54,11 +54,11 @@ const settings = useSettingsStore()
               :step="0.05"
               prepend-icon="mdi-volume-high"
               class="py-1"
-            ></v-slider>
+            />
           </v-list-item>
         </v-list>
       </v-card-text>
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-actions
         class="d-flex justify-center"
       >

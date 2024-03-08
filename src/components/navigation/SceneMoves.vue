@@ -14,21 +14,21 @@ defineProps<{
     title="履歴"
     class="bg-transparent"
   >
-    <template v-slot:prepend>
+    <template #prepend>
       <v-icon>mdi-history</v-icon>
     </template>
     <v-row no-gutters>
       <v-col
-        :cols="12"
-        :lg="6"
         v-for="(move, i) in moves"
         :key="i"
+        :cols="12"
+        :lg="6"
       >
         <v-list-item>
           <v-list-item-title>
             <v-icon
               :icon="move.bound === 'inbound' ? 'mdi-arrow-up' : 'mdi-arrow-down'"
-            ></v-icon>
+            />
             <v-chip
               v-for="cast in move.casts"
               :key="cast.id"
@@ -39,12 +39,12 @@ defineProps<{
                 <v-img
                   :src="sprites[cast.appearance]"
                   :style="{ transform: `scale(${cast.role.rower === false ? 0.85 : 1}, ${cast.role.rower === false ? 0.85 : 1})` }"
-                ></v-img>
+                />
               </v-avatar>
               <span class="text-caption">{{ cast.name }}</span>
             </v-chip>
           </v-list-item-title>
-          <template v-slot:prepend>
+          <template #prepend>
             <v-chip
               rounded
               color="primary"
@@ -52,7 +52,7 @@ defineProps<{
               {{ i + 1 }}
             </v-chip>
           </template>
-          <template v-slot:append>
+          <template #append>
             <span v-if="category === 'time-limited'">
               + {{ move.value }} min
             </span>
