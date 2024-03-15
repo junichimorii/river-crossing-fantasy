@@ -50,14 +50,18 @@ export default defineConfig({
         'vue',
         // 'vue-router',
         VueRouterAutoImports,
-        '@vueuse/core',
-        'pinia',
         {
-          vuetify: [ 'useGoTo' ],
+          '@vueuse/core': [ 'usePointerSwipe', 'useScreenOrientation', 'useStorage', 'useSwipe', 'useTransition', 'useWindowSize' ],
         },
         {
           '@vueuse/sound': [ 'useSound' ]
-        }
+        },
+        {
+          pinia: [ 'createPinia', 'defineStore', 'storeToRefs' ],
+        },
+        {
+          vuetify: [ 'useGoTo' ],
+        },
       ],
       dts: './src/auto-imports.d.ts',
       eslintrc: {
