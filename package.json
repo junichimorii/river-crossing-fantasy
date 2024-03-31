@@ -13,14 +13,14 @@
     "@mdi/font": "7.4.47",
     "@vueuse/core": "^10.9.0",
     "@vueuse/sound": "^2.0.1",
-    "core-js": "^3.36.0",
+    "core-js": "^3.36.1",
     "roboto-fontface": "*",
     "vue": "^3.4.21",
-    "vuetify": "^3.5.9"
+    "vuetify": "^3.5.13"
   },
   "devDependencies": {
     "@babel/types": "^7.24.0",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.12.2",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-typescript": "^13.0.0",
     "eslint": "^8.57.0",
@@ -29,21 +29,21 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-vue": "^9.23.0",
+    "eslint-plugin-vue": "^9.24.0",
     "pinia": "^2.1.7",
     "sass": "^1.72.0",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.3",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-fonts": "^1.1.1",
     "unplugin-vue-components": "^0.26.0",
     "unplugin-vue-router": "^0.8.5",
-    "vite": "^5.1.6",
-    "vite-plugin-pwa": "^0.19.3",
+    "vite": "^5.2.7",
+    "vite-plugin-pwa": "^0.19.7",
     "vite-plugin-vue-layouts": "^0.11.0",
     "vite-plugin-vuetify": "^2.0.3",
     "vitest": "^1.4.0",
     "vue-router": "^4.3.0",
-    "vue-tsc": "^2.0.6"
+    "vue-tsc": "^2.0.7"
   },
   "packageManager": "yarn@4.1.1"
 }
