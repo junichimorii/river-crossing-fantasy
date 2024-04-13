@@ -1,26 +1,32 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ESNext",
-    "useDefineForClassFields": true,
+    "jsx": "preserve",
+    "lib": ["DOM", "ESNext"],
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
-    "noEmit": true,
     "paths": {
-      "@/*": [
-       "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "types": ["unplugin-fonts/client", "unplugin-vue-router/client", "vite-plugin-vue-layouts/client"]
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client",
+      "vite-plugin-vue-layouts/client",
+      "unplugin-vue-router/client"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"
+  ],
+  "exclude": ["dist", "node_modules", "cypress"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
