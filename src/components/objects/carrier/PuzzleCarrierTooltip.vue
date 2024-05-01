@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Carrier } from '@/types'
 import { useCarrier } from '@/composables'
-import { useSceneStore } from '@/store/scene'
+import { useSceneStore } from '@/stores/scene'
 const props = defineProps<{
   state: Carrier
 }>()

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Scene } from '@/types'
 import { useSolve } from '@/composables'
-import { useSessionStore } from '@/store/session'
+import { useSessionStore } from '@/stores/session'
 const props = defineProps<{
   scene: Scene
 }>()

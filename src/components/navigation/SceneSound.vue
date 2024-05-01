@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import bgm from '@/assets/sounds/RiversideEnd.mp3'
-import { useSessionStore } from '@/store/session'
-import { useSettingsStore } from '@/store/settings'
+import { useSessionStore } from '@/stores/session'
+import { useSettingsStore } from '@/stores/settings'
 const settings = useSettingsStore()
 const session = useSessionStore()
 const volume = computed(() => settings.state.sound.volume)

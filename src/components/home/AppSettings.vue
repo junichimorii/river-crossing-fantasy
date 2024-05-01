@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useRecordsStore } from '@/store/records'
-import { useSessionStore } from '@/store/session'
-import { useSettingsStore } from '@/store/settings'
+import { useRecordsStore } from '@/stores/records'
+import { useSessionStore } from '@/stores/session'
+import { useSettingsStore } from '@/stores/settings'
 const records = useRecordsStore()
 const session = useSessionStore()
 const settings = useSettingsStore()

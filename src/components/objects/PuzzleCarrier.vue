@@ -3,7 +3,7 @@ import { TransitionPresets } from '@vueuse/core'
 import type { Carrier } from '@/types'
 import sprites from '@/assets/images/carriers'
 import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables'
-import { useSceneStore } from '@/store/scene'
+import { useSceneStore } from '@/stores/scene'
 const props = defineProps<{
   state: Carrier
 }>()

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/landscapes'
 import { useAppearance, useCasts } from '@/composables'
-import { useSceneStore } from '@/store/scene'
-import { useSessionStore } from '@/store/session'
+import { useSceneStore } from '@/stores/scene'
+import { useSessionStore } from '@/stores/session'
 const store = useSceneStore()
 const session = useSessionStore()
 const { stageSize } = useAppearance()

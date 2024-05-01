@@ -2,7 +2,7 @@
 import type { Cast } from '@/types'
 import type { UseSwipeDirection } from '@vueuse/core'
 import { useCastState } from '@/composables'
-import { useSceneStore } from '@/store/scene'
+import { useSceneStore } from '@/stores/scene'
 const props = defineProps<{
   state: Cast
   isSwiping: boolean

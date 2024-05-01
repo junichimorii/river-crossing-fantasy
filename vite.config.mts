@@ -11,7 +11,6 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
-import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
@@ -21,35 +20,12 @@ export default defineConfig({
       dts: './src/typed-router.d.ts'
     }),
     Layouts(),
-    Vue({
-      template: { transformAssetUrls },
-    }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
-    Vuetify({
-      autoImport: true,
-      // styles: {
-      //   configFile: 'src/styles/settings.scss',
-      // },
-    }),
-    Components({
-      dts: './src/components.d.ts'
-    }),
-    Fonts({
-      google: {
-        families: [{
-          name: 'Roboto',
-          styles: 'wght@100;300;400;500;700;900',
-        }, {
-          name: 'Architects+Daughter',
-          styles: 'wght@400',
-        }],
-      },
-    }),
     AutoImport({
       imports: [
         'vue',
-        // 'vue-router',
-        VueRouterAutoImports,
+        {
+          'vue-router/auto': ['useRoute', 'useRouter'],
+        },
         {
           '@vueuse/core': [ 'usePointerSwipe', 'useScreenOrientation', 'useStorage', 'useSwipe', 'useTransition', 'useWindowSize' ],
         },
@@ -68,6 +44,30 @@ export default defineConfig({
         enabled: true,
       },
       vueTemplate: true,
+    }),
+    Components({
+      dts: './src/components.d.ts'
+    }),
+    Vue({
+      template: { transformAssetUrls },
+    }),
+    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
+    Vuetify({
+      autoImport: true,
+      // styles: {
+      //   configFile: 'src/styles/settings.scss',
+      // },
+    }),
+    Fonts({
+      google: {
+        families: [{
+          name: 'Roboto',
+          styles: 'wght@100;300;400;500;700;900',
+        }, {
+          name: 'Architects+Daughter',
+          styles: 'wght@400',
+        }],
+      },
     }),
     VitePWA({
       registerType: 'autoUpdate',

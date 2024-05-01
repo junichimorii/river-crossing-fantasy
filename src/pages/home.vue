@@ -2,8 +2,8 @@
 import casts from '@/assets/images/casts'
 import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
-import { useRecordsStore } from '@/store/records'
-import { useSessionStore } from '@/store/session'
+import { useRecordsStore } from '@/stores/records'
+import { useSessionStore } from '@/stores/session'
 const goTo = useGoTo()
 const session = useSessionStore()
 const records = useRecordsStore()

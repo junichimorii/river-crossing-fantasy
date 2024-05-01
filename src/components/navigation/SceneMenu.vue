@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/store/scene'
-import { useSessionStore } from '@/store/session'
-import { useSettingsStore } from '@/store/settings'
+import { useSceneStore } from '@/stores/scene'
+import { useSessionStore } from '@/stores/session'
+import { useSettingsStore } from '@/stores/settings'
 const settings = useSettingsStore()
 const store = useSceneStore()
 const session = useSessionStore()

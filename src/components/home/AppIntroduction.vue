@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSessionStore } from '@/store/session'
+import { useSessionStore } from '@/stores/session'
 const session = useSessionStore()
 </script>
 

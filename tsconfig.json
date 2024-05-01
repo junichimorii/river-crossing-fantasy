@@ -5,7 +5,7 @@
     "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": ["src/*"]
     },
@@ -25,6 +25,7 @@
     "skipLibCheck": true
   },
   "include": [
+    "./src/typed-router.d.ts",
     "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"
   ],
   "exclude": ["dist", "node_modules", "cypress"],

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useMoves } from '@/composables'
-import { useSceneStore } from '@/store/scene'
-import { useSessionStore } from '@/store/session'
-import { useSettingsStore } from '@/store/settings'
+import { useSceneStore } from '@/stores/scene'
+import { useSessionStore } from '@/stores/session'
+import { useSettingsStore } from '@/stores/settings'
 const { isSupported, orientation } = useScreenOrientation()
 const settings = useSettingsStore()
 const session = useSessionStore()
