@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useRecordsStore } from '@/stores/records'
-import { useSessionStore } from '@/stores/session'
-import { useSettingsStore } from '@/stores/settings'
+import { useRecordsStore } from '@/stores/records';
+import { useSessionStore } from '@/stores/session';
+import { useSettingsStore } from '@/stores/settings';
 const records = useRecordsStore()
 const session = useSessionStore()
 const settings = useSettingsStore()
@@ -30,7 +30,7 @@ const settings = useSettingsStore()
               block
               color="warning"
               size="large"
-              prepend-icon="mdi-notebook-remove"
+              prepend-icon="$clear"
               :disabled="records.state.scenes.size === 0"
               @click.stop="records.clear()"
             >
@@ -39,7 +39,7 @@ const settings = useSettingsStore()
           </v-list-item>
           <v-divider class="my-4" />
           <v-card-subtitle>
-            <v-icon>mdi-cog</v-icon>
+            <v-icon>$settings</v-icon>
             設定
           </v-card-subtitle>
           <v-list-subheader>
@@ -52,7 +52,7 @@ const settings = useSettingsStore()
               :max="1"
               :min="0"
               :step="0.05"
-              prepend-icon="mdi-volume-high"
+              prepend-icon="$volume"
               class="py-1"
             />
           </v-list-item>

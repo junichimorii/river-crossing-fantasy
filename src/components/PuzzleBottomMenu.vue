@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSessionStore } from '@/stores/session'
+import { useSessionStore } from '@/stores/session';
 const session = useSessionStore()
 </script>
 
@@ -17,19 +17,19 @@ const session = useSessionStore()
       color="primary"
     >
       <v-btn>
-        <v-icon>mdi-help</v-icon>
+        <v-icon>$help</v-icon>
         ルール
       </v-btn>
       <v-btn>
-        <v-icon>mdi-account-multiple</v-icon>
+        <v-icon>$casts</v-icon>
         登場人物
       </v-btn>
       <v-btn>
-        <v-icon>mdi-history</v-icon>
+        <v-icon>$moves</v-icon>
         履歴
       </v-btn>
       <v-btn>
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>$settings</v-icon>
         オプション
       </v-btn>
     </v-bottom-navigation>

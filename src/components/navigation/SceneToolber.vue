@@ -30,7 +30,7 @@ const btnColor = store.scene.landscape?.night ? 'white' : 'black'
         variant="text"
         size="small"
         :color="btnColor"
-        icon="mdi-map-search"
+        icon="$solve"
         @click.stop="session.state.solve = true"
       />
       <SceneSound

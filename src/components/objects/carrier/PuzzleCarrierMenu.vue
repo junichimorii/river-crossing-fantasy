@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Carrier } from '@/types'
-import type { Bound } from '@/types/state'
-import { useCarrierState, useCarrier, useCasts } from '@/composables'
-import { useSceneStore } from '@/stores/scene'
+import { useCarrier, useCarrierState, useCasts } from '@/composables';
+import { useSceneStore } from '@/stores/scene';
+import type { Carrier } from '@/types';
+import type { Bound } from '@/types/state';
 const props = defineProps<{
   state: Carrier
 }>()
@@ -48,7 +48,7 @@ const leave = async (
       <v-expand-transition mode="out-in">
         <v-btn
           v-show="inbound"
-          icon="mdi-arrow-up"
+          icon="$inbound"
           color="amber"
           class="ma-1"
           @click.stop="leave('inbound')"
@@ -59,7 +59,7 @@ const leave = async (
       <v-expand-transition mode="in-out">
         <v-btn
           v-show="outbound"
-          icon="mdi-arrow-down"
+          icon="$outbound"
           color="amber"
           class="ma-1"
           @click.stop="leave('outbound')"

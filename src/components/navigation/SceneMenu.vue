@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/stores/scene'
-import { useSessionStore } from '@/stores/session'
-import { useSettingsStore } from '@/stores/settings'
+import { useSceneStore } from '@/stores/scene';
+import { useSessionStore } from '@/stores/session';
+import { useSettingsStore } from '@/stores/settings';
 const settings = useSettingsStore()
 const store = useSceneStore()
 const session = useSessionStore()
@@ -14,7 +14,7 @@ const session = useSessionStore()
     class="bg-transparent"
   >
     <template #prepend>
-      <v-icon>mdi-cog</v-icon>
+      <v-icon>$settings</v-icon>
     </template>
     <v-list
       class="bg-transparent"
@@ -24,7 +24,7 @@ const session = useSessionStore()
           block
           color="warning"
           size="large"
-          prepend-icon="mdi-check-circle"
+          prepend-icon="$success"
           @click.stop="store.init();session.state.navigation=false"
         >
           最初から始める
@@ -35,7 +35,7 @@ const session = useSessionStore()
           block
           color="success"
           size="large"
-          prepend-icon="mdi-home"
+          prepend-icon="$home"
           to="/home"
         >
           パズル一覧に戻る
@@ -43,7 +43,7 @@ const session = useSessionStore()
       </v-list-item>
       <v-divider class="my-4" />
       <v-card-subtitle>
-        <v-icon>mdi-cog</v-icon>
+        <v-icon>$settings</v-icon>
         設定
       </v-card-subtitle>
       <v-list-subheader>
@@ -56,7 +56,7 @@ const session = useSessionStore()
           :max="1"
           :min="0"
           :step="0.05"
-          prepend-icon="mdi-volume-high"
+          prepend-icon="$volume"
           class="py-1"
         />
       </v-list-item>

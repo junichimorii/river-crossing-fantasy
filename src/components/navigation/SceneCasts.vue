@@ -16,7 +16,7 @@ defineProps<{
     class="bg-transparent"
   >
     <template #prepend>
-      <v-icon>mdi-account-multiple</v-icon>
+      <v-icon>$casts</v-icon>
     </template>
     <v-row no-gutters>
       <v-col

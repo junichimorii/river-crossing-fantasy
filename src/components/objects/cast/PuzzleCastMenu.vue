@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Cast } from '@/types'
-import type { UseSwipeDirection } from '@vueuse/core'
-import { useCastState } from '@/composables'
-import { useSceneStore } from '@/stores/scene'
+import { useCastState } from '@/composables';
+import { useSceneStore } from '@/stores/scene';
+import type { Cast } from '@/types';
+import type { UseSwipeDirection } from '@vueuse/core';
 const props = defineProps<{
   state: Cast
   isSwiping: boolean
@@ -65,7 +65,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
       <div class="d-flex justify-center">
         <v-icon
           size="x-large"
-          icon="mdi-arrow-up"
+          icon="$inbound"
           color="amber"
         />
       </div>
@@ -82,7 +82,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
       <div class="d-flex align-center">
         <v-icon
           size="x-large"
-          icon="mdi-arrow-left"
+          icon="$left"
           color="amber"
         />
       </div>
@@ -99,7 +99,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
       <div class="d-flex align-center">
         <v-icon
           size="x-large"
-          icon="mdi-arrow-right"
+          icon="$right"
           color="amber"
         />
       </div>
@@ -116,7 +116,7 @@ const resume = computed(() => isEnabled.value && bound.value === 'resume')
       <div class="d-flex justify-center">
         <v-icon
           size="x-large"
-          icon="mdi-arrow-down"
+          icon="$outbound"
           color="amber"
         />
       </div>

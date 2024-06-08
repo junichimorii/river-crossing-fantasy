@@ -21,20 +21,20 @@ const { solutions, solved, solve } = useSolve(toRef(props.scene))
       title="ルート探索"
     >
       <template #prepend>
-        <v-icon icon="mdi-map-search" />
+        <v-icon icon="$solve" />
       </template>
       <v-card-actions
         class="d-flex justify-center"
       >
         <v-btn
-          prepend-icon="mdi-map-search"
+          prepend-icon="$solve"
           color="info"
           @click.stop="solve()"
         >
           探索開始
         </v-btn>
         <v-btn
-          prepend-icon="mdi-close"
+          prepend-icon="$close"
           color="error"
           @click.stop="session.state.solve = false"
         >

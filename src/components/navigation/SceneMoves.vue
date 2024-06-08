@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { Move } from '@/types'
-import type { Category } from '@/types/scene'
-import sprites from '@/assets/images/casts'
+import sprites from '@/assets/images/casts';
+import type { Move } from '@/types';
+import type { Category } from '@/types/scene';
 defineProps<{
   moves: Set<Move>,
   category: Category
@@ -15,7 +15,7 @@ defineProps<{
     class="bg-transparent"
   >
     <template #prepend>
-      <v-icon>mdi-history</v-icon>
+      <v-icon>$moves</v-icon>
     </template>
     <v-row no-gutters>
       <v-col
@@ -27,7 +27,7 @@ defineProps<{
         <v-list-item>
           <v-list-item-title>
             <v-icon
-              :icon="move.bound === 'inbound' ? 'mdi-arrow-up' : 'mdi-arrow-down'"
+              :icon="move.bound === 'inbound' ? '$inbound' : '$outbound'"
             />
             <v-chip
               v-for="cast in move.casts"

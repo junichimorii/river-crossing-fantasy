@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSessionStore } from '@/stores/session'
+import { useSessionStore } from '@/stores/session';
 const session = useSessionStore()
 </script>
 
@@ -22,7 +22,6 @@ const session = useSessionStore()
       >
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-information" />
             このゲームについて:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -32,7 +31,6 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-tablet-cellphone" />
             推奨環境:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -41,7 +39,6 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-script-text" />
             開発環境:
           </v-card-subtitle>
           <v-card-text class="py-1">
@@ -58,13 +55,11 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-account" />
             作者:
           </v-card-subtitle>
           <v-card-text class="py-1">
             <div>足羽川永都/8amjp</div>
             <div>
-              <v-icon icon="mdi-github" />
               <a
                 href="https://github.com/8amjp"
                 target="_blank"
@@ -77,7 +72,6 @@ const session = useSessionStore()
         </v-card-item>
         <v-card-item>
           <v-card-subtitle>
-            <v-icon icon="mdi-music" />
             素材:
           </v-card-subtitle>
           <v-card-text class="py-1">

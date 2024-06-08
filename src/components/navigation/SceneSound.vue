@@ -5,7 +5,7 @@ import { useSettingsStore } from '@/stores/settings'
 const settings = useSettingsStore()
 const session = useSessionStore()
 const volume = computed(() => settings.state.sound.volume)
-const icon = computed(() => isPlaying.value ? 'mdi-music' : 'mdi-music-off')
+const icon = computed(() => isPlaying.value ? '$sound' : '$mute')
 const { play, stop, isPlaying } = useSound(bgm, {
   loop: true,
   volume,

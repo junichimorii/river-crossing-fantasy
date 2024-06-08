@@ -13,13 +13,13 @@ defineProps<{
     class="bg-transparent"
   >
     <template #prepend>
-      <v-icon>mdi-help</v-icon>
+      <v-icon>$help</v-icon>
     </template>
     <v-list
       class="bg-transparent"
     >
       <v-list-subheader>
-        <v-icon icon="mdi-lock-open" />
+        <v-icon icon="$conditions" />
         クリア条件
       </v-list-subheader>
       <v-list-item class="text-subtitle-2">
@@ -45,7 +45,7 @@ defineProps<{
         </div>
       </v-list-item>
       <v-list-subheader>
-        <v-icon icon="mdi-swap-vertical" />
+        <v-icon icon="$transportation" />
         移動手段
       </v-list-subheader>
       <v-list-item class="text-subtitle-2">
@@ -56,7 +56,7 @@ defineProps<{
       <v-list-subheader
         v-if="scene.rules.tips"
       >
-        <v-icon icon="mdi-chat-alert" />
+        <v-icon icon="$tips" />
         Tips
       </v-list-subheader>
       <v-list-item

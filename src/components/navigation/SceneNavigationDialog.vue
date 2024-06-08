@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useSceneStore } from '@/stores/scene'
-import { useSessionStore } from '@/stores/session'
+import { useSceneStore } from '@/stores/scene';
+import { useSessionStore } from '@/stores/session';
 const store = useSceneStore()
 const session = useSessionStore()
 </script>
@@ -31,7 +31,7 @@ const session = useSessionStore()
         </template>
         <template #append>
           <v-btn
-            icon="mdi-close-box"
+            icon="$close"
             variant="text"
             color="primary"
             @click.stop="session.state.navigation=false"
@@ -44,19 +44,19 @@ const session = useSessionStore()
             stacked
           >
             <v-tab>
-              <v-icon>mdi-help</v-icon>
+              <v-icon>$help</v-icon>
               ルール
             </v-tab>
             <v-tab>
-              <v-icon>mdi-account-multiple</v-icon>
+              <v-icon>$casts</v-icon>
               登場人物
             </v-tab>
             <v-tab>
-              <v-icon>mdi-history</v-icon>
+              <v-icon>$moves</v-icon>
               履歴
             </v-tab>
             <v-tab>
-              <v-icon>mdi-cog</v-icon>
+              <v-icon>$settings</v-icon>
               オプション
             </v-tab>
           </v-tabs>

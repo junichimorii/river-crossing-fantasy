@@ -39,7 +39,7 @@ onMounted(async () => {
             v-if="records.header(scene.id)"
           >
             <v-icon
-              icon="mdi-speedometer"
+              icon="$level"
             />
             {{ records.header(scene.id) }}
           </v-list-subheader>
