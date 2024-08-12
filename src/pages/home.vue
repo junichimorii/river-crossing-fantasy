@@ -55,8 +55,8 @@ onMounted(async () => {
               </v-card-subtitle>
               <v-list-item
                 v-for="scene in category.scenes"
-                :key="scene.id"
                 :id="`s${scene.id}`"
+                :key="scene.id"
                 :to="`/${scene.id}`"
                 :title="scene.title"
                 lines="one"
@@ -79,7 +79,7 @@ onMounted(async () => {
                       :src="casts[cast.appearance]"
                       :style="{ transform: getTransform(cast, 0) }"
                       style="transform-origin: bottom center;"
-                  />
+                    />
                   </v-avatar>
                 </v-list-item-subtitle>
                 <template #append>

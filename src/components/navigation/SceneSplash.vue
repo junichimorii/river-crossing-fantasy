@@ -48,14 +48,6 @@ const start = () => {
           Start
         </v-btn>
       </v-card-actions>
-      <template #prepend>
-        <v-chip
-          rounded
-          :color="store.scene.category"
-        >
-          Q{{ store.scene.id }}
-        </v-chip>
-      </template>
     </v-card>
   </v-dialog>
 </template>

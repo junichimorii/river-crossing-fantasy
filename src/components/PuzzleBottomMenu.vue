@@ -8,30 +8,30 @@ const session = useSessionStore()
     flat
     class="overflow-y-auto"
   >
+    <v-tabs
+      v-model="session.state.tab"
+      align-tabs="center"
+      stacked
+    >
+      <v-tab>
+        <v-icon>$help</v-icon>
+        ルール
+      </v-tab>
+      <v-tab>
+        <v-icon>$casts</v-icon>
+        登場人物
+      </v-tab>
+      <v-tab>
+        <v-icon>$moves</v-icon>
+        履歴
+      </v-tab>
+      <v-tab>
+        <v-icon>$settings</v-icon>
+        オプション
+      </v-tab>
+    </v-tabs>
     <v-card-text class="pa-1">
       <SceneNavigationWindows />
     </v-card-text>
-    <v-bottom-navigation
-      v-model="session.state.tab"
-      active
-      color="primary"
-    >
-      <v-btn>
-        <v-icon>$help</v-icon>
-        ルール
-      </v-btn>
-      <v-btn>
-        <v-icon>$casts</v-icon>
-        登場人物
-      </v-btn>
-      <v-btn>
-        <v-icon>$moves</v-icon>
-        履歴
-      </v-btn>
-      <v-btn>
-        <v-icon>$settings</v-icon>
-        オプション
-      </v-btn>
-    </v-bottom-navigation>
   </v-card>
 </template>

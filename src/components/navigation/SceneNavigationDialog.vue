@@ -21,14 +21,6 @@ const session = useSessionStore()
         :title="store.scene.title"
         class="bg-transparent"
       >
-        <template #prepend>
-          <v-chip
-            rounded
-            :color="store.scene.category"
-          >
-            Q{{ store.scene.id }}
-          </v-chip>
-        </template>
         <template #append>
           <v-btn
             icon="$close"
@@ -40,7 +32,7 @@ const session = useSessionStore()
         <template #extension>
           <v-tabs
             v-model="session.state.tab"
-            align-tabs="title"
+            align-tabs="center"
             stacked
           >
             <v-tab>

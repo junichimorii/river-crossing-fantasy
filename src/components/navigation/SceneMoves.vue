@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/casts';
 import type { Move } from '@/types';
-import type { Category } from '@/types/scene';
 defineProps<{
   moves: Set<Move>,
-  category: Category
+  category: number
 }>()
 </script>
 
@@ -53,7 +52,7 @@ defineProps<{
             </v-chip>
           </template>
           <template #append>
-            <span v-if="category === 'bridge-and-torch'">
+            <span v-if="category === 7">
               + {{ move.value }} min
             </span>
           </template>

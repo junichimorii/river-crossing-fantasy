@@ -36,16 +36,8 @@ onUnmounted(async () => {
       v-if="isSupported && orientation === 'portrait-primary'"
       :title="store.scene.title"
       :elevation="4"
-    >
-      <template #prepend>
-        <v-chip
-          rounded
-          :color="store.scene.category"
-        >
-          Q{{ store.scene.id }}
-        </v-chip>
-      </template>
-    </v-app-bar>
+      color="secondary"
+    />
     <v-main
       @contextmenu.prevent
     >
