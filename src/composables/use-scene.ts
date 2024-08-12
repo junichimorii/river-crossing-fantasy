@@ -1,8 +1,8 @@
-import type { Carrier, Cast, Scene, State, Move } from '@/types'
-import type { Bound } from '@/types/state'
-import { useCarrierState, useCarrier, useCastState, useCasts } from '@/composables'
+import { useCarrier, useCarrierState, useCastState, useCasts } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
+import type { Carrier, Cast, Move, Scene, State } from '@/types'
+import type { Bound } from '@/types/state'
 
 /**
  * 川渡りパズル
@@ -94,7 +94,7 @@ const useScene = (
     }
     return move
   }
-  
+
   /**
    * 安否確認
    */

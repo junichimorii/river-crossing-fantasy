@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import sprites from '@/assets/images/casts'
+import { useCast, useCastAppearance, useCastState, useScene } from '@/composables'
+import { useSceneStore } from '@/stores/scene'
 import type { Cast } from '@/types'
 import type { UseSwipeDirection } from '@vueuse/core'
-import sprites from '@/assets/images/casts'
-import { useCastAppearance, useCast, useCastState, useScene } from '@/composables'
-import { useSceneStore } from '@/stores/scene'
 const props = defineProps<{
   state: Cast
 }>()

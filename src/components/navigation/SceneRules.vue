@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { Scene } from '@/types'
-import { convert } from '@/composables/use-text'
+import { convert } from '@/composables/use-text';
+import type { Scene } from '@/types';
 defineProps<{
   scene: Scene
 }>()

@@ -14,13 +14,10 @@ export {
   useAppearance,
   useCarrier,
   useCarrierAppearance,
-  useCarrierState,
-  useCastAppearance,
+  useCarrierState, useCast, useCastAppearance,
   useCastEmotion,
-  useCastState,
-  useCast,
-  useCasts,
+  useCastState, useCasts,
   useMoves,
   useScene,
-  useSolve,
+  useSolve
 }

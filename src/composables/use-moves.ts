@@ -1,4 +1,4 @@
-import type { Scene, Move } from '@/types'
+import type { Move, Scene } from '@/types'
 
 /**
  * 川渡りパズルの行動履歴

@@ -1,5 +1,5 @@
-import type { Carrier } from '@/types'
 import { useAppearance } from '@/composables'
+import type { Carrier } from '@/types'
 
 /**
  * 川渡りパズルの乗り物の外観

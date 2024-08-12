@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { Cast } from '@/types'
-import { useAppearance, useCast, useCastEmotion } from '@/composables'
-import { useSceneStore } from '@/stores/scene'
+import { useAppearance, useCast, useCastEmotion } from '@/composables';
+import { useSceneStore } from '@/stores/scene';
+import type { Cast } from '@/types';
 const props = defineProps<{
   state: Cast
 }>()

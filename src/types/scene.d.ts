@@ -9,10 +9,12 @@ export interface Scene {
   id: number
   /** シーンの表題 */
   title: string
+  /** パズル種別 */
+  category: number
+  /** パズル種別 */
+  order: number
   /** 難易度 */
   level: number
-  /** パズル種別 */
-  category: Category
   /** パズルのルール */
   rules: Rules
   /** パズルの特徴 */
@@ -24,17 +26,6 @@ export interface Scene {
   /** 登場人物 */
   casts: Cast[]
 }
-
-/**
- * パズル種別
- */
-export type Category =
-  'unconditioned'             // 乗り物の定員以外の制限がない川渡りパズル
-  |'conditioned'              // 簡単な条件のある川渡りパズル
-  |'predators-and-guardians'  // 敵と保護者がいる川渡りパズル
-  |'escorting-celebrity'      // 要人を敵から保護する川渡りパズル
-  |'keep-majority'            // 多数派を維持する川渡りパズル
-  |'time-limited'             // 制限時間のある川渡りパズル
 
 /**
  * パズルの特徴

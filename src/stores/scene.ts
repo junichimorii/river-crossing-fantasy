@@ -1,6 +1,6 @@
-import type { Scene, State, Move } from '@/types'
-import type { CarrierState, CastState } from '@/types/state'
 import { useMoves, useScene } from '@/composables'
+import type { Move, Scene, State } from '@/types'
+import type { CarrierState, CastState } from '@/types/state'
 
 /**
  * シーン（ステージ）管理
@@ -31,7 +31,7 @@ export const useSceneStore = defineStore('scene', () => {
         conditions: [],
         transportation: '',
       },
-      category: 'unconditioned',
+      category: 'introduction',
       level: 0,
       passing: 0,
       carriers: [],

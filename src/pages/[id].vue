@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useAppearance } from '@/composables'
-import { useRecordsStore } from '@/stores/records'
-import { useSceneStore } from '@/stores/scene'
+import { useAppearance } from '@/composables';
+import { useRecordsStore } from '@/stores/records';
+import { useSceneStore } from '@/stores/scene';
 const route = useRoute('/[id]')
 const router = useRouter()
 const { isSupported, orientation } = useScreenOrientation()

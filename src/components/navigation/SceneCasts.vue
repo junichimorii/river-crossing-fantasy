@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Cast } from '@/types'
-import sprites from '@/assets/images/casts'
-import { useCast } from '@/composables'
-import { convert } from '@/composables/use-text'
+import sprites from '@/assets/images/casts';
+import { useCast } from '@/composables';
+import { convert } from '@/composables/use-text';
+import type { Cast } from '@/types';
 const { getTransform } = useCast()
 defineProps<{
   casts: Cast[]

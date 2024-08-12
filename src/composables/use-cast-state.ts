@@ -13,7 +13,7 @@ const useCastState = (
   state: Ref<State>,
 ) => {
 
-  /** 
+  /**
    * 登場人物の座標
    */
   const coord = (

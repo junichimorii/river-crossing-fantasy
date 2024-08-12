@@ -1,6 +1,6 @@
-import * as scenes from './scenes'
 import type { Scene } from '@/types'
-const levels = [ 'Beginner', 'Easy', 'Normal', 'Hard', 'Ultimate' ]
+import * as _scenes from './scenes'
+
 /**
  * 実績管理
  */
@@ -13,12 +13,17 @@ export const useRecordsStore = defineStore('records', () => {
   })
 
   /**
+   * シーン一覧
+   */
+  const scenes = computed(() => Object.values(_scenes))
+
+  /**
    * 指定されたIDのシーンを読み込む
    */
   const load = async (
     id: number
   ) => {
-    const config = Object.values(scenes).find(scene => scene.id === id)
+    const config = scenes.value.find(scene => scene.id === id)
     return config
   }
 
@@ -37,21 +42,6 @@ export const useRecordsStore = defineStore('records', () => {
     score: number,
   ) => {
     state.value.scenes.set(scene.id, Math.max(getScore(scene.id), score))
-  }
-
-  /**
-   * リスト表示のヘッダーを取得
-   */
-  const header = (
-    id: number
-  ) => {
-    const current = Object.values(scenes).find(scene => scene.id === id)
-    if(!current) throw false
-    const previous = Object.values(scenes).find(scene => scene.id === id - 1)
-    if(!previous) return levels[0]
-    return current.level > previous.level
-      ? levels[current.level - 1]
-      : null
   }
 
   /**
@@ -82,7 +72,6 @@ export const useRecordsStore = defineStore('records', () => {
     load,
     clear,
     report,
-    header,
     getNextSceneId,
     isCleared,
     getScore,

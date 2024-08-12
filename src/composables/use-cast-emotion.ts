@@ -1,5 +1,5 @@
-import type { State, Cast } from '@/types'
 import { useCastState } from '@/composables'
+import type { Cast, State } from '@/types'
 
 /**
  * 川渡りパズルの登場人物の感情

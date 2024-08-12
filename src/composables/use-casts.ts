@@ -1,5 +1,5 @@
-import type { Scene, State } from '@/types'
 import { useCastState } from '@/composables'
+import type { Scene, State } from '@/types'
 
 /**
  * 川渡りパズル
@@ -53,12 +53,12 @@ const useCasts = (
    * すべての登場人物が安全な状態どうか
    */
   const isPeaceable = computed(() => state.value.casts.every(castState => castState.emotions.length === 0))
-  
+
   /**
    * すべての登場人物が出発地点にいるかどうか
    */
   const isUnreach = computed(() => state.value.casts.every(castState => castState.boarding === null && castState.coord < 0))
-  
+
   /**
    * すべての登場人物が到着地点にいるかどうか
    */

@@ -1,6 +1,6 @@
-import type { Carrier, Cast, Scene, State, Move } from '@/types'
-import type { CarrierState, CastState, Bound } from '@/types/state'
-import { useCarrierState, useCarrier, useCasts, useScene } from '@/composables'
+import { useCarrier, useCarrierState, useCasts, useScene } from '@/composables'
+import type { Carrier, Cast, Move, Scene, State } from '@/types'
+import type { Bound, CarrierState, CastState } from '@/types/state'
 interface ExtendedState extends State {
   count: number
 }
@@ -37,7 +37,7 @@ const useSolve = (
 
   /**
    * 幅優先探索を開始
-   * @returns 
+   * @returns
    */
   const search = async () => {
     const history = new Set<string[]>()
@@ -71,7 +71,7 @@ const useSolve = (
             if (!move) continue destinations
             await safetyConfirmation()
             if (!isPeaceable.value) continue destinations
-            state.value.count = scene.value.category === 'time-limited'
+            state.value.count = scene.value.category === 7
               ? state.value.count + move.value
               : 0
             const parsedCurrentState = parseState(state)
@@ -92,8 +92,8 @@ const useSolve = (
 
   /**
    * 探索結果から手順を算出
-   * @param history 
-   * @returns 
+   * @param history
+   * @returns
    */
   const lookBack = async (
     history: Set<string[]>
@@ -141,8 +141,8 @@ const useSolve = (
 
   /**
    * 行先の選択肢を算出
-   * @param carrier 
-   * @returns 
+   * @param carrier
+   * @returns
    */
   const getDestinations = (
     carrier: Carrier,

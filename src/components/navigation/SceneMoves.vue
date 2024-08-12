@@ -53,7 +53,7 @@ defineProps<{
             </v-chip>
           </template>
           <template #append>
-            <span v-if="category === 'time-limited'">
+            <span v-if="category === 'bridge-and-torch'">
               + {{ move.value }} min
             </span>
           </template>

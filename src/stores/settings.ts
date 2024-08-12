@@ -1,4 +1,5 @@
 import type { Settings } from '@/types'
+
 /**
  * 設定管理
  */

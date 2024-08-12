@@ -3,7 +3,7 @@ import { useSceneStore } from '@/stores/scene';
 import { useSessionStore } from '@/stores/session';
 import { useSettingsStore } from '@/stores/settings';
 const settings = useSettingsStore()
-const store = useSceneStore()
+const { init } = useSceneStore()
 const session = useSessionStore()
 </script>
 
@@ -25,7 +25,7 @@ const session = useSessionStore()
           color="warning"
           size="large"
           prepend-icon="$success"
-          @click.stop="store.init();session.state.navigation=false"
+          @click.stop="init();session.state.navigation=false"
         >
           最初から始める
         </v-btn>

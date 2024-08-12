@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useAppearance, useMoves } from '@/composables'
-import { useRecordsStore } from '@/stores/records'
-import { useSceneStore } from '@/stores/scene'
+import { useAppearance, useMoves } from '@/composables';
+import { useRecordsStore } from '@/stores/records';
+import { useSceneStore } from '@/stores/scene';
 const records = useRecordsStore()
 const store = useSceneStore()
 const { stageSize } = useAppearance()

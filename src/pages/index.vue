@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useAppearance } from '@/composables'
-import { useSessionStore } from '@/stores/session'
+import { useAppearance } from '@/composables';
+import { useSessionStore } from '@/stores/session';
 const session = useSessionStore()
 const { stageSize } = useAppearance()
 </script>
