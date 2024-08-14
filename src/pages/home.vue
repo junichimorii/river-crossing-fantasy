@@ -40,7 +40,7 @@ onMounted(async () => {
             v-for="category in items"
             :key="category.id"
             cols="12"
-            lg="6"
+            md="6"
             xl="4"
           >
             <v-card class="opacity-90">
