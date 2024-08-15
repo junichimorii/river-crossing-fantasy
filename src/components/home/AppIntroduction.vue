@@ -11,15 +11,11 @@ const session = useSessionStore()
     class="d-flex justify-center align-center"
   >
     <v-card
-      flat
       title="River Crossing Fantasy"
-      class="overflow-y-auto"
-      style="background-color: hsla(0, 0%, 100%, 0.95)"
+      class="overflow-y-auto opacity-90"
     >
       <v-divider />
-      <v-card-text
-        class="overflow-y-auto pa-0"
-      >
+      <v-card-text class="overflow-y-auto pa-0">
         <v-card-item>
           <v-card-subtitle>
             このゲームについて:

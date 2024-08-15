@@ -1,14 +1,3 @@
-/**
- * 0: Introduction
- * 1: Multiracial Crossing
- * 2: Predators and Guardians
- * 3: Escort and Celebrity
- * 4: Majoritarian Crossing
- * 5: Tinderbox Party
- * 6: River Island
- * 7: Bridge and Torch
- */
-
 import s01 from './01'
 import s02 from './02'
 import s03 from './03'

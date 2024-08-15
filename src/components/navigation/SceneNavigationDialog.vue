@@ -12,11 +12,7 @@ const session = useSessionStore()
     :retain-focus="false"
     class="d-flex justify-center align-center"
   >
-    <v-card
-      flat
-      class="overflow-y-auto"
-      style="background-color: hsla(0, 0%, 100%, 0.95)"
-    >
+    <v-card class="overflow-y-auto opacity-90">
       <v-toolbar
         :title="store.scene.title"
         class="bg-transparent"

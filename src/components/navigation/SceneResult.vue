@@ -39,11 +39,7 @@ watch(result, async (value) => {
       :height="stageSize"
       class="d-flex justify-center align-center bg-transparent"
     >
-      <v-card
-        flat
-        style="background-color: hsla(0, 0%, 100%, 0.95)"
-        class="pa-6"
-      >
+      <v-card class="pa-6 opacity-90">
         <v-card-title
           v-if="result === 'succeeded'"
           class="text-center text-success text-h5 text-sm-h3 py-4"

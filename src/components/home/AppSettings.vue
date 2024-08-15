@@ -15,15 +15,11 @@ const settings = useSettingsStore()
     class="d-flex justify-center align-center"
   >
     <v-card
-      flat
       title="設定"
-      class="overflow-y-auto"
-      style="background-color: hsla(0, 0%, 100%, 0.95)"
+      class="overflow-y-auto opacity-90"
     >
       <v-divider />
-      <v-card-text
-        class="overflow-y-auto pa-0"
-      >
+      <v-card-text class="overflow-y-auto pa-0">
         <v-list>
           <v-list-item>
             <v-btn

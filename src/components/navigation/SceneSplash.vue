@@ -23,12 +23,10 @@ const start = () => {
     class="d-flex justify-center align-center"
   >
     <v-card
-      flat
       :title="store.scene.title"
-      class="overflow-y-auto"
-      style="background-color: hsla(0, 0%, 100%, 0.95)"
+      class="overflow-y-auto opacity-90"
     >
-      <v-divider class="my-3" />
+      <v-divider />
       <v-card-text class="pa-1">
         <SceneRules
           :scene="store.scene"
