@@ -3,7 +3,7 @@ const scene: Scene = Object.freeze({
   id: 3,
   title: '逃避行',
   category: 0,
-  order: 2,
+  order: 3,
   level: 1,
   rules: {
     conditions: [

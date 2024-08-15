@@ -45,14 +45,6 @@ export const useRecordsStore = defineStore('records', () => {
   }
 
   /**
-   * 次のステージIDを取得
-   */
-  const getNextSceneId = () => {
-    const result = Math.max(...Array.from(state.value.scenes.keys())) + 1
-    return result
-  }
-
-  /**
    * ステージのスコアの有無を取得
    */
   const isCleared = (
@@ -72,7 +64,6 @@ export const useRecordsStore = defineStore('records', () => {
     load,
     clear,
     report,
-    getNextSceneId,
     isCleared,
     getScore,
   }

@@ -6,19 +6,11 @@ import categories from '@/stores/category'
 import { useRecordsStore } from '@/stores/records'
 import { useSessionStore } from '@/stores/session'
 const { getTransform } = useCast()
-const goTo = useGoTo()
 const session = useSessionStore()
 const records = useRecordsStore()
 const items = computed(() => categories.map(category => Object.assign(category, {
   scenes: records.scenes.filter(scene => scene.category === category.id).sort((a, b) => a.order - b.order)
 })))
-onMounted(async () => {
-  const nextSceneId = records.getNextSceneId()
-  goTo(`#s${nextSceneId}`, {
-    easing: 'easeInOutCubic',
-    offset: -100
-  })
-})
 </script>
 
 <template>
