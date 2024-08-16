@@ -1,6 +1,7 @@
 import s01 from './01'
 import s02 from './02'
 import s03 from './03'
+import s04 from './04'
 import s11 from './11'
 import s12 from './12'
 import s13 from './13'
@@ -14,10 +15,14 @@ import s23 from './23'
 import s31 from './31'
 import s32 from './32'
 import s33 from './33'
+import s34 from './34'
 import s41 from './41'
 import s42 from './42'
 import s43 from './43'
 import s44 from './44'
+import s45 from './45'
+import s46 from './46'
+import s47 from './47'
 import s51 from './51'
 import s52 from './52'
 import s53 from './53'
@@ -35,6 +40,6 @@ import s72 from './72'
 import s73 from './73'
 
 export {
-  s01, s02, s03, s11, s12, s13, s14, s15, s16, s17, s21, s22, s23, s31, s32, s33, s41, s42, s43, s44, s51, s52, s53, s54, s55, s56, s57, s58, s61, s62, s63, s64, s71, s72, s73
+  s01, s02, s03, s04, s11, s12, s13, s14, s15, s16, s17, s21, s22, s23, s31, s32, s33, s34, s41, s42, s43, s44, s45, s46, s47, s51, s52, s53, s54, s55, s56, s57, s58, s61, s62, s63, s64, s71, s72, s73
 }
 

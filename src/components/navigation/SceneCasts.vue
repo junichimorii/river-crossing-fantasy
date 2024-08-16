@@ -55,8 +55,9 @@ defineProps<{
           <!-- eslint-enable -->
           <template #prepend>
             <v-avatar
-              rounded="0"
+              tile
               size="x-large"
+              style="border-style: none;"
             >
               <v-img
                 :src="sprites[cast.appearance]"

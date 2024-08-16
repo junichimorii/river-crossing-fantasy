@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 20,
-  title: '王女親衛隊の攻防(3)',
+  id: 39,
+  title: '王女親衛隊の攻防(4)',
   category: 3,
   order: 3,
   level: 3,
@@ -10,12 +10,12 @@ const scene: Scene = Object.freeze({
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '3人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '3人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは各国の騎士のみ。',
     tips: [
-      '各国に王女が2人、筏（いかだ）の定員が3名になっています。',
+      '「王女親衛隊の攻防(3)」と似ていますが、王女は筏（いかだ）を漕（こ）ぐことができません。',
     ],
   },
-  passing: 7,
+  passing: 9,
   carriers: [{
     id: 0,
     capacity: 3,
@@ -34,7 +34,7 @@ const scene: Scene = Object.freeze({
     name: 'A国王女1',
     appearance: 'princess11',
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 3,
         guardian: 0
@@ -48,7 +48,7 @@ const scene: Scene = Object.freeze({
     name: 'A国王女2',
     appearance: 'princess12',
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 3,
         guardian: 0
@@ -70,7 +70,7 @@ const scene: Scene = Object.freeze({
     name: 'B国王女1',
     appearance: 'princess21',
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 0,
         guardian: 3
@@ -84,7 +84,7 @@ const scene: Scene = Object.freeze({
     name: 'B国王女2',
     appearance: 'princess22',
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 0,
         guardian: 3
@@ -106,7 +106,7 @@ const scene: Scene = Object.freeze({
     name: 'C国王女1',
     appearance: 'princess31',
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 0,
         guardian: 6
@@ -120,7 +120,7 @@ const scene: Scene = Object.freeze({
     name: 'C国王女2',
     appearance: 'princess32',
     role: {
-      rower: true,
+      rower: false,
       predators: [{
         predator: 0,
         guardian: 6

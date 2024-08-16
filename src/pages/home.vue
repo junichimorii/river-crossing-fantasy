@@ -65,7 +65,9 @@ const items = computed(() => categories.map(category => Object.assign(category, 
                   <v-avatar
                     v-for="cast in scene.casts"
                     :key="cast.id"
-                    size="28"
+                    tile
+                    size="small"
+                    style="border-style: none;"
                   >
                     <v-img
                       :src="casts[cast.appearance]"

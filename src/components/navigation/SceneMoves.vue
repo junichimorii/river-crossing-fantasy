@@ -34,7 +34,11 @@ defineProps<{
               variant="text"
               class="pa-2"
             >
-              <v-avatar start>
+              <v-avatar
+                start
+                size="small"
+                style="border-style: none;"
+                >
                 <v-img
                   :src="sprites[cast.appearance]"
                   :style="{ transform: `scale(${cast.role.rower === false ? 0.85 : 1}, ${cast.role.rower === false ? 0.85 : 1})` }"
