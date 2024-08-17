@@ -2,7 +2,7 @@ import type { Category } from '@/types/records'
 const categories: Category[] = [{
   id: 0,
   name: 'Introduction',
-  description: '操作方法を説明します。'
+  description: 'ルールと操作方法を説明します。'
 }, {
   id: 1,
   name: 'Multiracial Travelers',

@@ -37,14 +37,18 @@ const headers = [
           </v-chip>
         </template>
         <template #[`item.rules.transportation`]="{ value }">
+          <!-- eslint-disable vue/no-v-html -->
           <div v-html="convert(value)" />
+          <!-- eslint-enable -->
         </template>
         <template #[`item.rules.tips`]="{ value }">
+          <!-- eslint-disable vue/no-v-html -->
           <div
             v-for="text in value"
             :key="text"
             v-html="convert(text)"
           />
+          <!-- eslint-enable -->
         </template>
       </v-data-table>
     </v-container>

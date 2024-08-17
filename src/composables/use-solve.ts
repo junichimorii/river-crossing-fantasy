@@ -85,7 +85,7 @@ const useSolve = (
           }
         }
       }
-      if (state.value.count > 99) break
+      if (state.value.count > 255) break
     }
     return history
   }
