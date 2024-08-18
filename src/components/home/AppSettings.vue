@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 import { useRecordsStore } from '@/stores/records';
 import { useSessionStore } from '@/stores/session';
-import { useSettingsStore } from '@/stores/settings';
-const records = useRecordsStore()
-const session = useSessionStore()
-const settings = useSettingsStore()
+const { state: records } = storeToRefs(useRecordsStore())
+const { clear } = useRecordsStore()
+const { state: session } = storeToRefs(useSessionStore())
 </script>
 
 <template>
   <v-dialog
-    v-model="session.state.settings"
+    v-model="session.settings"
     persistent
     :retain-focus="false"
     class="d-flex justify-center align-center"
@@ -19,7 +18,7 @@ const settings = useSettingsStore()
       class="overflow-y-auto opacity-90"
     >
       <v-divider />
-      <v-card-text class="overflow-y-auto pa-0">
+      <v-card-text class="overflow-y-auto">
         <v-list>
           <v-list-item>
             <v-btn
@@ -27,8 +26,8 @@ const settings = useSettingsStore()
               color="warning"
               size="large"
               prepend-icon="$clear"
-              :disabled="records.state.scenes.size === 0"
-              @click.stop="records.clear()"
+              :disabled="records.scenes.size === 0"
+              @click.stop="clear()"
             >
               記録を消去する
             </v-btn>
@@ -38,29 +37,12 @@ const settings = useSettingsStore()
             <v-icon>$settings</v-icon>
             設定
           </v-card-subtitle>
-          <v-list-subheader>
-            BGM音量
-          </v-list-subheader>
-          <v-list-item>
-            <v-slider
-              v-model="settings.state.sound.volume"
-              color="primary"
-              :max="1"
-              :min="0"
-              :step="0.05"
-              prepend-icon="$volume"
-              class="py-1"
-            />
-          </v-list-item>
+          <PuzzleSettingsVolume />
         </v-list>
       </v-card-text>
       <v-divider />
-      <v-card-actions
-        class="d-flex justify-center"
-      >
-        <v-btn
-          @click.stop="session.state.settings = false"
-        >
+      <v-card-actions class="d-flex justify-center">
+        <v-btn @click.stop="session.settings = false" >
           OK
         </v-btn>
       </v-card-actions>

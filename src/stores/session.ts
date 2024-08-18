@@ -10,7 +10,7 @@ export const useSessionStore = defineStore('session', () => {
       introduction: false,
       settings: false,
       navigation: false,
-      tab: 0,
+      moves: false,
       sound: false,
       solve: false,
     },

@@ -2,28 +2,24 @@
 import sprites from '@/assets/images/casts';
 import { useCast } from '@/composables';
 import { convert } from '@/composables/use-text';
-import type { Cast } from '@/types';
+import { useSceneStore } from '@/stores/scene';
 const { getTransform } = useCast()
-defineProps<{
-  casts: Cast[]
-}>()
+const { scene } = storeToRefs(useSceneStore())
 </script>
 
 <template>
   <v-card
     flat
+    prepend-icon="$casts"
     title="登場人物"
-    class="bg-transparent"
   >
-    <template #prepend>
-      <v-icon>$casts</v-icon>
-    </template>
     <v-row no-gutters>
       <v-col
-        v-for="cast in casts"
+        v-for="cast in scene.casts"
         :key="cast.id"
-        :cols="12"
-        :lg="6"
+        cols="12"
+        md="6"
+        xl="4"
       >
         <v-list-item
           :title="cast.name"

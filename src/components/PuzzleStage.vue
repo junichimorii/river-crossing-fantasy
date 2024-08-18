@@ -15,6 +15,7 @@ const landscape = computed(() => store.scene.landscape?.night
 )
 onMounted(async () => {
   session.state.navigation = false
+  session.state.moves = false
   session.state.sound = false
   session.state.solve = false
 })
@@ -26,7 +27,7 @@ onMounted(async () => {
     :src="landscape"
     :height="stageSize"
   >
-    <SceneToolber />
+    <SceneToolbar />
     <v-sheet
       class="d-flex justify-center align-start bg-transparent"
       :height="stageSize"

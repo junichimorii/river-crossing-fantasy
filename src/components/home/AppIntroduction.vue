@@ -16,27 +16,18 @@ const session = useSessionStore()
     >
       <v-divider />
       <v-card-text class="overflow-y-auto pa-0">
-        <v-card-item>
-          <v-card-subtitle>
-            このゲームについて:
-          </v-card-subtitle>
+        <v-card-item subtitle="このゲームについて:">
           <v-card-text class="py-1">
             このゲームは、川岸にいる一団を、登場人物たちが持つ特性を考慮しつつ、条件を満たしながら対岸に渡すゲームです。
             このようなゲームは通称「River Crossing Puzzle」（川渡りパズル）と呼ばれており、古くから世界中で親しまれています。
           </v-card-text>
         </v-card-item>
-        <v-card-item>
-          <v-card-subtitle>
-            推奨環境:
-          </v-card-subtitle>
+        <v-card-item subtitle="推奨環境:">
           <v-card-text class="py-1">
             スマートフォンまたはタブレットの縦向きでのプレイを想定していますが、横向きでもPC（マウス操作）でもプレイは可能です。
           </v-card-text>
         </v-card-item>
-        <v-card-item>
-          <v-card-subtitle>
-            開発環境:
-          </v-card-subtitle>
+        <v-card-item subtitle="開発環境:">
           <v-card-text class="py-1">
             このアプリケーションは
             <a
@@ -49,48 +40,37 @@ const session = useSessionStore()
             で開発しています。
           </v-card-text>
         </v-card-item>
-        <v-card-item>
-          <v-card-subtitle>
-            作者:
-          </v-card-subtitle>
+        <v-card-item subtitle="作者:">
           <v-card-text class="py-1">
-            <div>足羽川永都/8amjp</div>
-            <div>
-              <a
-                href="https://github.com/8amjp"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                [Github] 8amjp
-              </a>
-            </div>
+            <a
+              href="https://github.com/8amjp"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              8Games
+            </a>
           </v-card-text>
         </v-card-item>
-        <v-card-item>
-          <v-card-subtitle>
-            素材:
-          </v-card-subtitle>
+        <v-card-item subtitle="素材:">
           <v-card-text class="py-1">
-            <div>
-              BGM:
-              <a
-                href="https://dova-s.jp/bgm/play14344.html"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                RiversideEnd
-              </a>
-            </div>
-            <div>
-              イラスト協力:
-              <a
-                href="https://aipicasso.app/"
-                target="_blank"
-                class="text-decoration-none"
-              >
-                AI Picasso
-              </a>
-            </div>
+            BGM:
+            <a
+              href="https://dova-s.jp/bgm/play14344.html"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              RiversideEnd
+            </a>
+          </v-card-text>
+          <v-card-text class="py-1">
+            イラスト協力:
+            <a
+              href="https://aipicasso.app/"
+              target="_blank"
+              class="text-decoration-none"
+            >
+              AI Picasso
+            </a>
           </v-card-text>
         </v-card-item>
       </v-card-text>

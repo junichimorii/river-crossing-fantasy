@@ -1,37 +1,21 @@
 <script lang="ts" setup>
-import { useSessionStore } from '@/stores/session';
-const session = useSessionStore()
+import { useAppearance } from '@/composables';
+import { useSceneStore } from '@/stores/scene';
+const { scene } = storeToRefs(useSceneStore())
+const { navigationHeight } = useAppearance()
 </script>
 
 <template>
   <v-card
-    flat
+    :title="scene.title"
+    :height="navigationHeight"
     class="overflow-y-auto"
   >
-    <v-tabs
-      v-model="session.state.tab"
-      align-tabs="center"
-      stacked
-    >
-      <v-tab>
-        <v-icon>$help</v-icon>
-        ルール
-      </v-tab>
-      <v-tab>
-        <v-icon>$casts</v-icon>
-        登場人物
-      </v-tab>
-      <v-tab>
-        <v-icon>$moves</v-icon>
-        履歴
-      </v-tab>
-      <v-tab>
-        <v-icon>$settings</v-icon>
-        オプション
-      </v-tab>
-    </v-tabs>
-    <v-card-text class="pa-1">
-      <SceneNavigationWindows />
-    </v-card-text>
+    <SceneActions />
+    <v-divider />
+    <SceneRules />
+    <SceneCasts />
+    <v-divider />
+    <SceneSettings />
   </v-card>
 </template>

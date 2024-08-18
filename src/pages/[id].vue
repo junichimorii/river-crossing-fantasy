@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useAppearance } from '@/composables';
 import { useRecordsStore } from '@/stores/records';
 import { useSceneStore } from '@/stores/scene';
 const route = useRoute('/[id]')
@@ -8,7 +7,6 @@ const { isSupported, orientation } = useScreenOrientation()
 const records = useRecordsStore()
 const store = useSceneStore()
 const loading = ref(true)
-const { navigationHeight } = useAppearance()
 onMounted(async () => {
   if(Array.isArray(route.params.id)) throw `id: ${route.params.id}`
   const id = parseInt(route.params.id)
@@ -29,26 +27,16 @@ onUnmounted(async () => {
 </script>
 
 <template>
-  <template
-    v-if="!loading"
-  >
-    <v-app-bar
-      v-if="isSupported && orientation === 'portrait-primary'"
-      :title="store.scene.title"
-      :elevation="4"
-      color="secondary"
-    />
-    <v-main
-      @contextmenu.prevent
-    >
+  <template v-if="!loading">
+    <v-main @contextmenu.prevent>
       <PuzzleStage />
       <PuzzleBottomMenu
         v-if="isSupported && orientation === 'portrait-primary'"
-        :height="navigationHeight"
       />
     </v-main>
     <SceneNavigationDialog />
-    <SceneSplash />
+    <SceneMovesDialog />
+    <SceneSplashDialog />
     <SceneResult />
   </template>
 </template>

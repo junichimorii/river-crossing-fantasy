@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import { useSceneStore } from '@/stores/scene';
 import { useSessionStore } from '@/stores/session';
-const store = useSceneStore()
-const session = useSessionStore()
+const { scene } = storeToRefs(useSceneStore())
+const { state: session } = storeToRefs(useSessionStore())
 </script>
 
 <template>
   <v-dialog
-    v-model="session.state.navigation"
+    v-model="session.navigation"
     scrollable
     :retain-focus="false"
     class="d-flex justify-center align-center"
   >
     <v-card class="overflow-y-auto opacity-90">
       <v-toolbar
-        :title="store.scene.title"
+        :title="scene.title"
         class="bg-transparent"
       >
         <template #append>
@@ -22,37 +22,19 @@ const session = useSessionStore()
             icon="$close"
             variant="text"
             color="primary"
-            @click.stop="session.state.navigation=false"
+            @click.stop="session.navigation=false"
           />
         </template>
-        <template #extension>
-          <v-tabs
-            v-model="session.state.tab"
-            align-tabs="center"
-            stacked
-          >
-            <v-tab>
-              <v-icon>$help</v-icon>
-              ルール
-            </v-tab>
-            <v-tab>
-              <v-icon>$casts</v-icon>
-              登場人物
-            </v-tab>
-            <v-tab>
-              <v-icon>$moves</v-icon>
-              履歴
-            </v-tab>
-            <v-tab>
-              <v-icon>$settings</v-icon>
-              オプション
-            </v-tab>
-          </v-tabs>
-        </template>
       </v-toolbar>
+      <v-divider />
       <v-card-text class="pa-1">
-        <SceneNavigationWindows />
+        <SceneRules />
+        <SceneCasts />
+        <v-divider />
+        <SceneSettings />
       </v-card-text>
+      <v-divider />
+      <SceneActions />
     </v-card>
   </v-dialog>
 </template>

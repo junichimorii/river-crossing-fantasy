@@ -5,11 +5,12 @@ import { convert } from '@/composables/use-text'
 import categories from '@/stores/category'
 import { useRecordsStore } from '@/stores/records'
 import { useSessionStore } from '@/stores/session'
+const { scenes } = storeToRefs(useRecordsStore())
+const { getScore } = useRecordsStore()
+const { state: session } = storeToRefs(useSessionStore())
 const { getTransform } = useCast()
-const session = useSessionStore()
-const records = useRecordsStore()
 const items = computed(() => categories.map(category => Object.assign(category, {
-  scenes: records.scenes.filter(scene => scene.category === category.id).sort((a, b) => a.order - b.order)
+  scenes: scenes.value.filter(scene => scene.category === category.id).sort((a, b) => a.order - b.order)
 })))
 </script>
 
@@ -20,7 +21,18 @@ const items = computed(() => categories.map(category => Object.assign(category, 
     color="secondary"
     title="River Crossing Fantasy"
     style="font-family: 'Architects Daughter', cursive;"
-  />
+  >
+    <template #append>
+      <v-btn
+        icon="$introduction"
+        @click.stop="session.introduction = true"
+      />
+      <v-btn
+        icon="$settings"
+        @click.stop="session.settings = true"
+      />
+    </template>
+  </v-app-bar>
   <v-main>
     <v-parallax
       src="@/assets/images/title.png"
@@ -82,7 +94,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
                     density="compact"
                     size="small"
                     :length="2"
-                    :model-value="records.getScore(scene.id)"
+                    :model-value="getScore(scene.id)"
                     active-color="orange"
                   />
                 </template>
@@ -106,12 +118,12 @@ const items = computed(() => categories.map(category => Object.assign(category, 
     >
       <template #actions>
         <v-btn
-          @click.stop="session.state.introduction = true"
+          @click.stop="session.introduction = true"
         >
           このゲームについて
         </v-btn>
         <v-btn
-          @click.stop="session.state.settings = true"
+          @click.stop="session.settings = true"
         >
           設定
         </v-btn>

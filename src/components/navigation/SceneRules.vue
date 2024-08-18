@@ -1,32 +1,25 @@
 <script lang="ts" setup>
 import { convert } from '@/composables/use-text';
-import type { Scene } from '@/types';
-defineProps<{
-  scene: Scene
-}>()
+import { useSceneStore } from '@/stores/scene';
+const { scene } = useSceneStore()
 </script>
 
 <template>
   <v-card
     flat
+    prepend-icon="$story"
     title="ルール"
-    class="bg-transparent"
   >
-    <template #prepend>
-      <v-icon>$help</v-icon>
-    </template>
-    <v-list
-      class="bg-transparent"
-    >
-      <v-list-subheader>
-        <v-icon icon="$conditions" />
-        クリア条件
-      </v-list-subheader>
-      <v-list-item class="text-subtitle-2">
+    <v-list>
+      <v-list-item>
+        <v-list-item-title class="text-subtitle-1">
+          <v-icon icon="$conditions" />
+          クリア条件
+        </v-list-item-title>
         <div
           v-for="(rule, i) in scene.rules.conditions"
           :key="i"
-          class="d-flex align-self-end"
+          class="d-flex align-self-end text-subtitle-2"
         >
           <v-rating
             readonly
@@ -44,29 +37,31 @@ defineProps<{
           <!-- eslint-enable -->
         </div>
       </v-list-item>
-      <v-list-subheader>
-        <v-icon icon="$transportation" />
-        移動手段
-      </v-list-subheader>
-      <v-list-item class="text-subtitle-2">
+      <v-list-item>
+        <v-list-item-title class="text-subtitle-1">
+          <v-icon icon="$transportation" />
+          移動手段
+        </v-list-item-title>
         <!-- eslint-disable vue/no-v-html -->
-        <div v-html="convert(scene.rules.transportation)" />
+        <div
+          v-html="convert(scene.rules.transportation)"
+          class="text-subtitle-2"
+        />
         <!-- eslint-enable -->
       </v-list-item>
-      <v-list-subheader
-        v-if="scene.rules.tips"
-      >
-        <v-icon icon="$tips" />
-        Tips
-      </v-list-subheader>
-      <v-list-item
-        class="text-subtitle-2 py-0"
-      >
+      <v-list-item v-if="scene.rules.tips">
+        <v-list-item-title class="text-subtitle-1">
+          <v-icon icon="$tips" />
+          Tips
+        </v-list-item-title>
+        <!-- eslint-disable vue/no-v-html -->
         <div
           v-for="(tips, i) in scene.rules.tips"
           :key="i"
           v-html="convert(tips)"
+          class="text-subtitle-2"
         />
+        <!-- eslint-enable -->
       </v-list-item>
     </v-list>
   </v-card>
