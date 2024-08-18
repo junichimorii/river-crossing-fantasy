@@ -9,7 +9,7 @@
     title="設定"
   >
     <v-list>
-      <PuzzleSettingsVolume />
+      <AppSettingsVolume />
     </v-list>
   </v-card>
 </template>

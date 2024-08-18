@@ -44,8 +44,8 @@ const { scene } = useSceneStore()
         </v-list-item-title>
         <!-- eslint-disable vue/no-v-html -->
         <div
-          v-html="convert(scene.rules.transportation)"
           class="text-subtitle-2"
+          v-html="convert(scene.rules.transportation)"
         />
         <!-- eslint-enable -->
       </v-list-item>
@@ -58,8 +58,8 @@ const { scene } = useSceneStore()
         <div
           v-for="(tips, i) in scene.rules.tips"
           :key="i"
-          v-html="convert(tips)"
           class="text-subtitle-2"
+          v-html="convert(tips)"
         />
         <!-- eslint-enable -->
       </v-list-item>
