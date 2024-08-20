@@ -14,14 +14,10 @@ const { coord } = useCarrierState(toRef(store.state))
 const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
 const { arrive } = useScene(toRef(store.state), toRef(store.scene))
 
-/**
- * useTransitionで変化させるY座標
- */
+/** useTransitionで変化させるY座標 */
  const source = computed(() => coord(props.state))
 
-/**
- * 垂直方向の位置を変化させる
- */
+/** 垂直方向の位置を変化させる */
 const amount = useTransition(source, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
@@ -34,18 +30,13 @@ const amount = useTransition(source, {
   },
 })
 
-
-/**
- * v-cardに適用するCSS transformプロパティ
- */
+/** v-cardに適用するCSS transformプロパティ */
 const transform = computed(() => {
   const ratio = 1 - ((amount.value + 1) * 0.05)
   return `translate(0, ${-amount.value * stageSize.value * 0.1 + stageSize.value * 0.1}px) scale(${ratio}, ${ratio})`
 })
 
-/**
- * 乗り物の動作が停止した時
- */
+/** 乗り物の動作が停止した時 */
 const finished = async () => {
   const result = await arrive(props.state)
   if(result !== undefined) {

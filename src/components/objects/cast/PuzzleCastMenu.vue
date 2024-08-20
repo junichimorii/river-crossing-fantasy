@@ -11,9 +11,7 @@ const props = defineProps<{
 const store = useSceneStore()
 const { coord, boarding } = useCastState(toRef(store.state))
 
-/**
- * 行動範囲に関するプロパティ
- */
+/** 行動範囲に関するプロパティ */
 const bound = computed(() =>
   // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
   (boarding(props.state) !== null && coord(props.state) > 0)
@@ -31,25 +29,15 @@ const bound = computed(() =>
           ? 'resume'
           : 'none'
 )
-/**
- * 進行可能かどうか
- */
+/** 進行可能かどうか */
 const isEnabled = computed(() => !store.disabled && props.isSwiping)
-/**
- * 上り方向に進行可能
- */
+/** 上り方向に進行可能 */
 const inbound = computed(() => isEnabled.value && bound.value === 'inbound')
-/**
- * 下り方向に進行可能
- */
+/** 下り方向に進行可能 */
 const outbound = computed(() => isEnabled.value && bound.value === 'outbound')
-/**
- * 筏（いかだ）から中州方向に進行可能
- */
+/** 筏（いかだ）から中州方向に進行可能 */
 const stopover = computed(() => isEnabled.value && bound.value === 'stopover')
-/**
- * 中州から筏（いかだ）方向に進行可能
- */
+/** 中州から筏（いかだ）方向に進行可能 */
 const resume = computed(() => isEnabled.value && bound.value === 'resume')
 </script>
 

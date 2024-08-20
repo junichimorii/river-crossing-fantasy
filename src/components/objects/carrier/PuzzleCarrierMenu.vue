@@ -10,28 +10,19 @@ const store = useSceneStore()
 const { coord, leave: leaveCarrier } = useCarrierState(toRef(store.state))
 const { hasPassengers, getDestination, isOperable } = useCarrier(toRef(store.state), toRef(store.scene))
 const { isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
-/**
- * 進行可能かどうか
- */
+/** 進行可能かどうか */
 const isEnabled = computed(() => !store.disabled && isOperable(props.state) && isPeaceable.value)
-/**
- * 上り方向に進行可能
- */
+/** 上り方向に進行可能 */
 const inbound = computed(() => isEnabled.value && coord(props.state) <= 0)
-/**
- * 下り方向に進行可能
- */
+/** 下り方向に進行可能 */
 const outbound = computed(() => isEnabled.value && coord(props.state) >= 0)
-/**
- * 出発する
- */
+/** 出発する */
 const leave = async (
   bound: Bound,
 ) => {
   if (!hasPassengers(props.state)) return
   await leaveCarrier(props.state, getDestination(props.state, bound))
 }
-
 </script>
 
 <template>
