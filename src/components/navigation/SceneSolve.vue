@@ -5,13 +5,13 @@ import type { Scene } from '@/types';
 const props = defineProps<{
   scene: Scene
 }>()
-const session = useSessionStore()
+const { state: session } = storeToRefs(useSessionStore())
 const { solutions, solved, solve } = useSolve(toRef(props.scene))
 </script>
 
 <template>
   <v-dialog
-    v-model="session.state.solve"
+    v-model="session.solve"
     scrollable
     :retain-focus="false"
     class="d-flex justify-center align-center"
@@ -36,7 +36,7 @@ const { solutions, solved, solve } = useSolve(toRef(props.scene))
         <v-btn
           prepend-icon="$close"
           color="error"
-          @click.stop="session.state.solve = false"
+          @click.stop="session.solve = false"
         >
           閉じる
         </v-btn>

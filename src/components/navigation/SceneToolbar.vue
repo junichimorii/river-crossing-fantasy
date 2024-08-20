@@ -4,11 +4,11 @@ import { useSceneStore } from '@/stores/scene';
 import { useSessionStore } from '@/stores/session';
 import { useSettingsStore } from '@/stores/settings';
 const { isSupported, orientation } = useScreenOrientation()
-const settings = useSettingsStore()
-const session = useSessionStore()
-const store = useSceneStore()
-const { count, color } = useMoves(toRef(store.moves), toRef(store.scene))
-const btnColor = computed(() => store.scene.landscape?.night ? 'white' : 'black')
+const { state: settings } = storeToRefs(useSettingsStore())
+const { state: session } = storeToRefs(useSessionStore())
+const { scene, moves } = storeToRefs(useSceneStore())
+const { count, color } = useMoves(moves, scene)
+const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black')
 </script>
 
 <template>
@@ -24,7 +24,7 @@ const btnColor = computed(() => store.scene.landscape?.night ? 'white' : 'black'
       size="40"
       :text="String(count)"
       :color="color"
-      @click.stop="session.state.moves = true"
+      @click.stop="session.moves = true"
     />
     <SceneSound :color="btnColor" />
     <v-app-bar-nav-icon
@@ -32,17 +32,17 @@ const btnColor = computed(() => store.scene.landscape?.night ? 'white' : 'black'
       variant="text"
       size="small"
       :color="btnColor"
-      @click.stop="session.state.navigation = !session.state.navigation"
+      @click.stop="session.navigation = !session.navigation"
     />
     <v-spacer />
     <v-btn
-      v-if="settings.state.debug"
+      v-if="settings.debug"
       icon="$solve"
       variant="text"
       size="small"
       :color="btnColor"
-      @click.stop="session.state.solve = true"
+      @click.stop="session.solve = true"
     />
   </v-toolbar>
-  <SceneSolve :scene="store.scene" />
+  <SceneSolve :scene="scene" />
 </template>

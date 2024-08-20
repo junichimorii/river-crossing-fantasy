@@ -3,21 +3,21 @@ import sprites from '@/assets/images/landscapes';
 import { useAppearance, useCasts } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 import { useSessionStore } from '@/stores/session';
-const store = useSceneStore()
-const session = useSessionStore()
+const { state, scene } = storeToRefs(useSceneStore())
+const { state: session } = storeToRefs(useSessionStore())
 const { stageSize } = useAppearance()
-const { unreachers, reachers, halfways } = useCasts(toRef(store.state), toRef(store.scene))
-const landscape = computed(() => store.scene.landscape?.night
+const { unreachers, reachers, halfways } = useCasts(state, scene)
+const landscape = computed(() => scene.value.landscape?.night
   ? sprites.nightBridge
-  : store.scene.landscape?.island
+  : scene.value.landscape?.island
     ? sprites.daytimeRiverIsland
     : sprites.daytimeRiver
 )
 onMounted(async () => {
-  session.state.navigation = false
-  session.state.moves = false
-  session.state.sound = false
-  session.state.solve = false
+  session.value.navigation = false
+  session.value.moves = false
+  session.value.sound = false
+  session.value.solve = false
 })
 </script>
 
@@ -55,7 +55,7 @@ onMounted(async () => {
         >
           <v-row no-gutters>
             <v-col
-              :cols="store.scene.landscape?.island ? 8 : false"
+              :cols="scene.landscape?.island ? 8 : false"
               class="d-flex justify-end align-self-center"
             >
               <PuzzleCast
@@ -68,7 +68,7 @@ onMounted(async () => {
               class="d-flex justify-center"
             >
               <PuzzleCarrier
-                v-for="carrier in store.scene.carriers"
+                v-for="carrier in scene.carriers"
                 :key="carrier.id"
                 :state="carrier"
               />

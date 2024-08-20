@@ -2,9 +2,9 @@
 import bgm from '@/assets/sounds/RiversideEnd.mp3';
 import { useSessionStore } from '@/stores/session';
 import { useSettingsStore } from '@/stores/settings';
-const settings = useSettingsStore()
-const session = useSessionStore()
-const volume = computed(() => settings.state.sound.volume)
+const { state: settings } = storeToRefs(useSettingsStore())
+const { state: session } = storeToRefs(useSessionStore())
+const volume = computed(() => settings.value.sound.volume)
 const icon = computed(() => isPlaying.value ? '$sound' : '$mute')
 const { play, stop, isPlaying } = useSound(bgm, {
   loop: true,
@@ -14,7 +14,7 @@ onUnmounted(async () => {
   stop()
 })
 watch(
-  () => session.state.sound,
+  () => session.value.sound,
   async (sound) => {
     if (sound){
       play()
@@ -30,6 +30,6 @@ watch(
     :icon="icon"
     size="small"
     color="primary"
-    @click.stop="session.state.sound = !session.state.sound"
+    @click.stop="session.sound = !session.sound"
   />
 </template>

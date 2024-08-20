@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { useSessionStore } from '@/stores/session';
-const session = useSessionStore()
+const { state: session } = storeToRefs(useSessionStore())
 </script>
 
 <template>
   <v-dialog
-    v-model="session.state.introduction"
+    v-model="session.introduction"
     persistent
     :retain-focus="false"
     class="d-flex justify-center align-center"
@@ -76,7 +76,7 @@ const session = useSessionStore()
       </v-card-text>
       <v-divider />
       <v-card-actions class="d-flex justify-center">
-        <v-btn @click.stop="session.state.introduction = false">
+        <v-btn @click.stop="session.introduction = false">
           OK
         </v-btn>
       </v-card-actions>

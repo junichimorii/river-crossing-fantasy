@@ -2,11 +2,11 @@
 import { useSceneStore } from '@/stores/scene';
 import { useSessionStore } from '@/stores/session';
 const { scene } = storeToRefs(useSceneStore())
-const session = useSessionStore()
+const { state: session } = storeToRefs(useSessionStore())
 const dialog = ref(false)
 const start = () => {
   dialog.value = false
-  session.state.sound = true
+  session.value.sound = true
 }
 /** 初回実行時にダイアログを表示 */
 onMounted(async () => {

@@ -2,10 +2,11 @@
 import { useAppearance, useMoves } from '@/composables';
 import { useRecordsStore } from '@/stores/records';
 import { useSceneStore } from '@/stores/scene';
-const records = useRecordsStore()
-const store = useSceneStore()
+const { report } = useRecordsStore()
+const { scene, moves } = storeToRefs(useSceneStore())
+const { init } = useSceneStore()
 const { stageSize } = useAppearance()
-const { count } = useMoves(toRef(store.moves))
+const { count } = useMoves(moves)
 const score = ref(0)
 const result = computed(() => includes('failed')
   ? 'failed'
@@ -17,13 +18,13 @@ const overlay = computed(() => result.value !== undefined)
 
 const includes = (
   status: string
-) => Array.from(store.moves).some(move => move.result === status)
+) => Array.from(moves.value).some(move => move.result === status)
 
 watch(result, async (value) => {
   /** ステージクリア */
   if (value === 'succeeded') {
-    score.value = count.value <= store.scene.passing ? 2 : 1
-    records.report(store.scene, score.value)
+    score.value = count.value <= scene.value.passing ? 2 : 1
+    report(scene.value, score.value)
   }
 })
 </script>
@@ -69,7 +70,7 @@ watch(result, async (value) => {
             v-if="result === 'failed'"
             color="error"
             variant="elevated"
-            @click.stop="store.init()"
+            @click.stop="init()"
           >
             Retry
           </v-btn>
