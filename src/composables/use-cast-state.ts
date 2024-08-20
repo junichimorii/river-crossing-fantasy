@@ -12,31 +12,22 @@ export const castState: CastState = Object.freeze({
 const useCastState = (
   state: Ref<State>,
 ) => {
-
-  /**
-   * 登場人物の座標
-   */
+  /** 登場人物の座標 */
   const coord = (
     cast: Cast
   ) => state.value.casts[cast.id].coord
 
-  /**
-   * 登場人物が乗っている乗り物
-   */
+  /** 登場人物が乗っている乗り物 */
   const boarding = (
     cast: Cast
   ) => state.value.casts[cast.id].boarding
 
-  /**
-   * 登場人物の感情
-   * */
+  /** 登場人物の感情 */
   const emotions = (
     cast: Cast,
   ) => state.value.casts[cast.id].emotions
 
-  /**
-   * 登場人物が乗り物に乗る
-   */
+  /** 登場人物が乗り物に乗る */
   const getOn = async (
     cast: Cast,
     carrier: Carrier
@@ -44,18 +35,14 @@ const useCastState = (
     state.value.casts[cast.id].boarding = carrier.id
   }
 
-  /**
-   * 登場人物が乗り物から降りる
-   */
+  /** 登場人物が乗り物から降りる */
   const getOff = async (
     cast: Cast,
   ) => {
     state.value.casts[cast.id].boarding = null
   }
 
-  /**
-   * 登場人物が川を渡る
-   */
+  /** 登場人物が川を渡る */
   const arrive = (
     cast: Cast,
     carrier: Carrier
@@ -63,9 +50,7 @@ const useCastState = (
     state.value.casts[cast.id].coord = state.value.carriers[carrier.id].coord
   }
 
-  /**
-   * 登場人物の感情を追加する
-   */
+  /** 登場人物の感情を追加する */
   const feel = (
     cast: Cast,
     emotion: Emotion
@@ -73,18 +58,14 @@ const useCastState = (
     state.value.casts[cast.id].emotions.push(emotion)
   }
 
-  /**
-   * 登場人物の感情を削除する
-   */
+  /** 登場人物の感情を削除する */
   const calmDown = (
     cast: Cast,
   ) => {
     state.value.casts[cast.id].emotions = []
   }
 
-  /**
-   * 2人の登場人物が隣接しているかどうか
-   */
+  /** 2人の登場人物が隣接しているかどうか */
   const isNeighboring = (
     a: Cast,
     b: Cast,

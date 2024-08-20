@@ -26,24 +26,18 @@ const useScene = (
   // 乗り物の耐久性があるパズル
   const hasRepairers = scene.value.casts.some(cast => cast.role.repairer)
 
-  /**
-   * シーンの状態を初期化
-   */
+  /** シーンの状態を初期化 */
   const init = async () => {
     state.value.carriers = scene.value.carriers.map(() => structuredClone(carrierState))
     state.value.casts = scene.value.casts.map(() => structuredClone(castState))
   }
 
-  /**
-   * 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる
-   */
+  /** 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる */
   const reserve = async (
     cast: Cast,
   ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isVacancy(carrier, cast))
 
-  /**
-   * 乗り物に登場人物を乗せる
-   */
+  /** 乗り物に登場人物を乗せる */
   const pickUp = async (
     cast: Cast,
   ) => {
@@ -53,18 +47,14 @@ const useScene = (
     return true
   }
 
-  /**
-   * 乗り物から登場人物を降ろす
-   */
+  /** 乗り物から登場人物を降ろす */
   const dropOff = async (
     cast: Cast,
   ) => {
     getOff(cast)
   }
 
-  /**
-   * 乗り物が対岸に到着する
-   */
+  /** 乗り物が対岸に到着する */
   const arrive = async (
     carrier: Carrier,
   ) => {
@@ -95,9 +85,7 @@ const useScene = (
     return move
   }
 
-  /**
-   * 安否確認
-   */
+  /** 安否確認 */
   const safetyConfirmation = async () => {
     for await (const cast of scene.value.casts) {
       calmDown(cast)
@@ -124,9 +112,7 @@ const useScene = (
     }
   }
 
-  /**
-   * 嫌いな登場人物と乗り物に同乗しているかどうか
-   */
+  /** 嫌いな登場人物と乗り物に同乗しているかどうか */
   const antagonism = async () => {
     // 人間（亜人以外）
     const humans = scene.value.casts.filter(cast => !cast.role.demihuman)
@@ -143,9 +129,7 @@ const useScene = (
     }
   }
 
-  /**
-   * 近くに人がいるかどうか
-   */
+  /** 近くに人がいるかどうか */
   const swarming = async () => {
     for await (const myself of scene.value.casts) {
       if (!myself.role.monophobia) continue
@@ -170,9 +154,7 @@ const useScene = (
     }
   }
 
-  /**
-   * 敵の捕食が成功したかどうか
-   */
+  /** 敵の捕食が成功したかどうか */
   const predation = async () => {
     for await (const myself of scene.value.casts) {
       if (!myself.role.predators) continue
@@ -193,9 +175,7 @@ const useScene = (
     }
   }
 
-  /**
-   * 反乱が成功したかどうか
-   */
+  /** 反乱が成功したかどうか */
   const rebellion = async () => {
     for await (const casts of groups.value) {
       const missionaries = casts.filter(cast => !cast.role.rebel)
@@ -217,9 +197,7 @@ const useScene = (
     }
   }
 
-  /**
-   * 乗り物の耐久試験
-   */
+  /** 乗り物の耐久試験 */
   const workout = async () => {
     const repairers = scene.value.casts.filter(cast => cast.role.repairer)
     const others = scene.value.casts.filter(cast => !cast.role.repairer)

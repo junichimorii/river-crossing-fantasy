@@ -4,16 +4,12 @@ import type { Cast } from '@/types'
  * 川渡りパズルの登場人物
  */
 const useCast = () => {
-  /**
-   * 乗り物を操作できる
-   */
+  /** 乗り物を操作できる */
   const isRower = (
     cast: Cast
   ) => cast.role.rower === undefined || cast.role.rower
 
-  /**
-   * CSS transformプロパティ
-   */
+  /** CSS transformプロパティ */
   const getTransform = (
     cast: Cast,
     coord: number
@@ -22,16 +18,12 @@ const useCast = () => {
     return `scale(${coord > 0 ? -ratio : ratio}, ${ratio})`
   }
 
-  /**
-   * 重量
-   */
+  /** 重量 */
   const getWeight = (
     cast: Cast
   ) => cast.role.weight || 1
 
-  /**
-   * 所要時間
-   */
+  /** 所要時間 */
   const getDuration = (
     cast: Cast
   ) => cast.role.duration || 1

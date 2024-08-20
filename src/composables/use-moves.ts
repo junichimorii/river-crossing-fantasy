@@ -7,14 +7,10 @@ const useMoves = (
   moves: Ref<Set<Move>>,
   scene?: Ref<Scene>,
 ) => {
-  /**
-   * カウンター
-   */
+  /** カウンター */
   const count = computed(() => Array.from(moves.value).reduce((a, b) => a + b.value, 0))
 
-  /**
-   * カウンターの色
-   */
+  /** カウンターの色 */
   const color = computed(() => scene
     ? count.value <= scene.value.passing
       ? 'success'
@@ -22,9 +18,7 @@ const useMoves = (
     : 'black'
   )
 
-  /**
-   * 行動履歴を初期化
-   */
+  /** 行動履歴を初期化 */
   const init = async () => {
     moves.value.clear()
   }

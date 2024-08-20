@@ -11,16 +11,12 @@ const useCarrierState = (
   state: Ref<State>,
 ) => {
 
-  /**
-   * 乗り物の座標
-   */
+  /** 乗り物の座標 */
   const coord = (
     carrier: Carrier
   ) => state.value.carriers[carrier.id].coord
 
-  /**
-   * 乗り物が出発する
-   */
+  /** 乗り物が出発する */
   const leave = async (
     carrier: Carrier,
     destination: number,

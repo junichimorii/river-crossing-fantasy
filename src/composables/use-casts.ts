@@ -9,39 +9,29 @@ const useCasts = (
   scene: Ref<Scene>,
 ) => {
   const { coord, boarding } = useCastState(state)
-  /**
-   * 出発地点の登場人物
-   */
+  /** 出発地点の登場人物 */
   const unreachers = computed(() =>
     scene.value.casts.filter(cast => boarding(cast) === null && coord(cast) < 0)
   )
 
-  /**
-   * 到着地点の登場人物
-   */
+  /** 到着地点の登場人物 */
   const reachers = computed(() =>
     scene.value.casts.filter(cast => boarding(cast) === null && coord(cast) > 0)
   )
 
-  /**
-   * 中間地点の登場人物
-   */
+  /** 中間地点の登場人物 */
   const halfways = computed(() =>
     scene.value.casts.filter(cast => boarding(cast) === null && coord(cast) === 0)
   )
 
-  /**
-   * 乗員
-   */
+  /** 乗員 */
   const passengers = computed(() => Array.from(state.value.casts.map(castState => castState.boarding))
     .filter(boarded => boarded !== null)
     .sort()
     .map(boarded => scene.value.casts.filter(cast => boarding(cast) === boarded))
   )
 
-  /**
-   * 各地点の登場人物
-   */
+  /** 各地点の登場人物 */
   const groups = computed(() => [
     unreachers.value,
     reachers.value,
@@ -49,19 +39,13 @@ const useCasts = (
     passengers.value.flat()
   ])
 
-  /**
-   * すべての登場人物が安全な状態どうか
-   */
+  /** すべての登場人物が安全な状態どうか */
   const isPeaceable = computed(() => state.value.casts.every(castState => castState.emotions.length === 0))
 
-  /**
-   * すべての登場人物が出発地点にいるかどうか
-   */
+  /** すべての登場人物が出発地点にいるかどうか */
   const isUnreach = computed(() => state.value.casts.every(castState => castState.boarding === null && castState.coord < 0))
 
-  /**
-   * すべての登場人物が到着地点にいるかどうか
-   */
+  /** すべての登場人物が到着地点にいるかどうか */
   const isReached = computed(() => state.value.casts.every(castState => castState.boarding === null && castState.coord > 0))
 
   return {
