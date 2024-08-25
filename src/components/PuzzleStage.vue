@@ -29,29 +29,34 @@ onMounted(async () => {
   >
     <SceneToolbar />
     <v-sheet
-      class="d-flex justify-center align-start bg-transparent"
+      id="puzzle-container"
       :height="stageSize"
+      class="d-flex justify-center align-start bg-transparent"
     >
       <v-sheet
+        id="puzzle-stage"
+        :width="stageSize * 0.96"
+        :height="stageSize"
         class="d-flex flex-column bg-transparent"
-        :width="stageSize * 0.95"
       >
         <!-- destination -->
         <v-sheet
-          class="d-flex justify-end align-end order-1 bg-transparent"
+          id="stage-destination"
           :height="stageSize * 0.3"
-          :style="{ transform: 'scale(0.85, 0.85)' }"
+          class="d-flex justify-end align-end order-1 bg-transparent"
         >
           <PuzzleCast
             v-for="cast in reachers"
             :key="cast.id"
             :state="cast"
+            :style="{ transform: 'scale(0.85, 0.85)', 'transform-origin': 'bottom center' }"
           />
         </v-sheet>
         <!-- river -->
         <v-sheet
-          class="d-flex justify-center align-start order-2 bg-transparent"
+          id="stage-river"
           :height="stageSize * 0.45"
+          class="d-flex justify-center align-start order-2 bg-transparent"
         >
           <v-row no-gutters>
             <v-col
@@ -75,16 +80,18 @@ onMounted(async () => {
             </v-col>
             <v-col>
               <v-sheet
-                class="bg-transparent"
                 :height="stageSize * 0.45"
+                class="bg-transparent"
               />
             </v-col>
           </v-row>
         </v-sheet>
         <!-- origin -->
         <v-sheet
-          class="d-flex justify-start align-end order-3 bg-transparent"
+          id="stage-origin"
+          :width="stageSize * 0.96"
           :height="stageSize * 0.2"
+          class="d-flex justify-start align-end order-3 bg-transparent"
         >
           <PuzzleCast
             v-for="cast in unreachers"

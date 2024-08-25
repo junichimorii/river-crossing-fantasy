@@ -28,7 +28,7 @@ const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black'
     />
     <SceneSound :color="btnColor" />
     <v-app-bar-nav-icon
-      v-show="isSupported && orientation === 'landscape-primary'"
+      v-if="isSupported && orientation === 'landscape-primary'"
       variant="text"
       size="small"
       :color="btnColor"

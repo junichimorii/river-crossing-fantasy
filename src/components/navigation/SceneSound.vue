@@ -29,7 +29,6 @@ watch(
   <v-btn
     :icon="icon"
     size="small"
-    color="primary"
     @click.stop="session.sound = !session.sound"
   />
 </template>

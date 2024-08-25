@@ -3,7 +3,6 @@ import { useRecordsStore } from '@/stores/records';
 import { useSceneStore } from '@/stores/scene';
 const route = useRoute('/[id]')
 const router = useRouter()
-const { isSupported, orientation } = useScreenOrientation()
 const records = useRecordsStore()
 const store = useSceneStore()
 const loading = ref(true)
@@ -30,9 +29,7 @@ onUnmounted(async () => {
   <template v-if="!loading">
     <v-main @contextmenu.prevent>
       <PuzzleStage />
-      <PuzzleBottomMenu
-        v-if="isSupported && orientation === 'portrait-primary'"
-      />
+      <PuzzleBottomMenu />
     </v-main>
     <SceneNavigationDialog />
     <SceneMovesDialog />

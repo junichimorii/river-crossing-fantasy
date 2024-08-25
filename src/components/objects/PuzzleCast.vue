@@ -98,7 +98,7 @@ const action = async (
           :width="width"
           :height="height"
           :aspect-ratio="aspectRatio"
-          :style="{ transform: transform }"
+          :style="{ transform }"
           style="transform-origin: bottom center;"
         >
           <div class="d-flex justify-center align-end fill-height">

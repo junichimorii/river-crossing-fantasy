@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import sprites from '@/assets/images/landscapes';
 import casts from '@/assets/images/casts'
 import { useCast } from '@/composables'
 import { convert } from '@/composables/use-text'
@@ -35,7 +36,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
   </v-app-bar>
   <v-main>
     <v-parallax
-      src="@/assets/images/title.png"
+      :src="sprites.daytimeRiver"
       class="h-100"
     >
       <v-container>
