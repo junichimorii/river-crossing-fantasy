@@ -11,7 +11,6 @@ declare module 'vue' {
     AppSettings: typeof import('./components/home/AppSettings.vue')['default']
     AppSettingsClear: typeof import('./components/home/AppSettingsClear.vue')['default']
     AppSettingsVolume: typeof import('./components/home/AppSettingsVolume.vue')['default']
-    copy: typeof import('./components/navigation/SceneToolbar copy.vue')['default']
     PuzzleBottomMenu: typeof import('./components/PuzzleBottomMenu.vue')['default']
     PuzzleCarrier: typeof import('./components/objects/PuzzleCarrier.vue')['default']
     PuzzleCarrierMenu: typeof import('./components/objects/carrier/PuzzleCarrierMenu.vue')['default']
@@ -34,6 +33,5 @@ declare module 'vue' {
     SceneSound: typeof import('./components/navigation/SceneSound.vue')['default']
     SceneSplashDialog: typeof import('./components/navigation/SceneSplashDialog.vue')['default']
     SceneToolbar: typeof import('./components/navigation/SceneToolbar.vue')['default']
-    SceneToolbarNavigation: typeof import('./components/navigation/SceneToolbarNavigation.vue')['default']
   }
 }
