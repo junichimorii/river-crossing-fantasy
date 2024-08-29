@@ -1,23 +1,22 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 6,
-  title: '定期点検を忘れずに（入門編）',
+  id: 7,
+  title: 'エルフは人間がお嫌い(1)',
   category: 1,
   order: 1,
   level: 1,
   rules: {
     conditions: [
-      '筏（いかだ）が故障しないよう修理しつつ、すべての登場人物を対岸に渡す',
-      '3回以内にクリアする'
+      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
+      '5回以内にクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）あるが、1回乗る度に修理が必要。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '今回登場する筏（いかだ）は、<b>1回乗る度に修理しないと壊れてしまいます</b>。',
-      '筏（いかだ）と同じ岸に大工がいないと、筏（いかだ）を修理することができません。',
-      '岸への到着時、筏（いかだ）を修理できない場合は<b>その時点でクリア失敗</b>となります。',
+      '今回登場するエルフは、<b>人間と一緒に筏（いかだ）に乗ることを嫌います</b>。',
+      'エルフが不快な状態の時は、感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
-  passing: 3,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -39,11 +38,13 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '大工',
-    appearance: 'carpenter1',
+    name: 'エルフ',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    appearance: 'elf1',
     role: {
       rower: true,
-      repairer: true
+      demihuman: true,
+      misanthrope: true
     }
   }]
 })

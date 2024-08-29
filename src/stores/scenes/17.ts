@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 14,
-  title: '定期点検を忘れずに（初級編）',
+  title: '定期点検を忘れずに(2)',
   category: 1,
   order: 7,
   level: 2,

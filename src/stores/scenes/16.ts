@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 13,
-  title: '商人は荷物が多い（初級編）',
+  title: '商人は荷物が多い(2)',
   category: 1,
   order: 6,
   level: 2,

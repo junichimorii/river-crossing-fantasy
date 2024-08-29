@@ -1,18 +1,18 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 12,
-  title: 'エルフは人間がお嫌い(2)',
+  id: 43,
+  title: '村人とエルフと吟遊詩人',
   category: 1,
-  order: 5,
+  order: 8,
   level: 2,
   rules: {
     conditions: [
-      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
+      'エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ川を渡るパズルです。',
+      'エルフと人間が筏（いかだ）に同乗せず、かつ吟遊詩人が独りぼっちにならない状態を維持しながら川を渡るパズルです。',
     ],
   },
   passing: 9,
@@ -37,13 +37,6 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '村人C',
-    appearance: 'villager3',
-    role: {
-      rower: true
-    }
-  }, {
-    id: 3,
     name: 'エルフA',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf1',
@@ -53,7 +46,7 @@ const scene: Scene = Object.freeze({
       misanthrope: true
     }
   }, {
-    id: 4,
+    id: 3,
     name: 'エルフB',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf2',
@@ -63,14 +56,22 @@ const scene: Scene = Object.freeze({
       misanthrope: true
     }
   }, {
-    id: 5,
-    name: 'エルフC',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: 'elf3',
+    id: 4,
+    name: '吟遊詩人A',
+    description: '独りぼっちを嫌う。',
+    appearance: 'bard1',
     role: {
       rower: true,
-      demihuman: true,
-      misanthrope: true
+      monophobia: true
+    }
+  }, {
+    id: 5,
+    name: '吟遊詩人B',
+    description: '独りぼっちを嫌う。',
+    appearance: 'bard2',
+    role: {
+      rower: true,
+      monophobia: true
     }
   }]
 })
