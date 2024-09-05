@@ -18,6 +18,11 @@ export const useRecordsStore = defineStore('records', () => {
   const scenes = computed(() => Object.values(_scenes))
 
   /**
+   * 記録があるかどうか
+   */
+  const isEmpty = computed(() => state.value.scenes.size === 0)
+
+  /**
    * 指定されたIDのシーンを読み込む
    */
   const load = async (
@@ -61,6 +66,7 @@ export const useRecordsStore = defineStore('records', () => {
   return {
     state,
     scenes,
+    isEmpty,
     load,
     clear,
     report,

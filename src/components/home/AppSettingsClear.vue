@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRecordsStore } from '@/stores/records';
-const { state: records } = storeToRefs(useRecordsStore())
+const { isEmpty } = storeToRefs(useRecordsStore())
 const { clear } = useRecordsStore()
 </script>
 
@@ -11,7 +11,7 @@ const { clear } = useRecordsStore()
       color="warning"
       size="large"
       prepend-icon="$clear"
-      :disabled="records.scenes.size === 0"
+      :disabled="isEmpty"
       @click.stop="clear()"
     >
       記録を消去する
