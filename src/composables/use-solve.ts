@@ -37,7 +37,6 @@ const useSolve = (
 
   /**
    * 幅優先探索を開始
-   * @returns
    */
   const search = async () => {
     const history = new Set<string[]>()
@@ -92,8 +91,6 @@ const useSolve = (
 
   /**
    * 探索結果から手順を算出
-   * @param history
-   * @returns
    */
   const lookBack = async (
     history: Set<string[]>
@@ -141,8 +138,6 @@ const useSolve = (
 
   /**
    * 行先の選択肢を算出
-   * @param carrier
-   * @returns
    */
   const getDestinations = (
     carrier: Carrier,
