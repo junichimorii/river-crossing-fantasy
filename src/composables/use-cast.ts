@@ -4,10 +4,25 @@ import type { Cast } from '@/types'
  * 川渡りパズルの登場人物
  */
 const useCast = () => {
-  /** 乗り物を操作できる */
-  const isRower = (
+  /** 説明 */
+  const getDescription = (
     cast: Cast
-  ) => cast.role.rower === undefined || cast.role.rower
+  ) => [
+    cast.role.rower !== undefined ?
+      cast.role.rower
+        ? '筏（いかだ）を漕（こ）げる。'
+        : '筏（いかだ）を漕（こ）げない。'
+      : '',
+    cast.role.duration !== undefined ? `橋を渡るのに${cast.role.duration}分必要。` : '',
+    cast.role.weight !== undefined ? `重量は定員${cast.role.weight}人分。` : '',
+    cast.role.repairer ? '筏（いかだ）を修理できる。' : '',
+    cast.description
+  ].join('')
+
+  /** 所要時間 */
+  const getDuration = (
+    cast: Cast
+  ) => cast.role.duration || 1
 
   /** CSS transformプロパティ */
   const getTransform = (
@@ -23,16 +38,17 @@ const useCast = () => {
     cast: Cast
   ) => cast.role.weight || 1
 
-  /** 所要時間 */
-  const getDuration = (
+  /** 乗り物を操作できる */
+  const isRower = (
     cast: Cast
-  ) => cast.role.duration || 1
+  ) => cast.role.rower === undefined || cast.role.rower
 
   return {
-    isRower,
+    getDescription,
+    getDuration,
     getTransform,
     getWeight,
-    getDuration,
+    isRower,
   }
 }
 export default useCast

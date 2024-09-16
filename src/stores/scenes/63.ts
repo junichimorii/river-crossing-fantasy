@@ -38,8 +38,8 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    name: '青国騎士',
+    description: '赤国騎士が目を離すと赤国王女を襲う。',
     appearance: 'knight11',
     role: {
       rower: true,
@@ -50,7 +50,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: 'A国王女1',
+    name: '青国王女a',
     appearance: 'princess11',
     role: {
       rower: false,
@@ -64,7 +64,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 4,
-    name: 'A国王女2',
+    name: '青国王女b',
     appearance: 'princess12',
     role: {
       rower: false,
@@ -78,7 +78,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 5,
-    name: 'A国王女3',
+    name: '青国王女c',
     appearance: 'princess13',
     role: {
       rower: false,
@@ -92,8 +92,8 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 6,
-    name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    name: '赤国騎士',
+    description: '青国騎士が目を離すと青国王女を襲う。',
     appearance: 'knight21',
     role: {
       rower: true,
@@ -104,7 +104,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 7,
-    name: 'B国王女1',
+    name: '赤国王女a',
     appearance: 'princess21',
     role: {
       rower: false,
@@ -118,7 +118,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 8,
-    name: 'B国王女2',
+    name: '赤国王女b',
     appearance: 'princess22',
     role: {
       rower: false,
@@ -132,7 +132,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 9,
-    name: 'B国王女3',
+    name: '赤国王女c',
     appearance: 'princess23',
     role: {
       rower: false,

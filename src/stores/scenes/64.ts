@@ -39,8 +39,8 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: 'A国騎士',
-    description: 'B国騎士が目を離すとB国王女を襲う。',
+    name: '青国騎士',
+    description: '赤国騎士が目を離すと赤国王女を襲う。',
     appearance: 'knight11',
     role: {
       rower: true,
@@ -51,7 +51,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: 'A国王女',
+    name: '青国王女',
     appearance: 'princess11',
     role: {
       rower: true,
@@ -65,8 +65,8 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 4,
-    name: 'B国騎士',
-    description: 'A国騎士が目を離すとA国王女を襲う。',
+    name: '赤国騎士',
+    description: '青国騎士が目を離すと青国王女を襲う。',
     appearance: 'knight21',
     role: {
       rower: true,
@@ -77,7 +77,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 5,
-    name: 'B国王女',
+    name: '赤国王女',
     appearance: 'princess21',
     role: {
       rower: true,

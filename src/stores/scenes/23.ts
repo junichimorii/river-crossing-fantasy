@@ -27,40 +27,6 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '村人a',
-    appearance: 'villager1',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 3,
-        guardian: 0,
-      }, {
-        predator: 4,
-        guardian: 0,
-      }, {
-        predator: 5,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 2,
-    name: '村人b',
-    appearance: 'villager2',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 3,
-        guardian: 0,
-      }, {
-        predator: 4,
-        guardian: 0,
-      }, {
-        predator: 5,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 3,
     name: '魔獣a',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: 'therianthropy1',
@@ -68,7 +34,7 @@ const scene: Scene = Object.freeze({
       rower: false
     }
   }, {
-    id: 4,
+    id: 2,
     name: '魔獣b',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: 'therianthropy2',
@@ -76,12 +42,46 @@ const scene: Scene = Object.freeze({
       rower: false
     }
   }, {
-    id: 5,
+    id: 3,
     name: '魔獣c',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: 'therianthropy3',
     role: {
       rower: false
+    }
+  }, {
+    id: 4,
+    name: '村人a',
+    appearance: 'villager1',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }, {
+        predator: 2,
+        guardian: 0,
+      }, {
+        predator: 3,
+        guardian: 0,
+      }]
+    }
+  }, {
+    id: 5,
+    name: '村人b',
+    appearance: 'villager2',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }, {
+        predator: 2,
+        guardian: 0,
+      }, {
+        predator: 3,
+        guardian: 0,
+      }]
     }
   }]
 })

@@ -31,33 +31,33 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '村人a',
-    appearance: 'villager1',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 3,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 2,
-    name: '村人b',
-    appearance: 'villager2',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 3,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 3,
     name: '魔獣',
     description: '魔獣使いが目を離すと村人を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
+    }
+  }, {
+    id: 2,
+    name: '村人a',
+    appearance: 'villager1',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }]
+    }
+  }, {
+    id: 3,
+    name: '村人b',
+    appearance: 'villager2',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }]
     }
   }]
 })

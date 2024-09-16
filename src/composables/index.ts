@@ -9,15 +9,29 @@ import useCastState from './use-cast-state'
 import useCasts from './use-casts'
 import useMoves from './use-moves'
 import useScene from './use-scene'
+import useSceneMisanthrope from './use-scene-misanthrope'
+import useSceneMonophobia from './use-scene-monophobia'
+import useScenePredators from './use-scene-predators'
+import useSceneRebels from './use-scene-rebels'
+import useSceneRepairers from './use-scene-repairers'
 import useSolve from './use-solve'
 export {
   useAppearance,
   useCarrier,
   useCarrierAppearance,
-  useCarrierState, useCast, useCastAppearance,
+  useCarrierState,
+  useCast,
+  useCastAppearance,
   useCastEmotion,
-  useCastState, useCasts,
+  useCastState,
+  useCasts,
   useMoves,
   useScene,
+  useSceneMisanthrope,
+  useSceneMonophobia,
+  useScenePredators,
+  useSceneRebels,
+  useSceneRepairers,
   useSolve
 }
+

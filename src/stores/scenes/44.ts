@@ -56,6 +56,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: '魔獣A',
+    description: '魔獣使いの数より多くなると反乱を起こす。',
     appearance: 'therianthropy1',
     role: {
       rower: true,
@@ -64,6 +65,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: '魔獣B',
+    description: '魔獣使いの数より多くなると反乱を起こす。',
     appearance: 'therianthropy2',
     role: {
       rower: true,
@@ -72,6 +74,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 6,
     name: '魔獣C',
+    description: '魔獣使いの数より多くなると反乱を起こす。',
     appearance: 'therianthropy3',
     role: {
       rower: true,
@@ -80,6 +83,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 7,
     name: '魔獣D',
+    description: '魔獣使いの数より多くなると反乱を起こす。',
     appearance: 'therianthropy4',
     role: {
       rower: true,

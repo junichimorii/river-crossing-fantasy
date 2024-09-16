@@ -31,28 +31,28 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: 'A国王女',
+    name: '青国王女',
     appearance: 'princess11',
     role: {
       rower: false,
     }
   }, {
     id: 2,
-    name: 'B国王女',
+    name: '赤国王女',
     appearance: 'princess21',
     role: {
       rower: false,
     }
   }, {
     id: 3,
-    name: 'C国王女',
+    name: '緑国王女',
     appearance: 'princess31',
     role: {
       rower: false,
     }
   }, {
     id: 4,
-    name: 'D国王女',
+    name: '紫国王女',
     appearance: 'princess41',
     role: {
       rower: false,

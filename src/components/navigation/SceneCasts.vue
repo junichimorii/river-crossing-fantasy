@@ -3,7 +3,7 @@ import sprites from '@/assets/images/casts';
 import { useCast } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useSceneStore } from '@/stores/scene';
-const { getTransform } = useCast()
+const { getDescription, getTransform } = useCast()
 const { scene } = storeToRefs(useSceneStore())
 </script>
 
@@ -26,28 +26,7 @@ const { scene } = storeToRefs(useSceneStore())
           class="text-subtitle-2"
         >
           <!-- eslint-disable vue/no-v-html -->
-          <span
-            v-if="cast.role.rower !== undefined"
-            v-html="convert(`筏（いかだ）を漕（こ）げ${cast.role.rower ? 'る' : 'ない'}。`)"
-          />
-          <!-- eslint-enable -->
-          <span
-            v-if="cast.role.duration !== undefined"
-            v-text="`橋を渡るのに${cast.role.duration}分必要。`"
-          />
-          <span
-            v-if="cast.role.weight !== undefined"
-            v-text="`重量は定員${cast.role.weight}人分。`"
-          />
-          <span
-            v-if="cast.role.repairer"
-            v-html="convert('筏（いかだ）を修理できる。')"
-          />
-          <!-- eslint-disable vue/no-v-html -->
-          <span
-            v-if="cast.description"
-            v-html="convert(cast.description)"
-          />
+          <span v-html="convert(getDescription(cast))" />
           <!-- eslint-enable -->
           <template #prepend>
             <v-avatar
