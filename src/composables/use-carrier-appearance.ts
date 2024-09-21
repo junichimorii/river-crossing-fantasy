@@ -5,11 +5,11 @@ import type { Carrier } from '@/types'
  * 川渡りパズルの乗り物の外観
  */
 const useCarrierAppearance = (
-  state: Carrier,
+  state: Ref<Carrier>,
 ) => {
   const { gridSize } = useAppearance()
   // 幅（登場人物の幅 * （登場人物の人数 + 1））
-  const width = computed(() =>gridSize.value * (state.capacity + 1))
+  const width = computed(() =>gridSize.value * (state.value.capacity + 1))
   // 高さ（登場人物の高さ * 2.5）
   const height = computed(() =>gridSize.value * 2.5)
   // アスペクト比

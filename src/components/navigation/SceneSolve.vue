@@ -5,8 +5,9 @@ import type { Scene } from '@/types';
 const props = defineProps<{
   scene: Scene
 }>()
+const { scene } = toRefs(props)
 const { state: session } = storeToRefs(useSessionStore())
-const { solutions, solved, solve } = useSolve(toRef(props.scene))
+const { solutions, solved, solve } = useSolve(scene)
 </script>
 
 <template>

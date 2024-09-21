@@ -5,16 +5,17 @@ import type { Carrier } from '@/types';
 const props = defineProps<{
   state: Carrier
 }>()
-const store = useSceneStore()
-const { getElapsedTime, getLoad, hasPassengers } = useCarrier(toRef(store.state), toRef(store.scene))
-const text = computed(() => hasPassengers(props.state)
-  ? store.scene.casts.some(cast => cast.role.duration)
-    ? `所要時間: ${getElapsedTime(props.state)}分`
-    : store.scene.casts.some(cast => cast.role.weight)
-      ? `積載量: ${getLoad(props.state)} / ${props.state.capacity}`
+const { state: carrier } = toRefs(props)
+const { state, scene, disabled } = storeToRefs(useSceneStore())
+const { getElapsedTime, getLoad, hasPassengers } = useCarrier(state, scene)
+const text = computed(() => hasPassengers(carrier.value)
+  ? scene.value.casts.some(cast => cast.role.duration)
+    ? `所要時間: ${getElapsedTime(carrier.value)}分`
+    : scene.value.casts.some(cast => cast.role.weight)
+      ? `積載量: ${getLoad(carrier.value)} / ${carrier.value.capacity}`
       : ''
   : '')
-const model = computed(() => !store.disabled && text.value !== '')
+const model = computed(() => !disabled.value && text.value !== '')
 </script>
 
 <template>

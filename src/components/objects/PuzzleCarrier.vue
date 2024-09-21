@@ -7,25 +7,26 @@ import { TransitionPresets } from '@vueuse/core'
 const props = defineProps<{
   state: Carrier
 }>()
-const store = useSceneStore()
+const { state: carrier } = toRefs(props)
+const { state, scene, moves, disabled } = storeToRefs(useSceneStore())
 const { stageSize } = useAppearance()
-const { width, height, aspectRatio } = useCarrierAppearance(props.state)
-const { coord } = useCarrierState(toRef(store.state))
-const { passengers } = useCasts(toRef(store.state), toRef(store.scene))
-const { arrive } = useScene(toRef(store.state), toRef(store.scene))
+const { width, height, aspectRatio } = useCarrierAppearance(carrier)
+const { coord } = useCarrierState(state)
+const { passengers } = useCasts(state, scene)
+const { arrive } = useScene(state, scene)
 
 /** useTransitionで変化させるY座標 */
- const source = computed(() => coord(props.state))
+ const source = computed(() => coord(carrier.value))
 
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(source, {
   duration: 1000,
   transition: TransitionPresets.easeInOutCubic,
   onStarted() {
-    store.disabled = true
+    disabled.value = true
   },
   onFinished() {
-    store.disabled = false
+    disabled.value = false
     finished()
   },
 })
@@ -38,9 +39,9 @@ const transform = computed(() => {
 
 /** 乗り物の動作が停止した時 */
 const finished = async () => {
-  const result = await arrive(props.state)
+  const result = await arrive(carrier.value)
   if(result !== undefined) {
-    store.moves.add(result)
+    moves.value.add(result)
   }
 }
 </script>
@@ -53,7 +54,7 @@ const finished = async () => {
     class="d-flex justify-center align-start bg-transparent"
   >
     <v-img
-      :src="sprites[state.appearance]"
+      :src="sprites[carrier.appearance]"
       :width="width"
       :aspect-ratio="aspectRatio"
       :height="height"
@@ -63,14 +64,14 @@ const finished = async () => {
         :height="height"
       >
         <PuzzleCast
-          v-for="cast in passengers[state.id]"
+          v-for="cast in passengers[carrier.id]"
           :key="cast.id"
           :state="cast"
         />
       </v-sheet>
     </v-img>
-    <PuzzleCarrierMenu :state="state" />
-    <PuzzleCarrierTooltip :state="state" />
+    <PuzzleCarrierMenu :state="carrier" />
+    <PuzzleCarrierTooltip :state="carrier" />
   </v-card>
 </template>
 

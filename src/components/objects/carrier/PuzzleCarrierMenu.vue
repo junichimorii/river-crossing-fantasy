@@ -6,22 +6,23 @@ import type { Bound } from '@/types/state';
 const props = defineProps<{
   state: Carrier
 }>()
-const store = useSceneStore()
-const { coord, leave: leaveCarrier } = useCarrierState(toRef(store.state))
-const { hasPassengers, getDestination, isOperable } = useCarrier(toRef(store.state), toRef(store.scene))
-const { isPeaceable } = useCasts(toRef(store.state), toRef(store.scene))
+const { state: carrier } = toRefs(props)
+const { state, scene, disabled } = storeToRefs(useSceneStore())
+const { coord, leave: leaveCarrier } = useCarrierState(state)
+const { hasPassengers, getDestination, isOperable } = useCarrier(state, scene)
+const { isPeaceable } = useCasts(state, scene)
 /** 進行可能かどうか */
-const isEnabled = computed(() => !store.disabled && isOperable(props.state) && isPeaceable.value)
+const isEnabled = computed(() => !disabled.value && isOperable(carrier.value) && isPeaceable.value)
 /** 上り方向に進行可能 */
-const inbound = computed(() => isEnabled.value && coord(props.state) <= 0)
+const inbound = computed(() => isEnabled.value && coord(carrier.value) <= 0)
 /** 下り方向に進行可能 */
-const outbound = computed(() => isEnabled.value && coord(props.state) >= 0)
+const outbound = computed(() => isEnabled.value && coord(carrier.value) >= 0)
 /** 出発する */
 const leave = async (
   bound: Bound,
 ) => {
-  if (!hasPassengers(props.state)) return
-  await leaveCarrier(props.state, getDestination(props.state, bound))
+  if (!hasPassengers(carrier.value)) return
+  await leaveCarrier(carrier.value, getDestination(carrier.value, bound))
 }
 </script>
 

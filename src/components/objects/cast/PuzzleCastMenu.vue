@@ -2,35 +2,34 @@
 import { useCastState } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 import type { Cast } from '@/types';
-import type { UseSwipeDirection } from '@vueuse/core';
 const props = defineProps<{
   state: Cast
   isSwiping: boolean
-  swipeDirection: UseSwipeDirection
 }>()
-const store = useSceneStore()
-const { coord, boarding } = useCastState(toRef(store.state))
+const { state: cast, isSwiping } = toRefs(props)
+const { state, disabled } = storeToRefs(useSceneStore())
+const { coord, boarding } = useCastState(state)
 
 /** 行動範囲に関するプロパティ */
 const bound = computed(() =>
   // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
-  (boarding(props.state) !== null && coord(props.state) > 0)
-  || (boarding(props.state) === null && coord(props.state) < 0)
+  (boarding(cast.value) !== null && coord(cast.value) > 0)
+  || (boarding(cast.value) === null && coord(cast.value) < 0)
     ? 'inbound'
     // 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる
-    : (boarding(props.state) !== null && coord(props.state) < 0)
-    || (boarding(props.state) === null && coord(props.state) > 0)
+    : (boarding(cast.value) !== null && coord(cast.value) < 0)
+    || (boarding(cast.value) === null && coord(cast.value) > 0)
       ? 'outbound'
       // 乗り物の上から中州に降りる時、左方向に移動できる
-      : (boarding(props.state) !== null && coord(props.state) === 0)
+      : (boarding(cast.value) !== null && coord(cast.value) === 0)
         ? 'stopover'
         // 中州から乗り物に乗る時、右方向に移動できる
-        : (boarding(props.state) === null && coord(props.state) === 0)
+        : (boarding(cast.value) === null && coord(cast.value) === 0)
           ? 'resume'
           : 'none'
 )
 /** 進行可能かどうか */
-const isEnabled = computed(() => !store.disabled && props.isSwiping)
+const isEnabled = computed(() => !disabled.value && isSwiping.value)
 /** 上り方向に進行可能 */
 const inbound = computed(() => isEnabled.value && bound.value === 'inbound')
 /** 下り方向に進行可能 */

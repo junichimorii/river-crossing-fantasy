@@ -7,22 +7,19 @@ import type { UseSwipeDirection } from '@vueuse/core'
 const props = defineProps<{
   state: Cast
 }>()
+const { state: cast } = toRefs(props)
 const target = ref<HTMLElement | null>(null)
-const store = useSceneStore()
+const { state, scene, disabled } = storeToRefs(useSceneStore())
 const { width, height, aspectRatio } = useCastAppearance()
 const { getTransform } = useCast()
-const { coord, boarding } = useCastState(toRef(store.state))
-const { pickUp, dropOff, safetyConfirmation } = useScene(toRef(store.state), toRef(store.scene))
+const { coord, boarding } = useCastState(state)
+const { pickUp, dropOff, safetyConfirmation } = useScene(state, scene)
 
-/**
- * v-imgに適用するCSS transformプロパティ
- */
- const transform = computed(() => getTransform(props.state, coord(props.state)))
+/** v-imgに適用するCSS transformプロパティ */
+ const transform = computed(() => getTransform(cast.value, coord(cast.value)))
 
-/**
- * タッチイベントの検知
- */
-const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
+/** タッチイベントの検知 */
+const { isSwiping: isTouchSwiping } = useSwipe(
   target, {
     onSwipeEnd(event: TouchEvent, direction: UseSwipeDirection) {
       action(direction)
@@ -30,10 +27,8 @@ const { direction: directionSwipe, isSwiping: isTouchSwiping } = useSwipe(
   }
 )
 
-/**
- * ポインターイベントの検知
- */
-const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerSwipe(
+/** ポインターイベントの検知 */
+const { isSwiping: isPointerSwiping } = usePointerSwipe(
   target, {
     onSwipeEnd(event: PointerEvent, direction: UseSwipeDirection) {
       action(direction)
@@ -41,42 +36,29 @@ const { isSwiping: isPointerSwiping, direction: directionPointer } = usePointerS
   }
 )
 
-/**
- * スワイプ中かどうか
- */
+/** スワイプ中かどうか */
 const isSwiping = computed(() => isTouchSwiping.value || isPointerSwiping.value)
 
-/**
- * スワイプ方向
- */
-const swipeDirection = computed(() => directionSwipe.value || directionPointer.value)
+/** 初期位置にいるかどうか */
+const isOrigin = computed(() => coord(cast.value) === -1 && boarding(cast.value) === null)
 
-/**
- * 初期位置にいるかどうか
- */
-const isOrigin = computed(() => coord(props.state) === -1 && boarding(props.state) === null)
-
-/**
- * 登場人物のスワイプが終了した時
- */
+/** 登場人物のスワイプが終了した時 */
 const action = async (
   direction: UseSwipeDirection
 ) => {
-  if (store.disabled) return
+  if (disabled.value) return
   // 登場人物を乗り物から降ろす
-  const canDropOff = (boarding(props.state) !== null && direction === (coord(props.state) === 0 ? 'left' : coord(props.state) > 0 ? 'up' : 'down'))
-  if (canDropOff) await dropOff(props.state)
+  const canDropOff = (boarding(cast.value) !== null && direction === (coord(cast.value) === 0 ? 'left' : coord(cast.value) > 0 ? 'up' : 'down'))
+  if (canDropOff) await dropOff(cast.value)
   // 搭乗可能な乗り物があれば乗せる
-  const canPickUp = (boarding(props.state) === null && direction === (coord(props.state) === 0 ? 'right' : coord(props.state) < 0 ? 'up' : 'down'))
-  if (canPickUp) await pickUp(props.state)
+  const canPickUp = (boarding(cast.value) === null && direction === (coord(cast.value) === 0 ? 'right' : coord(cast.value) < 0 ? 'up' : 'down'))
+  if (canPickUp) await pickUp(cast.value)
   await safetyConfirmation()
 }
 </script>
 
 <template>
-  <PuzzleCastEmotion
-    :state="state"
-  >
+  <PuzzleCastEmotion :state="cast">
     <v-card
       ref="target"
       flat
@@ -93,7 +75,7 @@ const action = async (
         :aspect-ratio="aspectRatio"
       >
         <v-img
-          :src="sprites[state.appearance]"
+          :src="sprites[cast.appearance]"
           cover
           :width="width"
           :height="height"
@@ -107,15 +89,14 @@ const action = async (
               class="text-white"
               style="font-size: 1.2vmin;"
             >
-              {{ state.name }}
+              {{ cast.name }}
             </span>
           </div>
         </v-img>
       </v-img>
       <PuzzleCastMenu
-        :state="state"
+        :state="cast"
         :is-swiping="isSwiping"
-        :swipe-direction="swipeDirection"
       />
     </v-card>
   </PuzzleCastEmotion>

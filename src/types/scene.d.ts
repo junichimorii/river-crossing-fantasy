@@ -1,5 +1,4 @@
-import type { Carrier } from '@/types/carrier'
-import type { Cast } from '@/types/cast'
+import type { Carrier, Cast } from '@/types'
 
 /**
  * シーン

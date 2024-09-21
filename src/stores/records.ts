@@ -12,19 +12,13 @@ export const useRecordsStore = defineStore('records', () => {
     )
   })
 
-  /**
-   * シーン一覧
-   */
+  /** シーン一覧 */
   const scenes = computed(() => Object.values(_scenes))
 
-  /**
-   * 記録があるかどうか
-   */
+  /** 記録があるかどうか */
   const isEmpty = computed(() => state.value.scenes.size === 0)
 
-  /**
-   * 指定されたIDのシーンを読み込む
-   */
+  /** 指定されたIDのシーンを読み込む */
   const load = async (
     id: number
   ) => {
@@ -32,16 +26,12 @@ export const useRecordsStore = defineStore('records', () => {
     return config
   }
 
-  /**
-   * 記録を消去する
-   */
+  /** 記録を消去する */
   const clear = async () => {
     state.value.scenes = new Map<number, number>()
   }
 
-  /**
-   * 各ステージをクリアした結果を格納する
-   */
+  /** 各ステージをクリアした結果を格納する */
   const report = async (
     scene: Scene,
     score: number,
@@ -49,16 +39,12 @@ export const useRecordsStore = defineStore('records', () => {
     state.value.scenes.set(scene.id, Math.max(getScore(scene.id), score))
   }
 
-  /**
-   * ステージのスコアの有無を取得
-   */
+  /** ステージのスコアの有無を取得 */
   const isCleared = (
     id: number
   ) => state.value.scenes.has(id)
 
-  /**
-   * ステージのスコアを取得
-   */
+  /** ステージのスコアを取得 */
   const getScore = (
     id: number
   ) => state.value.scenes.get(id) || 0
