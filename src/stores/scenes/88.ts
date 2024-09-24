@@ -1,21 +1,18 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 29,
-  title: '一触即発パーティ(7)',
-  category: 5,
-  order: 7,
+  id: 31,
+  title: '一触即発パーティ(8)',
+  category: 8,
+  order: 8,
   level: 4,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、かつエルフと人間が筏（いかだ）に同乗しないよう気を遣いながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
-    tips: [
-      '家族の川渡りとして知られているパズルを改変したものです。',
-    ],
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフのみ。',
   },
-  passing: 17,
+  passing: 21,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -34,7 +31,8 @@ const scene: Scene = Object.freeze({
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: 'therianthropy1',
     role: {
-      rower: false
+      rower: false,
+      demihuman: true
     }
   }, {
     id: 2,
@@ -114,6 +112,20 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
+      }]
+    }
+  }, {
+    id: 8,
+    name: 'エルフ',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    appearance: 'elf1',
+    role: {
+      rower: true,
+      demihuman: true,
+      misanthrope: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
       }]
     }
   }]

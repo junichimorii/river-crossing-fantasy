@@ -1,22 +1,21 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 9,
-  title: '吟遊詩人は孤独がお嫌い(1)',
+  id: 12,
+  title: 'エルフは人間がお嫌い(2)',
   category: 1,
   order: 4,
-  level: 1,
+  level: 2,
   rules: {
     conditions: [
-      '吟遊詩人が独りぼっちにならないよう気を遣いつつ、すべての登場人物を対岸に渡す',
-      '5回以内にクリアする'
+      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
+      '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '今回登場する吟遊詩人は、両岸でも筏（いかだ）の上でも、<b>独りぼっちになることを嫌います</b>。',
-      '吟遊詩人が不安な状態の時は、感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
+      'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ川を渡るパズルです。',
     ],
   },
-  passing: 5,
+  passing: 9,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -45,12 +44,33 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: '吟遊詩人',
-    description: '独りぼっちを嫌う。',
-    appearance: 'bard1',
+    name: 'エルフA',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    appearance: 'elf1',
     role: {
       rower: true,
-      monophobia: true
+      demihuman: true,
+      misanthrope: true
+    }
+  }, {
+    id: 4,
+    name: 'エルフB',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    appearance: 'elf2',
+    role: {
+      rower: true,
+      demihuman: true,
+      misanthrope: true
+    }
+  }, {
+    id: 5,
+    name: 'エルフC',
+    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    appearance: 'elf3',
+    role: {
+      rower: true,
+      demihuman: true,
+      misanthrope: true
     }
   }]
 })

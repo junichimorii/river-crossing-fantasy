@@ -40,6 +40,7 @@ import princess33 from './princess33.png'
 import princess41 from './princess41.png'
 import princess42 from './princess42.png'
 import princess43 from './princess43.png'
+import princess51 from './princess51.png'
 import therianthropy1 from './therianthropy1.png'
 import therianthropy2 from './therianthropy2.png'
 import therianthropy3 from './therianthropy3.png'
@@ -62,11 +63,18 @@ const sprites: {
   farmer1,
   fighter1,
   goat1,
-  knight11, knight12, knight21, knight22, knight31, knight32, knight41, knight42,
+  knight11, knight12,
+  knight21, knight22,
+  knight31, knight32,
+  knight41, knight42,
   mage1,
   merchant1, merchant2, merchant3,
   priest1,
-  princess11, princess12, princess13, princess21, princess22, princess23, princess31, princess32, princess33, princess41, princess42, princess43,
+  princess11, princess12, princess13,
+  princess21, princess22, princess23,
+  princess31, princess32, princess33,
+  princess41, princess42, princess43,
+  princess51,
   therianthropy1, therianthropy2, therianthropy3, therianthropy4, therianthropy5,
   thief1,
   villager1, villager2, villager3,

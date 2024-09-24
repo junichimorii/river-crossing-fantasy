@@ -1,18 +1,21 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 23,
-  title: '一触即発パーティ(3)',
+  id: 46,
+  title: 'わがまま王女の旅(3)',
   category: 5,
   order: 3,
   level: 3,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
+      '王女同士が喧嘩（けんか）しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、吟遊詩人のみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    tips: [
+      '王女たちを二人きりにしないよう気を付けましょう。。',
+    ],
   },
-  passing: 11,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -20,79 +23,44 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
-    appearance: 'beasttamer1',
+    name: '青国王女',
+    description: '他国の王女と二人きりになることを嫌う。',
+    appearance: 'princess11',
+    role: {
+      rower: true,
+      discord: [ 1, 2 ]
+    }
+  }, {
+    id: 1,
+    name: '赤国王女',
+    description: '他国の王女と二人きりになることを嫌う。',
+    appearance: 'princess21',
+    role: {
+      rower: true,
+      discord: [ 0, 2 ]
+    }
+  }, {
+    id: 2,
+    name: '緑国王女',
+    description: '他国の王女と二人きりになることを嫌う。',
+    appearance: 'princess31',
+    role: {
+      rower: true,
+      discord: [ 0, 1 ]
+    }
+  }, {
+    id: 3,
+    name: '村人A',
+    appearance: 'villager1',
     role: {
       rower: true
     }
   }, {
-    id: 1,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: 'therianthropy1',
-    role: {
-      rower: false
-    }
-  }, {
-    id: 2,
-    name: '青国騎士',
-    description: '赤国騎士が目を離すと赤国王女を襲う。',
-    appearance: 'knight11',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 3,
-    name: '青国王女',
-    appearance: 'princess11',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 4,
-        guardian: 2
-      }]
-    }
-  }, {
     id: 4,
-    name: '赤国騎士',
-    description: '青国騎士が目を離すと青国王女を襲う。',
-    appearance: 'knight21',
+    name: '村人B',
+    appearance: 'villager2',
     role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 5,
-    name: '赤国王女',
-    appearance: 'princess21',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 4
-      }]
-    }
-  }, {
-    id: 6,
-    name: '吟遊詩人',
-    description: '独りぼっちを嫌う。',
-    appearance: 'bard1',
-    role: {
-      rower: true,
-      monophobia: true
+      rower: true
     }
   }]
 })

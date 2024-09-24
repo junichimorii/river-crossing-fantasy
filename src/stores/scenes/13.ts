@@ -1,20 +1,19 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 8,
-  title: '商人は荷物が多い(1)',
+  id: 9,
+  title: '吟遊詩人は孤独がお嫌い(1)',
   category: 1,
   order: 3,
   level: 1,
   rules: {
     conditions: [
-      '重量制限に気を付けながら、すべての登場人物を対岸に渡す',
+      '吟遊詩人が独りぼっちにならないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '5回以内にクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '筏（いかだ）には、定員の他に重量制限が設定されています。',
-      '今回登場する商人は、荷物が多いため、<b>定員2人分の重量があります</b>。',
-      '重量オーバーになる場合は、登場人物を筏（いかだ）に乗せることはできません。',
+      '今回登場する吟遊詩人は、両岸でも筏（いかだ）の上でも、<b>独りぼっちになることを嫌います</b>。',
+      '吟遊詩人が不安な状態の時は、感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
   passing: 5,
@@ -28,24 +27,30 @@ const scene: Scene = Object.freeze({
     name: '村人A',
     appearance: 'villager1',
     role: {
-      rower: true,
-      weight: 1
+      rower: true
     }
   }, {
     id: 1,
     name: '村人B',
     appearance: 'villager2',
     role: {
-      rower: true,
-      weight: 1
+      rower: true
     }
   }, {
     id: 2,
-    name: '商人',
-    appearance: 'merchant1',
+    name: '村人C',
+    appearance: 'villager3',
+    role: {
+      rower: true
+    }
+  }, {
+    id: 3,
+    name: '吟遊詩人',
+    description: '独りぼっちを嫌う。',
+    appearance: 'bard1',
     role: {
       rower: true,
-      weight: 2,
+      monophobia: true
     }
   }]
 })

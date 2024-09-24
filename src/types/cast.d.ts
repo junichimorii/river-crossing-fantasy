@@ -20,6 +20,8 @@ export interface Cast {
 interface Role {
   /** 亜人 */
   demihuman?: boolean
+  /** 不仲 */
+  discord?: number[]
   /** 所要時間 */
   duration?: number
   /** 人間嫌い */

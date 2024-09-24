@@ -1,6 +1,6 @@
 import {
   useCarrier, useCarrierState, useCastState, useCasts,
-  useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers
+  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers
 } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
@@ -20,6 +20,8 @@ const useScene = (
   const { passengers, isPeaceable, isReached } = useCasts(state, scene)
   // エルフ（人間嫌い）が登場するパズル
   const { isValid: hasMisanthrope, test: antagonism } = useSceneMisanthrope(state, scene)
+  // 不仲な者達が登場するパズル
+  const { isValid: hasDiscord, test: catfight } = useSceneDiscord(state, scene)
   // 吟遊詩人（孤独嫌い）が登場するパズル
   const { isValid: hasMonophobia, test: swarming } = useSceneMonophobia(state, scene)
   // 敵と保護者が登場するパズル
@@ -93,11 +95,15 @@ const useScene = (
     for await (const cast of scene.value.casts) {
       calmDown(cast)
     }
-    // 敵と保護者が登場するパズル
+    // 敵と保護者が登場するパズルの成否判定
     if (hasPredators) {
       await predation()
     }
-    // 半数以上を維持するパズル
+    // 不仲な者達が登場するパズルの成否判定
+    if (hasDiscord) {
+      await catfight()
+    }
+    // 半数以上を維持するパズルの成否判定
     if (hasRebels) {
       await rebellion()
     }
@@ -109,7 +115,7 @@ const useScene = (
     if (hasMonophobia) {
       await swarming()
     }
-    // 乗り物の耐久性があるパズル
+    // 乗り物の耐久性があるパズルの成否判定
     if (hasRepairers) {
       await workout()
     }

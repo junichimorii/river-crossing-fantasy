@@ -1,26 +1,23 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 32,
-  title: '王女親衛隊の攻防（最上級編）',
+  id: 8,
+  title: '商人は荷物が多い(1)',
   category: 6,
   order: 1,
-  level: 5,
+  level: 1,
   rules: {
     conditions: [
-      '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
+      '重量制限に気を付けながら、すべての登場人物を対岸に渡す',
+      '5回以内にクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '川の中間にある中州に降りることができます。',
-      '中州にいる登場人物を右方向にスワイプすると筏（いかだ）に乗り、左方向にスワイプすると筏（いかだ）から降ります。',
-      '筏（いかだ）を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
+      '筏（いかだ）には、定員の他に重量制限が設定されています。',
+      '今回登場する商人は、荷物が多いため、<b>定員2人分の重量があります</b>。',
+      '重量オーバーになる場合は、登場人物を筏（いかだ）に乗せることはできません。',
     ],
   },
-  landscape: {
-    island: true
-  },
-  passing: 26,
+  passing: 5,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -28,103 +25,27 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '青国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight11',
+    name: '村人A',
+    appearance: 'villager1',
     role: {
-      rower: true
+      rower: true,
+      weight: 1
     }
   }, {
     id: 1,
-    name: '青国王女',
-    appearance: 'princess11',
+    name: '村人B',
+    appearance: 'villager2',
     role: {
       rower: true,
-      predators: [{
-        predator: 2,
-        guardian: 0
-      }, {
-        predator: 4,
-        guardian: 0
-      }, {
-        predator: 6,
-        guardian: 0
-      }]
+      weight: 1
     }
   }, {
     id: 2,
-    name: '赤国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight21',
-    role: {
-      rower: true
-    }
-  }, {
-    id: 3,
-    name: '赤国王女',
-    appearance: 'princess21',
+    name: '商人',
+    appearance: 'merchant1',
     role: {
       rower: true,
-      predators: [{
-        predator: 0,
-        guardian: 2
-      }, {
-        predator: 4,
-        guardian: 2
-      }, {
-        predator: 6,
-        guardian: 2
-      }]
-    }
-  }, {
-    id: 4,
-    name: '緑国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight31',
-    role: {
-      rower: true
-    }
-  }, {
-    id: 5,
-    name: '緑国王女',
-    appearance: 'princess31',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 0,
-        guardian: 4
-      }, {
-        predator: 2,
-        guardian: 4
-      }, {
-        predator: 6,
-        guardian: 4
-      }]
-    }
-  }, {
-    id: 6,
-    name: '紫国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight41',
-    role: {
-      rower: true
-    }
-  }, {
-    id: 7,
-    name: '紫国王女',
-    appearance: 'princess41',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 0,
-        guardian: 6
-      }, {
-        predator: 2,
-        guardian: 6
-      }, {
-        predator: 4,
-        guardian: 6
-      }]
+      weight: 2,
     }
   }]
 })

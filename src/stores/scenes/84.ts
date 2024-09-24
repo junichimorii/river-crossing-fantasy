@@ -1,10 +1,10 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 31,
-  title: '一触即発パーティ(8)',
-  category: 5,
-  order: 8,
-  level: 4,
+  id: 25,
+  title: '一触即発パーティ(4)',
+  category: 8,
+  order: 4,
+  level: 3,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、かつエルフと人間が筏（いかだ）に同乗しないよう気を遣いながら、すべての登場人物を対岸に渡す',
@@ -12,7 +12,7 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフのみ。',
   },
-  passing: 21,
+  passing: 13,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -24,7 +24,7 @@ const scene: Scene = Object.freeze({
     appearance: 'beasttamer1',
     role: {
       rower: true
-    },
+    }
   }, {
     id: 1,
     name: '魔獣',
@@ -43,12 +43,12 @@ const scene: Scene = Object.freeze({
       rower: true,
       predators: [{
         predator: 1,
-        guardian: 0
+        guardian: 0,
       }]
     }
   }, {
     id: 3,
-    name: '青国王女a',
+    name: '青国王女',
     appearance: 'princess11',
     role: {
       rower: false,
@@ -56,26 +56,12 @@ const scene: Scene = Object.freeze({
         predator: 1,
         guardian: 0
       }, {
-        predator: 5,
+        predator: 4,
         guardian: 2
       }]
     }
   }, {
     id: 4,
-    name: '青国王女b',
-    appearance: 'princess12',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 5,
-        guardian: 2
-      }]
-    }
-  }, {
-    id: 5,
     name: '赤国騎士',
     description: '青国騎士が目を離すと青国王女を襲う。',
     appearance: 'knight21',
@@ -83,12 +69,12 @@ const scene: Scene = Object.freeze({
       rower: true,
       predators: [{
         predator: 1,
-        guardian: 0
+        guardian: 0,
       }]
     }
   }, {
-    id: 6,
-    name: '赤国王女a',
+    id: 5,
+    name: '赤国王女',
     appearance: 'princess21',
     role: {
       rower: false,
@@ -97,25 +83,11 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 5
+        guardian: 4
       }]
     }
   }, {
-    id: 7,
-    name: '赤国王女b',
-    appearance: 'princess22',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 5
-      }]
-    }
-  }, {
-    id: 8,
+    id: 6,
     name: 'エルフ',
     description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf1',
@@ -125,7 +97,7 @@ const scene: Scene = Object.freeze({
       misanthrope: true,
       predators: [{
         predator: 1,
-        guardian: 0
+        guardian: 0,
       }]
     }
   }]

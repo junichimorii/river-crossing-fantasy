@@ -1,18 +1,21 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 25,
-  title: '一触即発パーティ(4)',
+  id: 47,
+  title: 'わがまま王女の旅(4)',
   category: 5,
   order: 4,
   level: 3,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、かつエルフと人間が筏（いかだ）に同乗しないよう気を遣いながら、すべての登場人物を対岸に渡す',
+      '王女同士が喧嘩（けんか）しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフのみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    tips: [
+      '隣国の王女と二人きりにならないよう気を付けましょう。',
+    ],
   },
-  passing: 13,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -20,85 +23,48 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
-    appearance: 'beasttamer1',
+    name: '青国王女',
+    description: '赤国・黒国の王女と二人きりになることを嫌う。',
+    appearance: 'princess11',
     role: {
-      rower: true
+      rower: true,
+      discord: [ 1, 4 ]
     }
   }, {
     id: 1,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: 'therianthropy1',
+    name: '赤国王女',
+    description: '青国・緑国の王女と二人きりになることを嫌う。',
+    appearance: 'princess21',
     role: {
-      rower: false,
-      demihuman: true
+      rower: true,
+      discord: [ 0, 2 ]
     }
   }, {
     id: 2,
-    name: '青国騎士',
-    description: '赤国騎士が目を離すと赤国王女を襲う。',
-    appearance: 'knight11',
+    name: '緑国王女',
+    description: '赤国・紫国の王女と二人きりになることを嫌う。',
+    appearance: 'princess31',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0,
-      }]
+      discord: [ 1, 3 ]
     }
   }, {
     id: 3,
-    name: '青国王女',
-    appearance: 'princess11',
+    name: '紫国王女',
+    description: '緑国・黒国の王女と二人きりになることを嫌う。',
+    appearance: 'princess41',
     role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 4,
-        guardian: 2
-      }]
+      rower: true,
+      discord: [ 2, 4 ]
     }
   }, {
     id: 4,
-    name: '赤国騎士',
-    description: '青国騎士が目を離すと青国王女を襲う。',
-    appearance: 'knight21',
+    name: '黒国王女',
+    description: '青国・紫国の王女と二人きりになることを嫌う。',
+    appearance: 'princess51',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0,
-      }]
-    }
-  }, {
-    id: 5,
-    name: '赤国王女',
-    appearance: 'princess21',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 4
-      }]
-    }
-  }, {
-    id: 6,
-    name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: 'elf1',
-    role: {
-      rower: true,
-      demihuman: true,
-      misanthrope: true,
-      predators: [{
-        predator: 1,
-        guardian: 0,
-      }]
+      discord: [ 0, 3 ]
     }
   }]
 })

@@ -25,11 +25,10 @@ const useCasts = (
   )
 
   /** 乗員 */
-  const passengers = computed(() => Array.from(state.value.casts.map(castState => castState.boarding))
-    .filter(boarded => boarded !== null)
-    .sort()
-    .map(boarded => scene.value.casts.filter(cast => boarding(cast) === boarded))
-  )
+  const passengers = computed(() => {
+    const carriers = scene.value.carriers.map(carrier => carrier.id)
+    return carriers.map(carrier => scene.value.casts.filter(cast => boarding(cast) === carrier))
+  })
 
   /** 各地点の登場人物 */
   const groups = computed(() => [

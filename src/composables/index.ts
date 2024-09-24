@@ -9,6 +9,7 @@ import useCastState from './use-cast-state'
 import useCasts from './use-casts'
 import useMoves from './use-moves'
 import useScene from './use-scene'
+import useSceneDiscord from './use-scene-discord'
 import useSceneMisanthrope from './use-scene-misanthrope'
 import useSceneMonophobia from './use-scene-monophobia'
 import useScenePredators from './use-scene-predators'
@@ -27,6 +28,7 @@ export {
   useCasts,
   useMoves,
   useScene,
+  useSceneDiscord,
   useSceneMisanthrope,
   useSceneMonophobia,
   useScenePredators,
