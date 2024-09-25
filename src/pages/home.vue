@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import casts from '@/assets/images/casts';
 import sprites from '@/assets/images/landscapes';
-import casts from '@/assets/images/casts'
-import { useCast } from '@/composables'
-import { convert } from '@/composables/use-text'
-import categories from '@/stores/category'
-import { useRecordsStore } from '@/stores/records'
-import { useSessionStore } from '@/stores/session'
+import { useCast } from '@/composables';
+import { convert } from '@/composables/use-text';
+import categories from '@/stores/category';
+import { useRecordsStore } from '@/stores/records';
+import { useSessionStore } from '@/stores/session';
 const { scenes } = storeToRefs(useRecordsStore())
 const { getScore } = useRecordsStore()
 const { state: session } = storeToRefs(useSessionStore())
@@ -16,36 +16,34 @@ const items = computed(() => categories.map(category => Object.assign(category, 
 </script>
 
 <template>
-  <v-app-bar
-    :elevation="2"
-    density="compact"
-    color="secondary"
-    title="River Crossing Fantasy"
-    style="font-family: 'Architects Daughter', cursive;"
-  >
-    <template #append>
-      <v-btn
-        icon="$introduction"
-        @click.stop="session.introduction = true"
-      />
-      <v-btn
-        icon="$settings"
-        @click.stop="session.settings = true"
-      />
-    </template>
-  </v-app-bar>
   <v-main>
     <v-parallax
       :src="sprites.daytimeRiver"
       class="h-100"
     >
+      <v-toolbar
+        class="bg-transparent"
+        title="River Crossing Fantasy"
+        style="font-family: 'Architects Daughter', cursive;"
+      >
+        <template #append>
+          <v-btn
+            icon="$introduction"
+            @click.stop="session.introduction = true"
+          />
+          <v-btn
+            icon="$settings"
+            @click.stop="session.settings = true"
+          />
+        </template>
+      </v-toolbar>
       <v-container>
         <v-row>
           <v-col
             v-for="category in items"
             :key="category.id"
             cols="12"
-            md="6"
+            sm="6"
             xl="4"
           >
             <v-card class="opacity-90">
@@ -72,9 +70,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
                   <div v-html="convert(scene.rules.conditions[0])" />
                   <!-- eslint-enable -->
                 </v-list-item-subtitle>
-                <v-list-item-subtitle
-                  class="d-flex justify-start align-end"
-                >
+                <v-list-item-subtitle class="d-flex justify-start align-end">
                   <v-avatar
                     v-for="cast in scene.casts"
                     :key="cast.id"
@@ -104,33 +100,13 @@ const items = computed(() => categories.map(category => Object.assign(category, 
           </v-col>
         </v-row>
       </v-container>
+      <v-footer class="text-center d-flex flex-column bg-transparent">
+        <div style="font-family: 'Architects Daughter', cursive;">
+          River Crossing Fantasy - Made with Vuetify.
+        </div>
+      </v-footer>
     </v-parallax>
   </v-main>
-  <v-footer
-    app
-    class="pa-0"
-  >
-    <v-banner
-      lines="one"
-      text="River Crossing Fantasy"
-      color="primary"
-      class="px-3 py-0"
-      style="font-family: 'Architects Daughter', cursive;"
-    >
-      <template #actions>
-        <v-btn
-          @click.stop="session.introduction = true"
-        >
-          このゲームについて
-        </v-btn>
-        <v-btn
-          @click.stop="session.settings = true"
-        >
-          設定
-        </v-btn>
-      </template>
-    </v-banner>
-  </v-footer>
   <AppIntroduction />
   <AppSettings />
 </template>
