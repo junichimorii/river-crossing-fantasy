@@ -24,10 +24,15 @@ import knight32 from './knight32.png'
 import knight41 from './knight41.png'
 import knight42 from './knight42.png'
 import mage1 from './mage1.png'
+import maid1 from './maid1.png'
+import maid2 from './maid2.png'
+import maid3 from './maid3.png'
 import merchant1 from './merchant1.png'
 import merchant2 from './merchant2.png'
 import merchant3 from './merchant3.png'
 import priest1 from './priest1.png'
+import priest2 from './priest2.png'
+import priest3 from './priest3.png'
 import princess11 from './princess11.png'
 import princess12 from './princess12.png'
 import princess13 from './princess13.png'
@@ -67,9 +72,10 @@ const sprites: {
   knight21, knight22,
   knight31, knight32,
   knight41, knight42,
+  maid1, maid2, maid3,
   mage1,
   merchant1, merchant2, merchant3,
-  priest1,
+  priest1, priest2, priest3,
   princess11, princess12, princess13,
   princess21, princess22, princess23,
   princess31, princess32, princess33,

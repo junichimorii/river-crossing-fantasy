@@ -27,7 +27,6 @@ const useSceneDiscord = (
           if (isNeighboring(myself, discord)) {
             // 感情を追加
             feel(myself, 'excited')
-            feel(discord, 'excited')
           }
         }
       }
