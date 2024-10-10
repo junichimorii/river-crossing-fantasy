@@ -1,22 +1,22 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 52,
-  title: '魔獣使いと死霊使い(1)',
+  id: 53,
+  title: '魔獣使いと死霊使い(2)',
   category: 2,
-  order: 4,
-  level: 2,
+  order: 5,
+  level: 3,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと死霊使いのみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、死霊使い、村人のみ。',
     tips: [
-      '魔獣は、魔獣使いが目を離すと、近くにいる死霊使いを襲います。',
-      'また死霊は、死霊使いが目を離すと、近くにいる魔獣使いを襲います。',
+      '魔獣は、魔獣使いが目を離すと、近くにいる死霊使いと村人を襲います。',
+      'また死霊は、死霊使いが目を離すと、近くにいる魔獣使いと村人を襲います。',
     ],
   },
-  passing: 5,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -36,7 +36,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと死霊使いを襲う。',
+    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
@@ -55,10 +55,24 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '死霊',
-    description: '死霊使いが目を離すと魔獣使いを襲う。',
+    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
     appearance: 'undead1',
     role: {
       rower: false
+    }
+  }, {
+    id: 4,
+    name: '村人',
+    appearance: 'villager1',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }, {
+        predator: 3,
+        guardian: 2,
+      }]
     }
   }]
 })

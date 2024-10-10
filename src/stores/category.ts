@@ -10,7 +10,7 @@ const categories: Category[] = [{
 }, {
   id: 2,
   name: 'Predators and Guardians',
-  description: '天敵と保護者が登場する川渡りパズルです。（難易度1-2）'
+  description: '天敵と保護者が登場する川渡りパズルです。（難易度1-3）'
 }, {
   id: 3,
   name: 'Escort and Celebrity',
