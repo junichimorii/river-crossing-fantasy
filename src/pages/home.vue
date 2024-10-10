@@ -6,7 +6,7 @@ import { convert } from '@/composables/use-text';
 import categories from '@/stores/category';
 import { useRecordsStore } from '@/stores/records';
 import { useSessionStore } from '@/stores/session';
-const { scenes } = storeToRefs(useRecordsStore())
+const { state: records, scenes } = storeToRefs(useRecordsStore())
 const { getScore } = useRecordsStore()
 const { state: session } = storeToRefs(useSessionStore())
 const { getTransform } = useCast()
@@ -27,6 +27,12 @@ const items = computed(() => categories.map(category => Object.assign(category, 
         style="font-family: 'Architects Daughter', cursive;"
       >
         <template #append>
+          <v-chip
+            variant="text"
+            prepend-icon="$ratingFull"
+          >
+            {{ records.scenes.size }} / {{ scenes.length }}
+          </v-chip>
           <v-btn
             icon="$introduction"
             @click.stop="session.introduction = true"
@@ -70,7 +76,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
                   <div v-html="convert(scene.rules.conditions[0])" />
                   <!-- eslint-enable -->
                 </v-list-item-subtitle>
-                <v-list-item-subtitle class="d-flex justify-start align-end">
+                <div class="d-flex justify-start align-end">
                   <v-avatar
                     v-for="cast in scene.casts"
                     :key="cast.id"
@@ -84,7 +90,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
                       style="transform-origin: bottom center;"
                     />
                   </v-avatar>
-                </v-list-item-subtitle>
+                </div>
                 <template #append>
                   <v-rating
                     readonly

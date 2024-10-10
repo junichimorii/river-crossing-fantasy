@@ -22,7 +22,7 @@ const categories: Category[] = [{
 }, {
   id: 5,
   name: 'Selfish Princesses',
-  description: '不仲な者同士を2人きりにしないよう川を渡るパズルです。（難易度2-3）'
+  description: '特定の登場人物同士を2人きりにしないよう川を渡るパズルです。（難易度2-3）'
 }, {
   id: 6,
   name: 'Weight Limit',
