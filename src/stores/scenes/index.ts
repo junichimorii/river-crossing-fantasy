@@ -27,12 +27,16 @@ import s51 from './51'
 import s52 from './52'
 import s53 from './53'
 import s54 from './54'
+import s55 from './55'
+import s56 from './56'
 import s61 from './61'
 import s62 from './62'
 import s71 from './71'
 import s72 from './72'
 import s73 from './73'
 import s74 from './74'
+import s75 from './75'
+import s76 from './76'
 import s81 from './81'
 import s82 from './82'
 import s83 from './83'
@@ -52,9 +56,9 @@ export {
   s21, s22, s23, s24,
   s31, s32, s33, s34,
   s41, s42, s43, s44, s45, s46, s47,
-  s51, s52, s53, s54,
+  s51, s52, s53, s54, s55, s56,
   s61, s62,
-  s71, s72, s73, s74,
+  s71, s72, s73, s74, s75, s76,
   s81, s82, s83, s84, s85, s86, s87, s88,
   s91, s92, s93, s94
 }

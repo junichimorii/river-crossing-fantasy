@@ -13,7 +13,7 @@ const scene: Scene = Object.freeze({
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '筏（いかだ）には、定員の他に重量制限が設定されています。',
-      '今回登場する商人は、荷物が多いため、<b>定員2人分の重量があります</b>。',
+      '今回登場する商人は、荷物が多いため、**定員2人分の重量があります**。',
       '重量オーバーになる場合は、登場人物を筏（いかだ）に乗せることはできません。',
     ],
   },
@@ -25,16 +25,16 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '村人A',
-    appearance: 'villager1',
+    name: '戦士',
+    appearance: 'fighter1',
     role: {
       rower: true,
       weight: 1
     }
   }, {
     id: 1,
-    name: '村人B',
-    appearance: 'villager2',
+    name: '盗賊',
+    appearance: 'thief1',
     role: {
       rower: true,
       weight: 1

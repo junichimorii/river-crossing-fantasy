@@ -23,24 +23,24 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '村人A',
-    appearance: 'villager1',
+    name: '戦士',
+    appearance: 'fighter1',
     role: {
       rower: true,
       weight: 1
     }
   }, {
     id: 1,
-    name: '村人B',
-    appearance: 'villager2',
+    name: '盗賊',
+    appearance: 'thief1',
     role: {
       rower: true,
       weight: 1
     }
   }, {
     id: 2,
-    name: '村人C',
-    appearance: 'villager3',
+    name: '魔法使い',
+    appearance: 'mage1',
     role: {
       rower: true,
       weight: 1

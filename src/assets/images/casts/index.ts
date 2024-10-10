@@ -52,6 +52,8 @@ import therianthropy3 from './therianthropy3.png'
 import therianthropy4 from './therianthropy4.png'
 import therianthropy5 from './therianthropy5.png'
 import thief1 from './thief1.png'
+import thief2 from './thief2.png'
+import thief3 from './thief3.png'
 import villager1 from './villager1.png'
 import villager2 from './villager2.png'
 import villager3 from './villager3.png'
@@ -82,7 +84,7 @@ const sprites: {
   princess41, princess42, princess43,
   princess51,
   therianthropy1, therianthropy2, therianthropy3, therianthropy4, therianthropy5,
-  thief1,
+  thief1,thief2,thief3,
   villager1, villager2, villager3,
   wolf1,
 }
