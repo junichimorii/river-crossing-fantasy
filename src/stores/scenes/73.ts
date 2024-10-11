@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '闇夜の旅路(3)',
   category: 7,
   order: 3,
-  level: 3,
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
@@ -12,6 +11,7 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
     tips: [
+      '4人で橋を渡ります。最も遅い魔法使いは、橋を渡るのに8分かかります。',
       '古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したものです。',
     ],
   },

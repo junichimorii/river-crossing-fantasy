@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '闇夜の旅路(6)',
   category: 7,
   order: 6,
-  level: 3,
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',

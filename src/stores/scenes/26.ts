@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: 'オオカミとヤギとキャベツ',
   category: 2,
   order: 6,
-  level: 2,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',

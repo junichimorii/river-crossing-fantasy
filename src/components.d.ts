@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppIntroduction: typeof import('./components/home/AppIntroduction.vue')['default']
+    AppScore: typeof import('./components/home/AppScore.vue')['default']
     AppSettings: typeof import('./components/home/AppSettings.vue')['default']
     AppSettingsClear: typeof import('./components/home/AppSettingsClear.vue')['default']
     AppSettingsVolume: typeof import('./components/home/AppSettingsVolume.vue')['default']

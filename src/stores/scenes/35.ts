@@ -1,9 +1,9 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 55,
-  title: '王女親衛隊の攻防(4)',
+  id: 56,
+  title: '王女親衛隊の攻防(5)',
   category: 3,
-  order: 4,
+  order: 5,
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
@@ -11,10 +11,10 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '「王女親衛隊の攻防(3)」の青国王女が2人になっています。',
+      '「王女親衛隊の攻防(3)」の青国王女が3人になっています。',
     ],
   },
-  passing: 13,
+  passing: 15,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -35,10 +35,10 @@ const scene: Scene = Object.freeze({
     role: {
       rower: true,
       predators: [{
-        predator: 3,
+        predator: 4,
         guardian: 0
       }, {
-        predator: 5,
+        predator: 6,
         guardian: 0
       }]
     }
@@ -49,15 +49,29 @@ const scene: Scene = Object.freeze({
     role: {
       rower: true,
       predators: [{
-        predator: 3,
+        predator: 4,
         guardian: 0
       }, {
-        predator: 5,
+        predator: 6,
         guardian: 0
       }]
     }
   }, {
     id: 3,
+    name: '青国王女C',
+    appearance: 'princess13',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 4,
+        guardian: 0
+      }, {
+        predator: 6,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 4,
     name: '赤国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight21',
@@ -65,21 +79,21 @@ const scene: Scene = Object.freeze({
       rower: true
     }
   }, {
-    id: 4,
+    id: 5,
     name: '赤国王女',
     appearance: 'princess21',
     role: {
       rower: true,
       predators: [{
         predator: 0,
-        guardian: 3
+        guardian: 4
       }, {
-        predator: 5,
-        guardian: 3
+        predator: 6,
+        guardian: 4
       }]
     }
   }, {
-    id: 5,
+    id: 6,
     name: '緑国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight31',
@@ -87,17 +101,17 @@ const scene: Scene = Object.freeze({
       rower: true
     }
   }, {
-    id: 6,
+    id: 7,
     name: '緑国王女',
     appearance: 'princess31',
     role: {
       rower: true,
       predators: [{
         predator: 0,
-        guardian: 5
+        guardian: 6
       }, {
-        predator: 3,
-        guardian: 5
+        predator: 4,
+        guardian: 6
       }]
     }
   }]

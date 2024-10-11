@@ -7,7 +7,7 @@ const headers = [
   { key: 'title', title:'title' },
   { key: 'category', title:'category' },
   { key: 'order', title:'order' },
-  { key: 'level', title:'level' },
+  { key: 'passing', title:'passing' },
   { key: 'rules.transportation', title:'transportation' },
   { key: 'rules.tips', title:'tips' },
 ]
@@ -22,7 +22,7 @@ const headers = [
     style="font-family: 'Architects Daughter', cursive;"
   />
   <v-main>
-    <v-container>
+    <v-container fluid>
       <v-data-table
         :items="scenes"
         :headers="headers"

@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '魔獣使いは苦労が絶えない(2)',
   category: 2,
   order: 2,
-  level: 2,
   rules: {
     conditions: [
       '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',

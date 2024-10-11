@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '一人旅',
   category: 0,
   order: 1,
-  level: 1,
   rules: {
     conditions: [
       '登場人物を対岸に渡す',

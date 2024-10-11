@@ -4,13 +4,15 @@ const scene: Scene = Object.freeze({
   title: '闇夜の旅路(4)',
   category: 7,
   order: 4,
-  level: 4,
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
       '最短時間でクリアする'
     ],
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
+    tips: [
+      '5人で橋を渡ります。最も遅い王女は、橋を渡るのに12分かかります。',
+    ],
   },
   landscape: {
     night: true

@@ -1,9 +1,9 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 55,
-  title: '王女親衛隊の攻防(4)',
+  id: 57,
+  title: '王女親衛隊の攻防(8)',
   category: 3,
-  order: 4,
+  order: 8,
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
@@ -11,10 +11,10 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '「王女親衛隊の攻防(3)」の青国王女が2人になっています。',
+      '緑国騎士と紫国騎士には護衛対象の王女がいません。青国王女と赤国王女は他3か国の騎士から狙われています。',
     ],
   },
-  passing: 13,
+  passing: 9,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -30,12 +30,15 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '青国王女A',
+    name: '青国王女',
     appearance: 'princess11',
     role: {
       rower: true,
       predators: [{
-        predator: 3,
+        predator: 2,
+        guardian: 0
+      }, {
+        predator: 4,
         guardian: 0
       }, {
         predator: 5,
@@ -44,20 +47,6 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '青国王女B',
-    appearance: 'princess12',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 3,
-        guardian: 0
-      }, {
-        predator: 5,
-        guardian: 0
-      }]
-    }
-  }, {
-    id: 3,
     name: '赤国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight21',
@@ -65,21 +54,24 @@ const scene: Scene = Object.freeze({
       rower: true
     }
   }, {
-    id: 4,
+    id: 3,
     name: '赤国王女',
     appearance: 'princess21',
     role: {
       rower: true,
       predators: [{
         predator: 0,
-        guardian: 3
+        guardian: 2
+      }, {
+        predator: 4,
+        guardian: 2
       }, {
         predator: 5,
-        guardian: 3
+        guardian: 2
       }]
     }
   }, {
-    id: 5,
+    id: 4,
     name: '緑国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight31',
@@ -87,18 +79,12 @@ const scene: Scene = Object.freeze({
       rower: true
     }
   }, {
-    id: 6,
-    name: '緑国王女',
-    appearance: 'princess31',
+    id: 5,
+    name: '紫国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight41',
     role: {
-      rower: true,
-      predators: [{
-        predator: 0,
-        guardian: 5
-      }, {
-        predator: 3,
-        guardian: 5
-      }]
+      rower: true
     }
   }]
 })

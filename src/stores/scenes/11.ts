@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: 'エルフは人間がお嫌い(1)',
   category: 1,
   order: 1,
-  level: 1,
   rules: {
     conditions: [
       'エルフと人間が筏（いかだ）に同乗しないよう気を遣いつつ、すべての登場人物を対岸に渡す',

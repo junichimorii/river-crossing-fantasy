@@ -12,8 +12,6 @@ export interface Scene {
   category: number
   /** パズル種別 */
   order: number
-  /** 難易度 */
-  level: number
   /** パズルのルール */
   rules: Rules
   /** パズルの特徴 */

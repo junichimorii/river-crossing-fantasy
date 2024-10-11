@@ -18,6 +18,10 @@ import s31 from './31'
 import s32 from './32'
 import s33 from './33'
 import s34 from './34'
+import s35 from './35'
+import s36 from './36'
+import s37 from './37'
+import s38 from './38'
 import s41 from './41'
 import s42 from './42'
 import s43 from './43'
@@ -56,7 +60,7 @@ export {
   s01, s02, s03, s04,
   s11, s12, s13, s14, s15, s16,
   s21, s22, s23, s24, s25, s26,
-  s31, s32, s33, s34,
+  s31, s32, s33, s34, s35, s36, s37, s38,
   s41, s42, s43, s44, s45, s46, s47,
   s51, s52, s53, s54, s55, s56,
   s61, s62,

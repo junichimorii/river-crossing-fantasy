@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '吟遊詩人は孤独がお嫌い(1)',
   category: 1,
   order: 3,
-  level: 1,
   rules: {
     conditions: [
       '吟遊詩人が独りぼっちにならないよう気を遣いつつ、すべての登場人物を対岸に渡す',

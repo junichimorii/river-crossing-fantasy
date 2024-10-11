@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '魔獣使いと死霊使い(2)',
   category: 2,
   order: 5,
-  level: 3,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',

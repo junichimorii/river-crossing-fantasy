@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '定期点検を忘れずに(1)',
   category: 1,
   order: 2,
-  level: 1,
   rules: {
     conditions: [
       '筏（いかだ）が故障しないよう修理しつつ、すべての登場人物を対岸に渡す',

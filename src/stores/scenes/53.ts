@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: 'わがまま王女の旅(3)',
   category: 5,
   order: 3,
-  level: 3,
   rules: {
     conditions: [
       '王女同士が喧嘩（けんか）しないよう気を遣いつつ、すべての登場人物を対岸に渡す',

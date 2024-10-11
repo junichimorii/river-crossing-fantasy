@@ -4,13 +4,15 @@ const scene: Scene = Object.freeze({
   title: '闇夜の旅路(5)',
   category: 7,
   order: 5,
-  level: 4,
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
       '最短時間でクリアする'
     ],
     transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
+    tips: [
+      '6人で橋を渡ります。最も遅い王女は、橋を渡るのに12分かかります。',
+    ],
   },
   landscape: {
     night: true
@@ -51,15 +53,15 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 4,
-    name: '王女',
-    appearance: 'princess11',
+    name: '村人',
+    appearance: 'villager1',
     role: {
       duration: 10
     }
   }, {
     id: 5,
-    name: '村人',
-    appearance: 'villager1',
+    name: '王女',
+    appearance: 'princess11',
     role: {
       duration: 12
     }

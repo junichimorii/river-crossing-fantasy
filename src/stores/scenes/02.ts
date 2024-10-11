@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '三人旅',
   category: 0,
   order: 2,
-  level: 1,
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',

@@ -1,24 +1,24 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
-  id: 55,
-  title: '王女親衛隊の攻防(4)',
+  id: 20,
+  title: '王女親衛隊の攻防(6)',
   category: 3,
-  order: 4,
+  order: 6,
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '3人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '「王女親衛隊の攻防(3)」の青国王女が2人になっています。',
+      '各国に王女が2人、筏（いかだ）の定員が3名になっています。',
     ],
   },
-  passing: 13,
+  passing: 7,
   carriers: [{
     id: 0,
-    capacity: 2,
-    appearance: 'raft2'
+    capacity: 3,
+    appearance: 'raft3'
   }],
   casts: [{
     id: 0,
@@ -38,7 +38,7 @@ const scene: Scene = Object.freeze({
         predator: 3,
         guardian: 0
       }, {
-        predator: 5,
+        predator: 6,
         guardian: 0
       }]
     }
@@ -52,7 +52,7 @@ const scene: Scene = Object.freeze({
         predator: 3,
         guardian: 0
       }, {
-        predator: 5,
+        predator: 6,
         guardian: 0
       }]
     }
@@ -66,7 +66,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 4,
-    name: '赤国王女',
+    name: '赤国王女A',
     appearance: 'princess21',
     role: {
       rower: true,
@@ -74,12 +74,26 @@ const scene: Scene = Object.freeze({
         predator: 0,
         guardian: 3
       }, {
-        predator: 5,
+        predator: 6,
         guardian: 3
       }]
     }
   }, {
     id: 5,
+    name: '赤国王女B',
+    appearance: 'princess22',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 0,
+        guardian: 3
+      }, {
+        predator: 6,
+        guardian: 3
+      }]
+    }
+  }, {
+    id: 6,
     name: '緑国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight31',
@@ -87,17 +101,31 @@ const scene: Scene = Object.freeze({
       rower: true
     }
   }, {
-    id: 6,
-    name: '緑国王女',
+    id: 7,
+    name: '緑国王女A',
     appearance: 'princess31',
     role: {
       rower: true,
       predators: [{
         predator: 0,
-        guardian: 5
+        guardian: 6
       }, {
         predator: 3,
-        guardian: 5
+        guardian: 6
+      }]
+    }
+  }, {
+    id: 8,
+    name: '緑国王女B',
+    appearance: 'princess32',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 0,
+        guardian: 6
+      }, {
+        predator: 3,
+        guardian: 6
       }]
     }
   }]

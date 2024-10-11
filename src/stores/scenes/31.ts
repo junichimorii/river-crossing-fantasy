@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '王女親衛隊の攻防(1)',
   category: 3,
   order: 1,
-  level: 2,
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',

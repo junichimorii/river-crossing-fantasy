@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '商人は荷物が多い(1)',
   category: 6,
   order: 1,
-  level: 1,
   rules: {
     conditions: [
       '重量制限に気を付けながら、すべての登場人物を対岸に渡す',

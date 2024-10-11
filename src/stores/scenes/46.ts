@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '魔獣たちの反乱(6)',
   category: 4,
   order: 6,
-  level: 4,
   rules: {
     conditions: [
       '両岸および筏（いかだ）の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',

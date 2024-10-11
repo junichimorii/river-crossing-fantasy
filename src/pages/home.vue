@@ -6,7 +6,7 @@ import { convert } from '@/composables/use-text';
 import categories from '@/stores/category';
 import { useRecordsStore } from '@/stores/records';
 import { useSessionStore } from '@/stores/session';
-const { state: records, scenes } = storeToRefs(useRecordsStore())
+const { scenes } = storeToRefs(useRecordsStore())
 const { getScore } = useRecordsStore()
 const { state: session } = storeToRefs(useSessionStore())
 const { getTransform } = useCast()
@@ -27,12 +27,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
         style="font-family: 'Architects Daughter', cursive;"
       >
         <template #append>
-          <v-chip
-            variant="text"
-            prepend-icon="$ratingFull"
-          >
-            {{ records.scenes.size }} / {{ scenes.length }}
-          </v-chip>
+          <AppScore />
           <v-btn
             icon="$introduction"
             @click.stop="session.introduction = true"

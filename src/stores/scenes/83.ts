@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '一触即発パーティ(3)',
   category: 8,
   order: 3,
-  level: 3,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',

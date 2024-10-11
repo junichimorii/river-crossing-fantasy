@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '村人とエルフと吟遊詩人',
   category: 1,
   order: 6,
-  level: 2,
   rules: {
     conditions: [
       'エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',

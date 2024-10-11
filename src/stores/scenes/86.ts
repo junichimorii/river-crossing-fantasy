@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '一触即発パーティ(6)',
   category: 8,
   order: 6,
-  level: 4,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ筏（いかだ）を修理しながら、すべての登場人物を対岸に渡す',

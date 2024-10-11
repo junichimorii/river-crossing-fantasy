@@ -4,7 +4,6 @@ const scene: Scene = Object.freeze({
   title: '身分違いの一行(1)',
   category: 5,
   order: 5,
-  level: 2,
   rules: {
     conditions: [
       '王女の機嫌（きげん）を損ねないよう気を遣いつつ、すべての登場人物を対岸に渡す',
