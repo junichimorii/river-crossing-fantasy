@@ -24,7 +24,6 @@ export const useSceneStore = defineStore('scene', () => {
       title: '',
       category: 0,
       order: 0,
-      level: 0,
       rules: {
         conditions: [],
         transportation: '',
