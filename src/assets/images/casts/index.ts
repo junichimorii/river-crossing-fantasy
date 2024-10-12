@@ -20,13 +20,10 @@ import knight12 from './knight12.png'
 import knight21 from './knight21.png'
 import knight22 from './knight22.png'
 import knight31 from './knight31.png'
-import knight32 from './knight32.png'
 import knight41 from './knight41.png'
-import knight42 from './knight42.png'
 import mage1 from './mage1.png'
 import maid1 from './maid1.png'
 import maid2 from './maid2.png'
-import maid3 from './maid3.png'
 import merchant1 from './merchant1.png'
 import merchant2 from './merchant2.png'
 import merchant3 from './merchant3.png'
@@ -42,10 +39,7 @@ import princess22 from './princess22.png'
 import princess23 from './princess23.png'
 import princess31 from './princess31.png'
 import princess32 from './princess32.png'
-import princess33 from './princess33.png'
 import princess41 from './princess41.png'
-import princess42 from './princess42.png'
-import princess43 from './princess43.png'
 import princess51 from './princess51.png'
 import therianthropy1 from './therianthropy1.png'
 import therianthropy2 from './therianthropy2.png'
@@ -54,7 +48,6 @@ import therianthropy4 from './therianthropy4.png'
 import therianthropy5 from './therianthropy5.png'
 import thief1 from './thief1.png'
 import thief2 from './thief2.png'
-import thief3 from './thief3.png'
 import undead1 from './undead1.png'
 import villager1 from './villager1.png'
 import villager2 from './villager2.png'
@@ -74,20 +67,20 @@ const sprites: {
   goat1,
   knight11, knight12,
   knight21, knight22,
-  knight31, knight32,
-  knight41, knight42,
-  maid1, maid2, maid3,
+  knight31,
+  knight41,
+  maid1, maid2,
   mage1,
   merchant1, merchant2, merchant3,
   necromancer1,
   priest1, priest2, priest3,
   princess11, princess12, princess13,
   princess21, princess22, princess23,
-  princess31, princess32, princess33,
-  princess41, princess42, princess43,
+  princess31, princess32,
+  princess41,
   princess51,
   therianthropy1, therianthropy2, therianthropy3, therianthropy4, therianthropy5,
-  thief1,thief2,thief3,
+  thief1, thief2,
   undead1,
   villager1, villager2, villager3,
   wolf1,
