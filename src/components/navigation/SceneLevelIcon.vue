@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { Scene } from '@/types';
 const props = defineProps<{
   level: number | undefined
   passing: number
