@@ -54,13 +54,9 @@ watch(result, async (value) => {
           FAILED
         </v-card-title>
         <v-card-item class="d-flex justify-center">
-          <v-rating
-            readonly
-            density="compact"
-            :length="2"
+          <SceneScoreRating
+            :value="score"
             size="x-large"
-            :model-value="score"
-            active-color="orange"
           />
         </v-card-item>
         <v-card-actions

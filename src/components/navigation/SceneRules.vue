@@ -21,13 +21,9 @@ const { scene } = useSceneStore()
           :key="i"
           class="d-flex align-self-end text-subtitle-2"
         >
-          <v-rating
-            readonly
-            density="compact"
-            :length="2"
-            :size="20"
-            :model-value="i + 1"
-            active-color="orange"
+          <SceneScoreRating
+            :value="i + 1"
+            size="20"
           />
           <!-- eslint-disable vue/no-v-html -->
           <span

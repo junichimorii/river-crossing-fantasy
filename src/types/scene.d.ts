@@ -18,6 +18,10 @@ export interface Scene {
   landscape?: Features
   /** 合格基準となる回数または時間 */
   passing: number
+  /** 難易度 */
+  level?: number
+  /** おすすめ */
+  recommended?: boolean
   /** 乗り物 */
   carriers: Carrier[]
   /** 登場人物 */

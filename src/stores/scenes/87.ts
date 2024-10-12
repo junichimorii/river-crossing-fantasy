@@ -15,6 +15,7 @@ const scene: Scene = Object.freeze({
     ],
   },
   passing: 17,
+  recommended: true,
   carriers: [{
     id: 0,
     capacity: 2,

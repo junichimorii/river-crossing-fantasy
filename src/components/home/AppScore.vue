@@ -6,7 +6,7 @@ const { state: records, scenes } = storeToRefs(useRecordsStore())
 <template>
   <v-chip
     variant="text"
-    prepend-icon="$ratingFull"
+    prepend-icon="$scoreFull"
   >
     {{ records.scenes.size }} / {{ scenes.length }}
   </v-chip>

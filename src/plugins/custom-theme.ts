@@ -11,4 +11,9 @@ export const colors = {
   category7: '#3f51b5', // Bridge and Torch, indigo 500
   category8: '#f44336', // Tinderbox Party, red 500
   category9: '#e91e63', // River Island, pink 500
+  level1: '#2196f3', // blue 500
+  level2: '#8bc34a', // light-green 500
+  level3: '#ffc107', // amber 500
+  level4: '#ff9800', // orange 500
+  level5: '#f44336', // red 500
 }

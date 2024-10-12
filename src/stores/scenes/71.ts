@@ -18,7 +18,8 @@ const scene: Scene = Object.freeze({
   landscape: {
     night: true
   },
-  passing: 7,
+  passing: 1,
+  level: 1,
   carriers: [{
     id: 0,
     capacity: 1,

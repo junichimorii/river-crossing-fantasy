@@ -87,14 +87,16 @@ const items = computed(() => categories.map(category => Object.assign(category, 
                   </v-avatar>
                 </div>
                 <template #append>
-                  <v-rating
-                    readonly
-                    density="compact"
-                    size="small"
-                    :length="2"
-                    :model-value="getScore(scene.id)"
-                    active-color="orange"
-                  />
+                  <v-sheet class="d-flex flex-column align-end">
+                    <SceneLevelIcon
+                      :level="scene.level"
+                      :passing="scene.passing"
+                    />
+                    <SceneScoreRating
+                      :value="getScore(scene.id)"
+                      size="small"
+                    />
+                  </v-sheet>
                 </template>
               </v-list-item>
             </v-card>

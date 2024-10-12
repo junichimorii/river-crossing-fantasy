@@ -18,6 +18,7 @@ const scene: Scene = Object.freeze({
     night: true
   },
   passing: 30,
+  level: 4,
   carriers: [{
     id: 0,
     capacity: 2,
