@@ -32,7 +32,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    description: '魔獣使いが目を離すと魔獣使いと死霊以外の全員を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
@@ -51,7 +51,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '死霊',
-    description: '死霊使いが目を離すと死霊使い以外の全員を襲う。',
+    description: '死霊使いが目を離すと死霊使いと魔獣以外の全員を襲う。',
     appearance: 'undead1',
     role: {
       rower: false
