@@ -1,4 +1,4 @@
-import type { Category } from '@/types/records'
+import type { Category } from '@/types'
 const categories: Category[] = [{
   id: 0,
   name: 'Tutorial',

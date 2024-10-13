@@ -1,4 +1,4 @@
-import type { Scene } from '@/types/scene'
+import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
   id: 40,
   title: '魔獣たちの反乱(7)',

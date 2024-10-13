@@ -4,8 +4,7 @@ import {
 } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
-import type { Carrier, Cast, Move, Scene, State } from '@/types'
-import type { Bound } from '@/types/state'
+import type { Bound, Carrier, Cast, Move, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの進行

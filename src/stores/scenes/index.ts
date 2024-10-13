@@ -25,6 +25,7 @@ import mt03 from './multiracial-travelers/03'
 import mt04 from './multiracial-travelers/04'
 import mt05 from './multiracial-travelers/05'
 import mt06 from './multiracial-travelers/06'
+import mt07 from './multiracial-travelers/07'
 import pg01 from './predators-and-guardians/01'
 import pg02 from './predators-and-guardians/02'
 import pg03 from './predators-and-guardians/03'
@@ -32,6 +33,8 @@ import pg04 from './predators-and-guardians/04'
 import pg05 from './predators-and-guardians/05'
 import pg06 from './predators-and-guardians/06'
 import pg07 from './predators-and-guardians/07'
+import pg08 from './predators-and-guardians/08'
+import pg09 from './predators-and-guardians/09'
 import ri01 from './river-island/01'
 import ri02 from './river-island/02'
 import ri03 from './river-island/03'
@@ -67,8 +70,8 @@ export {
   bt01, bt02, bt03, bt04, bt05, bt06,
   ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08,
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
-  mt01, mt02, mt03, mt04, mt05, mt06,
-  pg01, pg02, pg03, pg04, pg05, pg06, pg07,
+  mt01, mt02, mt03, mt04, mt05, mt06, mt07,
+  pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
   ri01, ri02, ri03, ri04,
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09,

@@ -1,6 +1,5 @@
 import { useCarrier, useCarrierState, useCasts, useScene } from '@/composables'
-import type { Carrier, Cast, Move, Scene, State } from '@/types'
-import type { Bound, CarrierState, CastState } from '@/types/state'
+import type { Bound, Carrier, CarrierState, Cast, CastState, Move, Scene, State } from '@/types'
 interface ExtendedState extends State {
   count: number
 }

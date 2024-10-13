@@ -9,6 +9,8 @@ import cabbage1 from './cabbage1.png'
 import carpenter1 from './carpenter1.png'
 import carpenter2 from './carpenter2.png'
 import carpenter3 from './carpenter3.png'
+import dragontamer1 from './dragontamer1.png'
+import dragonute1 from './dragonute1.png'
 import elf1 from './elf1.png'
 import elf2 from './elf2.png'
 import elf3 from './elf3.png'
@@ -60,6 +62,8 @@ const sprites: {
   beasttamer1, beasttamer2, beasttamer3, beasttamer4, beasttamer5,
   cabbage1,
   carpenter1, carpenter2, carpenter3,
+  dragontamer1,
+  dragonute1,
   elf1, elf2, elf3,
   farmer1,
   fighter1,

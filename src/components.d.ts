@@ -7,11 +7,16 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppCategoryCard: typeof import('./components/home/AppCategoryCard.vue')['default']
+    AppFooter: typeof import('./components/home/AppFooter.vue')['default']
     AppIntroduction: typeof import('./components/home/AppIntroduction.vue')['default']
+    AppListItem: typeof import('./components/home/AppListItem.vue')['default']
     AppScore: typeof import('./components/home/AppScore.vue')['default']
     AppSettings: typeof import('./components/home/AppSettings.vue')['default']
     AppSettingsClear: typeof import('./components/home/AppSettingsClear.vue')['default']
     AppSettingsVolume: typeof import('./components/home/AppSettingsVolume.vue')['default']
+    AppToolbar: typeof import('./components/home/AppToolbar.vue')['default']
+    Home: typeof import('./components/home/home.vue')['default']
     PuzzleBottomMenu: typeof import('./components/PuzzleBottomMenu.vue')['default']
     PuzzleCarrier: typeof import('./components/objects/PuzzleCarrier.vue')['default']
     PuzzleCarrierMenu: typeof import('./components/objects/carrier/PuzzleCarrierMenu.vue')['default']

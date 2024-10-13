@@ -27,6 +27,7 @@ const headers = [
         :items="scenes"
         :headers="headers"
         :items-per-page="-1"
+        :sort-by="[{ key: 'category', order: 'asc' }, { key: 'order', order: 'asc' }]"
         density="compact"
       >
         <template #[`item.category`]="{ value }">

@@ -1,6 +1,5 @@
 import { useMoves, useScene } from '@/composables'
-import type { Move, Scene, State } from '@/types'
-import type { CarrierState, CastState } from '@/types/state'
+import type { CarrierState, CastState, Move, Scene, State } from '@/types'
 
 /**
  * シーン（ステージ）管理

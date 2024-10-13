@@ -1,6 +1,5 @@
 import { useCarrierState, useCast, useCastState } from '@/composables'
-import type { Carrier, Cast, Scene, State } from '@/types'
-import type { Bound } from '@/types/state'
+import type { Bound, Carrier, Cast, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの乗り物

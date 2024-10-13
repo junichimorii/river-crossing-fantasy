@@ -1,5 +1,4 @@
-import type { Carrier, State } from '@/types'
-import type { CarrierState } from '@/types/state'
+import type { Carrier, CarrierState, State } from '@/types'
 export const carrierState: CarrierState = Object.freeze({
   coord: -1,
 })

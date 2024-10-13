@@ -1,7 +1,7 @@
-import type { Scene } from '@/types/scene'
+import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 16,
-  title: 'オオカミとヤギとキャベツ',
+  id: 61,
+  title: '魔獣使いと死霊使い(4)',
   category: 2,
   order: 7,
   rules: {
@@ -9,56 +9,124 @@ const scene: Scene = Object.freeze({
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは農夫のみ。',
+    transportation: '3人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、死霊使い、村人のみ。',
     tips: [
-      'オオカミは、農夫が目を離すと、近くにいるヤギを食べようとします。',
-      'またヤギは、農夫が目を離すと、近くにいるキャベツを食べようとします。',
-      '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルです。',
+      '魔獣は、魔獣使いが目を離すと、近くにいる死霊使いと村人を襲います。',
+      'また死霊は、死霊使いが目を離すと、近くにいる魔獣使いと村人を襲います。',
     ],
   },
-  passing: 7,
-  recommended: true,
+  passing: 13,
   carriers: [{
     id: 0,
-    capacity: 2,
-    appearance: 'raft2'
+    capacity: 3,
+    appearance: 'raft3'
   }],
   casts: [{
     id: 0,
-    name: '農夫',
-    appearance: 'farmer1',
+    name: '魔獣使い',
+    appearance: 'beasttamer1',
     role: {
-      rower: true
-    },
+      rower: true,
+      predators: [{
+        predator: 5,
+        guardian: 4,
+      }, {
+        predator: 6,
+        guardian: 4,
+      }, {
+        predator: 7,
+        guardian: 4,
+      }]
+    }
   }, {
     id: 1,
-    name: 'オオカミ',
-    description: '農夫が目を離すとヤギを食べる。',
-    appearance: 'wolf1',
+    name: '魔獣a',
+    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
+    appearance: 'therianthropy1',
     role: {
       rower: false
-    },
+    }
   }, {
     id: 2,
-    name: 'ヤギ',
-    description: '農夫が目を離すとキャベツを食べる。',
-    appearance: 'goat1',
+    name: '魔獣b',
+    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
+    appearance: 'therianthropy2',
+    role: {
+      rower: false
+    }
+  }, {
+    id: 3,
+    name: '魔獣c',
+    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
+    appearance: 'therianthropy3',
+    role: {
+      rower: false
+    }
+  }, {
+    id: 4,
+    name: '死霊使い',
+    appearance: 'necromancer1',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 1,
+        guardian: 0,
+      }, {
+        predator: 2,
+        guardian: 0,
+      }, {
+        predator: 3,
+        guardian: 0,
+      }]
+    }
+  }, {
+    id: 5,
+    name: '死霊a',
+    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
+    appearance: 'undead1',
+    role: {
+      rower: false
+    }
+  }, {
+    id: 6,
+    name: '死霊b',
+    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
+    appearance: 'undead2',
+    role: {
+      rower: false
+    }
+  }, {
+    id: 7,
+    name: '死霊c',
+    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
+    appearance: 'undead3',
+    role: {
+      rower: false
+    }
+  }, {
+    id: 8,
+    name: '村人',
+    appearance: 'villager1',
     role: {
       rower: false,
       predators: [{
         predator: 1,
-        guardian: 0
-      }]
-    }
-  }, {
-    id: 3,
-    name: 'キャベツ',
-    appearance: 'cabbage1',
-    role: {
-      rower: false,
-      predators: [{
+        guardian: 0,
+      }, {
         predator: 2,
-        guardian: 0
+        guardian: 0,
+      }, {
+        predator: 3,
+        guardian: 0,
+      }, {
+        predator: 5,
+        guardian: 4,
+      }, {
+        predator: 6,
+        guardian: 4,
+      }, {
+        predator: 7,
+        guardian: 4,
       }]
     }
   }]

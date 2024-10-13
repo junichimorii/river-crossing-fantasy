@@ -1,4 +1,4 @@
-import type { Bound } from '@/types/state'
+import type { Bound } from '@/types'
 
 /**
  * 行動履歴
