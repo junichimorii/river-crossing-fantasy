@@ -16,9 +16,7 @@ import farmer1 from './farmer1.png'
 import fighter1 from './fighter1.png'
 import goat1 from './goat1.png'
 import knight11 from './knight11.png'
-import knight12 from './knight12.png'
 import knight21 from './knight21.png'
-import knight22 from './knight22.png'
 import knight31 from './knight31.png'
 import knight41 from './knight41.png'
 import mage1 from './mage1.png'
@@ -27,7 +25,6 @@ import maid2 from './maid2.png'
 import necromancer1 from './necromancer1.png'
 import porter1 from './porter1.png'
 import porter2 from './porter2.png'
-import porter3 from './porter3.png'
 import priest1 from './priest1.png'
 import priest2 from './priest2.png'
 import priest3 from './priest3.png'
@@ -67,14 +64,11 @@ const sprites: {
   farmer1,
   fighter1,
   goat1,
-  knight11, knight12,
-  knight21, knight22,
-  knight31,
-  knight41,
+  knight11, knight21, knight31, knight41,
   maid1, maid2,
   mage1,
   necromancer1,
-  porter1, porter2, porter3,
+  porter1, porter2,
   priest1, priest2, priest3,
   princess11, princess12, princess13,
   princess21, princess22, princess23,
