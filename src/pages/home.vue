@@ -2,7 +2,7 @@
 import casts from '@/assets/images/casts';
 import sprites from '@/assets/images/landscapes';
 import { useCast } from '@/composables';
-import { convert } from '@/composables/use-text';
+import { convert, toKebabCase } from '@/composables/use-text';
 import categories from '@/stores/category';
 import { useRecordsStore } from '@/stores/records';
 import { useSessionStore } from '@/stores/session';
@@ -47,11 +47,11 @@ const items = computed(() => categories.map(category => Object.assign(category, 
             sm="6"
             xl="4"
           >
-            <v-card class="opacity-90">
-              <v-card-title
-                :class="`bg-category${category.id}`"
-                class="elevation-4"
-              >
+            <v-card
+              :id="`#${toKebabCase(category.name)}`"
+              class="opacity-90"
+            >
+              <v-card-title :class="`bg-category${category.id}`">
                 {{ category.name }}
               </v-card-title>
               <v-card-subtitle class="py-1">

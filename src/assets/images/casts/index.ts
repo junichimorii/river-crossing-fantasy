@@ -24,10 +24,10 @@ import knight41 from './knight41.png'
 import mage1 from './mage1.png'
 import maid1 from './maid1.png'
 import maid2 from './maid2.png'
-import merchant1 from './merchant1.png'
-import merchant2 from './merchant2.png'
-import merchant3 from './merchant3.png'
 import necromancer1 from './necromancer1.png'
+import porter1 from './porter1.png'
+import porter2 from './porter2.png'
+import porter3 from './porter3.png'
 import priest1 from './priest1.png'
 import priest2 from './priest2.png'
 import priest3 from './priest3.png'
@@ -49,6 +49,8 @@ import therianthropy5 from './therianthropy5.png'
 import thief1 from './thief1.png'
 import thief2 from './thief2.png'
 import undead1 from './undead1.png'
+import undead2 from './undead2.png'
+import undead3 from './undead3.png'
 import villager1 from './villager1.png'
 import villager2 from './villager2.png'
 import villager3 from './villager3.png'
@@ -71,8 +73,8 @@ const sprites: {
   knight41,
   maid1, maid2,
   mage1,
-  merchant1, merchant2, merchant3,
   necromancer1,
+  porter1, porter2, porter3,
   priest1, priest2, priest3,
   princess11, princess12, princess13,
   princess21, princess22, princess23,
@@ -81,7 +83,7 @@ const sprites: {
   princess51,
   therianthropy1, therianthropy2, therianthropy3, therianthropy4, therianthropy5,
   thief1, thief2,
-  undead1,
+  undead1, undead2, undead3,
   villager1, villager2, villager3,
   wolf1,
 }

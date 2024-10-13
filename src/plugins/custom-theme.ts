@@ -1,7 +1,7 @@
 export const colors = {
   primary: '#00c853', // green a700
   secondary: '#69f0ae', // green a200
-  category0: '#4caf50', // Introduction, green 500
+  category0: '#4caf50', // Tutorial, green 500
   category1: '#00bcd4', // Multiracial Travelers, cyan 500
   category2: '#ff9800', // Predators and Guardians, orange 500
   category3: '#9c27b0', // Escort and Celebrity, purple 500

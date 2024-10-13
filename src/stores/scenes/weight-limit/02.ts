@@ -1,20 +1,20 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 13,
-  title: '商人は荷物が多い(2)',
+  title: 'ポーターは荷物が多い(2)',
   category: 6,
-  order: 1,
+  order: 2,
   rules: {
     conditions: [
       '重量制限に注意しながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '2人乗り、重量制限2.0人分の筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '重量制限に注意しながら川を渡るパズルです。',
     ],
   },
-  passing: 15,
+  passing: 11,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -22,52 +22,44 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '戦士',
-    appearance: 'fighter1',
+    name: 'ポーターA',
+    appearance: 'porter1',
     role: {
       rower: true,
-      weight: 1
-    }
+      weight: 1.5
+    },
   }, {
     id: 1,
-    name: '盗賊',
-    appearance: 'thief1',
+    name: 'ポーターB',
+    appearance: 'porter2',
     role: {
       rower: true,
-      weight: 1
-    }
+      weight: 1.5
+    },
   }, {
     id: 2,
-    name: '魔法使い',
-    appearance: 'mage1',
+    name: '村人A',
+    appearance: 'villager1',
     role: {
       rower: true,
       weight: 1
     }
   }, {
     id: 3,
-    name: '商人A',
-    appearance: 'merchant1',
+    name: '村人B',
+    appearance: 'villager2',
     role: {
       rower: true,
-      weight: 2,
-    },
+      weight: 1
+    }
   }, {
     id: 4,
-    name: '商人B',
-    appearance: 'merchant2',
+    name: '村人C',
+    appearance: 'villager3',
     role: {
       rower: true,
-      weight: 2,
-    },
-  }, {
-    id: 5,
-    name: '商人C',
-    appearance: 'merchant3',
-    role: {
-      rower: true,
-      weight: 2,
-    },
+      weight: 1
+    }
   }]
 })
 export default scene

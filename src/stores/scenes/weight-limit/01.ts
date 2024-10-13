@@ -1,7 +1,7 @@
 import type { Scene } from '@/types/scene'
 const scene: Scene = Object.freeze({
   id: 8,
-  title: '商人は荷物が多い(1)',
+  title: 'ポーターは荷物が多い(1)',
   category: 6,
   order: 1,
   rules: {
@@ -9,10 +9,10 @@ const scene: Scene = Object.freeze({
       '重量制限に気を付けながら、すべての登場人物を対岸に渡す',
       '5回以内にクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
+    transportation: '2人乗り、重量制限2.0人分の筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '筏（いかだ）には、定員の他に重量制限が設定されています。',
-      '今回登場する商人は、荷物が多いため、**定員2人分の重量があります**。',
+      '今回登場するポーター（荷物持ち）は、**定員1.5人分の重量があります**。',
       '重量オーバーになる場合は、登場人物を筏（いかだ）に乗せることはできません。',
     ],
   },
@@ -24,27 +24,27 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '戦士',
-    appearance: 'fighter1',
+    name: 'ポーター',
+    appearance: 'porter1',
     role: {
       rower: true,
-      weight: 1
+      weight: 1.5
     }
   }, {
     id: 1,
-    name: '盗賊',
-    appearance: 'thief1',
+    name: '村人A',
+    appearance: 'villager1',
     role: {
       rower: true,
       weight: 1
     }
   }, {
     id: 2,
-    name: '商人',
-    appearance: 'merchant1',
+    name: '村人B',
+    appearance: 'villager2',
     role: {
       rower: true,
-      weight: 2,
+      weight: 1,
     }
   }]
 })

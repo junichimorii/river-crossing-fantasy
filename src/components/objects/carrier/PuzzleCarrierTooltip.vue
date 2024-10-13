@@ -12,7 +12,7 @@ const text = computed(() => hasPassengers(carrier.value)
   ? scene.value.casts.some(cast => cast.role.duration)
     ? `所要時間: ${getElapsedTime(carrier.value)}分`
     : scene.value.casts.some(cast => cast.role.weight)
-      ? `積載量: ${getLoad(carrier.value)} / ${carrier.value.capacity}`
+      ? `積載量: ${getLoad(carrier.value).toFixed(1)} / ${carrier.value.capacity.toFixed(1)}`
       : ''
   : '')
 const model = computed(() => !disabled.value && text.value !== '')
