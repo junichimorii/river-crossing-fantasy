@@ -21,7 +21,7 @@ const useSolve = (
   const { isOperable } = useCarrier(state, scene)
   const { isPeaceable } = useCasts(state, scene)
   const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
-  // 時間制限のあるパズル
+  // 時間制限のあるパズルかどうか
   const hasTimeLimit = scene.value.category === 7
 
   /**
@@ -48,7 +48,6 @@ const useSolve = (
       const currentState = queue.shift() as ExtendedState
       const nextMoves = await generateMoves()
       for await (const move of nextMoves) {
-        let parsedCurrentMove = undefined
         state.value = restore(currentState) as ExtendedState
         const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
         .then(results => !results.includes(false))
@@ -62,7 +61,6 @@ const useSolve = (
         const parsedPreviousState = parseState(state)
         const beforeCarriersState = state.value
         for await (const carrier of scene.value.carriers) {
-          parsedCurrentMove = undefined
           state.value = restore(beforeCarriersState) as ExtendedState
           const destinations = getDestinations(carrier)
           const beforeDestinationsState = state.value
@@ -76,15 +74,15 @@ const useSolve = (
               if (!isPeaceable.value) continue destinations
             }
             if (hasTimeLimit) state.value.count += move.value
-            parsedCurrentMove = parseMove(move)
+            const parsedCurrentState = parseState(state)
+            const parsedCurrentMove = parseMove(move)
+            if (!visited.has(parsedCurrentState)) {
+              queue.push(state.value)
+              history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
+              visited.add(parsedCurrentState)
+              console.log(parsedCurrentState, parsedCurrentMove)
+            }
           }
-        }
-        const parsedCurrentState = parseState(state)
-        if (parsedCurrentMove && !visited.has(parsedCurrentState)) {
-          queue.push(state.value)
-          history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
-          visited.add(parsedCurrentState)
-          console.log(parsedCurrentState, parsedCurrentMove)
         }
       }
       if (hasTimeLimit && state.value.count > 99) break

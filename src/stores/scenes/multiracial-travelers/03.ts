@@ -45,7 +45,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '吟遊詩人',
-    description: '独りぼっちを嫌う。',
     appearance: 'bard1',
     role: {
       rower: true,

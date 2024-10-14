@@ -10,6 +10,11 @@ const scene: Scene = Object.freeze({
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、村人、エルフ、吟遊詩人のみ。',
+    tips: [
+      '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
+      'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      '吟遊詩人は、独りきりになることを嫌います。'
+    ],
   },
   passing: 11,
   carriers: [{
@@ -35,19 +40,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '村人',
-    appearance: 'villager1',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
-    }
-  }, {
-    id: 3,
     name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf1',
     role: {
       rower: true,
@@ -59,13 +52,23 @@ const scene: Scene = Object.freeze({
       }]
     }
   }, {
-    id: 4,
+    id: 3,
     name: '吟遊詩人',
-    description: '独りぼっちを嫌う。',
     appearance: 'bard1',
     role: {
       rower: true,
       monophobia: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 4,
+    name: '村人',
+    appearance: 'villager1',
+    role: {
+      rower: true,
       predators: [{
         predator: 1,
         guardian: 0

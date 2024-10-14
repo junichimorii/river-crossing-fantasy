@@ -1,9 +1,9 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 60,
-  title: '一触即発パーティ(6)',
-  category: 8,
-  order: 6,
+  id: 71,
+  title: '絶体絶命パーティ(5)',
+  category: 9,
+  order: 5,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
@@ -16,7 +16,7 @@ const scene: Scene = Object.freeze({
       '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
     ],
   },
-  passing: 13,
+  passing: 21,
   recommended: true,
   carriers: [{
     id: 0,
@@ -37,7 +37,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使いと死霊以外の全員を襲う。',
+    description: '魔獣使いが目を離すと死霊以外の全員を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
@@ -56,7 +56,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '死霊',
-    description: '死霊使いが目を離すと死霊使いと魔獣以外の全員を襲う。',
+    description: '死霊使いが目を離すと魔獣以外の全員を襲う。',
     appearance: 'undead1',
     role: {
       rower: false
@@ -78,7 +78,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 5,
-    name: '青国王女',
+    name: '青国王女a',
     appearance: 'princess11',
     role: {
       rower: false,
@@ -89,12 +89,29 @@ const scene: Scene = Object.freeze({
         predator: 3,
         guardian: 2,
       }, {
-        predator: 6,
+        predator: 7,
         guardian: 4
       }]
     }
   }, {
     id: 6,
+    name: '青国王女b',
+    appearance: 'princess12',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 3,
+        guardian: 2,
+      }, {
+        predator: 7,
+        guardian: 4
+      }]
+    }
+  }, {
+    id: 7,
     name: '赤国騎士',
     description: '青国騎士が目を離すと青国王女を襲う。',
     appearance: 'knight21',
@@ -109,8 +126,8 @@ const scene: Scene = Object.freeze({
       }]
     }
   }, {
-    id: 7,
-    name: '赤国王女',
+    id: 8,
+    name: '赤国王女a',
     appearance: 'princess21',
     role: {
       rower: false,
@@ -122,7 +139,24 @@ const scene: Scene = Object.freeze({
         guardian: 2,
       }, {
         predator: 4,
-        guardian: 6
+        guardian: 7
+      }]
+    }
+  }, {
+    id: 9,
+    name: '赤国王女b',
+    appearance: 'princess22',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 3,
+        guardian: 2,
+      }, {
+        predator: 4,
+        guardian: 7
       }]
     }
   }]

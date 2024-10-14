@@ -21,6 +21,7 @@ import knight11 from './knight11.png'
 import knight21 from './knight21.png'
 import knight31 from './knight31.png'
 import knight41 from './knight41.png'
+import knight51 from './knight51.png'
 import mage1 from './mage1.png'
 import maid1 from './maid1.png'
 import maid2 from './maid2.png'
@@ -68,7 +69,7 @@ const sprites: {
   farmer1,
   fighter1,
   goat1,
-  knight11, knight21, knight31, knight41,
+  knight11, knight21, knight31, knight41, knight51,
   maid1, maid2,
   mage1,
   necromancer1,

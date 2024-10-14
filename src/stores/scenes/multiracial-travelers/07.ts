@@ -11,7 +11,8 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      'エルフと人間が筏（いかだ）に同乗せず、かつ吟遊詩人が独りぼっちにならない状態を維持しながら川を渡るパズルです。',
+      'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      '吟遊詩人は、独りきりになることを嫌います。'
     ],
   },
   passing: 9,
@@ -37,7 +38,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'エルフA',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf1',
     role: {
       rower: true,
@@ -47,7 +47,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: 'エルフB',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf2',
     role: {
       rower: true,
@@ -57,7 +56,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: '吟遊詩人A',
-    description: '独りぼっちを嫌う。',
     appearance: 'bard1',
     role: {
       rower: true,
@@ -66,7 +64,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: '吟遊詩人B',
-    description: '独りぼっちを嫌う。',
     appearance: 'bard2',
     role: {
       rower: true,

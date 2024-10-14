@@ -6,10 +6,15 @@ const scene: Scene = Object.freeze({
   order: 5,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ筏（いかだ）を修理しながら、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、エルフ、大工のみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、エルフ、吟遊詩人のみ。',
+    tips: [
+      '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
+      'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      '吟遊詩人は、独りきりになることを嫌います。'
+    ],
   },
   passing: 13,
   carriers: [{
@@ -35,30 +40,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '村人a',
-    appearance: 'villager1',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
-    }
-  }, {
-    id: 3,
-    name: '村人b',
-    appearance: 'villager2',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
-    }
-  }, {
-    id: 4,
-    name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
+    name: 'エルフA',
     appearance: 'elf1',
     role: {
       rower: true,
@@ -70,27 +52,50 @@ const scene: Scene = Object.freeze({
       }]
     }
   }, {
-    id: 5,
-    name: '大工A',
-    appearance: 'carpenter1',
+    id: 3,
+    name: 'エルフB',
+    appearance: 'elf2',
     role: {
       rower: true,
-      repairer: true,
+      demihuman: true,
+      misanthrope: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 4,
+    name: '吟遊詩人',
+    appearance: 'bard1',
+    role: {
+      rower: true,
+      monophobia: true,
       predators: [{
         predator: 1,
         guardian: 0,
       }]
     }
   }, {
-    id: 6,
-    name: '大工B',
-    appearance: 'carpenter2',
+    id: 5,
+    name: '村人a',
+    appearance: 'villager1',
     role: {
-      rower: true,
-      repairer: true,
+      rower: false,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 6,
+    name: '村人b',
+    appearance: 'villager2',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
       }]
     }
   }]

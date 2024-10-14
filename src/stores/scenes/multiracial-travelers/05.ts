@@ -44,7 +44,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: 'エルフA',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf1',
     role: {
       rower: true,
@@ -54,7 +53,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 4,
     name: 'エルフB',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf2',
     role: {
       rower: true,
@@ -64,7 +62,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: 'エルフC',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf3',
     role: {
       rower: true,

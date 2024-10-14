@@ -15,6 +15,8 @@ const useCast = () => {
       : '',
     cast.role.duration !== undefined ? `橋を渡るのに${cast.role.duration}分必要。` : '',
     cast.role.weight !== undefined ? `重量は定員${cast.role.weight.toFixed(1)}人分。` : '',
+    cast.role.misanthrope ? '人間と一緒に筏（いかだ）に乗ることを嫌う。' : '',
+    cast.role.monophobia ? '独りぼっちを嫌う。' : '',
     cast.role.repairer ? '筏（いかだ）を修理できる。' : '',
     cast.description
   ].join('')

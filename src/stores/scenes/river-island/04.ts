@@ -1,20 +1,24 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 35,
-  title: '一触即発パーティ（最上級編2）',
-  category: 9,
+  id: 75,
+  title: '魔獣たちの反乱＋(2)',
+  category: 10,
   order: 4,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ筏（いかだ）を修理しながら、すべての登場人物を対岸に渡す',
+      '両岸および中州の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
+    tips: [
+      '川の中間にある中州に降りることができます。',
+      '両岸および中洲において、魔獣の数が魔獣使いの数より多くなった場合、魔獣が反乱を起こします。',
+    ],
   },
   landscape: {
     island: true
   },
-  passing: 38,
+  passing: 34,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -22,120 +26,83 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使い',
+    name: '魔獣使いA',
     appearance: 'beasttamer1',
     role: {
-      rower: true
-    },
+      rower: true,
+      rebel: false
+    }
   }, {
     id: 1,
-    name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
-    appearance: 'therianthropy1',
+    name: '魔獣使いB',
+    appearance: 'beasttamer2',
     role: {
       rower: true,
-      demihuman: true
+      rebel: false
     }
   }, {
     id: 2,
-    name: '青国騎士',
-    description: '赤国騎士が目を離すと赤国王女を襲う。',
-    appearance: 'knight11',
+    name: '魔獣使いC',
+    appearance: 'beasttamer3',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: false
     }
   }, {
     id: 3,
-    name: '青国王女',
-    appearance: 'princess11',
+    name: '魔獣使いD',
+    appearance: 'beasttamer4',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 4,
-        guardian: 2
-      }]
+      rebel: false
     }
   }, {
     id: 4,
-    name: '赤国騎士',
-    description: '青国騎士が目を離すと青国王女を襲う。',
-    appearance: 'knight21',
+    name: '魔獣使いD',
+    appearance: 'beasttamer5',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: false
     }
   }, {
     id: 5,
-    name: '赤国王女',
-    appearance: 'princess21',
+    name: '魔獣A',
+    appearance: 'therianthropy1',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 4
-      }]
+      rebel: true
     }
   }, {
     id: 6,
-    name: '村人',
-    appearance: 'villager1',
+    name: '魔獣B',
+    appearance: 'therianthropy2',
     role: {
       rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: true
     }
   }, {
     id: 7,
-    name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: 'elf1',
+    name: '魔獣C',
+    appearance: 'therianthropy3',
     role: {
       rower: true,
-      demihuman: true,
-      misanthrope: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: true
     }
   }, {
     id: 8,
-    name: '大工A',
-    appearance: 'carpenter1',
+    name: '魔獣D',
+    appearance: 'therianthropy4',
     role: {
       rower: true,
-      repairer: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: true
     }
   }, {
     id: 9,
-    name: '大工B',
-    appearance: 'carpenter2',
+    name: '魔獣E',
+    appearance: 'therianthropy5',
     role: {
       rower: true,
-      repairer: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
+      rebel: true
     }
   }]
 })

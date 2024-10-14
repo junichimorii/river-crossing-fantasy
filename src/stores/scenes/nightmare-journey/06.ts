@@ -1,15 +1,19 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 31,
-  title: '一触即発パーティ(8)',
-  category: 8,
-  order: 8,
+  id: 72,
+  title: '絶体絶命パーティ(6)',
+  category: 9,
+  order: 6,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、かつエルフと人間が筏（いかだ）に同乗しないよう気を遣いながら、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフのみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士のみ。',
+    tips: [
+      '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
+      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
+    ],
   },
   passing: 21,
   carriers: [{
@@ -57,6 +61,12 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 5,
         guardian: 2
+      }, {
+        predator: 8,
+        guardian: 2
+      }, {
+        predator: 9,
+        guardian: 2
       }]
     }
   }, {
@@ -70,6 +80,12 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 5,
+        guardian: 2
+      }, {
+        predator: 8,
+        guardian: 2
+      }, {
+        predator: 9,
         guardian: 2
       }]
     }
@@ -97,6 +113,12 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
+      }, {
+        predator: 8,
+        guardian: 5
+      }, {
+        predator: 9,
+        guardian: 5
       }]
     }
   }, {
@@ -111,17 +133,33 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
+      }, {
+        predator: 8,
+        guardian: 5
+      }, {
+        predator: 9,
+        guardian: 5
       }]
     }
   }, {
     id: 8,
-    name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
-    appearance: 'elf1',
+    name: '緑国騎士',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    appearance: 'knight31',
     role: {
       rower: true,
-      demihuman: true,
-      misanthrope: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }]
+    }
+  }, {
+    id: 9,
+    name: '紫国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight41',
+    role: {
+      rower: true,
       predators: [{
         predator: 1,
         guardian: 0

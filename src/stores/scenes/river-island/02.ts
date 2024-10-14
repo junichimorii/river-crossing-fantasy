@@ -1,20 +1,24 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 33,
-  title: '魔獣たちの反乱（最上級編）',
-  category: 9,
+  id: 74,
+  title: '王女親衛隊の攻防＋(2)',
+  category: 10,
   order: 2,
   rules: {
     conditions: [
-      '両岸および中州の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
+      '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
+    tips: [
+      '川の中間にある中州に降りることができます。',
+      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
+    ],
   },
   landscape: {
     island: true
   },
-  passing: 26,
+  passing: 34,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -22,67 +26,143 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: '魔獣使いA',
-    appearance: 'beasttamer1',
+    name: '青国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight11',
     role: {
-      rower: true,
-      rebel: false
+      rower: true
     }
   }, {
     id: 1,
-    name: '魔獣使いB',
-    appearance: 'beasttamer2',
+    name: '青国王女',
+    appearance: 'princess11',
     role: {
       rower: true,
-      rebel: false
+      predators: [{
+        predator: 2,
+        guardian: 0
+      }, {
+        predator: 4,
+        guardian: 0
+      }, {
+        predator: 6,
+        guardian: 0
+      }, {
+        predator: 8,
+        guardian: 0
+      }]
     }
   }, {
     id: 2,
-    name: '魔獣使いC',
-    appearance: 'beasttamer3',
+    name: '赤国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight21',
     role: {
-      rower: true,
-      rebel: false
+      rower: true
     }
   }, {
     id: 3,
-    name: '魔獣使いD',
-    appearance: 'beasttamer4',
+    name: '赤国王女',
+    appearance: 'princess21',
     role: {
       rower: true,
-      rebel: false
+      predators: [{
+        predator: 0,
+        guardian: 2
+      }, {
+        predator: 4,
+        guardian: 2
+      }, {
+        predator: 6,
+        guardian: 2
+      }, {
+        predator: 8,
+        guardian: 2
+      }]
     }
   }, {
     id: 4,
-    name: '魔獣A',
-    appearance: 'therianthropy1',
+    name: '緑国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight31',
     role: {
-      rower: true,
-      rebel: true
+      rower: true
     }
   }, {
     id: 5,
-    name: '魔獣B',
-    appearance: 'therianthropy2',
+    name: '緑国王女',
+    appearance: 'princess31',
     role: {
       rower: true,
-      rebel: true
+      predators: [{
+        predator: 0,
+        guardian: 4
+      }, {
+        predator: 2,
+        guardian: 4
+      }, {
+        predator: 6,
+        guardian: 4
+      }, {
+        predator: 8,
+        guardian: 4
+      }]
     }
   }, {
     id: 6,
-    name: '魔獣C',
-    appearance: 'therianthropy3',
+    name: '紫国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight41',
     role: {
-      rower: true,
-      rebel: true
+      rower: true
     }
   }, {
     id: 7,
-    name: '魔獣D',
-    appearance: 'therianthropy4',
+    name: '紫国王女',
+    appearance: 'princess41',
     role: {
       rower: true,
-      rebel: true
+      predators: [{
+        predator: 0,
+        guardian: 6
+      }, {
+        predator: 2,
+        guardian: 6
+      }, {
+        predator: 4,
+        guardian: 6
+      }, {
+        predator: 8,
+        guardian: 6
+      }]
+    }
+  }, {
+    id: 8,
+    name: '黒国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight51',
+    role: {
+      rower: true
+    }
+  }, {
+    id: 9,
+    name: '黒国王女',
+    appearance: 'princess51',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 0,
+        guardian: 8
+      }, {
+        predator: 2,
+        guardian: 8
+      }, {
+        predator: 4,
+        guardian: 8
+      }, {
+        predator: 6,
+        guardian: 8
+      }]
     }
   }]
 })

@@ -1,8 +1,8 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
   id: 32,
-  title: '王女親衛隊の攻防（最上級編）',
-  category: 9,
+  title: '王女親衛隊の攻防＋(1)',
+  category: 10,
   order: 1,
   rules: {
     conditions: [
@@ -12,8 +12,7 @@ const scene: Scene = Object.freeze({
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
     tips: [
       '川の中間にある中州に降りることができます。',
-      '中州にいる登場人物を右方向にスワイプすると筏（いかだ）に乗り、左方向にスワイプすると筏（いかだ）から降ります。',
-      '筏（いかだ）を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
+      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
     ],
   },
   landscape: {

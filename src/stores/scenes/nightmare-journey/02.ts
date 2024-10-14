@@ -1,9 +1,9 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 60,
-  title: '一触即発パーティ(6)',
-  category: 8,
-  order: 6,
+  id: 69,
+  title: '絶体絶命パーティ(2)',
+  category: 9,
+  order: 2,
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
@@ -16,8 +16,7 @@ const scene: Scene = Object.freeze({
       '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
     ],
   },
-  passing: 13,
-  recommended: true,
+  passing: 17,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -33,14 +32,15 @@ const scene: Scene = Object.freeze({
         predator: 3,
         guardian: 2,
       }]
-    }
+    },
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使いと死霊以外の全員を襲う。',
+    description: '魔獣使いが目を離すと死霊以外の全員を襲う。',
     appearance: 'therianthropy1',
     role: {
-      rower: false
+      rower: false,
+      demihuman: true
     }
   }, {
     id: 2,
@@ -56,7 +56,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '死霊',
-    description: '死霊使いが目を離すと死霊使いと魔獣以外の全員を襲う。',
+    description: '死霊使いが目を離すと魔獣以外の全員を襲う。',
     appearance: 'undead1',
     role: {
       rower: false
@@ -70,7 +70,7 @@ const scene: Scene = Object.freeze({
       rower: true,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
       }, {
         predator: 3,
         guardian: 2,
@@ -87,9 +87,15 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 3,
-        guardian: 2,
+        guardian: 2
       }, {
         predator: 6,
+        guardian: 4
+      }, {
+        predator: 8,
+        guardian: 4
+      }, {
+        predator: 9,
         guardian: 4
       }]
     }
@@ -102,7 +108,7 @@ const scene: Scene = Object.freeze({
       rower: true,
       predators: [{
         predator: 1,
-        guardian: 0,
+        guardian: 0
       }, {
         predator: 3,
         guardian: 2,
@@ -119,10 +125,46 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 3,
-        guardian: 2,
+        guardian: 2
       }, {
         predator: 4,
         guardian: 6
+      }, {
+        predator: 8,
+        guardian: 6
+      }, {
+        predator: 9,
+        guardian: 6
+      }]
+    }
+  }, {
+    id: 8,
+    name: '緑国騎士',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    appearance: 'knight31',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 3,
+        guardian: 2
+      }]
+    }
+  }, {
+    id: 9,
+    name: '紫国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight41',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 3,
+        guardian: 2
       }]
     }
   }]

@@ -37,6 +37,10 @@ const categories: Category[] = [{
   description: '様々なキャラクターで構成された一団が川を渡るパズルです。'
 }, {
   id: 9,
+  name: 'Nightmare Journey',
+  description: '様々なキャラクターで構成された一団が川を渡るパズルの上級編です。'
+}, {
+  id: 10,
   name: 'River Island',
   description: '川の中州があることで複雑さが増した川渡りパズルです。'
 }]

@@ -38,7 +38,6 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: 'エルフ',
-    description: '人間と一緒に筏（いかだ）に乗ることを嫌う。',
     appearance: 'elf1',
     role: {
       rower: true,

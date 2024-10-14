@@ -26,6 +26,13 @@ import mt04 from './multiracial-travelers/04'
 import mt05 from './multiracial-travelers/05'
 import mt06 from './multiracial-travelers/06'
 import mt07 from './multiracial-travelers/07'
+import nj01 from './nightmare-journey/01'
+import nj02 from './nightmare-journey/02'
+import nj03 from './nightmare-journey/03'
+import nj04 from './nightmare-journey/04'
+import nj05 from './nightmare-journey/05'
+import nj06 from './nightmare-journey/06'
+import nj07 from './nightmare-journey/07'
 import pg01 from './predators-and-guardians/01'
 import pg02 from './predators-and-guardians/02'
 import pg03 from './predators-and-guardians/03'
@@ -39,6 +46,9 @@ import ri01 from './river-island/01'
 import ri02 from './river-island/02'
 import ri03 from './river-island/03'
 import ri04 from './river-island/04'
+import ri05 from './river-island/05'
+import ri06 from './river-island/06'
+import ri07 from './river-island/07'
 import sp01 from './selfish-princesses/01'
 import sp02 from './selfish-princesses/02'
 import sp03 from './selfish-princesses/03'
@@ -55,12 +65,11 @@ import tp04 from './tinderbox-party/04'
 import tp05 from './tinderbox-party/05'
 import tp06 from './tinderbox-party/06'
 import tp07 from './tinderbox-party/07'
-import tp08 from './tinderbox-party/08'
-import tp09 from './tinderbox-party/09'
 import tu01 from './tutorial/01'
 import tu02 from './tutorial/02'
 import tu03 from './tutorial/03'
 import tu04 from './tutorial/04'
+import tu05 from './tutorial/05'
 import wl01 from './weight-limit/01'
 import wl02 from './weight-limit/02'
 import wl03 from './weight-limit/03'
@@ -71,11 +80,12 @@ export {
   ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08,
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
   mt01, mt02, mt03, mt04, mt05, mt06, mt07,
+  nj01, nj02, nj03, nj04, nj05, nj06, nj07,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
-  ri01, ri02, ri03, ri04,
+  ri01, ri02, ri03, ri04, ri05, ri06, ri07,
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
-  tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09,
-  tu01, tu02, tu03, tu04,
+  tp01, tp02, tp03, tp04, tp05, tp06, tp07,
+  tu01, tu02, tu03, tu04, tu05,
   wl01, wl02, wl03, wl04
 }
 

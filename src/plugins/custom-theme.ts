@@ -10,7 +10,8 @@ export const colors = {
   category6: '#795548', // Weight Limit, brown 500
   category7: '#3f51b5', // Bridge and Torch, indigo 500
   category8: '#f44336', // Tinderbox Party, red 500
-  category9: '#e91e63', // River Island, pink 500
+  category9: '#673ab7', // Nightmare Journey, deep-purple 500
+  category10: '#e91e63', // River Island, pink 500
   level1: '#2196f3', // blue 500
   level2: '#8bc34a', // light-green 500
   level3: '#ffc107', // amber 500
