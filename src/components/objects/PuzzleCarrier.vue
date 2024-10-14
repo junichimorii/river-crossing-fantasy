@@ -16,7 +16,7 @@ const { passengers } = useCasts(state, scene)
 const { arrive } = useScene(state, scene)
 
 /** useTransitionで変化させるY座標 */
- const source = computed(() => coord(carrier.value))
+const source = computed(() => coord(carrier.value))
 
 /** 垂直方向の位置を変化させる */
 const amount = useTransition(source, {
