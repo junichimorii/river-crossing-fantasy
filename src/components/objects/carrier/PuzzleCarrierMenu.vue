@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useCarrier, useCarrierState, useCasts } from '@/composables';
+import { useAppearance, useCarrier, useCarrierState, useCasts } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 import type { Bound, Carrier } from '@/types';
 const props = defineProps<{
@@ -10,12 +10,15 @@ const { state, scene, disabled } = storeToRefs(useSceneStore())
 const { coord, leave: leaveCarrier } = useCarrierState(state)
 const { hasPassengers, getDestination, isOperable } = useCarrier(state, scene)
 const { isPeaceable } = useCasts(state, scene)
+const { gridSize } = useAppearance()
 /** 進行可能かどうか */
 const isEnabled = computed(() => !disabled.value && isOperable(carrier.value) && isPeaceable.value)
 /** 上り方向に進行可能 */
 const inbound = computed(() => isEnabled.value && coord(carrier.value) <= 0)
 /** 下り方向に進行可能 */
 const outbound = computed(() => isEnabled.value && coord(carrier.value) >= 0)
+/** オフセット */
+const offset = computed(() => -gridSize.value * 0.25)
 /** 出発する */
 const leave = async (
   bound: Bound,
@@ -32,6 +35,7 @@ const leave = async (
     :close-on-content-click="false"
     disabled
     location="end center"
+    :offset="offset"
     persistent
     transition="scroll-y-transition"
   >

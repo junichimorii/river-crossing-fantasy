@@ -16,7 +16,6 @@ declare module 'vue' {
     AppSettingsClear: typeof import('./components/home/AppSettingsClear.vue')['default']
     AppSettingsVolume: typeof import('./components/home/AppSettingsVolume.vue')['default']
     AppToolbar: typeof import('./components/home/AppToolbar.vue')['default']
-    Home: typeof import('./components/home/home.vue')['default']
     PuzzleBottomMenu: typeof import('./components/PuzzleBottomMenu.vue')['default']
     PuzzleCarrier: typeof import('./components/objects/PuzzleCarrier.vue')['default']
     PuzzleCarrierMenu: typeof import('./components/objects/carrier/PuzzleCarrierMenu.vue')['default']
