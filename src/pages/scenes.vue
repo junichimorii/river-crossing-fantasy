@@ -60,7 +60,6 @@ const headers = [
             v-for="cast in value"
             :key="cast.id"
             tile
-            style="border-style: none;"
           >
             <v-img
               :src="casts[cast.appearance]"

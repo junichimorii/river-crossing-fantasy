@@ -32,7 +32,6 @@ const { scene } = storeToRefs(useSceneStore())
             <v-avatar
               tile
               size="x-large"
-              style="border-style: none;"
             >
               <v-img
                 :src="sprites[cast.appearance]"

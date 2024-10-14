@@ -28,7 +28,6 @@ defineProps<{
             <v-avatar
               start
               size="small"
-              style="border-style: none;"
             >
               <v-img
                 :src="sprites[cast.appearance]"

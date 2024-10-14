@@ -29,8 +29,6 @@ const { scene } = toRefs(props)
         v-for="cast in scene.casts"
         :key="cast.id"
         tile
-        size="small"
-        style="border-style: none;"
       >
         <v-img
           :src="casts[cast.appearance]"
