@@ -44,5 +44,5 @@ const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black'
       @click.stop="session.solve = true"
     />
   </v-toolbar>
-  <SceneSolve :scene="scene" />
+  <SceneSolveDialog :scene="scene" />
 </template>

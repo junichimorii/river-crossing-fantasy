@@ -4,7 +4,7 @@ import {
 } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
-import type { Bound, Carrier, Cast, Move, Scene, State } from '@/types'
+import type { Carrier, Cast, Move, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの進行
@@ -63,13 +63,11 @@ const useScene = (
     carrier: Carrier,
   ) => {
     if (!hasPassengers(carrier)) return
-    const bound: Bound = carrierCoord(carrier) > castCoord(passengers.value[carrier.id][0])
-      ? 'inbound'
-      : 'outbound'
     // 履歴を追加
     const move: Move = {
       casts: passengers.value[carrier.id],
-      bound: bound,
+      origin: castCoord(passengers.value[carrier.id][0]),
+      destination: carrierCoord(carrier),
       value: getElapsedTime(carrier),
     }
     // 登場人物を乗り物から降ろす

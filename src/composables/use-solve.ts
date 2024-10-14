@@ -1,5 +1,5 @@
 import { useCarrier, useCarrierState, useCasts, useScene } from '@/composables'
-import type { Bound, Carrier, CarrierState, Cast, CastState, Move, Scene, State } from '@/types'
+import type { Carrier, CarrierState, Cast, CastState, Move, Scene, State } from '@/types'
 interface ExtendedState extends State {
   count: number
 }
@@ -21,6 +21,8 @@ const useSolve = (
   const { isOperable } = useCarrier(state, scene)
   const { isPeaceable } = useCasts(state, scene)
   const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
+  // 時間制限のあるパズル
+  const hasTimeLimit = scene.value.category === 7
 
   /**
    * パズルを解く
@@ -46,17 +48,21 @@ const useSolve = (
       const currentState = queue.shift() as ExtendedState
       const nextMoves = await generateMoves()
       for await (const move of nextMoves) {
+        let parsedCurrentMove = undefined
         state.value = restore(currentState) as ExtendedState
         const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
         .then(results => !results.includes(false))
         if (!isAllPickedUp) continue
-        await safetyConfirmation()
-        if (!isPeaceable.value) continue
-        const isAllReady = scene.value.carriers.every(carrier => isOperable(carrier))
-        if (!isAllReady) continue
+        if (!hasTimeLimit) {
+          await safetyConfirmation()
+          if (!isPeaceable.value) continue
+        }
+        const isReady = scene.value.carriers.some(carrier => isOperable(carrier))
+        if (!isReady) continue
         const parsedPreviousState = parseState(state)
         const beforeCarriersState = state.value
         for await (const carrier of scene.value.carriers) {
+          parsedCurrentMove = undefined
           state.value = restore(beforeCarriersState) as ExtendedState
           const destinations = getDestinations(carrier)
           const beforeDestinationsState = state.value
@@ -65,23 +71,23 @@ const useSolve = (
             state.value = restore(beforeDestinationsState) as ExtendedState
             const move = await leave(carrier, destination).then(() => arrive(carrier))
             if (!move) continue destinations
-            await safetyConfirmation()
-            if (!isPeaceable.value) continue destinations
-            state.value.count = scene.value.category === 7
-              ? state.value.count + move.value
-              : 0
-            const parsedCurrentState = parseState(state)
-            const parsedCurrentMove = parseMove(move)
-            if (!visited.has(parsedCurrentState)) {
-              queue.push(state.value)
-              history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
-              visited.add(parsedCurrentState)
-              console.log(parsedCurrentState, parsedCurrentMove)
+            if (!hasTimeLimit) {
+              await safetyConfirmation()
+              if (!isPeaceable.value) continue destinations
             }
+            if (hasTimeLimit) state.value.count += move.value
+            parsedCurrentMove = parseMove(move)
           }
         }
+        const parsedCurrentState = parseState(state)
+        if (parsedCurrentMove && !visited.has(parsedCurrentState)) {
+          queue.push(state.value)
+          history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
+          visited.add(parsedCurrentState)
+          console.log(parsedCurrentState, parsedCurrentMove)
+        }
       }
-      if (state.value.count > 255) break
+      if (hasTimeLimit && state.value.count > 99) break
     }
     return history
   }
@@ -119,12 +125,11 @@ const useSolve = (
         const ids: number[] = JSON.parse(item[1])
         const previousStates: number[][] = JSON.parse(item[2])
         const casts: Cast[] = ids.map(id => scene.value.casts[id])
-        const value: number = Math.max(...casts.map(cast => cast.role.duration || 1))
-        const bound: Bound = states[0][0] > previousStates[0][0] ? 'inbound' : 'outbound'
         const move: Move = {
           casts: casts,
-          bound: bound,
-          value: value
+          origin: previousStates[0][0],
+          destination: states[0][0],
+          value: Math.max(...casts.map(cast => cast.role.duration || 1))
         }
         moves.add(move)
       })
@@ -210,6 +215,7 @@ const useSolve = (
   return {
     solutions,
     solved,
+    hasTimeLimit,
     solve,
   }
 }

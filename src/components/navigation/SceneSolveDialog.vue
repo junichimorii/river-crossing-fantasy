@@ -7,7 +7,7 @@ const props = defineProps<{
 }>()
 const { scene } = toRefs(props)
 const { state: session } = storeToRefs(useSessionStore())
-const { solutions, solved, solve } = useSolve(scene)
+const { solutions, solved, hasTimeLimit, solve } = useSolve(scene)
 </script>
 
 <template>
@@ -47,9 +47,7 @@ const { solutions, solved, solve } = useSolve(scene)
         type="error"
         title="Failed."
       />
-      <v-card-text
-        class="pa-0"
-      >
+      <v-card-text class="pa-0">
         <v-card-item
           v-for="(moves, i) in solutions"
           :key="i"
@@ -57,6 +55,9 @@ const { solutions, solved, solve } = useSolve(scene)
         >
           <v-card-subtitle class="px-3">
             回数: {{ moves.size }}
+            <span v-if="hasTimeLimit">
+              / 時間: {{ Array.from(moves).reduce((a, b) => a + b.value, 0) }}
+            </span>
           </v-card-subtitle>
           <SceneMoves
             :moves="moves"

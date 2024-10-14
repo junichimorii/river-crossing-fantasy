@@ -36,7 +36,7 @@ declare module 'vue' {
     SceneRules: typeof import('./components/navigation/SceneRules.vue')['default']
     SceneScoreRating: typeof import('./components/navigation/SceneScoreRating.vue')['default']
     SceneSettings: typeof import('./components/navigation/SceneSettings.vue')['default']
-    SceneSolve: typeof import('./components/navigation/SceneSolve.vue')['default']
+    SceneSolveDialog: typeof import('./components/navigation/SceneSolveDialog.vue')['default']
     SceneSound: typeof import('./components/navigation/SceneSound.vue')['default']
     SceneSplashDialog: typeof import('./components/navigation/SceneSplashDialog.vue')['default']
     SceneToolbar: typeof import('./components/navigation/SceneToolbar.vue')['default']

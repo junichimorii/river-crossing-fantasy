@@ -18,9 +18,7 @@ defineProps<{
     >
       <v-list-item>
         <v-list-item-title>
-          <v-icon
-            :icon="move.bound === 'inbound' ? '$inbound' : '$outbound'"
-          />
+          <v-icon :icon="move.origin < move.destination ? '$inbound' : '$outbound'" />
           <v-chip
             v-for="cast in move.casts"
             :key="cast.id"

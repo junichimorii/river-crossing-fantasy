@@ -1,4 +1,3 @@
-import type { Bound } from '@/types'
 
 /**
  * 行動履歴
@@ -6,8 +5,10 @@ import type { Bound } from '@/types'
 export interface Move {
   /** 移動した登場人物 */
   casts: Cast[]
-  /** 進行方向 */
-  bound: Bound
+  /** 出発地点の座標 */
+  origin: number
+  /** 到着地点の座標 */
+  destination: number
   /** 所要時間 */
   value: number
   /** 結果 */
