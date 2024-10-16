@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/casts';
-import type { Move } from '@/types';
+import type { Move, Scene } from '@/types';
 defineProps<{
   moves: Set<Move>,
-  category: number
+  scene: Scene
 }>()
 </script>
 
@@ -46,7 +46,7 @@ defineProps<{
           </v-chip>
         </template>
         <template #append>
-          <span v-if="category === 7">
+          <span v-if="scene.landscape?.night">
             + {{ move.value }} min
           </span>
         </template>

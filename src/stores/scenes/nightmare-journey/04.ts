@@ -2,7 +2,7 @@ import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
   id: 31,
   title: '絶体絶命パーティ(4)',
-  category: 9,
+  category: 10,
   order: 4,
   rules: {
     conditions: [
@@ -42,7 +42,7 @@ const scene: Scene = Object.freeze({
     id: 2,
     name: '青国騎士',
     description: '赤国騎士が目を離すと赤国王女を襲う。',
-    appearance: 'knight11',
+    appearance: 'knight1',
     role: {
       rower: true,
       predators: [{
@@ -82,7 +82,7 @@ const scene: Scene = Object.freeze({
     id: 5,
     name: '赤国騎士',
     description: '青国騎士が目を離すと青国王女を襲う。',
-    appearance: 'knight21',
+    appearance: 'knight2',
     role: {
       rower: true,
       predators: [{

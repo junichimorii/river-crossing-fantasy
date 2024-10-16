@@ -3,6 +3,7 @@ export const castState: CastState = Object.freeze({
   coord: -1,
   boarding: null,
   emotions: [],
+  diseased: false,
 })
 
 /**
@@ -25,6 +26,11 @@ const useCastState = (
   const emotions = (
     cast: Cast,
   ) => state.value.casts[cast.id].emotions
+
+  /** 登場人物が状態異常かどうか */
+  const diseased = (
+    cast: Cast,
+  ) => state.value.casts[cast.id].diseased
 
   /** 登場人物が乗り物に乗る */
   const getOn = async (
@@ -64,6 +70,20 @@ const useCastState = (
     state.value.casts[cast.id].emotions = []
   }
 
+  /** 登場人物を状態異常にする */
+  const debuff = (
+    cast: Cast,
+  ) => {
+    state.value.casts[cast.id].diseased = true
+  }
+
+  /** 登場人物の状態異常を治療する */
+  const heal = (
+    cast: Cast,
+  ) => {
+    state.value.casts[cast.id].diseased = false
+  }
+
   /** 2人の登場人物が隣接しているかどうか */
   const isNeighboring = (
     a: Cast,
@@ -75,11 +95,14 @@ const useCastState = (
     coord,
     boarding,
     emotions,
+    diseased,
     getOn,
     getOff,
     arrive,
     feel,
     calmDown,
+    debuff,
+    heal,
     isNeighboring,
   }
 }

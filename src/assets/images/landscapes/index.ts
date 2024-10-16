@@ -1,13 +1,15 @@
-import daytimeRiverIsland from './daytime-river-island.png'
-import daytimeRiver from './daytime-river.png'
-import nightBridge from './night-bridge.png'
+import island from './island.png'
+import night from './night.png'
+import poison from './poison.png'
+import river from './river.png'
 
 const sprites: {
   [key:string]: string
 } = {
-  daytimeRiverIsland,
-  daytimeRiver,
-  nightBridge,
+  island,
+  river,
+  night,
+  poison,
 }
 
 export default sprites

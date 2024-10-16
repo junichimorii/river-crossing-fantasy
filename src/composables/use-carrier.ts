@@ -9,7 +9,7 @@ const useCarrier = (
   scene: Ref<Scene>,
 ) => {
   const { coord } = useCarrierState(state)
-  const { boarding } = useCastState(state)
+  const { boarding, diseased } = useCastState(state)
   const { isRower, getWeight, getDuration } = useCast()
 
   /** 乗り物に乗っている登場人物 */
@@ -55,7 +55,13 @@ const useCarrier = (
   /** 操作可能かどうか */
   const isOperable = (
     carrier: Carrier
-  ) => getPassengers(carrier).some(cast => isRower(cast)) && getLoad(carrier) <= carrier.capacity
+  ) => (
+    // 筏を漕げる乗員がおり、かつ状態異常でない
+    getPassengers(carrier).some(cast => isRower(cast) && !diseased(cast))
+    ||
+    // 筏を漕げる乗員がおり、かつ聖女も同乗している
+    (getPassengers(carrier).some(cast => isRower(cast)) && getPassengers(carrier).some(cast => cast.role.saint))
+  ) && getLoad(carrier) <= carrier.capacity
 
   return {
     getElapsedTime,

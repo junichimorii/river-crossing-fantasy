@@ -11,7 +11,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
 <template>
   <v-main>
     <v-parallax
-      :src="sprites.daytimeRiver"
+      :src="sprites.river"
       class="h-100"
     >
       <AppToolbar />

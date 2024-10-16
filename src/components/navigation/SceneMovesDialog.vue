@@ -24,7 +24,7 @@ const { state: session } = storeToRefs(useSessionStore())
       <v-card-text class="pa-1">
         <SceneMoves
           :moves="moves"
-          :category="scene.category"
+          :scene="scene"
         />
       </v-card-text>
       <v-divider />

@@ -1,6 +1,6 @@
 import {
   useCarrier, useCarrierState, useCastState, useCasts,
-  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers
+  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers, useSceneSaint
 } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
@@ -25,6 +25,8 @@ const useScene = (
   const { isValid: hasMonophobia, test: swarming } = useSceneMonophobia(state, scene)
   // 敵と保護者が登場するパズル
   const { isValid: hasPredators, test: predation } = useScenePredators(state, scene)
+  // 聖女が登場するパズル
+  const { isValid: hasSaint, test: poisoning, crossed: crossedPoison } = useSceneSaint(state, scene)
   // 半数以上を維持するパズル
   const { isValid: hasRebels, test: rebellion } = useSceneRebels(state, scene)
   // 乗り物の耐久性があるパズル
@@ -63,6 +65,8 @@ const useScene = (
     carrier: Carrier,
   ) => {
     if (!hasPassengers(carrier)) return
+    // 対岸到着時の動作
+    await crossed()
     // 履歴を追加
     const move: Move = {
       casts: passengers.value[carrier.id],
@@ -85,6 +89,13 @@ const useScene = (
       }
     }
     return move
+  }
+
+  /** 対岸到着時 */
+  const crossed = async () => {
+    if (hasSaint) {
+      await crossedPoison()
+    }
   }
 
   /** 安否確認 */
@@ -111,6 +122,10 @@ const useScene = (
     // 吟遊詩人（孤独嫌い）が登場するパズルの成否判定
     if (hasMonophobia) {
       await swarming()
+    }
+    // 聖女が登場するパズルの成否判定
+    if (hasSaint) {
+      await poisoning()
     }
     // 乗り物の耐久性があるパズルの成否判定
     if (hasRepairers) {

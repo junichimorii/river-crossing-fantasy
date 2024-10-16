@@ -33,6 +33,14 @@ import nj04 from './nightmare-journey/04'
 import nj05 from './nightmare-journey/05'
 import nj06 from './nightmare-journey/06'
 import nj07 from './nightmare-journey/07'
+import ps01 from './poison-and-saint/01'
+import ps02 from './poison-and-saint/02'
+import ps03 from './poison-and-saint/03'
+import ps04 from './poison-and-saint/04'
+import ps05 from './poison-and-saint/05'
+import ps06 from './poison-and-saint/06'
+import ps07 from './poison-and-saint/07'
+import ps08 from './poison-and-saint/08'
 import pg01 from './predators-and-guardians/01'
 import pg02 from './predators-and-guardians/02'
 import pg03 from './predators-and-guardians/03'
@@ -82,6 +90,7 @@ export {
   mt01, mt02, mt03, mt04, mt05, mt06, mt07,
   nj01, nj02, nj03, nj04, nj05, nj06, nj07,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
+  ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
   ri01, ri02, ri03, ri04, ri05, ri06, ri07,
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07,

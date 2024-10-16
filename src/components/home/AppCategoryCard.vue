@@ -14,7 +14,10 @@ const { category } = toRefs(props)
     :id="`#${toKebabCase(category.name)}`"
     class="opacity-90"
   >
-    <v-card-title :class="`bg-category${category.id}`">
+    <v-card-title
+      :class="`bg-category${category.id}`"
+      style="font-family: 'Architects Daughter', cursive;"
+    >
       {{ category.name }}
     </v-card-title>
     <v-card-subtitle class="py-1">

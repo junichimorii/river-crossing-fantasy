@@ -26,6 +26,8 @@ export interface CastState {
   boarding: number | null
   /** 登場人物の感情 */
   emotions: Emotion[]
+  /** 登場人物の健康状態 */
+  diseased: boolean
 }
 
 /**

@@ -32,8 +32,9 @@ export interface Scene {
  * パズルの特徴
  */
 type Features = {
-  night?: boolean
   island?: boolean
+  night?: boolean
+  poison?: boolean
 }
 
 /**

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import sprites from '@/assets/images/landscapes';
 import { useAppearance } from '@/composables';
 const { stageSize } = useAppearance()
 </script>
@@ -8,7 +9,7 @@ const { stageSize } = useAppearance()
     <div class="d-flex align-center justify-center fill-height bg-secondary">
       <v-img
         cover
-        src="@/assets/images/landscapes/daytime-river.png"
+        :src="sprites.river"
         :height="stageSize"
       >
         <v-img

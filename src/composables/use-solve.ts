@@ -22,7 +22,7 @@ const useSolve = (
   const { isPeaceable } = useCasts(state, scene)
   const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
   // 時間制限のあるパズルかどうか
-  const hasTimeLimit = scene.value.category === 7
+  const isNight = scene.value.landscape?.night
 
   /**
    * パズルを解く
@@ -52,11 +52,11 @@ const useSolve = (
         const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
         .then(results => !results.includes(false))
         if (!isAllPickedUp) continue
-        if (!hasTimeLimit) {
+        if (!isNight) {
           await safetyConfirmation()
           if (!isPeaceable.value) continue
         }
-        const isReady = scene.value.carriers.some(carrier => isOperable(carrier))
+        const isReady = scene.value.carriers.every(carrier => isOperable(carrier))
         if (!isReady) continue
         const parsedPreviousState = parseState(state)
         const beforeCarriersState = state.value
@@ -69,23 +69,23 @@ const useSolve = (
             state.value = restore(beforeDestinationsState) as ExtendedState
             const move = await leave(carrier, destination).then(() => arrive(carrier))
             if (!move) continue destinations
-            if (!hasTimeLimit) {
+            if (!isNight) {
               await safetyConfirmation()
               if (!isPeaceable.value) continue destinations
             }
-            if (hasTimeLimit) state.value.count += move.value
+            if (isNight) state.value.count += move.value
             const parsedCurrentState = parseState(state)
             const parsedCurrentMove = parseMove(move)
             if (!visited.has(parsedCurrentState)) {
               queue.push(state.value)
               history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
               visited.add(parsedCurrentState)
-              console.log(parsedCurrentState, parsedCurrentMove)
+              console.info(parsedCurrentState, parsedCurrentMove)
             }
           }
         }
       }
-      if (hasTimeLimit && state.value.count > 99) break
+      if (isNight && state.value.count > 99) break
     }
     return history
   }
@@ -172,7 +172,8 @@ const useSolve = (
         return {
           coord: state.coord,
           boarding: state.boarding,
-          emotions: state.emotions
+          emotions: state.emotions,
+          diseased: state.diseased
         }
       }),
       count: currentState.count
@@ -213,7 +214,7 @@ const useSolve = (
   return {
     solutions,
     solved,
-    hasTimeLimit,
+    isNight,
     solve,
   }
 }

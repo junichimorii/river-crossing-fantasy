@@ -7,11 +7,14 @@ const { state, scene } = storeToRefs(useSceneStore())
 const { state: session } = storeToRefs(useSessionStore())
 const { stageSize } = useAppearance()
 const { unreachers, reachers, halfways } = useCasts(state, scene)
-const landscape = computed(() => scene.value.landscape?.night
-  ? sprites.nightBridge
-  : scene.value.landscape?.island
-    ? sprites.daytimeRiverIsland
-    : sprites.daytimeRiver
+const landscape = computed(() =>
+  scene.value.landscape?.island
+    ? sprites.island
+    : scene.value.landscape?.night
+      ? sprites.night
+      : scene.value.landscape?.poison
+        ? sprites.poison
+        : sprites.river
 )
 onMounted(async () => {
   session.value.navigation = false

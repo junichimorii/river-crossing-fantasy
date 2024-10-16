@@ -61,7 +61,7 @@ const { solutions, solved, hasTimeLimit, solve } = useSolve(scene)
           </v-card-subtitle>
           <SceneMoves
             :moves="moves"
-            :category="scene.category"
+            :scene="scene"
           />
         </v-card-item>
       </v-card-text>

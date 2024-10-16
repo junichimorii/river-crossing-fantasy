@@ -28,6 +28,8 @@ interface Role {
   misanthrope?: boolean
   /** 孤独が嫌い */
   monophobia?: boolean
+  /** 聖女 */
+  saint?: boolean
   /** 天敵と保護者 */
   predators?: {
     predator: number  // 敵のID

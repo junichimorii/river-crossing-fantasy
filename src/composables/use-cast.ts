@@ -17,6 +17,7 @@ const useCast = () => {
     cast.role.weight !== undefined ? `重量は定員${cast.role.weight.toFixed(1)}人分。` : '',
     cast.role.misanthrope ? '人間と一緒に筏（いかだ）に乗ることを嫌う。' : '',
     cast.role.monophobia ? '独りぼっちを嫌う。' : '',
+    cast.role.saint ? '本人および同乗者の毒を浄化する。' : '',
     cast.role.repairer ? '筏（いかだ）を修理できる。' : '',
     cast.description
   ].join('')

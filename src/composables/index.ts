@@ -15,6 +15,7 @@ import useSceneMonophobia from './use-scene-monophobia'
 import useScenePredators from './use-scene-predators'
 import useSceneRebels from './use-scene-rebels'
 import useSceneRepairers from './use-scene-repairers'
+import useSceneSaint from './use-scene-saint'
 import useSolve from './use-solve'
 export {
   useAppearance,
@@ -34,6 +35,7 @@ export {
   useScenePredators,
   useSceneRebels,
   useSceneRepairers,
+  useSceneSaint,
   useSolve
 }
 

@@ -84,13 +84,13 @@ const action = async (
           style="transform-origin: bottom center;"
         >
           <div class="d-flex justify-center align-end fill-height">
-            <span
+            <div
               v-if="isOrigin"
               class="text-white"
               style="font-size: 1.2vmin;"
             >
               {{ cast.name }}
-            </span>
+            </div>
           </div>
         </v-img>
       </v-img>
