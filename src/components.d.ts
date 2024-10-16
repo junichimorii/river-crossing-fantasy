@@ -39,6 +39,7 @@ declare module 'vue' {
     SceneSettings: typeof import('./components/navigation/SceneSettings.vue')['default']
     SceneSolveDialog: typeof import('./components/navigation/SceneSolveDialog.vue')['default']
     SceneSound: typeof import('./components/navigation/SceneSound.vue')['default']
+    SceneSoundButton: typeof import('./components/navigation/SceneSoundButton.vue')['default']
     SceneSplashDialog: typeof import('./components/navigation/SceneSplashDialog.vue')['default']
     SceneToolbar: typeof import('./components/navigation/SceneToolbar.vue')['default']
   }
