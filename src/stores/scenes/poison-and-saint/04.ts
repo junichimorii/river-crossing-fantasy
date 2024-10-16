@@ -10,6 +10,9 @@ const scene: Scene = Object.freeze({
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは聖女以外。',
+    tips: [
+      '聖女が3人登場します。',
+    ],
   },
   landscape: {
     poison: true

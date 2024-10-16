@@ -10,6 +10,10 @@ const scene: Scene = Object.freeze({
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは聖女以外。',
+    tips: [
+      '聖女および同乗者は毒の影響を受けません。',
+      '聖女の同乗者が状態異常の場合、渡河中に回復します。',
+    ],
   },
   landscape: {
     poison: true
