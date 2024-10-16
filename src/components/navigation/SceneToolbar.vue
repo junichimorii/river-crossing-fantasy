@@ -26,7 +26,7 @@ const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black'
       :color="color"
       @click.stop="session.moves = true"
     />
-    <SceneSound :color="btnColor" />
+    <SceneSoundButton :color="btnColor" />
     <v-app-bar-nav-icon
       v-if="isSupported && orientation === 'landscape-primary'"
       variant="text"
@@ -34,7 +34,6 @@ const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black'
       :color="btnColor"
       @click.stop="session.navigation = !session.navigation"
     />
-    <v-spacer />
     <v-btn
       v-if="settings.debug"
       icon="$solve"

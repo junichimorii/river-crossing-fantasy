@@ -14,8 +14,16 @@ const items = computed(() => categories.map(category => Object.assign(category, 
       :src="sprites.river"
       class="h-100"
     >
-      <AppToolbar />
       <v-container>
+        <h1
+          class="text-h4 text-center mb-4"
+          style="font-family: 'Architects Daughter', cursive;"
+        >
+          River Crossing Fantasy
+        </h1>
+        <p class="text-right mb-4">
+          <AppScore />
+        </p>
         <v-row>
           <v-col
             v-for="category in items"
@@ -28,9 +36,8 @@ const items = computed(() => categories.map(category => Object.assign(category, 
           </v-col>
         </v-row>
       </v-container>
+      <v-divider />
       <AppFooter />
     </v-parallax>
   </v-main>
-  <AppIntroduction />
-  <AppSettings />
 </template>

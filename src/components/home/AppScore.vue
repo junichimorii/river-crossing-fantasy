@@ -5,8 +5,11 @@ const { state: records, scenes } = storeToRefs(useRecordsStore())
 
 <template>
   <v-chip
-    variant="text"
+    rounded
+    variant="elevated"
+    color="primary"
     prepend-icon="$scoreFull"
+    style="font-family: 'Architects Daughter', cursive;"
   >
     {{ records.scenes.size }} / {{ scenes.length }}
   </v-chip>

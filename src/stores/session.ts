@@ -7,8 +7,6 @@ export const useSessionStore = defineStore('session', () => {
   const state = useStorage<Session>(
     'RIVER_CROSSING_FANTASY_SESSION',
     {
-      introduction: false,
-      settings: false,
       navigation: false,
       moves: false,
       sound: false,

@@ -19,11 +19,10 @@ const headers = [
 
 <template>
   <v-app-bar
-    :elevation="2"
-    density="compact"
-    color="secondary"
     title="River Crossing Fantasy"
     style="font-family: 'Architects Daughter', cursive;"
+    color="secondary"
+    prominent
   />
   <v-main>
     <v-container fluid>
