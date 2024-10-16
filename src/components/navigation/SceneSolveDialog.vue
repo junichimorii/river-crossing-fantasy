@@ -7,7 +7,7 @@ const props = defineProps<{
 }>()
 const { scene } = toRefs(props)
 const { state: session } = storeToRefs(useSessionStore())
-const { solutions, solved, hasTimeLimit, solve } = useSolve(scene)
+const { solutions, solved, isNight, solve } = useSolve(scene)
 </script>
 
 <template>
@@ -55,7 +55,7 @@ const { solutions, solved, hasTimeLimit, solve } = useSolve(scene)
         >
           <v-card-subtitle class="px-3">
             回数: {{ moves.size }}
-            <span v-if="hasTimeLimit">
+            <span v-if="isNight">
               / 時間: {{ Array.from(moves).reduce((a, b) => a + b.value, 0) }}
             </span>
           </v-card-subtitle>
