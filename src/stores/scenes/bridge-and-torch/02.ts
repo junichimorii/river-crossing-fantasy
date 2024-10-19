@@ -2,7 +2,7 @@ import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
   id: 5,
   title: '闇夜の旅路(2)',
-  category: 8,
+  category: 9,
   order: 2,
   rules: {
     conditions: [

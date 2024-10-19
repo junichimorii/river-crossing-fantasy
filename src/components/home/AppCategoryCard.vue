@@ -20,9 +20,9 @@ const { category } = toRefs(props)
     >
       {{ category.name }}
     </v-card-title>
-    <v-card-subtitle class="py-1">
+    <v-card-text class="py-1">
       {{ category.description }}
-    </v-card-subtitle>
+    </v-card-text>
     <AppListItem
       v-for="scene in category.scenes"
       :key="scene.id"

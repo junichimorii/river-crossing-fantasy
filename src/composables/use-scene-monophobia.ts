@@ -23,7 +23,6 @@ const useSceneMonophobia = (
         if (!others.some(cast => boarding(myself) === boarding(cast))) {
           feel(myself, 'scared')
           for await (const cast of others) {
-            // 感情を追加
             feel(cast, 'surprised')
           }
         }
@@ -32,7 +31,6 @@ const useSceneMonophobia = (
         if (others.filter(cast => boarding(cast) === null && castCoord(myself) === castCoord(cast)).length === 0) {
           feel(myself, 'scared')
           for await (const cast of others) {
-            // 感情を追加
             feel(cast, 'surprised')
           }
         }

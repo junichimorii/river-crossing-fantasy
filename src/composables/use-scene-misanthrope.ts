@@ -23,7 +23,6 @@ const useSceneMisanthrope = (
       for await (const human of humans) {
         // 嫌悪対象と隣接している
         if (isNeighboring(myself, human)) {
-          // 感情を追加
           feel(myself, 'surprised')
         }
       }

@@ -34,7 +34,7 @@ const scene: Scene = Object.freeze({
     id: 1,
     name: 'オオカミ',
     description: '農夫が目を離すとヤギを食べる。',
-    appearance: 'wolf1',
+    appearance: 'lycanthropy1',
     role: {
       rower: false
     },

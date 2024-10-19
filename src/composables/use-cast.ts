@@ -19,6 +19,7 @@ const useCast = () => {
     cast.role.monophobia ? '独りぼっちを嫌う。' : '',
     cast.role.saint ? '本人および同乗者の毒を浄化する。' : '',
     cast.role.repairer ? '筏（いかだ）を修理できる。' : '',
+    cast.role.werewolf ? '村人陣営と同数以上になった場合、村人陣営を襲う。' : '',
     cast.description
   ].join('')
 

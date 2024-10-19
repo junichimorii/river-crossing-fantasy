@@ -82,6 +82,15 @@ import wl01 from './weight-limit/01'
 import wl02 from './weight-limit/02'
 import wl03 from './weight-limit/03'
 import wl04 from './weight-limit/04'
+import wr01 from './werewolves-of-river/01'
+import wr02 from './werewolves-of-river/02'
+import wr03 from './werewolves-of-river/03'
+import wr04 from './werewolves-of-river/04'
+import wr05 from './werewolves-of-river/05'
+import wr06 from './werewolves-of-river/06'
+import wr07 from './werewolves-of-river/07'
+import wr08 from './werewolves-of-river/08'
+import wr09 from './werewolves-of-river/09'
 
 export {
   bt01, bt02, bt03, bt04, bt05, bt06,
@@ -95,6 +104,7 @@ export {
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07,
   tu01, tu02, tu03, tu04, tu05,
-  wl01, wl02, wl03, wl04
+  wl01, wl02, wl03, wl04,
+  wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09
 }
 

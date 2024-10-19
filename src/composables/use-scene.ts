@@ -1,6 +1,6 @@
 import {
   useCarrier, useCarrierState, useCastState, useCasts,
-  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers, useSceneSaint
+  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
 } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
@@ -31,6 +31,8 @@ const useScene = (
   const { isValid: hasRebels, test: rebellion } = useSceneRebels(state, scene)
   // 乗り物の耐久性があるパズル
   const { isValid: hasRepairers, test: workout } = useSceneRepairers(state, scene)
+  // 人狼があるパズル
+  const { isValid: hasWerewolves, test: attack } = useSceneWerewolves(state, scene)
 
   /** シーンの状態を初期化 */
   const init = async () => {
@@ -130,6 +132,10 @@ const useScene = (
     // 乗り物の耐久性があるパズルの成否判定
     if (hasRepairers) {
       await workout()
+    }
+    // 人狼があるパズル
+    if (hasWerewolves) {
+      await attack()
     }
   }
 

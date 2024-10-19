@@ -25,7 +25,6 @@ const useSceneDiscord = (
           const discord = scene.value.casts[discordId]
           // 不仲な者と隣接している
           if (isNeighboring(myself, discord)) {
-            // 感情を追加
             feel(myself, 'excited')
           }
         }

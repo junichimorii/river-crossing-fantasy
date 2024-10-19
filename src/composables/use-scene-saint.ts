@@ -20,12 +20,6 @@ const useSceneSaint = (
     if (passengers.value.flat().length > 0) return
     // 両岸にいる登場人物を判定する
     for await (const casts of [unreachers.value, reachers.value]) {
-      // 同一の場所に聖女が3人以上いる場合、全員を回復する
-      // if (casts.filter(cast => cast.role.saint).length >= 3) {
-      //   for await (const myself of casts) {
-      //     heal(myself)
-      //   }
-      // }
       // 全員が毒に侵されている場合、パズルは失敗
       if (casts.every(cast => diseased(cast))) {
         for await (const myself of casts) {

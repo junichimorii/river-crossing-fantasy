@@ -43,4 +43,6 @@ interface Role {
   rower?: boolean
   /** 重量 */
   weight?: number
+  /** 人狼 */
+  werewolf?: boolean
 }

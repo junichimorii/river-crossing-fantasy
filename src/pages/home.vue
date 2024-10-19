@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import sprites from '@/assets/images/landscapes';
+import casts from '@/assets/images/casts';
+import landscapes from '@/assets/images/landscapes';
 import categories from '@/stores/category';
 import { useRecordsStore } from '@/stores/records';
 const { scenes } = storeToRefs(useRecordsStore())
@@ -11,7 +12,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
 <template>
   <v-main>
     <v-parallax
-      :src="sprites.river"
+      :src="landscapes.river"
       class="h-100"
     >
       <v-container>
@@ -21,9 +22,29 @@ const items = computed(() => categories.map(category => Object.assign(category, 
         >
           River Crossing Fantasy
         </h1>
-        <p class="text-right mb-4">
+        <v-row>
+          <v-col
+            cols="12"
+            sm="6"
+            xl="4"
+          >
+            <v-list-item
+              to="/introduce"
+              title="このゲームについて"
+              subtitle="このゲームの紹介です。"
+              :prepend-avatar="casts.villager1"
+              lines="two"
+              class="bg-white elevation-4 rounded opacity-90 mx-1 my-1"
+            />
+          </v-col>
+        </v-row>
+        <v-divider class="my-4" />
+        <h2 class="d-flex justify-space-between text-h6 mb-4">
+          <div>
+            パズル一覧
+          </div>
           <AppScore />
-        </p>
+        </h2>
         <v-row>
           <v-col
             v-for="category in items"

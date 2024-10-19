@@ -16,6 +16,7 @@ import useScenePredators from './use-scene-predators'
 import useSceneRebels from './use-scene-rebels'
 import useSceneRepairers from './use-scene-repairers'
 import useSceneSaint from './use-scene-saint'
+import useSceneWerewolves from './use-scene-werewolves'
 import useSolve from './use-solve'
 export {
   useAppearance,
@@ -36,6 +37,7 @@ export {
   useSceneRebels,
   useSceneRepairers,
   useSceneSaint,
+  useSceneWerewolves,
   useSolve
 }
 

@@ -24,7 +24,6 @@ const useScenePredators = (
           const guardian = scene.value.casts[my.guardian]
           // 保護者が近くにいない
           if (!isNeighboring(myself, guardian)) {
-            // 感情を追加
             feel(myself, 'scared')
             feel(predator, 'excited')
             feel(guardian, 'surprised')

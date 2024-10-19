@@ -16,13 +16,22 @@ import elf2 from './elf2.png'
 import elf3 from './elf3.png'
 import farmer1 from './farmer1.png'
 import fighter1 from './fighter1.png'
+import fortuneteller1 from './fortuneteller1.png'
+import fortuneteller2 from './fortuneteller2.png'
 import goat1 from './goat1.png'
 import knight1 from './knight1.png'
 import knight2 from './knight2.png'
 import knight3 from './knight3.png'
 import knight4 from './knight4.png'
 import knight5 from './knight5.png'
+import lycanthropy1 from './lycanthropy1.png'
+import lycanthropy2 from './lycanthropy2.png'
+import lycanthropy3 from './lycanthropy3.png'
+import lycanthropy4 from './lycanthropy4.png'
+import lycanthropy5 from './lycanthropy5.png'
 import mage1 from './mage1.png'
+import mage2 from './mage2.png'
+import mage3 from './mage3.png'
 import maid1 from './maid1.png'
 import maid2 from './maid2.png'
 import necromancer1 from './necromancer1.png'
@@ -55,7 +64,8 @@ import undead3 from './undead3.png'
 import villager1 from './villager1.png'
 import villager2 from './villager2.png'
 import villager3 from './villager3.png'
-import wolf1 from './wolf1.png'
+import villager4 from './villager4.png'
+import villager5 from './villager5.png'
 
 const sprites: {
   [key:string]: string
@@ -69,10 +79,12 @@ const sprites: {
   elf1, elf2, elf3,
   farmer1,
   fighter1,
+  fortuneteller1, fortuneteller2,
   goat1,
   knight1, knight2, knight3, knight4, knight5,
+  lycanthropy1, lycanthropy2, lycanthropy3, lycanthropy4, lycanthropy5,
   maid1, maid2,
-  mage1,
+  mage1, mage2, mage3,
   necromancer1,
   porter1, porter2,
   priest1, priest2, priest3, priest4,
@@ -84,8 +96,7 @@ const sprites: {
   therianthropy1, therianthropy2, therianthropy3, therianthropy4, therianthropy5,
   thief1, thief2,
   undead1, undead2, undead3,
-  villager1, villager2, villager3,
-  wolf1,
+  villager1, villager2, villager3, villager4, villager5,
 }
 
 export default sprites
