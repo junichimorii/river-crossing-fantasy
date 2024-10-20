@@ -73,6 +73,8 @@ const useCarrier = (
     getDestination,
     getElapsedTime,
     getLoad,
+    getPassengers,
+    getRowers,
     hasPassengers,
     isOperable,
     isVacancy,

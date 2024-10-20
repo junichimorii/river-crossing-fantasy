@@ -47,7 +47,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '魔法使い',
-    appearance: 'mage1',
+    appearance: 'wizard1',
     role: {
       rower: true,
       weight: 0.9,

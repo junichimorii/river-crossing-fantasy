@@ -1,6 +1,7 @@
 import {
   useCarrier, useCarrierState, useCastState, useCasts,
-  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators, useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
+  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators,
+  useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
 } from '@/composables'
 import { carrierState } from '@/composables/use-carrier-state'
 import { castState } from '@/composables/use-cast-state'
@@ -17,10 +18,10 @@ const useScene = (
   const { getElapsedTime, hasPassengers, isVacancy } = useCarrier(state, scene)
   const { coord: castCoord, getOn, getOff, arrive: arriveCast, calmDown } = useCastState(state)
   const { passengers, isPeaceable, isReached } = useCasts(state, scene)
-  // エルフ（人間嫌い）が登場するパズル
-  const { isValid: hasMisanthrope, test: antagonism } = useSceneMisanthrope(state, scene)
   // 不仲な者達が登場するパズル
   const { isValid: hasDiscord, test: catfight } = useSceneDiscord(state, scene)
+  // エルフ（人間嫌い）が登場するパズル
+  const { isValid: hasMisanthrope, test: antagonism } = useSceneMisanthrope(state, scene)
   // 吟遊詩人（孤独嫌い）が登場するパズル
   const { isValid: hasMonophobia, test: swarming } = useSceneMonophobia(state, scene)
   // 敵と保護者が登場するパズル
@@ -133,7 +134,7 @@ const useScene = (
     if (hasRepairers) {
       await workout()
     }
-    // 人狼があるパズル
+    // 人狼がいるパズル
     if (hasWerewolves) {
       await attack()
     }
