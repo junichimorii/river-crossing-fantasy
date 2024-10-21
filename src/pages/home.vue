@@ -17,7 +17,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
     >
       <v-container>
         <h1
-          class="text-h4 text-center mb-4"
+          class="text-h4 text-center mb-6"
           style="font-family: 'Architects Daughter', cursive;"
         >
           River Crossing Fantasy
@@ -34,7 +34,21 @@ const items = computed(() => categories.map(category => Object.assign(category, 
               subtitle="このゲームの紹介です。"
               :prepend-avatar="casts.villager1"
               lines="two"
-              class="bg-white elevation-4 rounded opacity-90 mx-1 my-1"
+              class="bg-white elevation-4 rounded opacity-90"
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            sm="6"
+            xl="4"
+          >
+            <v-list-item
+              to="/recommend"
+              title="おすすめパズル"
+              subtitle="特におすすめしたい川渡りパズルを紹介しています。"
+              :prepend-avatar="casts.wizard1"
+              lines="two"
+              class="bg-white elevation-4 rounded opacity-90"
             />
           </v-col>
         </v-row>
@@ -57,7 +71,7 @@ const items = computed(() => categories.map(category => Object.assign(category, 
           </v-col>
         </v-row>
       </v-container>
-      <v-divider />
+      <v-divider class="my-4" />
       <AppFooter />
     </v-parallax>
   </v-main>

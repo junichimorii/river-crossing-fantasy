@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/landscapes';
-import { bt03, ec03, mm02, pg09, tp01, tu01 } from '@/stores/scenes';
 </script>
 
 <template>
@@ -10,7 +9,7 @@ import { bt03, ec03, mm02, pg09, tp01, tu01 } from '@/stores/scenes';
       class="h-100"
     >
       <v-container>
-        <h1 class="text-h6 text-center mb-4">
+        <h1 class="text-h6 text-center mb-6">
           このゲームについて
         </h1>
 
@@ -21,64 +20,6 @@ import { bt03, ec03, mm02, pg09, tp01, tu01 } from '@/stores/scenes';
           <v-card-text>
             このゲームは、川岸にいる一団を、登場人物たちが持つ特性を考慮しつつ、条件を満たしながら対岸に渡すゲームです。
             このようなゲームは通称「River Crossing Puzzle」（川渡りパズル）と呼ばれており、古くから世界中で親しまれています。
-          </v-card-text>
-        </v-card>
-
-        <v-card
-          title="おすすめパズル"
-          class="opacity-90 mb-4"
-        >
-          <v-card-text>
-            <v-row>
-              <v-col
-                cols="12"
-                sm="6"
-                xl="4"
-              >
-                <AppListItem :scene="tu01" />
-                操作方法を説明しています。
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                xl="4"
-              >
-                <AppListItem :scene="pg09" />
-                古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルです。
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                xl="4"
-              >
-                <AppListItem :scene="ec03" />
-                古くから「jealous husbands problem」（嫉妬深い夫の問題）の名で知られる川渡りパズルを改変したものです。
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                xl="4"
-              >
-                <AppListItem :scene="mm02" />
-                古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したものです。
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                xl="4"
-              >
-                <AppListItem :scene="bt03" />
-                古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したものです。
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                xl="4"
-              >
-                <AppListItem :scene="tp01" />
-                家族の川渡りとして知られているパズルを改変したものです。
-              </v-col>
-            </v-row>
           </v-card-text>
         </v-card>
 
@@ -162,7 +103,7 @@ import { bt03, ec03, mm02, pg09, tp01, tu01 } from '@/stores/scenes';
           </v-btn>
         </div>
       </v-container>
-      <v-divider />
+      <v-divider class="my-4" />
       <AppFooter />
     </v-parallax>
   </v-main>

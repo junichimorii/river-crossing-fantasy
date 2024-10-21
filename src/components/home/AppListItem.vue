@@ -8,6 +8,7 @@ const { getScore } = useRecordsStore()
 const { getTransform } = useCast()
 const props = defineProps<{
   scene: Scene
+  tips?: boolean
 }>()
 const { scene } = toRefs(props)
 </script>
@@ -37,8 +38,15 @@ const { scene } = toRefs(props)
         />
       </v-avatar>
     </div>
+    <!-- eslint-disable vue/no-v-html -->
+    <div
+      v-if="tips"
+      v-html="scene.rules.tips ? convert(scene.rules.tips[0]) : ''"
+      class="text-body-2 my-1"
+    />
+    <!-- eslint-enable -->
     <template #append>
-      <v-sheet class="d-flex flex-column align-end">
+      <v-sheet class="d-flex flex-column align-end bg-transparent">
         <SceneLevelIcon
           :level="scene.level"
           :passing="scene.passing"

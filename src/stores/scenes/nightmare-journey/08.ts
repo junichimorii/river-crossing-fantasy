@@ -1,21 +1,23 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 72,
-  title: '絶体絶命パーティ(7)',
+  id: 73,
+  title: '絶体絶命パーティ(8)',
   category: 11,
-  order: 7,
+  order: 8,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士のみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフ、吟遊詩人のみ。',
     tips: [
       '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
-      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
+      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。',
+      'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      '吟遊詩人は、独りきりになることを嫌います。'
     ],
   },
-  passing: 21,
+  passing: 23,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -31,7 +33,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    description: '魔獣使いが目を離すと全員を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false,
@@ -61,12 +63,6 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 5,
         guardian: 2
-      }, {
-        predator: 8,
-        guardian: 2
-      }, {
-        predator: 9,
-        guardian: 2
       }]
     }
   }, {
@@ -80,12 +76,6 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 5,
-        guardian: 2
-      }, {
-        predator: 8,
-        guardian: 2
-      }, {
-        predator: 9,
         guardian: 2
       }]
     }
@@ -113,12 +103,6 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
-      }, {
-        predator: 8,
-        guardian: 5
-      }, {
-        predator: 9,
-        guardian: 5
       }]
     }
   }, {
@@ -133,21 +117,16 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
-      }, {
-        predator: 8,
-        guardian: 5
-      }, {
-        predator: 9,
-        guardian: 5
       }]
     }
   }, {
     id: 8,
-    name: '緑国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
-    appearance: 'knight3',
+    name: 'エルフ',
+    appearance: 'elf1',
     role: {
       rower: true,
+      demihuman: true,
+      misanthrope: true,
       predators: [{
         predator: 1,
         guardian: 0
@@ -155,11 +134,11 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 9,
-    name: '紫国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight4',
+    name: '吟遊詩人',
+    appearance: 'bard1',
     role: {
       rower: true,
+      monophobia: true,
       predators: [{
         predator: 1,
         guardian: 0

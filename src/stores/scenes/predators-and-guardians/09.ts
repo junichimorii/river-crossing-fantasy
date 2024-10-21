@@ -11,9 +11,9 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは農夫のみ。',
     tips: [
+      '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルです。',
       'オオカミは、農夫が目を離すと、近くにいるヤギを食べようとします。',
       'またヤギは、農夫が目を離すと、近くにいるキャベツを食べようとします。',
-      '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルです。',
     ],
   },
   passing: 7,
