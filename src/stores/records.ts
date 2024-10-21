@@ -26,11 +26,6 @@ export const useRecordsStore = defineStore('records', () => {
     return config
   }
 
-  /** 記録を消去する */
-  const clear = async () => {
-    state.value.scenes = new Map<number, number>()
-  }
-
   /** 各ステージをクリアした結果を格納する */
   const report = async (
     scene: Scene,
@@ -54,7 +49,6 @@ export const useRecordsStore = defineStore('records', () => {
     scenes,
     isEmpty,
     load,
-    clear,
     report,
     isCleared,
     getScore,
