@@ -1,6 +1,6 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 76,
+  id: 100,
   title: '一触即発パーティ＋(3)',
   category: 90,
   order: 7,
@@ -18,7 +18,7 @@ const scene: Scene = Object.freeze({
   landscape: {
     island: true
   },
-  passing: 38,
+  passing: 34,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -37,13 +37,12 @@ const scene: Scene = Object.freeze({
     description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
     appearance: 'therianthropy1',
     role: {
-      rower: false,
-      demihuman: true
+      rower: false
     }
   }, {
     id: 2,
     name: '青国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '赤国騎士が目を離すと赤国王女を襲う。',
     appearance: 'knight1',
     role: {
       rower: true,
@@ -54,7 +53,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: '青国王女',
+    name: '青国王女a',
     appearance: 'princess11',
     role: {
       rower: false,
@@ -62,20 +61,56 @@ const scene: Scene = Object.freeze({
         predator: 1,
         guardian: 0
       }, {
-        predator: 4,
-        guardian: 2
-      }, {
-        predator: 6,
-        guardian: 2
-      }, {
-        predator: 8,
+        predator: 7,
         guardian: 2
       }]
     }
   }, {
     id: 4,
+    name: '青国王女b',
+    appearance: 'princess12',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 7,
+        guardian: 2
+      }]
+    }
+  }, {
+    id: 5,
+    name: '青国王女c',
+    appearance: 'princess13',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 7,
+        guardian: 2
+      }]
+    }
+  }, {
+    id: 6,
+    name: '青国王女d',
+    appearance: 'princess14',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
+      }, {
+        predator: 7,
+        guardian: 2
+      }]
+    }
+  }, {
+    id: 7,
     name: '赤国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '青国騎士が目を離すと青国王女を襲う。',
     appearance: 'knight2',
     role: {
       rower: true,
@@ -85,8 +120,8 @@ const scene: Scene = Object.freeze({
       }]
     }
   }, {
-    id: 5,
-    name: '赤国王女',
+    id: 8,
+    name: '赤国王女a',
     appearance: 'princess21',
     role: {
       rower: false,
@@ -95,63 +130,13 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 4
-      }, {
-        predator: 6,
-        guardian: 4
-      }, {
-        predator: 8,
-        guardian: 4
-      }]
-    }
-  }, {
-    id: 6,
-    name: '緑国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight3',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }]
-    }
-  }, {
-    id: 7,
-    name: '緑国王女',
-    appearance: 'princess31',
-    role: {
-      rower: false,
-      predators: [{
-        predator: 1,
-        guardian: 0
-      }, {
-        predator: 2,
-        guardian: 6
-      }, {
-        predator: 4,
-        guardian: 6
-      }, {
-        predator: 8,
-        guardian: 6
-      }]
-    }
-  }, {
-    id: 8,
-    name: '紫国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
-    appearance: 'knight4',
-    role: {
-      rower: true,
-      predators: [{
-        predator: 1,
-        guardian: 0
+        guardian: 7
       }]
     }
   }, {
     id: 9,
-    name: '紫国王女',
-    appearance: 'princess41',
+    name: '赤国王女b',
+    appearance: 'princess22',
     role: {
       rower: false,
       predators: [{
@@ -159,13 +144,7 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 8
-      }, {
-        predator: 4,
-        guardian: 8
-      }, {
-        predator: 6,
-        guardian: 8
+        guardian: 7
       }]
     }
   }]

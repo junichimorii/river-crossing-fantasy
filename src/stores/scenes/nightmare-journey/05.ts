@@ -1,22 +1,22 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 31,
+  id: 98,
   title: '絶体絶命パーティ(5)',
   category: 85,
   order: 5,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、かつエルフと人間が筏（いかだ）に同乗しないよう気を遣いながら、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、エルフのみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
     tips: [
       '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
       '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。',
-      'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      '王女は、道化師と二人きりになるのが苦手です。',
     ],
   },
-  passing: 21,
+  passing: 19,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -62,7 +62,8 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 5,
         guardian: 2
-      }]
+      }],
+      discord: [ 8 ]
     }
   }, {
     id: 4,
@@ -76,7 +77,8 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 5,
         guardian: 2
-      }]
+      }],
+      discord: [ 8 ]
     }
   }, {
     id: 5,
@@ -102,7 +104,8 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
-      }]
+      }],
+      discord: [ 8 ]
     }
   }, {
     id: 7,
@@ -116,16 +119,15 @@ const scene: Scene = Object.freeze({
       }, {
         predator: 2,
         guardian: 5
-      }]
+      }],
+      discord: [ 8 ]
     }
   }, {
     id: 8,
-    name: 'エルフ',
-    appearance: 'elf1',
+    name: '道化師',
+    appearance: 'clown1',
     role: {
-      rower: true,
-      demihuman: true,
-      misanthrope: true,
+      rower: false,
       predators: [{
         predator: 1,
         guardian: 0

@@ -35,6 +35,8 @@ import nj05 from './nightmare-journey/05'
 import nj06 from './nightmare-journey/06'
 import nj07 from './nightmare-journey/07'
 import nj08 from './nightmare-journey/08'
+import nj09 from './nightmare-journey/09'
+import nj10 from './nightmare-journey/10'
 import ps01 from './poison-and-saint/01'
 import ps02 from './poison-and-saint/02'
 import ps03 from './poison-and-saint/03'
@@ -59,6 +61,7 @@ import ri04 from './river-island/04'
 import ri05 from './river-island/05'
 import ri06 from './river-island/06'
 import ri07 from './river-island/07'
+import ri08 from './river-island/08'
 import sp01 from './selfish-princesses/01'
 import sp02 from './selfish-princesses/02'
 import sp03 from './selfish-princesses/03'
@@ -101,10 +104,10 @@ export {
   ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08, ec09,
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
   mt01, mt02, mt03, mt04, mt05, mt06, mt07,
-  nj01, nj02, nj03, nj04, nj05, nj06, nj07, nj08,
+  nj01, nj02, nj03, nj04, nj05, nj06, nj07, nj08, nj09, nj10,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
   ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
-  ri01, ri02, ri03, ri04, ri05, ri06, ri07,
+  ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08,
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09,
   tu01, tu02, tu03, tu04, tu05,

@@ -42,6 +42,7 @@ import priest4 from './priest4.png'
 import princess11 from './princess11.png'
 import princess12 from './princess12.png'
 import princess13 from './princess13.png'
+import princess14 from './princess14.png'
 import princess21 from './princess21.png'
 import princess22 from './princess22.png'
 import princess23 from './princess23.png'
@@ -89,7 +90,7 @@ const sprites: {
   necromancer1,
   porter1, porter2,
   priest1, priest2, priest3, priest4,
-  princess11, princess12, princess13,
+  princess11, princess12, princess13, princess14,
   princess21, princess22, princess23,
   princess31, princess32,
   princess41,
