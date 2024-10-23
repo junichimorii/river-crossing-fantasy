@@ -20,8 +20,6 @@ export interface Scene {
   passing: number
   /** 難易度 */
   level?: number
-  /** おすすめ */
-  recommended?: boolean
   /** 乗り物 */
   carriers: Carrier[]
   /** 登場人物 */

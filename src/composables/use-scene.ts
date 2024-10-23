@@ -3,8 +3,8 @@ import {
   useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators,
   useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
 } from '@/composables'
-import { carrierState } from '@/composables/use-carrier-state'
-import { castState } from '@/composables/use-cast-state'
+import { defaultState as defaultCarrierState } from '@/composables/use-carrier-state'
+import { defaultState as defaultCastState } from '@/composables/use-cast-state'
 import type { Carrier, Cast, Move, Scene, State } from '@/types'
 
 /**
@@ -37,8 +37,8 @@ const useScene = (
 
   /** シーンの状態を初期化 */
   const init = async () => {
-    state.value.carriers = scene.value.carriers.map(() => structuredClone(carrierState))
-    state.value.casts = scene.value.casts.map(() => structuredClone(castState))
+    state.value.carriers = scene.value.carriers.map(() => structuredClone(defaultCarrierState))
+    state.value.casts = scene.value.casts.map(() => structuredClone(defaultCastState))
   }
 
   /** 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる */

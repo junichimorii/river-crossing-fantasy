@@ -1,5 +1,5 @@
 import type { Carrier, CarrierState, State } from '@/types'
-export const carrierState: CarrierState = Object.freeze({
+export const defaultState: CarrierState = Object.freeze({
   coord: -1,
 })
 

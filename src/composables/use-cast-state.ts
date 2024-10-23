@@ -1,5 +1,5 @@
 import type { Carrier, Cast, CastState, Emotion, State } from '@/types'
-export const castState: CastState = Object.freeze({
+export const defaultState: CastState = Object.freeze({
   coord: -1,
   boarding: null,
   emotions: [],
