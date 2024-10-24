@@ -1,14 +1,6 @@
 <script lang="ts" setup>
-import { useMoves } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
-import { useSessionStore } from '@/stores/session';
-import { useSettingsStore } from '@/stores/settings';
-const { isSupported, orientation } = useScreenOrientation()
-const { state: settings } = storeToRefs(useSettingsStore())
-const { state: session } = storeToRefs(useSessionStore())
-const { scene, moves } = storeToRefs(useSceneStore())
-const { count, color } = useMoves(moves, scene)
-const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black')
+const { scene } = storeToRefs(useSceneStore())
 </script>
 
 <template>
@@ -17,31 +9,10 @@ const btnColor = computed(() => scene.value.landscape?.night ? 'white' : 'black'
     density="compact"
     class="bg-transparent"
   >
-    <v-btn
-      icon
-      variant="text"
-      density="compact"
-      size="40"
-      :text="String(count)"
-      :color="color"
-      @click.stop="session.moves = true"
-    />
-    <SceneSoundButton :color="btnColor" />
-    <v-app-bar-nav-icon
-      v-if="isSupported && orientation === 'landscape-primary'"
-      variant="text"
-      size="small"
-      :color="btnColor"
-      @click.stop="session.navigation = !session.navigation"
-    />
-    <v-btn
-      v-if="settings.debug"
-      icon="$solve"
-      variant="text"
-      size="small"
-      :color="btnColor"
-      @click.stop="session.solve = true"
-    />
+    <SceneMovesButton />
+    <SceneSoundButton />
+    <SceneNavigationButton />
+    <SceneSolveButton />
   </v-toolbar>
   <SceneSolveDialog :scene="scene" />
 </template>
