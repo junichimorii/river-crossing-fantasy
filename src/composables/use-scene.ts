@@ -5,7 +5,7 @@ import {
 } from '@/composables'
 import { defaultState as defaultCarrierState } from '@/composables/use-carrier-state'
 import { defaultState as defaultCastState } from '@/composables/use-cast-state'
-import type { Carrier, Cast, Move, Scene, State } from '@/types'
+import type { Bound, Carrier, Cast, Move, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの進行
@@ -14,10 +14,11 @@ const useScene = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { coord: carrierCoord } = useCarrierState(state)
-  const { getElapsedTime, hasPassengers, isVacancy } = useCarrier(state, scene)
+  const { coord: carrierCoord, leave: leaveCarrier  } = useCarrierState(state)
+  const { getDestination, getElapsedTime, hasPassengers, isVacancy } = useCarrier(state, scene)
   const { coord: castCoord, getOn, getOff, arrive: arriveCast, calmDown } = useCastState(state)
   const { passengers, isPeaceable, isReached } = useCasts(state, scene)
+
   // 不仲な者達が登場するパズル
   const { isValid: hasDiscord, test: catfight } = useSceneDiscord(state, scene)
   // エルフ（人間嫌い）が登場するパズル
@@ -61,6 +62,15 @@ const useScene = (
     cast: Cast,
   ) => {
     getOff(cast)
+  }
+
+  /** 出発する */
+  const leave = async (
+    carrier: Carrier,
+    bound: Bound,
+  ) => {
+    if (!hasPassengers(carrier)) return
+    await leaveCarrier(carrier, getDestination(carrier, bound))
   }
 
   /** 乗り物が対岸に到着する */
@@ -144,6 +154,7 @@ const useScene = (
     init,
     pickUp,
     dropOff,
+    leave,
     arrive,
     safetyConfirmation,
   }

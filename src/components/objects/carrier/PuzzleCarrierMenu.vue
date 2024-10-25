@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useAppearance, useCarrier, useCarrierState, useCasts } from '@/composables';
+import { useAppearance, useCarrier, useCarrierState, useCasts, useScene } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
-import type { Bound, Carrier } from '@/types';
+import type { Carrier } from '@/types';
 const props = defineProps<{
   state: Carrier
 }>()
@@ -10,6 +10,7 @@ const { state, scene, disabled } = storeToRefs(useSceneStore())
 const { coord, leave: leaveCarrier } = useCarrierState(state)
 const { hasPassengers, getDestination, isOperable } = useCarrier(state, scene)
 const { isPeaceable } = useCasts(state, scene)
+const { leave } = useScene(state, scene)
 const { gridSize } = useAppearance()
 /** 進行可能かどうか */
 const isEnabled = computed(() => !disabled.value && isOperable(carrier.value) && isPeaceable.value)
@@ -19,13 +20,6 @@ const inbound = computed(() => isEnabled.value && coord(carrier.value) <= 0)
 const outbound = computed(() => isEnabled.value && coord(carrier.value) >= 0)
 /** オフセット */
 const offset = computed(() => -gridSize.value * 0.25)
-/** 出発する */
-const leave = async (
-  bound: Bound,
-) => {
-  if (!hasPassengers(carrier.value)) return
-  await leaveCarrier(carrier.value, getDestination(carrier.value, bound))
-}
 </script>
 
 <template>
@@ -46,7 +40,7 @@ const leave = async (
           icon="$inbound"
           color="amber"
           class="ma-1"
-          @click.stop="leave('inbound')"
+          @click.stop="leave(carrier, 'inbound')"
         />
       </v-expand-transition>
     </div>
@@ -57,7 +51,7 @@ const leave = async (
           icon="$outbound"
           color="amber"
           class="ma-1"
-          @click.stop="leave('outbound')"
+          @click.stop="leave(carrier, 'outbound')"
         />
       </v-expand-transition>
     </div>
