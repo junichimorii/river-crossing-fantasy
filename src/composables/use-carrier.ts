@@ -15,7 +15,7 @@ const useCarrier = (
   /** 乗り物の行先を算出 */
   const getDestination = (
     carrier: Carrier,
-    bound: Bound,
+    bound?: Bound,
   ) => scene.value.landscape?.island
     ? coord(carrier) === 0
       ? bound === 'inbound'

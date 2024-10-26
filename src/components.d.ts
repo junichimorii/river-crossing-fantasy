@@ -11,7 +11,6 @@ declare module 'vue' {
     AppFooter: typeof import('./components/home/AppFooter.vue')['default']
     AppListItem: typeof import('./components/home/AppListItem.vue')['default']
     AppScore: typeof import('./components/home/AppScore.vue')['default']
-    copy: typeof import('./components/navigation/SceneToolbar copy.vue')['default']
     PuzzleBottomMenu: typeof import('./components/PuzzleBottomMenu.vue')['default']
     PuzzleCarrier: typeof import('./components/objects/PuzzleCarrier.vue')['default']
     PuzzleCarrierMenu: typeof import('./components/objects/carrier/PuzzleCarrierMenu.vue')['default']

@@ -2,7 +2,6 @@
 import { useMoves } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 import { useSessionStore } from '@/stores/session';
-import { useSettingsStore } from '@/stores/settings';
 const { state: session } = storeToRefs(useSessionStore())
 const { scene, moves } = storeToRefs(useSceneStore())
 const { count, color } = useMoves(moves, scene)
