@@ -10,6 +10,8 @@ export interface Cast {
   description?: string
   /** 登場人物の外観 */
   appearance: string
+  /** 登場人物の初期位置 */
+  coord?: number
   /** 登場人物の役割 */
   role: Role
 }

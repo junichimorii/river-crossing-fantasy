@@ -16,7 +16,7 @@ const { coord, boarding } = useCastState(state)
 const { pickUp, dropOff, safetyConfirmation } = useScene(state, scene)
 
 /** v-imgに適用するCSS transformプロパティ */
- const transform = computed(() => getTransform(cast.value, coord(cast.value)))
+const transform = computed(() => getTransform(cast.value, coord(cast.value)))
 
 /** タッチイベントの検知 */
 const { isSwiping: isTouchSwiping } = useSwipe(

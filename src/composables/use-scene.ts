@@ -40,6 +40,7 @@ const useScene = (
   const init = async () => {
     state.value.carriers = scene.value.carriers.map(() => structuredClone(defaultCarrierState))
     state.value.casts = scene.value.casts.map(() => structuredClone(defaultCastState))
+    state.value.casts.forEach((cast, i) => cast.coord = scene.value.casts[i].coord || cast.coord)
   }
 
   /** 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる */

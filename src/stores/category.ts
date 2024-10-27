@@ -32,6 +32,10 @@ const categories: Category[] = [{
   name: 'Poison and Saint',
   description: '毒の川による状態異常に気を付けながら川を渡るパズルです。'
 }, {
+//   id: 65,
+//   name: 'Travelers Passing by',
+//   description: '両岸にいる登場人物を入れ替える川渡りパズルです。'
+// }, {
   id: 70,
   name: 'Weight Limit',
   description: '重量制限のある川渡りパズルです。'

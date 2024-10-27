@@ -4,13 +4,13 @@ import { useCast } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useRecordsStore } from '@/stores/records';
 import type { Scene } from '@/types';
-const { getScore } = useRecordsStore()
-const { getTransform } = useCast()
 const props = defineProps<{
   scene: Scene
   tips?: boolean
 }>()
 const { scene } = toRefs(props)
+const { getTransform } = useCast()
+const { getScore } = useRecordsStore()
 </script>
 
 <template>
@@ -33,7 +33,7 @@ const { scene } = toRefs(props)
       >
         <v-img
           :src="casts[cast.appearance]"
-          :style="{ transform: getTransform(cast, 0) }"
+          :style="{ transform: getTransform(cast, cast.coord || -1) }"
           style="transform-origin: bottom center;"
         />
       </v-avatar>

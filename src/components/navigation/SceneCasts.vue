@@ -35,7 +35,7 @@ const { scene } = storeToRefs(useSceneStore())
             >
               <v-img
                 :src="sprites[cast.appearance]"
-                :style="{ transform: getTransform(cast, -1) }"
+                :style="{ transform: getTransform(cast, cast.coord || -1) }"
               />
             </v-avatar>
           </template>

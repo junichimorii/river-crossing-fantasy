@@ -28,6 +28,7 @@ const useSolve = (
    * パズルを解く
    */
   const solve = async () => {
+    console.info('solve:') ////
     await initScene()
     solutions.value = []
     const history = await search()
@@ -56,7 +57,7 @@ const useSolve = (
           await safetyConfirmation()
           if (!isPeaceable.value) continue
         }
-        const isReady = scene.value.carriers.every(carrier => isOperable(carrier))
+        const isReady = scene.value.carriers.some(carrier => isOperable(carrier))
         if (!isReady) continue
         const parsedPreviousState = parseState(state)
         const beforeCarriersState = state.value
@@ -80,7 +81,7 @@ const useSolve = (
               queue.push(state.value)
               history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
               visited.add(parsedCurrentState)
-              console.info(parsedCurrentState, parsedCurrentMove)
+              console.info(parsedCurrentState, parsedCurrentMove) ////
             }
           }
         }
@@ -102,7 +103,7 @@ const useSolve = (
       const states: number[][] = JSON.parse(item[0])
       const carriers: number[] = states[0]
       const casts: number[] = states[1]
-      return carriers.every(n => n > 0) && casts.every(n => n > 0)
+      return carriers.every(n => n === 1) && casts.every(n => n === 1)
     })
     if (finalStateList.length === 0) return false
     const min = Math.min(...finalStateList.map(state => JSON.parse(state[0])[2]))

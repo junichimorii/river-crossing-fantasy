@@ -42,10 +42,14 @@ const useCasts = (
   const isPeaceable = computed(() => state.value.casts.every(castState => castState.emotions.length === 0))
 
   /** すべての登場人物が出発地点にいるかどうか */
-  const isUnreach = computed(() => state.value.casts.every(castState => castState.boarding === null && castState.coord < 0))
+  const isUnreach = computed(() => state.value.casts.every((castState, i) =>
+    castState.boarding === null && castState.coord === (scene.value.casts[i].coord || -1)
+  ))
 
   /** すべての登場人物が到着地点にいるかどうか */
-  const isReached = computed(() => state.value.casts.every(castState => castState.boarding === null && castState.coord > 0))
+  const isReached = computed(() => state.value.casts.every((castState, i) =>
+    castState.boarding === null && castState.coord === -(scene.value.casts[i].coord || -1)
+  ))
 
   return {
     unreachers,

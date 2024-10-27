@@ -9,6 +9,7 @@ export const colors = {
   category50: '#2196f3', // Majority and Minority, blue 500
   category55: '#607d8b', // The Werewolves of River, blue-grey 500
   category60: '#9c27b0', // Poison and Saint, purple 500
+  category65: '#ffeb3b', // Travelers Passing by, yellow 500
   category70: '#00bcd4', // Weight Limit, cyan 500
   category75: '#3f51b5', // Bridge and Torch, indigo 500
   category80: '#f44336', // Tinderbox Party, red 500
