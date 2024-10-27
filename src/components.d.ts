@@ -23,6 +23,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SceneActions: typeof import('./components/navigation/SceneActions.vue')['default']
+    SceneCastAvatar: typeof import('./components/navigation/SceneCastAvatar.vue')['default']
     SceneCasts: typeof import('./components/navigation/SceneCasts.vue')['default']
     SceneLevelIcon: typeof import('./components/navigation/SceneLevelIcon.vue')['default']
     SceneMoves: typeof import('./components/navigation/SceneMoves.vue')['default']

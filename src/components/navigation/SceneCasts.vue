@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import sprites from '@/assets/images/casts';
 import { useCast } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useSceneStore } from '@/stores/scene';
-const { getDescription, getTransform } = useCast()
+const { getDescription } = useCast()
 const { scene } = storeToRefs(useSceneStore())
 </script>
 
@@ -33,10 +32,7 @@ const { scene } = storeToRefs(useSceneStore())
               tile
               size="x-large"
             >
-              <v-img
-                :src="sprites[cast.appearance]"
-                :style="{ transform: getTransform(cast, cast.coord || -1) }"
-              />
+              <SceneCastAvatar :cast="cast" />
             </v-avatar>
           </template>
         </v-list-item>

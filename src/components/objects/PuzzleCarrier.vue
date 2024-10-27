@@ -50,7 +50,7 @@ const finished = async () => {
   <v-card
     flat
     :width="width"
-    :style="{ transform: transform }"
+    :style="{ transform }"
     class="d-flex justify-center align-start bg-transparent"
   >
     <v-img

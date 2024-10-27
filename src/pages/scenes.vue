@@ -1,9 +1,6 @@
 <script lang="ts" setup>
-import casts from '@/assets/images/casts';
-import { useCast } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useRecordsStore } from '@/stores/records';
-const { getTransform } = useCast()
 const { scenes } = useRecordsStore()
 const headers = [
   { key: 'id', title:'id', width: '5%' },
@@ -60,11 +57,7 @@ const headers = [
             :key="cast.id"
             tile
           >
-            <v-img
-              :src="casts[cast.appearance]"
-              :style="{ transform: getTransform(cast, 0) }"
-              style="transform-origin: bottom center;"
-            />
+            <SceneCastAvatar :cast="cast" />
           </v-avatar>
         </template>
       </v-data-table>

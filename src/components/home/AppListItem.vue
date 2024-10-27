@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import casts from '@/assets/images/casts';
-import { useCast } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useRecordsStore } from '@/stores/records';
 import type { Scene } from '@/types';
@@ -9,7 +7,6 @@ const props = defineProps<{
   tips?: boolean
 }>()
 const { scene } = toRefs(props)
-const { getTransform } = useCast()
 const { getScore } = useRecordsStore()
 </script>
 
@@ -31,11 +28,7 @@ const { getScore } = useRecordsStore()
         :key="cast.id"
         tile
       >
-        <v-img
-          :src="casts[cast.appearance]"
-          :style="{ transform: getTransform(cast, cast.coord || -1) }"
-          style="transform-origin: bottom center;"
-        />
+        <SceneCastAvatar :cast="cast" />
       </v-avatar>
     </div>
     <!-- eslint-disable vue/no-v-html -->

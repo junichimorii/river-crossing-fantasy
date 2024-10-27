@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import sprites from '@/assets/images/casts';
 import type { Move, Scene } from '@/types';
 defineProps<{
   moves: Set<Move>,
@@ -29,10 +28,7 @@ defineProps<{
               start
               size="small"
             >
-              <v-img
-                :src="sprites[cast.appearance]"
-                :style="{ transform: `scale(${cast.role.rower === false ? 0.85 : 1}, ${cast.role.rower === false ? 0.85 : 1})` }"
-              />
+              <SceneCastAvatar :cast="cast" />
             </v-avatar>
             <span class="text-caption">{{ cast.name }}</span>
           </v-chip>
