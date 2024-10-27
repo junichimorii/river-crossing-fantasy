@@ -6,14 +6,14 @@ const scene: Scene = Object.freeze({
   order: 10,
   rules: {
     conditions: [
-      '登場人物をそれぞれの天敵から保護しつつ、吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
+      '登場人物をそれぞれの天敵から保護し、道化師に気を遣いつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、吟遊詩人のみ。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使い、騎士、道化師のみ。',
     tips: [
       '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
       '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。',
-      '吟遊詩人は、独りきりになることを嫌います。'
+      '道化師は、自由に行動できる状態になると逃走を企てます。'
     ],
   },
   passing: 25,
@@ -134,11 +134,11 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 9,
-    name: '吟遊詩人',
-    appearance: 'bard1',
+    name: '道化師',
+    appearance: 'clown1',
     role: {
       rower: true,
-      monophobia: true,
+      freespirited: true,
       predators: [{
         predator: 1,
         guardian: 0

@@ -26,6 +26,8 @@ interface Role {
   discord?: number[]
   /** 所要時間 */
   duration?: number
+  /** 自由奔放 */
+  freespirited?: boolean
   /** 人間嫌い */
   misanthrope?: boolean
   /** 孤独が嫌い */

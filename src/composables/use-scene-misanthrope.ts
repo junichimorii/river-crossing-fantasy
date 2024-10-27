@@ -2,7 +2,7 @@ import { useCastState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
- * エルフ（人間嫌い）が登場するパズルの成否判定
+ * 人間嫌いが登場するパズルの成否判定
  */
 const useSceneMisanthrope = (
   state: Ref<State>,
@@ -10,10 +10,10 @@ const useSceneMisanthrope = (
 ) => {
   const { boarding, feel, isNeighboring } = useCastState(state)
 
-  /** エルフ（人間嫌い）が登場するかどうか */
+  /** 人間嫌いが登場するかどうか */
   const isValid = scene.value.casts.some(cast => cast.role.misanthrope)
 
-  /** エルフが人間と同乗しているかどうか判定する */
+  /** 人間と同乗しているかどうか判定する */
   const test = async () => {
     // 人間（亜人以外）
     const humans = scene.value.casts.filter(cast => !cast.role.demihuman)

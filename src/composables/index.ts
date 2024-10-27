@@ -10,6 +10,7 @@ import useCasts from './use-casts'
 import useMoves from './use-moves'
 import useScene from './use-scene'
 import useSceneDiscord from './use-scene-discord'
+import useSceneFreespirited from './use-scene-freespirited'
 import useSceneMisanthrope from './use-scene-misanthrope'
 import useSceneMonophobia from './use-scene-monophobia'
 import useScenePredators from './use-scene-predators'
@@ -31,13 +32,13 @@ export {
   useMoves,
   useScene,
   useSceneDiscord,
+  useSceneFreespirited,
   useSceneMisanthrope,
   useSceneMonophobia,
   useScenePredators,
   useSceneRebels,
   useSceneRepairers,
   useSceneSaint,
-  useSceneWerewolves,
-  useSolve
+  useSceneWerewolves, useSolve
 }
 

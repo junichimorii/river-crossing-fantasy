@@ -27,6 +27,7 @@ import mt04 from './multiracial-travelers/04'
 import mt05 from './multiracial-travelers/05'
 import mt06 from './multiracial-travelers/06'
 import mt07 from './multiracial-travelers/07'
+import mt08 from './multiracial-travelers/08'
 import nj01 from './nightmare-journey/01'
 import nj02 from './nightmare-journey/02'
 import nj03 from './nightmare-journey/03'
@@ -110,7 +111,7 @@ export {
   bt01, bt02, bt03, bt04, bt05, bt06,
   ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08, ec09,
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
-  mt01, mt02, mt03, mt04, mt05, mt06, mt07,
+  mt01, mt02, mt03, mt04, mt05, mt06, mt07, mt08,
   nj01, nj02, nj03, nj04, nj05, nj06, nj07, nj08, nj09, nj10,
   pb01, pb02, pb03, pb04, pb05, pb06,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,

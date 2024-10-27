@@ -1,21 +1,21 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 43,
-  title: '村人とエルフと吟遊詩人(2)',
+  id: 67,
+  title: '村人とエルフと道化師(1)',
   category: 15,
-  order: 7,
+  order: 6,
   rules: {
     conditions: [
-      'エルフと人間が筏（いかだ）に同乗しないよう気を遣い、かつ吟遊詩人が独りぼっちにならないよう気を遣いながら、すべての登場人物を対岸に渡す',
+      'エルフと道化師に気を遣いつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
-      '吟遊詩人は、独りきりになることを嫌います。'
+      '道化師は、自由に行動できる状態になると逃走を企てます。'
     ],
   },
-  passing: 9,
+  passing: 7,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -37,7 +37,7 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: 'エルフA',
+    name: 'エルフ',
     appearance: 'elf1',
     role: {
       rower: true,
@@ -46,28 +46,11 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: 'エルフB',
-    appearance: 'elf2',
+    name: '道化師',
+    appearance: 'clown1',
     role: {
       rower: true,
-      demihuman: true,
-      misanthrope: true
-    }
-  }, {
-    id: 4,
-    name: '吟遊詩人A',
-    appearance: 'bard1',
-    role: {
-      rower: true,
-      monophobia: true
-    }
-  }, {
-    id: 5,
-    name: '吟遊詩人B',
-    appearance: 'bard2',
-    role: {
-      rower: true,
-      monophobia: true
+      freespirited: true
     }
   }]
 })

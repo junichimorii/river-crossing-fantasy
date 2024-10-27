@@ -1,18 +1,18 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
   id: 9,
-  title: '吟遊詩人は孤独がお嫌い(1)',
+  title: '道化師は自由を求める(1)',
   category: 15,
   order: 3,
   rules: {
     conditions: [
-      '吟遊詩人が独りぼっちにならないよう気を遣いつつ、すべての登場人物を対岸に渡す',
+      '道化師が単独行動しないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '5回以内にクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '今回登場する吟遊詩人は、両岸でも筏（いかだ）の上でも、**独りぼっちになることを嫌います**。',
-      '吟遊詩人が不安な状態の時は、感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
+      '今回登場する道化師は、いずれかの場所で**ひとりになると**逃走を企てます。',
+      '道化師が単独行動可能な状態の時は、感情を表すマークが表示されます。その状態で筏（いかだ）を移動させることはできません。',
     ],
   },
   passing: 5,
@@ -44,11 +44,11 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 3,
-    name: '吟遊詩人',
-    appearance: 'bard1',
+    name: '道化師',
+    appearance: 'clown1',
     role: {
       rower: true,
-      monophobia: true
+      freespirited: true
     }
   }]
 })

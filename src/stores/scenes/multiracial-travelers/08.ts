@@ -1,17 +1,18 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 108,
-  title: '道化師は自由を求める(2)',
+  id: 43,
+  title: '村人とエルフと道化師(2)',
   category: 15,
-  order: 6,
+  order: 7,
   rules: {
     conditions: [
-      '道化師たちが自由に行動できないよう気を遣いつつ、すべての登場人物を対岸に渡す',
+      'エルフと道化師に気を遣いつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '**いずれかの場所に道化師しかいない**状況となった場合も、道化師たちは結託して逃走を企てます。',
+      'エルフは、人間と一緒に筏（いかだ）に乗ることを嫌います。',
+      '道化師は、自由に行動できる状態になると逃走を企てます。'
     ],
   },
   passing: 9,
@@ -36,13 +37,24 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
-    name: '村人C',
-    appearance: 'villager3',
+    name: 'エルフA',
+    appearance: 'elf1',
     role: {
-      rower: true
+      rower: true,
+      demihuman: true,
+      misanthrope: true
     }
   }, {
     id: 3,
+    name: 'エルフB',
+    appearance: 'elf2',
+    role: {
+      rower: true,
+      demihuman: true,
+      misanthrope: true
+    }
+  }, {
+    id: 4,
     name: '道化師A',
     appearance: 'clown1',
     role: {
@@ -50,17 +62,9 @@ const scene: Scene = Object.freeze({
       freespirited: true
     }
   }, {
-    id: 4,
+    id: 5,
     name: '道化師B',
     appearance: 'clown2',
-    role: {
-      rower: true,
-      freespirited: true
-    }
-  }, {
-    id: 5,
-    name: '道化師C',
-    appearance: 'clown3',
     role: {
       rower: true,
       freespirited: true

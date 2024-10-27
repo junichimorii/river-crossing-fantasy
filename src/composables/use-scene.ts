@@ -1,6 +1,6 @@
 import {
   useCarrier, useCarrierState, useCastState, useCasts,
-  useSceneDiscord, useSceneMisanthrope, useSceneMonophobia, useScenePredators,
+  useSceneDiscord, useSceneFreespirited, useSceneMisanthrope, useScenePredators,
   useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
 } from '@/composables'
 import { defaultState as defaultCarrierState } from '@/composables/use-carrier-state'
@@ -21,10 +21,10 @@ const useScene = (
 
   // 不仲な者達が登場するパズル
   const { isValid: hasDiscord, test: catfight } = useSceneDiscord(state, scene)
-  // エルフ（人間嫌い）が登場するパズル
+  // 自由奔放が登場するパズル
+  const { isValid: hasFreespirited, test: escapeJourney } = useSceneFreespirited(state, scene)
+  // 人間嫌いが登場するパズル
   const { isValid: hasMisanthrope, test: antagonism } = useSceneMisanthrope(state, scene)
-  // 吟遊詩人（孤独嫌い）が登場するパズル
-  const { isValid: hasMonophobia, test: swarming } = useSceneMonophobia(state, scene)
   // 敵と保護者が登場するパズル
   const { isValid: hasPredators, test: predation } = useScenePredators(state, scene)
   // 聖女が登場するパズル
@@ -129,13 +129,13 @@ const useScene = (
     if (hasRebels) {
       await rebellion()
     }
-    // エルフ（人間嫌い）が登場するパズルの成否判定
+    // 人間嫌いが登場するパズルの成否判定
     if (hasMisanthrope) {
       await antagonism()
     }
-    // 吟遊詩人（孤独嫌い）が登場するパズルの成否判定
-    if (hasMonophobia) {
-      await swarming()
+    // 自由奔放が登場するパズルの成否判定
+    if (hasFreespirited) {
+      await escapeJourney()
     }
     // 聖女が登場するパズルの成否判定
     if (hasSaint) {

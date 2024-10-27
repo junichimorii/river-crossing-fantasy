@@ -2,7 +2,7 @@ import { useCastState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
- * 吟遊詩人（孤独嫌い）が登場する川渡りパズルの成否判定
+ * 孤独嫌いが登場する川渡りパズルの成否判定
  */
 const useSceneMonophobia = (
   state: Ref<State>,
@@ -10,10 +10,10 @@ const useSceneMonophobia = (
 ) => {
   const { coord: castCoord, boarding, feel } = useCastState(state)
 
-  /** 吟遊詩人（孤独嫌い）が登場するかどうか */
+  /** 孤独嫌いが登場するかどうか */
   const isValid = scene.value.casts.some(cast => cast.role.monophobia)
 
-  /** 吟遊詩人が独りぼっちかどうか判定する */
+  /** 独りぼっちかどうか判定する */
   const test = async () => {
     for await (const myself of scene.value.casts) {
       if (!myself.role.monophobia) continue
