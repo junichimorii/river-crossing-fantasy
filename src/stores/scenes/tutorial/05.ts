@@ -1,41 +1,37 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 68,
-  title: '中州へ',
+  id: 101,
+  title: '行く人来る人',
   category: 10,
   order: 5,
   rules: {
     conditions: [
-      'すべての登場人物を対岸に渡す',
-      '2回以内にクリアする'
+      'すべての登場人物を初期位置の対岸に渡す',
+      '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
+    transportation: '1人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '川の中間にある中州に降りることができます。',
-      '中州にいる登場人物を右方向にスワイプすると筏（いかだ）に乗り、左方向にスワイプすると筏（いかだ）から降ります。',
-      '筏（いかだ）を移動させるボタンが2つ表示されている時は、進行方向を選ぶことができます。',
+      '両岸に登場人物がいる状態でスタートします。それぞれの初期位置の対岸に渡ることが目的です。',
     ],
-  },
-  landscape: {
-    island: true
   },
   passing: 2,
   carriers: [{
     id: 0,
-    capacity: 2,
-    appearance: 'raft2'
+    capacity: 1,
+    appearance: 'raft1'
   }],
   casts: [{
     id: 0,
-    name: '従者',
-    appearance: 'maid1',
+    name: '青国騎士',
+    appearance: 'knight1',
     role: {
       rower: true
     }
   }, {
     id: 1,
-    name: '王女',
-    appearance: 'princess11',
+    name: '赤国騎士',
+    appearance: 'knight2',
+    coord: 1,
     role: {
       rower: true
     }

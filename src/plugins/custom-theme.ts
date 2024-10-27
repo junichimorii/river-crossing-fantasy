@@ -9,12 +9,12 @@ export const colors = {
   category50: '#2196f3', // Majority and Minority, blue 500
   category55: '#607d8b', // The Werewolves of River, blue-grey 500
   category60: '#9c27b0', // Poison and Saint, purple 500
-  category65: '#ffeb3b', // Travelers Passing by, yellow 500
   category70: '#00bcd4', // Weight Limit, cyan 500
   category75: '#3f51b5', // Bridge and Torch, indigo 500
   category80: '#f44336', // Tinderbox Party, red 500
   category85: '#673ab7', // Nightmare Journey, deep-purple 500
-  category90: '#cddc39', // River Island, lime 500
+  category90: '#ffeb3b', // Travelers Passing by, yellow 500
+  category95: '#cddc39', // River Island, lime 500
   level1: '#2196f3', // blue 500
   level2: '#8bc34a', // light-green 500
   level3: '#ffc107', // amber 500

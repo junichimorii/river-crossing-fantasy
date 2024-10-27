@@ -101,9 +101,8 @@ const useSolve = (
     const list: string[][] = Array.from(history)
     const finalStateList = list.filter(item => {
       const states: number[][] = JSON.parse(item[0])
-      const carriers: number[] = states[0]
       const casts: number[] = states[1]
-      return carriers.every(n => n === 1) && casts.every(n => n === 1)
+      return casts.every((n, i) => n === -(scene.value.casts[i].coord || -1))
     })
     if (finalStateList.length === 0) return false
     const min = Math.min(...finalStateList.map(state => JSON.parse(state[0])[2]))

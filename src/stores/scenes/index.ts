@@ -80,11 +80,18 @@ import tp06 from './tinderbox-party/06'
 import tp07 from './tinderbox-party/07'
 import tp08 from './tinderbox-party/08'
 import tp09 from './tinderbox-party/09'
+import pb01 from './travelers-passing-by/01'
+import pb02 from './travelers-passing-by/02'
+import pb03 from './travelers-passing-by/03'
+import pb04 from './travelers-passing-by/04'
+import pb05 from './travelers-passing-by/05'
+import pb06 from './travelers-passing-by/06'
 import tu01 from './tutorial/01'
 import tu02 from './tutorial/02'
 import tu03 from './tutorial/03'
 import tu04 from './tutorial/04'
 import tu05 from './tutorial/05'
+import tu06 from './tutorial/06'
 import wl01 from './weight-limit/01'
 import wl02 from './weight-limit/02'
 import wl03 from './weight-limit/03'
@@ -105,13 +112,13 @@ export {
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
   mt01, mt02, mt03, mt04, mt05, mt06, mt07,
   nj01, nj02, nj03, nj04, nj05, nj06, nj07, nj08, nj09, nj10,
+  pb01, pb02, pb03, pb04, pb05, pb06,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
   ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
   ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08,
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09,
-  tu01, tu02, tu03, tu04, tu05,
-  wl01, wl02, wl03, wl04,
-  wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09
+  tu01, tu02, tu03, tu04, tu05, tu06,
+  wl01, wl02, wl03, wl04, wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09
 }
 
