@@ -3,7 +3,7 @@ const scene: Scene = Object.freeze({
   id: 67,
   title: '村人とエルフと道化師(1)',
   category: 15,
-  order: 6,
+  order: 7,
   rules: {
     conditions: [
       'エルフと道化師に気を遣いつつ、すべての登場人物を対岸に渡す',

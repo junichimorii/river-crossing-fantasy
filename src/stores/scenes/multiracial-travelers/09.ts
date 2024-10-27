@@ -1,9 +1,9 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 43,
-  title: '村人とエルフと道化師(2)',
+  id: 109,
+  title: '村人とエルフと道化師(3)',
   category: 15,
-  order: 8,
+  order: 9,
   rules: {
     conditions: [
       'エルフと道化師に気を遣いつつ、すべての登場人物を対岸に渡す',
@@ -15,7 +15,7 @@ const scene: Scene = Object.freeze({
       '道化師は、自由に行動できる状態になると逃走を企てます。'
     ],
   },
-  passing: 9,
+  passing: 15,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -37,6 +37,13 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 2,
+    name: '村人C',
+    appearance: 'villager3',
+    role: {
+      rower: true
+    }
+  }, {
+    id: 3,
     name: 'エルフA',
     appearance: 'elf1',
     role: {
@@ -45,7 +52,7 @@ const scene: Scene = Object.freeze({
       misanthrope: true
     }
   }, {
-    id: 3,
+    id: 4,
     name: 'エルフB',
     appearance: 'elf2',
     role: {
@@ -54,7 +61,16 @@ const scene: Scene = Object.freeze({
       misanthrope: true
     }
   }, {
-    id: 4,
+    id: 5,
+    name: 'エルフC',
+    appearance: 'elf3',
+    role: {
+      rower: true,
+      demihuman: true,
+      misanthrope: true
+    }
+  }, {
+    id: 6,
     name: '道化師A',
     appearance: 'clown1',
     role: {
@@ -62,9 +78,17 @@ const scene: Scene = Object.freeze({
       freespirited: true
     }
   }, {
-    id: 5,
+    id: 7,
     name: '道化師B',
     appearance: 'clown2',
+    role: {
+      rower: true,
+      freespirited: true
+    }
+  }, {
+    id: 8,
+    name: '道化師C',
+    appearance: 'clown3',
     role: {
       rower: true,
       freespirited: true

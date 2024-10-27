@@ -6,7 +6,7 @@ const scene: Scene = Object.freeze({
   order: 4,
   rules: {
     conditions: [
-      'すべての登場人物を対岸に渡す',
+      '3人乗りの筏（いかだ）に乗り、すべての登場人物を対岸に渡す',
       '3回以内にクリアする'
     ],
     transportation: '3人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは司祭のみ。',

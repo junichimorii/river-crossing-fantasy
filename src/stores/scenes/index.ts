@@ -28,6 +28,7 @@ import mt05 from './multiracial-travelers/05'
 import mt06 from './multiracial-travelers/06'
 import mt07 from './multiracial-travelers/07'
 import mt08 from './multiracial-travelers/08'
+import mt09 from './multiracial-travelers/09'
 import nj01 from './nightmare-journey/01'
 import nj02 from './nightmare-journey/02'
 import nj03 from './nightmare-journey/03'
@@ -81,6 +82,7 @@ import tp06 from './tinderbox-party/06'
 import tp07 from './tinderbox-party/07'
 import tp08 from './tinderbox-party/08'
 import tp09 from './tinderbox-party/09'
+import tp10 from './tinderbox-party/10'
 import pb01 from './travelers-passing-by/01'
 import pb02 from './travelers-passing-by/02'
 import pb03 from './travelers-passing-by/03'
@@ -111,14 +113,14 @@ export {
   bt01, bt02, bt03, bt04, bt05, bt06,
   ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08, ec09,
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
-  mt01, mt02, mt03, mt04, mt05, mt06, mt07, mt08,
+  mt01, mt02, mt03, mt04, mt05, mt06, mt07, mt08, mt09,
   nj01, nj02, nj03, nj04, nj05, nj06, nj07, nj08, nj09, nj10,
   pb01, pb02, pb03, pb04, pb05, pb06,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
   ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
   ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08,
   sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
-  tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09,
+  tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09, tp10,
   tu01, tu02, tu03, tu04, tu05, tu06,
   wl01, wl02, wl03, wl04, wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09
 }

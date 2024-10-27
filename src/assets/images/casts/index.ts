@@ -1,5 +1,3 @@
-import bard1 from './bard1.png'
-import bard2 from './bard2.png'
 import beasttamer1 from './beasttamer1.png'
 import beasttamer2 from './beasttamer2.png'
 import beasttamer3 from './beasttamer3.png'
@@ -75,7 +73,6 @@ import wizard3 from './wizard3.png'
 const sprites: {
   [key:string]: string
 } = {
-  bard1, bard2,
   beasttamer1, beasttamer2, beasttamer3, beasttamer4, beasttamer5,
   cabbage1,
   carpenter1, carpenter2, carpenter3,
