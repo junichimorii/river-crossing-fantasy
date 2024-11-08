@@ -39,9 +39,6 @@ const { isSwiping: isPointerSwiping } = usePointerSwipe(
 /** スワイプ中かどうか */
 const isSwiping = computed(() => isTouchSwiping.value || isPointerSwiping.value)
 
-/** 初期位置にいるかどうか */
-const isOrigin = computed(() => coord(cast.value) === -1 && boarding(cast.value) === null)
-
 /** 登場人物のスワイプが終了した時 */
 const action = async (
   direction: UseSwipeDirection
@@ -84,13 +81,7 @@ const action = async (
           style="transform-origin: bottom center;"
         >
           <div class="d-flex justify-center align-end fill-height">
-            <div
-              v-if="isOrigin"
-              class="text-white"
-              style="font-size: 1.2vmin;"
-            >
-              {{ cast.name }}
-            </div>
+            <PuzzleCastNameplate :state="cast" />
           </div>
         </v-img>
       </v-img>

@@ -20,6 +20,8 @@ declare module 'vue' {
     PuzzleCast: typeof import('./components/objects/PuzzleCast.vue')['default']
     PuzzleCastEmotion: typeof import('./components/objects/cast/PuzzleCastEmotion.vue')['default']
     PuzzleCastMenu: typeof import('./components/objects/cast/PuzzleCastMenu.vue')['default']
+    PuzzleCastName: typeof import('./components/objects/cast/PuzzleCastName.vue')['default']
+    PuzzleCastNameplate: typeof import('./components/objects/cast/PuzzleCastNameplate.vue')['default']
     PuzzleStage: typeof import('./components/PuzzleStage.vue')['default']
     PuzzleToolbar: typeof import('./components/PuzzleToolbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
