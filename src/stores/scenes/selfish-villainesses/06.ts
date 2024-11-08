@@ -6,12 +6,12 @@ const scene: Scene = Object.freeze({
   order: 6,
   rules: {
     conditions: [
-      '王女の機嫌（きげん）を損ねないよう気を遣いつつ、すべての登場人物を対岸に渡す',
+      '令嬢の機嫌（きげん）を損ねないよう気を遣いつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは従者のみ。',
     tips: [
-      '王女は、**村人と二人きり**になると機嫌（きげん）を損ねます。また王女と村人は筏（いかだ）を漕（こ）ぐことができません。',
+      '令嬢は、**村人と二人きり**になると機嫌（きげん）を損ねます。また令嬢と村人は筏（いかだ）を漕（こ）ぐことができません。',
     ],
   },
   passing: 9,
@@ -23,42 +23,42 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: '従者',
-    appearance: 'maid1',
+    appearance: 'maid51',
     role: {
       rower: true
     }
   }, {
     id: 1,
-    name: '王女A',
+    name: '令嬢A',
     description: '村人と二人きりになることを嫌う。',
-    appearance: 'princess11',
+    appearance: 'villainess11',
     role: {
       rower: false,
       discord: [ 5 ]
     }
   }, {
     id: 2,
-    name: '王女B',
+    name: '令嬢B',
     description: '村人と二人きりになることを嫌う。',
-    appearance: 'princess21',
+    appearance: 'villainess21',
     role: {
       rower: false,
       discord: [ 5 ]
     }
   }, {
     id: 3,
-    name: '王女C',
+    name: '令嬢C',
     description: '村人と二人きりになることを嫌う。',
-    appearance: 'princess31',
+    appearance: 'villainess31',
     role: {
       rower: false,
       discord: [ 5 ]
     }
   }, {
     id: 4,
-    name: '王女D',
+    name: '令嬢D',
     description: '村人と二人きりになることを嫌う。',
-    appearance: 'princess41',
+    appearance: 'villainess41',
     role: {
       rower: false,
       discord: [ 5 ]

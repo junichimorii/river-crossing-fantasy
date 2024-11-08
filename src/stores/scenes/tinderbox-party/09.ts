@@ -152,7 +152,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 9,
     name: '従者',
-    appearance: 'maid1',
+    appearance: 'maid11',
     role: {
       rower: true,
       predators: [{

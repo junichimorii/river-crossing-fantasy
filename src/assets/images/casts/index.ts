@@ -31,8 +31,13 @@ import lycanthropy2 from './lycanthropy2.png'
 import lycanthropy3 from './lycanthropy3.png'
 import lycanthropy4 from './lycanthropy4.png'
 import lycanthropy5 from './lycanthropy5.png'
-import maid1 from './maid1.png'
-import maid2 from './maid2.png'
+import maid11 from './maid11.png'
+import maid12 from './maid12.png'
+import maid13 from './maid13.png'
+import maid21 from './maid21.png'
+import maid31 from './maid31.png'
+import maid41 from './maid41.png'
+import maid51 from './maid51.png'
 import necromancer1 from './necromancer1.png'
 import porter1 from './porter1.png'
 import porter2 from './porter2.png'
@@ -66,6 +71,12 @@ import villager2 from './villager2.png'
 import villager3 from './villager3.png'
 import villager4 from './villager4.png'
 import villager5 from './villager5.png'
+import villainess11 from './villainess11.png'
+import villainess12 from './villainess12.png'
+import villainess21 from './villainess21.png'
+import villainess31 from './villainess31.png'
+import villainess41 from './villainess41.png'
+import villainess51 from './villainess51.png'
 import wizard1 from './wizard1.png'
 import wizard2 from './wizard2.png'
 import wizard3 from './wizard3.png'
@@ -86,19 +97,16 @@ const sprites: {
   goat1,
   knight1, knight2, knight3, knight4, knight5,
   lycanthropy1, lycanthropy2, lycanthropy3, lycanthropy4, lycanthropy5,
-  maid1, maid2,
+  maid11, maid12, maid13, maid21, maid31, maid41, maid51,
   necromancer1,
   porter1, porter2,
   priest1, priest2, priest3, priest4,
-  princess11, princess12, princess13, princess14,
-  princess21, princess22, princess23,
-  princess31, princess32,
-  princess41,
-  princess51,
+  princess11, princess12, princess13, princess14, princess21, princess22, princess23, princess31, princess32, princess41, princess51,
   therianthropy1, therianthropy2, therianthropy3, therianthropy4, therianthropy5,
   thief1, thief2,
   undead1, undead2, undead3,
   villager1, villager2, villager3, villager4, villager5,
+  villainess11, villainess12, villainess21, villainess31, villainess41, villainess51,
   wizard1, wizard2, wizard3,
 }
 

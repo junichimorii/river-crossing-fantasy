@@ -9,7 +9,7 @@ const categories: Category[] = [{
   description: '登場するキャラクターの職業や種族を紹介します。'
 }, {
   id: 20,
-  name: 'Selfish Princesses',
+  name: 'Selfish Villainesses',
   description: '特定の登場人物同士を2人きりにしないよう川を渡るパズルです。'
 }, {
   id: 30,

@@ -64,15 +64,15 @@ import ri05 from './river-island/05'
 import ri06 from './river-island/06'
 import ri07 from './river-island/07'
 import ri08 from './river-island/08'
-import sp01 from './selfish-princesses/01'
-import sp02 from './selfish-princesses/02'
-import sp03 from './selfish-princesses/03'
-import sp04 from './selfish-princesses/04'
-import sp05 from './selfish-princesses/05'
-import sp06 from './selfish-princesses/06'
-import sp07 from './selfish-princesses/07'
-import sp08 from './selfish-princesses/08'
-import sp09 from './selfish-princesses/09'
+import sv01 from './selfish-villainesses/01'
+import sv02 from './selfish-villainesses/02'
+import sv03 from './selfish-villainesses/03'
+import sv04 from './selfish-villainesses/04'
+import sv05 from './selfish-villainesses/05'
+import sv06 from './selfish-villainesses/06'
+import sv07 from './selfish-villainesses/07'
+import sv08 from './selfish-villainesses/08'
+import sv09 from './selfish-villainesses/09'
 import tp01 from './tinderbox-party/01'
 import tp02 from './tinderbox-party/02'
 import tp03 from './tinderbox-party/03'
@@ -119,7 +119,7 @@ export {
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
   ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
   ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08,
-  sp01, sp02, sp03, sp04, sp05, sp06, sp07, sp08, sp09,
+  sv01, sv02, sv03, sv04, sv05, sv06, sv07, sv08, sv09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09, tp10,
   tu01, tu02, tu03, tu04, tu05, tu06,
   wl01, wl02, wl03, wl04, wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09

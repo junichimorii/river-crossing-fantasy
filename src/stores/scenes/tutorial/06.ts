@@ -28,7 +28,7 @@ const scene: Scene = Object.freeze({
   casts: [{
     id: 0,
     name: '従者',
-    appearance: 'maid1',
+    appearance: 'maid11',
     role: {
       rower: true
     }

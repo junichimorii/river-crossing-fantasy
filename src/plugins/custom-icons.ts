@@ -20,6 +20,7 @@ import {
   mdiMapSearch,
   mdiMusic,
   mdiMusicOff,
+  mdiRestart,
   mdiSwapVertical,
   mdiVolumeHigh,
 } from '@mdi/js'
@@ -40,6 +41,7 @@ const aliases: {
   moves: mdiHistory,
   mute: mdiMusicOff,
   outbound: mdiArrowDown,
+  restart: mdiRestart,
   right: mdiArrowRight,
   settings: mdiCog,
   scoreEmpty: mdiCrownOutline,
