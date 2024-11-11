@@ -7,12 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    2: typeof import('./components/navigation/SceneActions copy 2.vue')['default']
     AppCategoryCard: typeof import('./components/home/AppCategoryCard.vue')['default']
     AppFooter: typeof import('./components/home/AppFooter.vue')['default']
     AppListItem: typeof import('./components/home/AppListItem.vue')['default']
     AppScore: typeof import('./components/home/AppScore.vue')['default']
-    copy: typeof import('./components/navigation/SceneActions copy.vue')['default']
     PuzzleBottomMenu: typeof import('./components/PuzzleBottomMenu.vue')['default']
     PuzzleCarrier: typeof import('./components/objects/PuzzleCarrier.vue')['default']
     PuzzleCarrierMenu: typeof import('./components/objects/carrier/PuzzleCarrierMenu.vue')['default']
@@ -20,7 +18,6 @@ declare module 'vue' {
     PuzzleCast: typeof import('./components/objects/PuzzleCast.vue')['default']
     PuzzleCastEmotion: typeof import('./components/objects/cast/PuzzleCastEmotion.vue')['default']
     PuzzleCastMenu: typeof import('./components/objects/cast/PuzzleCastMenu.vue')['default']
-    PuzzleCastName: typeof import('./components/objects/cast/PuzzleCastName.vue')['default']
     PuzzleCastNameplate: typeof import('./components/objects/cast/PuzzleCastNameplate.vue')['default']
     PuzzleStage: typeof import('./components/PuzzleStage.vue')['default']
     PuzzleToolbar: typeof import('./components/PuzzleToolbar.vue')['default']
@@ -38,6 +35,7 @@ declare module 'vue' {
     SceneNavigationDialog: typeof import('./components/navigation/SceneNavigationDialog.vue')['default']
     SceneRestartButton: typeof import('./components/navigation/SceneRestartButton.vue')['default']
     SceneResult: typeof import('./components/navigation/SceneResult.vue')['default']
+    SceneResultDialog: typeof import('./components/navigation/SceneResultDialog.vue')['default']
     SceneRules: typeof import('./components/navigation/SceneRules.vue')['default']
     SceneScoreRating: typeof import('./components/navigation/SceneScoreRating.vue')['default']
     SceneSettings: typeof import('./components/navigation/SceneSettings.vue')['default']

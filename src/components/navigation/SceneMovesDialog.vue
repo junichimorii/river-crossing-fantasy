@@ -29,12 +29,26 @@ const { state: session } = storeToRefs(useSessionStore())
       </v-card-text>
       <v-divider />
       <v-card-actions class="d-flex justify-center">
-        <v-btn
-          color="primary"
-          @click.stop="session.moves=false"
+        <v-row
+          justify="center"
+          no-gutters
         >
-          OK
-        </v-btn>
+          <v-col
+            cols="12"
+            md="6"
+            xl="4"
+          >
+            <v-btn
+              block
+              variant="elevated"
+              color="primary"
+              size="large"
+              @click.stop="session.moves=false"
+            >
+              OK
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-card-actions>
     </v-card>
   </v-dialog>

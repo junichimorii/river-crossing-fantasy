@@ -24,7 +24,7 @@ onMounted(async () => {
   >
     <v-card
       :title="scene.title"
-      class="overflow-y-auto opacity-90"
+      class="overflow-y-auto opacity-90 my-4"
     >
       <v-divider />
       <v-card-text class="pa-1">
@@ -32,13 +32,27 @@ onMounted(async () => {
         <SceneCasts />
       </v-card-text>
       <v-divider />
-      <v-card-actions class="d-flex justify-center">
-        <v-btn
-          color="success"
-          @click.stop="start()"
+      <v-card-actions>
+        <v-row
+          justify="center"
+          no-gutters
         >
-          Start
-        </v-btn>
+          <v-col
+            cols="12"
+            md="6"
+            xl="4"
+          >
+            <v-btn
+              block
+              variant="elevated"
+              color="success"
+              size="x-large"
+              @click.stop="start()"
+            >
+              Start
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-card-actions>
     </v-card>
   </v-dialog>

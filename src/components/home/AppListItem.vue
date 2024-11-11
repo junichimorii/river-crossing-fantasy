@@ -22,7 +22,7 @@ const { getScore } = useRecordsStore()
       <div v-html="convert(scene.rules.conditions[0])" />
       <!-- eslint-enable -->
     </v-list-item-subtitle>
-    <div class="d-flex justify-start align-end">
+    <div>
       <v-avatar
         v-for="cast in scene.casts"
         :key="cast.id"

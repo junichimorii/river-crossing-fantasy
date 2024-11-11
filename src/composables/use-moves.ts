@@ -18,6 +18,12 @@ const useMoves = (
     : 'black'
   )
 
+  /** 成功したか */
+  const isSucceeded = computed(() => Array.from(moves.value).some(move => move.result === 'succeeded'))
+
+  /** 失敗したか */
+  const isFailed = computed(() => Array.from(moves.value).some(move => move.result === 'failed'))
+
   /** 行動履歴を初期化 */
   const init = async () => {
     moves.value.clear()
@@ -26,6 +32,8 @@ const useMoves = (
   return {
     count,
     color,
+    isSucceeded,
+    isFailed,
     init,
   }
 }

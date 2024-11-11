@@ -36,6 +36,6 @@ onUnmounted(async () => {
     <SceneNavigationDialog />
     <SceneMovesDialog />
     <SceneSplashDialog />
-    <SceneResult />
+    <SceneResultDialog />
   </template>
 </template>

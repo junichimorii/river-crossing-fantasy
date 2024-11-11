@@ -11,6 +11,7 @@ defineProps<{
 <template>
   <v-img
     :src="sprites[cast.appearance]"
+    lazy-src="@/assets/images/cast.png"
     :style="{ transform: getTransform(cast, cast.coord || -1) }"
     style="transform-origin: bottom center;"
   />
