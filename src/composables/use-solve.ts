@@ -19,7 +19,7 @@ const useSolve = (
   })
   const { coord, leave } = useCarrierState(state)
   const { isOperable } = useCarrier(state, scene)
-  const { isPeaceable } = useCasts(state, scene)
+  const { isPeaceable, unreachers, reachers, halfways } = useCasts(state, scene)
   const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
   // 時間制限のあるパズルかどうか
   const isNight = scene.value.landscape?.night
@@ -28,7 +28,6 @@ const useSolve = (
    * パズルを解く
    */
   const solve = async () => {
-    console.info('solve:') ////
     await initScene()
     solutions.value = []
     const history = await search()
@@ -39,6 +38,7 @@ const useSolve = (
    * 幅優先探索を開始
    */
   const search = async () => {
+    console.info('search:') ////
     const history = new Set<string[]>()
     const visited = new Set<string>()
     const queue: ExtendedState[] = [state.value]
@@ -77,11 +77,12 @@ const useSolve = (
             if (isNight) state.value.count += move.value
             const parsedCurrentState = parseState(state)
             const parsedCurrentMove = parseMove(move)
+            const parsedDistribution = parseDistribution(unreachers, reachers, halfways)
             if (!visited.has(parsedCurrentState)) {
               queue.push(state.value)
-              history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState])
+              history.add([parsedCurrentState, parsedCurrentMove, parsedPreviousState, parsedDistribution])
               visited.add(parsedCurrentState)
-              console.info(parsedCurrentState, parsedCurrentMove) ////
+              console.info(parsedCurrentState, parsedCurrentMove, parsedDistribution) ////
             }
           }
         }
@@ -97,6 +98,8 @@ const useSolve = (
   const lookBack = async (
     history: Set<string[]>
   ) => {
+    console.info('--------') ////
+    console.info('solution:') ////
     if (history.size === 0) return false
     const list: string[][] = Array.from(history)
     const finalStateList = list.filter(item => {
@@ -122,6 +125,7 @@ const useSolve = (
         const states: number[][] = JSON.parse(item[0])
         const ids: number[] = JSON.parse(item[1])
         const previousStates: number[][] = JSON.parse(item[2])
+        const distribution: number[][] = JSON.parse(item[3])
         const casts: Cast[] = ids.map(id => scene.value.casts[id])
         const move: Move = {
           casts: casts,
@@ -130,6 +134,11 @@ const useSolve = (
           value: Math.max(...casts.map(cast => cast.role.duration || 1))
         }
         moves.add(move)
+        console.info(JSON.stringify({
+          u: distribution[0],
+          r: distribution[1],
+          h: distribution[2],
+        })) ////
       })
       solutions.value.push(moves)
     }
@@ -158,6 +167,16 @@ const useSolve = (
   const parseMove = (
     move: Move
   ) => JSON.stringify(move.casts.map(cast => cast.id))
+
+  const parseDistribution = (
+    unreachers: Ref<Cast[]>,
+    reachers: Ref<Cast[]>,
+    halfways: Ref<Cast[]>
+  ) => JSON.stringify([
+    unreachers.value.map(cast => cast.id),
+    reachers.value.map(cast => cast.id),
+    halfways.value.map(cast => cast.id)
+  ])
 
   const restore  = (
     currentState: ExtendedState
