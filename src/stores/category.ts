@@ -18,7 +18,7 @@ const categories: Category[] = [{
 }, {
   id: 40,
   name: 'Escort and Celebrity',
-  description: '自国の王女を守りながら川を渡るパズルです。「嫉妬深い夫の問題」等の名で知られる問題を改変したものです'
+  description: '自国の王女を守りながら川を渡るパズルです。「嫉妬深い夫の問題」等の名で知られる問題を改変したものです。'
 }, {
   id: 50,
   name: 'Majority and Minority',

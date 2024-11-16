@@ -34,7 +34,6 @@ declare module 'vue' {
     SceneNavigationButton: typeof import('./components/navigation/SceneNavigationButton.vue')['default']
     SceneNavigationDialog: typeof import('./components/navigation/SceneNavigationDialog.vue')['default']
     SceneRestartButton: typeof import('./components/navigation/SceneRestartButton.vue')['default']
-    SceneResult: typeof import('./components/navigation/SceneResult.vue')['default']
     SceneResultDialog: typeof import('./components/navigation/SceneResultDialog.vue')['default']
     SceneRules: typeof import('./components/navigation/SceneRules.vue')['default']
     SceneScoreRating: typeof import('./components/navigation/SceneScoreRating.vue')['default']

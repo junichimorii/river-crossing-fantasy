@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import { useAppearance, useMoves } from '@/composables';
+import { useMoves } from '@/composables';
 import { useRecordsStore } from '@/stores/records';
 import { useSceneStore } from '@/stores/scene';
 const { report } = useRecordsStore()
 const { scene, moves } = storeToRefs(useSceneStore())
-const { init } = useSceneStore()
-const { stageSize } = useAppearance()
 const { count, isSucceeded, isFailed } = useMoves(moves)
 const score = ref(0)
 const overlay = computed(() => isSucceeded.value || isFailed.value)
