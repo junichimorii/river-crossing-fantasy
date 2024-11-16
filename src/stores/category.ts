@@ -14,15 +14,15 @@ const categories: Category[] = [{
 }, {
   id: 30,
   name: 'Predators and Guardians',
-  description: '天敵と保護者が登場する川渡りパズルです。'
+  description: '天敵と保護者が登場する川渡りパズルです。「狼とヤギとキャベツ」と呼ばれる問題が有名です。'
 }, {
   id: 40,
   name: 'Escort and Celebrity',
-  description: '自国の王女を守りながら川を渡るパズルです。'
+  description: '自国の王女を守りながら川を渡るパズルです。「嫉妬深い夫の問題」等の名で知られる問題を改変したものです'
 }, {
   id: 50,
   name: 'Majority and Minority',
-  description: '魔獣が魔獣使いより多くならないよう川を渡るパズルです。'
+  description: '魔獣が魔獣使いより多くならないよう川を渡るパズルです。「宣教師と先住民」等の名で知られる問題を改変したものです。'
 }, {
   id: 55,
   name: 'The Werewolves of River',
@@ -38,7 +38,7 @@ const categories: Category[] = [{
 }, {
   id: 75,
   name: 'Bridge and Torch',
-  description: '時間制限のある川渡りパズルです。'
+  description: '時間制限のある川渡りパズルです。「橋とたいまつの問題」等の名で知られる問題を改変したものです。'
 }, {
   id: 80,
   name: 'Tinderbox Party',
