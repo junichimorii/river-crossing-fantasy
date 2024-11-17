@@ -18,6 +18,9 @@ export const useRecordsStore = defineStore('records', () => {
   /** 記録があるかどうか */
   const isEmpty = computed(() => state.value.scenes.size === 0)
 
+  /** 最後にクリアしたシーン */
+  const latest = computed(() => Array.from(state.value.scenes.keys()).slice(-1)[0])
+
   /** 指定されたIDのシーンを読み込む */
   const load = async (
     id: number
@@ -48,6 +51,7 @@ export const useRecordsStore = defineStore('records', () => {
     state,
     scenes,
     isEmpty,
+    latest,
     load,
     report,
     isCleared,

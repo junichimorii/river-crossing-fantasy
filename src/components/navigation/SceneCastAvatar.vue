@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/casts';
 import { useCast } from '@/composables';
-import type { Cast } from '@/types'
+import type { Cast } from '@/types';
 const { getTransform } = useCast()
 defineProps<{
   cast: Cast
@@ -12,6 +12,7 @@ defineProps<{
   <v-img
     :src="sprites[cast.appearance]"
     lazy-src="@/assets/images/cast.png"
+    aspect-ratio="1/2"
     :style="{ transform: getTransform(cast, cast.coord || -1) }"
     style="transform-origin: bottom center;"
   />

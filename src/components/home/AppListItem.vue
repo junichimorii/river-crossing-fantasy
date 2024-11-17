@@ -12,6 +12,7 @@ const { getScore } = useRecordsStore()
 
 <template>
   <v-list-item
+    :id="`s${scene.id}`"
     :to="`/${scene.id}`"
     :title="scene.title"
     lines="one"
