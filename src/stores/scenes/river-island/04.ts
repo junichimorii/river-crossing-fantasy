@@ -9,16 +9,16 @@ const scene: Scene = Object.freeze({
       '両岸および中州の上で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
       '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。川の中の島に降りることもできる。',
+    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いAと魔獣Aのみ。川の中の島に降りることもできる。',
     tips: [
       '川の中間にある中州に降りることができます。',
-      '両岸および中洲において、魔獣の数が魔獣使いの数より多くなった場合、魔獣が反乱を起こします。',
+      '「魔獣たちの反乱+(1)」とよく似ていますが、筏（いかだ）を漕（こ）げる登場人物が限定されています。',
     ],
   },
   landscape: {
     island: true
   },
-  passing: 34,
+  passing: 26,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -34,38 +34,30 @@ const scene: Scene = Object.freeze({
     }
   }, {
     id: 1,
-    name: '魔獣使いB',
+    name: '魔獣使いb',
     appearance: 'beasttamer2',
     role: {
-      rower: true,
+      rower: false,
       rebel: false
     }
   }, {
     id: 2,
-    name: '魔獣使いC',
+    name: '魔獣使いc',
     appearance: 'beasttamer3',
     role: {
-      rower: true,
+      rower: false,
       rebel: false
     }
   }, {
     id: 3,
-    name: '魔獣使いD',
+    name: '魔獣使いd',
     appearance: 'beasttamer4',
     role: {
-      rower: true,
+      rower: false,
       rebel: false
     }
   }, {
     id: 4,
-    name: '魔獣使いD',
-    appearance: 'beasttamer5',
-    role: {
-      rower: true,
-      rebel: false
-    }
-  }, {
-    id: 5,
     name: '魔獣A',
     appearance: 'therianthropy1',
     role: {
@@ -73,35 +65,27 @@ const scene: Scene = Object.freeze({
       rebel: true
     }
   }, {
-    id: 6,
-    name: '魔獣B',
+    id: 5,
+    name: '魔獣b',
     appearance: 'therianthropy2',
     role: {
-      rower: true,
+      rower: false,
+      rebel: true
+    }
+  }, {
+    id: 6,
+    name: '魔獣c',
+    appearance: 'therianthropy3',
+    role: {
+      rower: false,
       rebel: true
     }
   }, {
     id: 7,
-    name: '魔獣C',
-    appearance: 'therianthropy3',
-    role: {
-      rower: true,
-      rebel: true
-    }
-  }, {
-    id: 8,
-    name: '魔獣D',
+    name: '魔獣d',
     appearance: 'therianthropy4',
     role: {
-      rower: true,
-      rebel: true
-    }
-  }, {
-    id: 9,
-    name: '魔獣E',
-    appearance: 'therianthropy5',
-    role: {
-      rower: true,
+      rower: false,
       rebel: true
     }
   }]
