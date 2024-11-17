@@ -155,7 +155,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 9,
     name: '紫国騎士',
-    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight4',
     role: {
       rower: true,

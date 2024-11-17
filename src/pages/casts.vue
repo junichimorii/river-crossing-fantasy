@@ -1,15 +1,12 @@
 <script lang="ts" setup>
-import { convert } from '@/composables/use-text';
 import { useRecordsStore } from '@/stores/records';
 const { scenes } = useRecordsStore()
 const headers = [
   { key: 'id', title:'id', width: '5%' },
-  { key: 'title', title:'title', width: '10%' },
+  { key: 'title', title:'title', width: '25%' },
   { key: 'category', title:'category', width: '5%' },
   { key: 'order', title:'order', width: '5%' },
-  { key: 'passing', title:'passing', width: '5%' },
-  { key: 'rules.transportation', title:'transportation', width: '20%' },
-  { key: 'rules.tips', title:'tips', width: '50%' },
+  { key: 'casts', title:'casts', width: '60%' },
 ]
 </script>
 
@@ -36,19 +33,18 @@ const headers = [
             {{ value }}
           </v-chip>
         </template>
-        <template #[`item.rules.transportation`]="{ value }">
-          <!-- eslint-disable vue/no-v-html -->
-          <div v-html="convert(value)" />
-          <!-- eslint-enable -->
-        </template>
-        <template #[`item.rules.tips`]="{ value }">
-          <!-- eslint-disable vue/no-v-html -->
+        <template #[`item.casts`]="{ value }">
           <div
-            v-for="text in value"
-            :key="text"
-            v-html="convert(text)"
-          />
-          <!-- eslint-enable -->
+            v-for="cast in value"
+            :key="cast.id"
+          >
+            <v-avatar tile>
+              <SceneCastAvatar :cast="cast" />
+            </v-avatar>
+            <span>{{ cast.name }}</span>
+            :
+            <span>{{ cast.description }}</span>
+          </div>
         </template>
       </v-data-table>
     </v-container>

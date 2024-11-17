@@ -11,7 +11,7 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '3人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
     tips: [
-      '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
+      '魔獣は、魔獣使いが目を離すと、近くにいる魔獣以外の全員を襲います。',
       '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。',
     ],
   },
@@ -31,7 +31,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣a',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    description: '魔獣使いが目を離すと魔獣以外の全員を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
@@ -39,7 +39,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '魔獣b',
-    description: '魔獣使いが目を離すと魔獣使い以外の全員を襲う。',
+    description: '魔獣使いが目を離すと魔獣以外の全員を襲う。',
     appearance: 'therianthropy2',
     role: {
       rower: false
