@@ -1,15 +1,15 @@
 // Plugins
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import Fonts from 'unplugin-fonts/vite'
-import Layouts from 'vite-plugin-vue-layouts'
 import Vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Fonts from 'unplugin-fonts/vite'
+import Components from 'unplugin-vue-components/vite'
 import VueRouter from 'unplugin-vue-router/vite'
+import Layouts from 'vite-plugin-vue-layouts'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // Utilities
-import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite'
 
 import { VitePWA } from 'vite-plugin-pwa'
 
@@ -17,7 +17,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     VueRouter({
-      dts: './src/typed-router.d.ts'
+      dts: 'src/typed-router.d.ts',
     }),
     Layouts(),
     AutoImport({
@@ -39,14 +39,14 @@ export default defineConfig({
           vuetify: [ 'useGoTo' ],
         },
       ],
-      dts: './src/auto-imports.d.ts',
+      dts: 'src/auto-imports.d.ts',
       eslintrc: {
         enabled: true,
       },
       vueTemplate: true,
     }),
     Components({
-      dts: './src/components.d.ts'
+      dts: 'src/components.d.ts',
     }),
     Vue({
       template: { transformAssetUrls },
@@ -60,7 +60,7 @@ export default defineConfig({
     }),
     Fonts({
       google: {
-        families: [{
+        families: [ {
           name: 'Roboto',
           styles: 'wght@100;300;400;500;700;900',
         }, {
@@ -120,6 +120,13 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+  },
+  css: {
+    preprocessorOptions: {
+      sass: {
+        api: 'modern-compiler',
+      },
+    },
   },
   base: './',
 })

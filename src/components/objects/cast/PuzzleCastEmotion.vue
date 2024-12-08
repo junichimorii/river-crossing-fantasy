@@ -6,9 +6,9 @@ const props = defineProps<{
   state: Cast
 }>()
 const { state: cast } = toRefs(props)
-const { state } = storeToRefs(useSceneStore())
+const { state: sceneState } = storeToRefs(useSceneStore())
 const { gridSize } = useAppearance()
-const { model, content, color } = useCastEmotion(state, cast)
+const { model, content, color } = useCastEmotion(sceneState, cast)
 const { isRower } = useCast()
 const offset = computed(() => gridSize.value * 0.1 * (isRower(cast.value) ? 1 : 2))
 </script>

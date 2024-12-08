@@ -6,8 +6,8 @@ const props = defineProps<{
   state: Carrier
 }>()
 const { state: carrier } = toRefs(props)
-const { state, scene, disabled } = storeToRefs(useSceneStore())
-const { getElapsedTime, getLoad, hasPassengers } = useCarrier(state, scene)
+const { state: sceneState, scene, disabled } = storeToRefs(useSceneStore())
+const { getElapsedTime, getLoad, hasPassengers } = useCarrier(sceneState, scene)
 const text = computed(() => hasPassengers(carrier.value)
   ? scene.value.casts.some(cast => cast.role.duration)
     ? `所要時間: ${getElapsedTime(carrier.value)}分`

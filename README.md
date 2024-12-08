@@ -1,17 +1,13 @@
 # river-crossing-fantasy
 
-## Project setup
-
-### create vuetify
-
 ```
-yarn create vuetify
-√ Project name: ... river-crossing-fantasy
-√ Which preset would you like to install? » Essentials (Base, Layouts, Pinia)
-√ Use TypeScript? ... Yes
+create-vuetify@2.3.0
+√ Project name: » river-crossing-fantasy
+√ Which preset would you like to install? » Recommended (Everything from Default. Adds auto importing, layouts & pinia)
+√ Use TypeScript? ... No / Yes
 √ Would you like to install dependencies with yarn, npm, pnpm, or bun? » yarn
 
-yarn add globals @eslint/js @eslint/eslintrc -D
+yarn add @vueuse/core @vueuse/sound
+yarn add -D @mdi/js vite-plugin-pwa
+yarn remove @mdi/font
 ```
-
-

@@ -9,11 +9,11 @@ const props = defineProps<{
 }>()
 const { state: cast } = toRefs(props)
 const target = ref<HTMLElement | null>(null)
-const { state, scene, disabled } = storeToRefs(useSceneStore())
+const { state: sceneState, scene, disabled } = storeToRefs(useSceneStore())
 const { width, height, aspectRatio } = useCastAppearance()
 const { getTransform } = useCast()
-const { coord, boarding } = useCastState(state)
-const { pickUp, dropOff, safetyConfirmation } = useScene(state, scene)
+const { coord, boarding } = useCastState(sceneState)
+const { pickUp, dropOff, safetyConfirmation } = useScene(sceneState, scene)
 
 /** v-imgに適用するCSS transformプロパティ */
 const transform = computed(() => getTransform(cast.value, coord(cast.value)))

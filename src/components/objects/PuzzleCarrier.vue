@@ -8,12 +8,12 @@ const props = defineProps<{
   state: Carrier
 }>()
 const { state: carrier } = toRefs(props)
-const { state, scene, moves, disabled } = storeToRefs(useSceneStore())
+const { state: sceneState, scene, moves, disabled } = storeToRefs(useSceneStore())
 const { stageSize } = useAppearance()
 const { width, height, aspectRatio } = useCarrierAppearance(carrier)
-const { coord } = useCarrierState(state)
-const { passengers } = useCasts(state, scene)
-const { arrive } = useScene(state, scene)
+const { coord } = useCarrierState(sceneState)
+const { passengers } = useCasts(sceneState, scene)
+const { arrive } = useScene(sceneState, scene)
 
 /** useTransitionで変化させるY座標 */
 const source = computed(() => coord(carrier.value))

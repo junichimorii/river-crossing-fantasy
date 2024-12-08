@@ -6,11 +6,11 @@ const props = defineProps<{
   state: Carrier
 }>()
 const { state: carrier } = toRefs(props)
-const { state, scene, disabled } = storeToRefs(useSceneStore())
-const { coord } = useCarrierState(state)
-const { isOperable } = useCarrier(state, scene)
-const { isPeaceable } = useCasts(state, scene)
-const { leave } = useScene(state, scene)
+const { state: sceneState, scene, disabled } = storeToRefs(useSceneStore())
+const { coord } = useCarrierState(sceneState)
+const { isOperable } = useCarrier(sceneState, scene)
+const { isPeaceable } = useCasts(sceneState, scene)
+const { leave } = useScene(sceneState, scene)
 const { gridSize } = useAppearance()
 /** 進行可能かどうか */
 const isEnabled = computed(() => !disabled.value && isOperable(carrier.value) && isPeaceable.value)

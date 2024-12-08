@@ -8,7 +8,7 @@ const { count, isSucceeded, isFailed } = useMoves(moves)
 const score = ref(0)
 const overlay = computed(() => isSucceeded.value || isFailed.value)
 
-watch(isSucceeded, async (value) => {
+watch(isSucceeded, async () => {
   /** ステージクリア */
   score.value = count.value <= scene.value.passing ? 2 : 1
   report(scene.value, score.value)

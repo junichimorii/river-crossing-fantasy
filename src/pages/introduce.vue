@@ -78,7 +78,7 @@ import sprites from '@/assets/images/landscapes';
               >
                 RiversideEnd
               </a>
-              </div>
+            </div>
             <div>
               イラスト協力:
               <a

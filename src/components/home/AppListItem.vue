@@ -35,8 +35,8 @@ const { getScore } = useRecordsStore()
     <!-- eslint-disable vue/no-v-html -->
     <div
       v-if="tips"
-      v-html="scene.rules.tips ? convert(scene.rules.tips[0]) : ''"
       class="text-body-2 my-1"
+      v-html="scene.rules.tips ? convert(scene.rules.tips[0]) : ''"
     />
     <!-- eslint-enable -->
     <template #append>

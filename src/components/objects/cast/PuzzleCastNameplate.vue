@@ -6,8 +6,8 @@ const props = defineProps<{
   state: Cast
 }>()
 const { state: cast } = toRefs(props)
-const { state } = storeToRefs(useSceneStore())
-const { coord } = useCastState(state)
+const { state: sceneState } = storeToRefs(useSceneStore())
+const { coord } = useCastState(sceneState)
 const { isRower } = useCast()
 
 /** 文字のスタイル */

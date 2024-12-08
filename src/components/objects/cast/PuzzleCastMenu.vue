@@ -7,8 +7,8 @@ const props = defineProps<{
   isSwiping: boolean
 }>()
 const { state: cast, isSwiping } = toRefs(props)
-const { state, disabled } = storeToRefs(useSceneStore())
-const { coord, boarding } = useCastState(state)
+const { state: sceneState, disabled } = storeToRefs(useSceneStore())
+const { coord, boarding } = useCastState(sceneState)
 
 /** 行動範囲に関するプロパティ */
 const bound = computed(() =>
