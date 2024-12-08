@@ -7,7 +7,7 @@ import type { Session } from './session'
 import type { Settings } from './settings'
 import type { Bound, CarrierState, CastState, Emotion, State } from './state'
 
-export {
+export type {
   Bound,
   Carrier,
   CarrierState,
