@@ -1,7 +1,7 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
   id: 66,
-  title: '魔獣使いと死霊使いと竜使い',
+  title: '魔獣使いと死霊使いと竜使い(1)',
   category: 30,
   order: 8,
   rules: {
@@ -39,7 +39,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣',
-    description: '魔獣使いが目を離すと死霊使いと竜使いを襲う。',
+    description: '魔獣使いが目を離すと死霊と竜人以外を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
@@ -61,7 +61,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '死霊',
-    description: '死霊使いが目を離すと魔獣使いと竜使いを襲う。',
+    description: '死霊使いが目を離すと魔獣と竜人以外を襲う。',
     appearance: 'undead1',
     role: {
       rower: false
@@ -83,7 +83,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: '竜人',
-    description: '竜使いが目を離すと魔獣使いと死霊使いを襲う。',
+    description: '竜使いが目を離すと魔獣と死霊以外を襲う。',
     appearance: 'dragonute1',
     role: {
       rower: false

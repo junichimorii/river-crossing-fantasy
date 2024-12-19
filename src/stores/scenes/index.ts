@@ -13,6 +13,8 @@ import ec06 from './escort-and-celebrity/06'
 import ec07 from './escort-and-celebrity/07'
 import ec08 from './escort-and-celebrity/08'
 import ec09 from './escort-and-celebrity/09'
+import ec10 from './escort-and-celebrity/10'
+import ec11 from './escort-and-celebrity/11'
 import mm01 from './majority-and-minority/01'
 import mm02 from './majority-and-minority/02'
 import mm03 from './majority-and-minority/03'
@@ -56,6 +58,7 @@ import pg06 from './predators-and-guardians/06'
 import pg07 from './predators-and-guardians/07'
 import pg08 from './predators-and-guardians/08'
 import pg09 from './predators-and-guardians/09'
+import pg10 from './predators-and-guardians/10'
 import ri01 from './river-island/01'
 import ri02 from './river-island/02'
 import ri03 from './river-island/03'
@@ -111,12 +114,12 @@ import wr09 from './werewolves-of-river/09'
 
 export {
   bt01, bt02, bt03, bt04, bt05, bt06,
-  ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08, ec09,
+  ec01, ec02, ec03, ec04, ec05, ec06, ec07, ec08, ec09, ec10, ec11,
   mm01, mm02, mm03, mm04, mm05, mm06, mm07,
   mt01, mt02, mt03, mt04, mt05, mt06, mt07, mt08, mt09,
   nj01, nj02, nj03, nj04, nj05, nj06, nj07, nj08, nj09, nj10,
   pb01, pb02, pb03, pb04, pb05, pb06,
-  pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09,
+  pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09, pg10,
   ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
   ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08,
   sv01, sv02, sv03, sv04, sv05, sv06, sv07, sv08, sv09,

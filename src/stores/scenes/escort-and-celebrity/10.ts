@@ -1,9 +1,9 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 94,
-  title: '王女親衛隊の攻防(9)',
+  id: 112,
+  title: '王女親衛隊の攻防(10)',
   category: 40,
-  order: 9,
+  order: 10,
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
@@ -11,10 +11,10 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '「王女親衛隊の攻防(8)」の青国王女が3人、赤国王女が2人になっています。',
+      '「王女親衛隊の攻防(8)」の青国王女が3人、赤国王女も3人になっています。',
     ],
   },
-  passing: 15,
+  passing: 17,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -38,10 +38,10 @@ const scene: Scene = Object.freeze({
         predator: 4,
         guardian: 0
       }, {
-        predator: 7,
+        predator: 8,
         guardian: 0
       }, {
-        predator: 8,
+        predator: 9,
         guardian: 0
       }]
     }
@@ -55,10 +55,10 @@ const scene: Scene = Object.freeze({
         predator: 4,
         guardian: 0
       }, {
-        predator: 7,
+        predator: 8,
         guardian: 0
       }, {
-        predator: 8,
+        predator: 9,
         guardian: 0
       }]
     }
@@ -72,10 +72,10 @@ const scene: Scene = Object.freeze({
         predator: 4,
         guardian: 0
       }, {
-        predator: 7,
+        predator: 8,
         guardian: 0
       }, {
-        predator: 8,
+        predator: 9,
         guardian: 0
       }]
     }
@@ -97,10 +97,10 @@ const scene: Scene = Object.freeze({
         predator: 0,
         guardian: 4
       }, {
-        predator: 7,
+        predator: 8,
         guardian: 4
       }, {
-        predator: 8,
+        predator: 9,
         guardian: 4
       }]
     }
@@ -114,15 +114,32 @@ const scene: Scene = Object.freeze({
         predator: 0,
         guardian: 4
       }, {
-        predator: 7,
+        predator: 8,
         guardian: 4
       }, {
-        predator: 8,
+        predator: 9,
         guardian: 4
       }]
     }
   }, {
     id: 7,
+    name: '赤国王女C',
+    appearance: 'princess23',
+    role: {
+      rower: true,
+      predators: [{
+        predator: 0,
+        guardian: 4
+      }, {
+        predator: 8,
+        guardian: 4
+      }, {
+        predator: 9,
+        guardian: 4
+      }]
+    }
+  }, {
+    id: 8,
     name: '緑国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight3',
@@ -130,7 +147,7 @@ const scene: Scene = Object.freeze({
       rower: true
     }
   }, {
-    id: 8,
+    id: 9,
     name: '紫国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',
     appearance: 'knight4',

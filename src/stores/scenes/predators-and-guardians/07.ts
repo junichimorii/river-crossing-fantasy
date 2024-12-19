@@ -41,7 +41,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 1,
     name: '魔獣a',
-    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
+    description: '魔獣使いが目を離すと死霊以外を襲う。',
     appearance: 'therianthropy1',
     role: {
       rower: false
@@ -49,7 +49,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 2,
     name: '魔獣b',
-    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
+    description: '魔獣使いが目を離すと死霊以外を襲う。',
     appearance: 'therianthropy2',
     role: {
       rower: false
@@ -57,7 +57,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 3,
     name: '魔獣c',
-    description: '魔獣使いが目を離すと死霊使いと村人を襲う。',
+    description: '魔獣使いが目を離すと死霊以外を襲う。',
     appearance: 'therianthropy3',
     role: {
       rower: false
@@ -82,7 +82,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 5,
     name: '死霊a',
-    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
+    description: '死霊使いが目を離すと魔獣以外を襲う。',
     appearance: 'undead1',
     role: {
       rower: false
@@ -90,7 +90,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 6,
     name: '死霊b',
-    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
+    description: '死霊使いが目を離すと魔獣以外を襲う。',
     appearance: 'undead2',
     role: {
       rower: false
@@ -98,7 +98,7 @@ const scene: Scene = Object.freeze({
   }, {
     id: 7,
     name: '死霊c',
-    description: '死霊使いが目を離すと魔獣使いと村人を襲う。',
+    description: '死霊使いが目を離すと魔獣以外を襲う。',
     appearance: 'undead3',
     role: {
       rower: false
