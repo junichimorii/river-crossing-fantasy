@@ -1,20 +1,18 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 13,
+  id: 114,
   title: 'ポーターは荷物が多い(2)',
   category: 70,
   order: 2,
   rules: {
     conditions: [
       '重量制限に注意しながら、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '2人乗り、重量制限2.0人分の筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '重量制限に注意しながら川を渡るパズルです。',
     ],
   },
-  passing: 11,
+  passing: 9,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -26,7 +24,7 @@ const scene: Scene = Object.freeze({
     appearance: 'porter1',
     role: {
       rower: true,
-      weight: 1.5
+      weight: 1.8
     },
   }, {
     id: 1,
@@ -34,7 +32,7 @@ const scene: Scene = Object.freeze({
     appearance: 'porter2',
     role: {
       rower: true,
-      weight: 1.5
+      weight: 1.8
     },
   }, {
     id: 2,
@@ -48,14 +46,6 @@ const scene: Scene = Object.freeze({
     id: 3,
     name: '村人B',
     appearance: 'villager2',
-    role: {
-      rower: true,
-      weight: 1
-    }
-  }, {
-    id: 4,
-    name: '村人C',
-    appearance: 'villager3',
     role: {
       rower: true,
       weight: 1

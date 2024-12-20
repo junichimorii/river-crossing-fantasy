@@ -8,6 +8,7 @@ import useCastEmotion from './use-cast-emotion'
 import useCastState from './use-cast-state'
 import useCasts from './use-casts'
 import useMoves from './use-moves'
+import useRules from './use-rules'
 import useScene from './use-scene'
 import useSceneDiscord from './use-scene-discord'
 import useSceneFreespirited from './use-scene-freespirited'
@@ -27,9 +28,10 @@ export {
   useCast,
   useCastAppearance,
   useCastEmotion,
-  useCastState,
   useCasts,
+  useCastState,
   useMoves,
+  useRules,
   useScene,
   useSceneDiscord,
   useSceneFreespirited,
@@ -39,6 +41,7 @@ export {
   useSceneRebels,
   useSceneRepairers,
   useSceneSaint,
-  useSceneWerewolves, useSolve
+  useSceneWerewolves,
+  useSolve
 }
 

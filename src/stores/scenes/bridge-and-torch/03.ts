@@ -7,9 +7,7 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
-      '最短時間でクリアする'
     ],
-    transportation: '吊り橋の人数制限は2人まで。移動時はたいまつが必要。',
     tips: [
       '古くから「bridge and torch problem」（橋とたいまつの問題）等の名で知られる川渡りパズルを改変したものです。',
       '4人で橋を渡ります。最も遅い魔法使いは、橋を渡るのに8分かかります。',

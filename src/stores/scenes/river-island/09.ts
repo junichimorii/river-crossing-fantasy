@@ -1,8 +1,8 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 26,
-  title: '一触即発パーティ(9)',
-  category: 80,
+  id: 76,
+  title: '一触即発パーティ+(5)',
+  category: 95,
   order: 9,
   rules: {
     conditions: [
@@ -10,15 +10,18 @@ const scene: Scene = Object.freeze({
     ],
     transportation: '筏（いかだ）を漕（こ）げるのは魔獣使いと騎士のみ。',
     tips: [
-      '魔獣は、魔獣使いが目を離すと、近くにいる魔獣以外の全員を襲います。',
-      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。',
+      '魔獣は、魔獣使いが目を離すと、近くにいる全員を襲います。',
+      '騎士は、他国の王女が近くにおり、かつその国の騎士が近くにいない場合、王女を襲います。'
     ],
   },
-  passing: 9,
+  landscape: {
+    island: true
+  },
+  passing: 38,
   carriers: [{
     id: 0,
-    capacity: 3,
-    appearance: 'raft3'
+    capacity: 2,
+    appearance: 'raft2'
   }],
   casts: [{
     id: 0,
@@ -29,37 +32,27 @@ const scene: Scene = Object.freeze({
     },
   }, {
     id: 1,
-    name: '魔獣a',
-    description: '魔獣使いが目を離すと魔獣以外の全員を襲う。',
+    name: '魔獣',
+    description: '魔獣使いが目を離すと近くにいる全員を襲う。',
     appearance: 'therianthropy1',
     role: {
-      rower: false
+      rower: false,
+      demihuman: true
     }
   }, {
     id: 2,
-    name: '魔獣b',
-    description: '魔獣使いが目を離すと魔獣以外の全員を襲う。',
-    appearance: 'therianthropy2',
-    role: {
-      rower: false
-    }
-  }, {
-    id: 3,
     name: '青国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: 'knight1',
     role: {
       rower: true,
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 2,
-        guardian: 0
       }]
     }
   }, {
-    id: 4,
+    id: 3,
     name: '青国王女',
     appearance: 'princess11',
     role: {
@@ -68,33 +61,30 @@ const scene: Scene = Object.freeze({
         predator: 1,
         guardian: 0
       }, {
-        predator: 2,
-        guardian: 0
+        predator: 4,
+        guardian: 2
       }, {
-        predator: 5,
-        guardian: 3
+        predator: 6,
+        guardian: 2
       }, {
-        predator: 7,
-        guardian: 3
+        predator: 8,
+        guardian: 2
       }]
     }
   }, {
-    id: 5,
+    id: 4,
     name: '赤国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: 'knight2',
     role: {
       rower: true,
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 2,
-        guardian: 0
       }]
     }
   }, {
-    id: 6,
+    id: 5,
     name: '赤国王女',
     appearance: 'princess21',
     role: {
@@ -104,32 +94,29 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 0
+        guardian: 4
       }, {
-        predator: 3,
-        guardian: 5
+        predator: 6,
+        guardian: 4
       }, {
-        predator: 7,
-        guardian: 5
+        predator: 8,
+        guardian: 4
       }]
     }
   }, {
-    id: 7,
+    id: 6,
     name: '緑国騎士',
-    description: '他国の騎士が目を離すとその国の王女を襲う。',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
     appearance: 'knight3',
     role: {
       rower: true,
       predators: [{
         predator: 1,
         guardian: 0
-      }, {
-        predator: 2,
-        guardian: 0
       }]
     }
   }, {
-    id: 8,
+    id: 7,
     name: '緑国王女',
     appearance: 'princess31',
     role: {
@@ -139,27 +126,45 @@ const scene: Scene = Object.freeze({
         guardian: 0
       }, {
         predator: 2,
-        guardian: 0
+        guardian: 6
       }, {
-        predator: 3,
-        guardian: 7
+        predator: 4,
+        guardian: 6
       }, {
-        predator: 5,
-        guardian: 7
+        predator: 8,
+        guardian: 6
       }]
     }
   }, {
-    id: 9,
-    name: '従者',
-    appearance: 'maid11',
+    id: 8,
+    name: '紫国騎士',
+    description: '他国の騎士が目を離すと他国の王女を襲う。',
+    appearance: 'knight4',
     role: {
       rower: true,
       predators: [{
         predator: 1,
         guardian: 0
+      }]
+    }
+  }, {
+    id: 9,
+    name: '紫国王女',
+    appearance: 'princess41',
+    role: {
+      rower: false,
+      predators: [{
+        predator: 1,
+        guardian: 0
       }, {
         predator: 2,
-        guardian: 0
+        guardian: 8
+      }, {
+        predator: 4,
+        guardian: 8
+      }, {
+        predator: 6,
+        guardian: 8
       }]
     }
   }]

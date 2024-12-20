@@ -7,9 +7,8 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       '村人を魔獣から保護しつつ、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '3人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
+    transportation: '筏（いかだ）を漕（こ）げるのは魔獣使いのみ。',
   },
   passing: 7,
   carriers: [{

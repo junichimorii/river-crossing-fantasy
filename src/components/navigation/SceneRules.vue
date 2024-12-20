@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import { useRules } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useSceneStore } from '@/stores/scene';
 const { scene } = useSceneStore()
+const { getConditions, getTransportation } = useRules()
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const { scene } = useSceneStore()
           クリア条件
         </v-list-item-title>
         <div
-          v-for="(rule, i) in scene.rules.conditions"
+          v-for="(rule, i) in getConditions(scene)"
           :key="i"
           class="d-flex align-self-end text-subtitle-2"
         >
@@ -38,12 +40,15 @@ const { scene } = useSceneStore()
           <v-icon icon="$transportation" />
           移動手段
         </v-list-item-title>
-        <!-- eslint-disable vue/no-v-html -->
-        <div
-          class="text-subtitle-2"
-          v-html="convert(scene.rules.transportation)"
-        />
+        <div class="text-subtitle-2">
+          <!-- eslint-disable vue/no-v-html -->
+          <span v-html="convert(getTransportation(scene))" />
+          <span
+            v-if="scene.rules.transportation"
+            v-html="convert(scene.rules.transportation)"
+          />
         <!-- eslint-enable -->
+        </div>
       </v-list-item>
       <v-list-item v-if="scene.rules.tips">
         <v-list-item-title class="text-subtitle-1">

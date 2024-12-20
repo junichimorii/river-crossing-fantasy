@@ -7,9 +7,8 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       '登場人物をそれぞれの天敵から保護しつつ、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは農夫のみ。',
+    transportation: '筏（いかだ）を漕（こ）げるのは農夫のみ。',
     tips: [
       '古くから「wolf, goat and cabbage problem」（オオカミとヤギとキャベツ）の名で知られる川渡りパズルです。',
       'オオカミは、農夫が目を離すと、近くにいるヤギを食べようとします。',

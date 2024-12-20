@@ -1,20 +1,18 @@
 import type { Scene } from '@/types'
 const scene: Scene = Object.freeze({
-  id: 63,
+  id: 13,
   title: 'ポーターは荷物が多い(3)',
   category: 70,
   order: 3,
   rules: {
     conditions: [
       '重量制限に注意しながら、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '2人乗り、重量制限2.0人分の筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
-      '登場人物の重量はそれぞれ異なります。最も重いポーターは1.5人分、最も軽い盗賊は0.7人分です。',
+      '重量制限に注意しながら川を渡るパズルです。',
     ],
   },
-  passing: 9,
+  passing: 11,
   carriers: [{
     id: 0,
     capacity: 2,
@@ -22,44 +20,44 @@ const scene: Scene = Object.freeze({
   }],
   casts: [{
     id: 0,
-    name: 'ポーター',
+    name: 'ポーターA',
     appearance: 'porter1',
     role: {
       rower: true,
-      weight: 1.5
-    }
+      weight: 1.8
+    },
   }, {
     id: 1,
-    name: '戦士',
-    appearance: 'fighter1',
+    name: 'ポーターB',
+    appearance: 'porter2',
     role: {
       rower: true,
-      weight: 1.3
-    }
+      weight: 1.8
+    },
   }, {
     id: 2,
-    name: '司祭',
-    appearance: 'priest1',
+    name: '村人A',
+    appearance: 'villager1',
     role: {
       rower: true,
-      weight: 1.1
+      weight: 1
     }
   }, {
     id: 3,
-    name: '魔法使い',
-    appearance: 'wizard1',
+    name: '村人B',
+    appearance: 'villager2',
     role: {
       rower: true,
-      weight: 0.9,
-    },
+      weight: 1
+    }
   }, {
     id: 4,
-    name: '盗賊',
-    appearance: 'thief1',
+    name: '村人C',
+    appearance: 'villager3',
     role: {
       rower: true,
-      weight: 0.7,
-    },
+      weight: 1
+    }
   }]
 })
 export default scene

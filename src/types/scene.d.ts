@@ -41,8 +41,8 @@ type Features = {
 interface Rules {
   /** ステージのクリア条件 */
   conditions: string[]
-  /** ステージに登場する乗り物の説明 */
-  transportation: string
+  /** ステージに登場する移動手段の説明 */
+  transportation?: string
   /** ヒント */
   tips?: string[]
 }

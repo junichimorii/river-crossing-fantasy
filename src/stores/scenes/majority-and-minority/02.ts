@@ -7,9 +7,7 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       '両岸で魔獣使い側が半数以上を維持しつつ、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '古くから「missionaries and cannibals problem」（宣教師と先住民）の名で知られる川渡りパズルを改変したものです。',
     ],

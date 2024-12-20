@@ -7,9 +7,7 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       '王女を他国の騎士から保護しつつ、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。すべての登場人物が筏（いかだ）を漕（こ）げる。',
     tips: [
       '古くから「jealous husbands problem」（嫉妬（しっと）深い夫の問題）の名で知られる川渡りパズルを改変したものです。',
       '3か国の騎士と王女が川を渡ります。',

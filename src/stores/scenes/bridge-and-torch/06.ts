@@ -7,9 +7,7 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       'すべての登場人物を対岸に渡す',
-      '最短時間でクリアする'
     ],
-    transportation: '吊り橋の人数制限は3人まで。移動時はたいまつが必要。',
     tips: [
       '橋は同時に3人まで渡ることができます。最も遅い登場人物に合わせて移動します。',
     ],

@@ -7,9 +7,8 @@ const scene: Scene = Object.freeze({
   rules: {
     conditions: [
       '毒による状態異常に注意しつつ、すべての登場人物を対岸に渡す',
-      '最小回数でクリアする'
     ],
-    transportation: '2人乗りの筏（いかだ）が1艘（そう）。ただし筏（いかだ）を漕（こ）げるのは聖女以外。',
+    transportation: '筏（いかだ）を漕（こ）げるのは聖女以外。',
     tips: [
       '聖女が3人登場します。',
     ],

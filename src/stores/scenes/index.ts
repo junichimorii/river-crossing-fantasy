@@ -67,6 +67,7 @@ import ri05 from './river-island/05'
 import ri06 from './river-island/06'
 import ri07 from './river-island/07'
 import ri08 from './river-island/08'
+import ri09 from './river-island/09'
 import sv01 from './selfish-villainesses/01'
 import sv02 from './selfish-villainesses/02'
 import sv03 from './selfish-villainesses/03'
@@ -102,6 +103,7 @@ import wl01 from './weight-limit/01'
 import wl02 from './weight-limit/02'
 import wl03 from './weight-limit/03'
 import wl04 from './weight-limit/04'
+import wl05 from './weight-limit/05'
 import wr01 from './werewolves-of-river/01'
 import wr02 from './werewolves-of-river/02'
 import wr03 from './werewolves-of-river/03'
@@ -121,10 +123,11 @@ export {
   pb01, pb02, pb03, pb04, pb05, pb06,
   pg01, pg02, pg03, pg04, pg05, pg06, pg07, pg08, pg09, pg10,
   ps01, ps02, ps03, ps04, ps05, ps06, ps07, ps08,
-  ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08,
+  ri01, ri02, ri03, ri04, ri05, ri06, ri07, ri08, ri09,
   sv01, sv02, sv03, sv04, sv05, sv06, sv07, sv08, sv09,
   tp01, tp02, tp03, tp04, tp05, tp06, tp07, tp08, tp09, tp10,
   tu01, tu02, tu03, tu04, tu05, tu06,
-  wl01, wl02, wl03, wl04, wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09
+  wl01, wl02, wl03, wl04, wl05,
+  wr01, wr02, wr03, wr04, wr05, wr06, wr07, wr08, wr09
 }
 
