@@ -1,7 +1,7 @@
-import island from './island.png'
-import night from './night.png'
-import poison from './poison.png'
-import river from './river.png'
+import island from './island.webp'
+import night from './night.webp'
+import poison from './poison.webp'
+import river from './river.webp'
 
 const sprites: {
   [key:string]: string

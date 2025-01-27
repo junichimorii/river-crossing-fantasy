@@ -13,7 +13,7 @@ const { stageSize } = useAppearance()
         :height="stageSize"
       >
         <v-img
-          src="@/assets/images/title.png"
+          src="@/assets/images/title.webp"
           :height="stageSize"
         >
           <div class="d-flex align-center justify-center fill-height">

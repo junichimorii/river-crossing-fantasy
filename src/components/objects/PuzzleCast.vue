@@ -8,7 +8,7 @@ const props = defineProps<{
   state: Cast
 }>()
 const { state: cast } = toRefs(props)
-const target = ref<HTMLElement | null>(null)
+const el = useTemplateRef<HTMLElement>('el')
 const { state: sceneState, scene, disabled } = storeToRefs(useSceneStore())
 const { width, height, aspectRatio } = useCastAppearance()
 const { getTransform } = useCast()
@@ -20,7 +20,8 @@ const transform = computed(() => getTransform(cast.value, coord(cast.value)))
 
 /** タッチイベントの検知 */
 const { isSwiping: isTouchSwiping } = useSwipe(
-  target, {
+  el,
+  {
     onSwipeEnd(event: TouchEvent, direction: UseSwipeDirection) {
       action(direction)
     },
@@ -29,7 +30,8 @@ const { isSwiping: isTouchSwiping } = useSwipe(
 
 /** ポインターイベントの検知 */
 const { isSwiping: isPointerSwiping } = usePointerSwipe(
-  target, {
+  el,
+  {
     onSwipeEnd(event: PointerEvent, direction: UseSwipeDirection) {
       action(direction)
     },
@@ -57,7 +59,7 @@ const action = async (
 <template>
   <PuzzleCastEmotion :state="cast">
     <v-card
-      ref="target"
+      :ref="'el'"
       flat
       :width="width"
       :height="height"
@@ -65,7 +67,7 @@ const action = async (
       class="d-flex justify-center align-end bg-transparent"
     >
       <v-img
-        src="@/assets/images/shadow.png"
+        src="@/assets/images/shadow.webp"
         cover
         :width="width"
         :height="height"

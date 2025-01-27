@@ -11,7 +11,7 @@ defineProps<{
 <template>
   <v-img
     :src="sprites[cast.appearance]"
-    lazy-src="@/assets/images/cast.png"
+    lazy-src="@/assets/images/silhouette.webp"
     aspect-ratio="1/2"
     :style="{ transform: getTransform(cast, cast.coord || -1) }"
     style="transform-origin: bottom center;"
