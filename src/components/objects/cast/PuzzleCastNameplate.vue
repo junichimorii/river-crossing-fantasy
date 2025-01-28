@@ -11,7 +11,7 @@ const { coord } = useCastState(sceneState)
 const { isRower } = useCast()
 
 /** 文字のスタイル */
-const style = computed(() => `font-size: ${1.2 / (isRower(cast.value) ? 1 : 0.85)}vmin; transform: scale(${coord(cast.value) > 0 ? -1 : 1}, 1);`)
+const style = computed(() => `font-size: ${1.2 / (isRower(cast.value) ? 1 : 0.85)}vmin; transform: scale(${coord(cast.value) > 0 ? -1 : 1}, 1); user-select: none;`)
 </script>
 
 <template>
