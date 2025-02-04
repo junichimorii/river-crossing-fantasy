@@ -5,14 +5,15 @@ import { useRecordsStore } from '@/stores/records';
 const { scenes } = useRecordsStore()
 const { getConditions, getTransportation } = useRules()
 const headers = [
-  { key: 'id', title:'id', width: '5%' },
-  { key: 'title', title:'title', width: '10%' },
-  { key: 'category', title:'category', width: '5%' },
-  { key: 'order', title:'order', width: '5%' },
-  { key: 'passing', title:'passing', width: '5%' },
-  { key: 'rules.conditions', title:'conditions', width: '20%' },
-  { key: 'rules.transportation', title:'transportation', width: '20%' },
-  { key: 'rules.tips', title:'tips', width: '40%' },
+  { key: 'id', title:'id', width: '4%' },
+  { key: 'title', title:'title', width: '8%' },
+  { key: 'category', title:'category', width: '4%' },
+  { key: 'order', title:'order', width: '4%' },
+  { key: 'passing', title:'passing', width: '4%' },
+  { key: 'rules.conditions', title:'conditions', width: '12%' },
+  { key: 'rules.transportation', title:'transportation', width: '12%' },
+  { key: 'rules.tips', title:'tips', width: '16%' },
+  { key: 'casts', title:'casts', width: '24%' },
 ]
 </script>
 
@@ -76,6 +77,24 @@ const headers = [
             v-html="convert(text)"
           />
           <!-- eslint-enable -->
+        </template>
+        <template #[`item.casts`]="{ value }">
+          <v-chip
+            v-for="cast in value"
+            :key="cast.id"
+            variant="outlined"
+            size="x-large"
+          >
+            <v-avatar
+              tile
+              start
+            >
+              <SceneCastAvatar :cast="cast" />
+            </v-avatar>
+            <span class="text-caption">{{ cast.name }}</span>
+            :
+            <span class="text-caption">{{ cast.description }}</span>
+          </v-chip>
         </template>
       </v-data-table>
     </v-container>
