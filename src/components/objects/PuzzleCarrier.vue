@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import sprites from '@/assets/images/carriers'
-import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables'
-import { useSceneStore } from '@/stores/scene'
-import type { Carrier } from '@/types'
-import { TransitionPresets } from '@vueuse/core'
+import sprites from '@/assets/images/carriers';
+import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables';
+import { useSceneStore } from '@/stores/scene';
+import type { Carrier } from '@/types';
 const props = defineProps<{
   state: Carrier
 }>()

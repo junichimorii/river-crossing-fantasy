@@ -82,6 +82,7 @@
     "useSwipe": true,
     "useTemplateRef": true,
     "useTransition": true,
-    "useWindowSize": true
+    "useWindowSize": true,
+    "TransitionPresets": true
   }
 }
