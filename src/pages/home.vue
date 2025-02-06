@@ -22,10 +22,7 @@ onMounted(async () => {
       class="h-100"
     >
       <v-container>
-        <h1
-          class="text-h4 text-center mb-6"
-          style="font-family: 'Architects Daughter', cursive;"
-        >
+        <h1 class="text-h4 text-center mb-6 decorated-header">
           River Crossing Fantasy
         </h1>
         <v-row>

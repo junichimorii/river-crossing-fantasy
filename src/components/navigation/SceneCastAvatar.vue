@@ -3,9 +3,11 @@ import sprites from '@/assets/images/casts';
 import { useCast } from '@/composables';
 import type { Cast } from '@/types';
 const { getTransform } = useCast()
-defineProps<{
+const props = defineProps<{
   cast: Cast
 }>()
+const { cast } = toRefs(props)
+const transform = computed(() => getTransform(cast.value, cast.value.coord || -1))
 </script>
 
 <template>
@@ -13,7 +15,7 @@ defineProps<{
     :src="sprites[cast.appearance]"
     lazy-src="@/assets/images/silhouette.webp"
     aspect-ratio="1/2"
-    :style="{ transform: getTransform(cast, cast.coord || -1) }"
-    style="transform-origin: bottom center;"
+    class="puzzle-cast"
+    :style="{ transform }"
   />
 </template>

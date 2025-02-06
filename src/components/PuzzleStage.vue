@@ -52,7 +52,7 @@ onMounted(async () => {
             v-for="cast in reachers"
             :key="cast.id"
             :state="cast"
-            :style="{ transform: 'scale(0.85, 0.85)', 'transform-origin': 'bottom center' }"
+            style="transform: scale(0.85, 0.85)"
           />
         </v-sheet>
         <!-- river -->

@@ -20,7 +20,7 @@ const headers = [
 <template>
   <v-app-bar
     title="River Crossing Fantasy"
-    style="font-family: 'Architects Daughter', cursive;"
+    class="decorated-header"
     color="secondary"
     prominent
   />

@@ -9,7 +9,7 @@ const { isSupported, orientation } = useScreenOrientation()
     v-show="isSupported && orientation === 'portrait-primary'"
     title="River Crossing Fantasy"
     :height="toolbarHeight"
-    style="font-family: 'Architects Daughter', cursive;"
     color="secondary"
+    class="decorated-header"
   />
 </template>

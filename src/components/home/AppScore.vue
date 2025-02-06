@@ -9,7 +9,7 @@ const { state: records, scenes } = storeToRefs(useRecordsStore())
     variant="elevated"
     color="primary"
     prepend-icon="$scoreFull"
-    style="font-family: 'Architects Daughter', cursive;"
+    class="decorated-header"
   >
     {{ records.scenes.size }} / {{ scenes.length }}
   </v-chip>

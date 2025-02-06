@@ -4,7 +4,7 @@
 
 <template>
   <v-footer class="text-center d-flex flex-column bg-transparent">
-    <div style="font-family: 'Architects Daughter', cursive;">
+    <div class="decorated-header">
       River Crossing Fantasy - Made with Vuetify.
     </div>
   </v-footer>

@@ -8,3 +8,15 @@
 // @use 'vuetify/settings' with (
 //   $color-pack: false
 // );
+
+html,
+body {
+  touch-action: manipulation;
+  overscroll-behavior-y: none;
+}
+.decorated-header {
+  font-family: 'Architects Daughter', cursive;
+}
+.puzzle-cast {
+  transform-origin: bottom center;
+}

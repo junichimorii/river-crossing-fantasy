@@ -16,7 +16,7 @@ const { category } = toRefs(props)
   >
     <v-card-title
       :class="`bg-category${category.id}`"
-      style="font-family: 'Architects Daughter', cursive;"
+      class="decorated-header"
     >
       {{ category.name }}
     </v-card-title>

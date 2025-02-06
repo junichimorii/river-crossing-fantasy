@@ -74,13 +74,13 @@ const action = async (
         :aspect-ratio="aspectRatio"
       >
         <v-img
-          :src="sprites[cast.appearance]"
           cover
+          :src="sprites[cast.appearance]"
           :width="width"
           :height="height"
           :aspect-ratio="aspectRatio"
           :style="{ transform }"
-          style="transform-origin: bottom center;"
+          class="puzzle-cast"
         >
           <div class="d-flex justify-center align-end fill-height">
             <PuzzleCastNameplate :state="cast" />
