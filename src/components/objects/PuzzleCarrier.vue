@@ -30,11 +30,12 @@ const amount = useTransition(source, {
   },
 })
 
-/** v-cardに適用するCSS transformプロパティ */
-const transform = computed(() => {
-  const ratio = 1 - ((amount.value + 1) * 0.05)
-  return `translate(0, ${-amount.value * stageSize.value * 0.1 + stageSize.value * 0.1}px) scale(${ratio}, ${ratio})`
-})
+/** 大きさ */
+const ratio = computed(() => 1 - ((amount.value + 1) * 0.05))
+/** CSS translate */
+const translate = computed(() => `0 ${-amount.value * stageSize.value * 0.1 + stageSize.value * 0.1}px`)
+/** CSS scale */
+const scale = computed(() => `${ratio.value} ${ratio.value}`)
 
 /** 乗り物の動作が停止した時 */
 const finished = async () => {
@@ -49,7 +50,7 @@ const finished = async () => {
   <v-card
     flat
     :width="width"
-    :style="{ transform }"
+    :style="{ translate, scale }"
     class="d-flex justify-center align-start bg-transparent"
   >
     <v-img

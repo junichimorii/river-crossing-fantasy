@@ -29,7 +29,7 @@ const { getScore } = useRecordsStore()
         :key="cast.id"
         tile
       >
-        <SceneCastAvatar :cast="cast" />
+        <PuzzleCastAvatar :state="cast" />
       </v-avatar>
     </div>
     <!-- eslint-disable vue/no-v-html -->

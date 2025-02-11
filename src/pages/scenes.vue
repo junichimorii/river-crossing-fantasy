@@ -89,7 +89,7 @@ const headers = [
               tile
               start
             >
-              <SceneCastAvatar :cast="cast" />
+              <PuzzleCastAvatar :state="cast" />
             </v-avatar>
             <span class="text-caption">{{ cast.name }}</span>
             :

@@ -29,13 +29,13 @@ const useCast = () => {
     cast: Cast
   ) => cast.role.duration || 1
 
-  /** CSS transformプロパティ */
-  const getTransform = (
+  /** CSS scaleプロパティ */
+  const getScale = (
     cast: Cast,
     coord: number
   ) => {
     const ratio = isRower(cast) ? 1 : 0.85
-    return `scale(${coord > 0 ? -ratio : ratio}, ${ratio})`
+    return `${coord > 0 ? -ratio : ratio} ${ratio}`
   }
 
   /** 重量 */
@@ -51,7 +51,7 @@ const useCast = () => {
   return {
     getDescription,
     getDuration,
-    getTransform,
+    getScale,
     getWeight,
     isRower,
   }

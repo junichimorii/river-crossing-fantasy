@@ -32,7 +32,7 @@ const { scene } = storeToRefs(useSceneStore())
               tile
               size="x-large"
             >
-              <SceneCastAvatar :cast="cast" />
+              <PuzzleCastAvatar :state="cast" />
             </v-avatar>
           </template>
         </v-list-item>

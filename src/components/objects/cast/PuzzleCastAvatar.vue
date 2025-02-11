@@ -2,20 +2,23 @@
 import sprites from '@/assets/images/casts';
 import { useCast } from '@/composables';
 import type { Cast } from '@/types';
-const { getTransform } = useCast()
+const { getScale } = useCast()
 const props = defineProps<{
-  cast: Cast
+  state: Cast
 }>()
-const { cast } = toRefs(props)
-const transform = computed(() => getTransform(cast.value, cast.value.coord || -1))
+const { state: cast } = toRefs(props)
+const scale = computed(() => getScale(cast.value, cast.value.coord || -1))
 </script>
 
 <template>
   <v-img
+    cover
     :src="sprites[cast.appearance]"
     lazy-src="@/assets/images/silhouette.webp"
     aspect-ratio="1/2"
     class="puzzle-cast"
-    :style="{ transform }"
-  />
+    :style="{ scale }"
+  >
+    <slot />
+  </v-img>
 </template>

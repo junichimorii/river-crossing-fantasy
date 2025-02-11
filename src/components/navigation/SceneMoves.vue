@@ -28,7 +28,7 @@ defineProps<{
               start
               size="small"
             >
-              <SceneCastAvatar :cast="cast" />
+              <PuzzleCastAvatar :state="cast" />
             </v-avatar>
             <span class="text-caption">{{ cast.name }}</span>
           </v-chip>

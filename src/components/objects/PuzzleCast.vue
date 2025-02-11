@@ -11,12 +11,12 @@ const { state: cast } = toRefs(props)
 const el = useTemplateRef<HTMLElement>('el')
 const { state: sceneState, scene, disabled } = storeToRefs(useSceneStore())
 const { width, height, aspectRatio } = useCastAppearance()
-const { getTransform } = useCast()
+const { getScale } = useCast()
 const { coord, boarding } = useCastState(sceneState)
 const { pickUp, dropOff, safetyConfirmation } = useScene(sceneState, scene)
 
-/** v-imgに適用するCSS transformプロパティ */
-const transform = computed(() => getTransform(cast.value, coord(cast.value)))
+/** v-imgに適用するCSS scaleプロパティ */
+const scale = computed(() => getScale(cast.value, coord(cast.value)))
 
 /** タッチイベントの検知 */
 const { isSwiping: isTouchSwiping } = useSwipe(
@@ -79,7 +79,7 @@ const action = async (
           :width="width"
           :height="height"
           :aspect-ratio="aspectRatio"
-          :style="{ transform }"
+          :style="{ scale }"
           class="puzzle-cast"
         >
           <div class="d-flex justify-center align-end fill-height">
