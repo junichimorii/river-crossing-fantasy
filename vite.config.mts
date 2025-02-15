@@ -10,7 +10,6 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 // Utilities
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
-
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
@@ -33,11 +32,11 @@ export default defineConfig({
           '@vueuse/sound': [ 'useSound' ]
         },
         {
-          pinia: [ 'createPinia', 'defineStore', 'storeToRefs' ],
+          pinia: [ 'defineStore', 'storeToRefs' ],
         },
         {
           vuetify: [ 'useGoTo' ],
-        },
+        }
       ],
       dts: 'src/auto-imports.d.ts',
       eslintrc: {
@@ -81,8 +80,8 @@ export default defineConfig({
         scope: 'https://river-crossing-fantasy.netlify.app/',
         start_url: 'https://river-crossing-fantasy.netlify.app/',
         name: 'River Crossing Fantasy',
-        short_name: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
-        description: '\u5ddd\u6e21\u308a\u30d1\u30ba\u30eb',
+        short_name: '川渡りパズル',
+        description: '川渡りパズル',
         icons: [{
           src: './icon-192x192.webp',
           sizes: '192x192',

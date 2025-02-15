@@ -10,7 +10,6 @@ declare global {
   const TransitionPresets: typeof import('@vueuse/core')['TransitionPresets']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
-  const createPinia: typeof import('pinia')['createPinia']
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
@@ -28,8 +27,6 @@ declare global {
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
-  const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
-  const onBeforeRouteUpdate: typeof import('vue-router')['onBeforeRouteUpdate']
   const onBeforeUnmount: typeof import('vue')['onBeforeUnmount']
   const onBeforeUpdate: typeof import('vue')['onBeforeUpdate']
   const onDeactivated: typeof import('vue')['onDeactivated']
@@ -62,7 +59,6 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useGoTo: typeof import('vuetify')['useGoTo']
   const useId: typeof import('vue')['useId']
-  const useLink: typeof import('vue-router')['useLink']
   const useModel: typeof import('vue')['useModel']
   const usePointerSwipe: typeof import('@vueuse/core')['usePointerSwipe']
   const useRoute: typeof import('vue-router/auto')['useRoute']
@@ -96,7 +92,6 @@ declare module 'vue' {
     readonly TransitionPresets: UnwrapRef<typeof import('@vueuse/core')['TransitionPresets']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
-    readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>

@@ -1,7 +1,7 @@
 # river-crossing-fantasy
 
 ```
-create-vuetify@2.3.0
+create-vuetify@2.3.1
 √ Project name: » river-crossing-fantasy
 √ Which preset would you like to install? » Recommended (Everything from Default. Adds auto importing, layouts & pinia)
 √ Use TypeScript? ... Yes
