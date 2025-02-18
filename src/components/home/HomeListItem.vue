@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useLevel } from '@/composables';
 import { convert } from '@/composables/use-text';
 import { useRecordsStore } from '@/stores/records';
 import type { Scene } from '@/types';
@@ -8,6 +9,7 @@ const props = defineProps<{
 }>()
 const { scene } = toRefs(props)
 const { getScore } = useRecordsStore()
+const { level } = useLevel(scene)
 </script>
 
 <template>
@@ -41,11 +43,12 @@ const { getScore } = useRecordsStore()
     <!-- eslint-enable -->
     <template #append>
       <v-sheet class="d-flex flex-column align-end bg-transparent">
-        <SceneLevelIcon
-          :level="scene.level"
-          :passing="scene.passing"
+        <v-icon
+          :icon="`$${level}`"
+          :color="level"
+          size="small"
         />
-        <SceneScoreRating
+        <HomeListScoreRating
           :value="getScore(scene.id)"
           size="small"
         />

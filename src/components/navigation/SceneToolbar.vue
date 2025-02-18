@@ -9,10 +9,9 @@ const { scene } = storeToRefs(useSceneStore())
     density="compact"
     class="bg-transparent"
   >
-    <SceneMovesButton />
-    <SceneSoundButton />
-    <SceneNavigationButton />
-    <SceneSolveButton />
+    <SceneToolbarMoves />
+    <SceneSoundAndSplash />
+    <SceneToolbarNavigation />
+    <SceneToolbarSolve :scene="scene" />
   </v-toolbar>
-  <SceneSolveDialog :scene="scene" />
 </template>

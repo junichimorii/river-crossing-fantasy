@@ -60,7 +60,7 @@ onMounted(async () => {
           <div>
             パズル一覧
           </div>
-          <AppScore />
+          <HomeRecordsScore />
         </h2>
         <v-row>
           <v-col
@@ -70,7 +70,7 @@ onMounted(async () => {
             sm="6"
             xl="4"
           >
-            <AppCategoryCard :category="category" />
+            <HomeListContainer :category="category" />
           </v-col>
         </v-row>
       </v-container>

@@ -2,9 +2,7 @@
 import sprites from '@/assets/images/landscapes';
 import { useAppearance, useCasts } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
-import { useSessionStore } from '@/stores/session';
 const { state, scene } = storeToRefs(useSceneStore())
-const { state: session } = storeToRefs(useSessionStore())
 const { stageSize } = useAppearance()
 const { unreachers, reachers, halfways } = useCasts(state, scene)
 const landscape = computed(() =>
@@ -16,12 +14,6 @@ const landscape = computed(() =>
         ? sprites.poison
         : sprites.river
 )
-onMounted(async () => {
-  session.value.navigation = false
-  session.value.moves = false
-  session.value.sound = false
-  session.value.solve = false
-})
 </script>
 
 <template>

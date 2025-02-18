@@ -29,13 +29,10 @@ onUnmounted(async () => {
 <template>
   <template v-if="!loading">
     <v-main @contextmenu.prevent>
-      <PuzzleToolbar />
+      <PortraitToolbar />
       <PuzzleStage />
-      <PuzzleBottomMenu />
+      <PortraitMenu />
     </v-main>
-    <SceneNavigationDialog />
-    <SceneMovesDialog />
-    <SceneSplashDialog />
     <SceneResultDialog />
   </template>
 </template>
