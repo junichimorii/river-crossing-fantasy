@@ -1,19 +1,10 @@
 <script lang="ts" setup>
-import sprites from '@/assets/images/landscapes';
-import { useAppearance, useCasts } from '@/composables';
+import { useAppearance, useCasts, useLandscape } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 const { state, scene } = storeToRefs(useSceneStore())
 const { stageSize } = useAppearance()
 const { unreachers, reachers, halfways } = useCasts(state, scene)
-const landscape = computed(() =>
-  scene.value.landscape?.island
-    ? sprites.island
-    : scene.value.landscape?.night
-      ? sprites.night
-      : scene.value.landscape?.poison
-        ? sprites.poison
-        : sprites.river
-)
+const { landscape } = useLandscape(scene)
 </script>
 
 <template>

@@ -48,7 +48,7 @@ const { level } = useLevel(scene)
           :color="level"
           size="small"
         />
-        <HomeListScoreRating
+        <ScoreRating
           :value="getScore(scene.id)"
           size="small"
         />

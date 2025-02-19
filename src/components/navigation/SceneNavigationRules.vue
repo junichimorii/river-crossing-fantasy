@@ -23,7 +23,7 @@ const { getConditions, getTransportation } = useRules()
           :key="i"
           class="d-flex align-self-end text-subtitle-2"
         >
-          <AppListScoreRating
+          <ScoreRating
             :value="i + 1"
             size="20"
           />

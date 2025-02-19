@@ -60,7 +60,7 @@ onMounted(async () => {
           <div>
             パズル一覧
           </div>
-          <HomeRecordsScore />
+          <RecordsScore />
         </h2>
         <v-row>
           <v-col
@@ -70,7 +70,7 @@ onMounted(async () => {
             sm="6"
             xl="4"
           >
-            <HomeListContainer :category="category" />
+            <ListContainer :category="category" />
           </v-col>
         </v-row>
       </v-container>

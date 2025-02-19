@@ -35,7 +35,7 @@ watch(isSucceeded, async () => {
         FAILED
       </v-card-title>
       <v-card-item class="d-flex justify-center">
-        <AppListScoreRating
+        <ScoreRating
           :value="score"
           size="x-large"
         />

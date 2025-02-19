@@ -8,14 +8,10 @@ const { scene } = storeToRefs(useSceneStore())
     <v-toolbar
       :title="scene.title"
       class="bg-transparent"
-    >
-      <template #append>
-        <slot name="toolbar-action" />
-      </template>
-    </v-toolbar>
+    />
     <slot name="top-action" />
     <v-divider />
-    <v-card-text class="pa-1">
+    <v-card-text>
       <SceneNavigationRules />
       <SceneNavigationCasts />
       <v-divider />

@@ -20,7 +20,7 @@ const dialog = ref(false)
     class="d-flex justify-center align-center"
   >
     <SceneNavigation class="opacity-90">
-      <template #toolbar-action>
+      <template #append>
         <v-btn
           icon="$close"
           variant="text"
@@ -33,7 +33,8 @@ const dialog = ref(false)
           <v-row justify="center">
             <v-col
               cols="12"
-              sm="6"
+              sm="4"
+              md="4"
             >
               <v-btn
                 block
@@ -48,7 +49,8 @@ const dialog = ref(false)
             </v-col>
             <v-col
               cols="12"
-              sm="6"
+              sm="4"
+              md="4"
             >
               <v-btn
                 block
@@ -59,6 +61,22 @@ const dialog = ref(false)
                 @click.stop="init();dialog=false"
               >
                 最初から始める
+              </v-btn>
+            </v-col>
+            <v-col
+              cols="12"
+              sm="4"
+              md="4"
+            >
+              <v-btn
+                block
+                variant="elevated"
+                color="info"
+                size="large"
+                prepend-icon="$next"
+                @click.stop="dialog=false"
+              >
+                再開する
               </v-btn>
             </v-col>
           </v-row>

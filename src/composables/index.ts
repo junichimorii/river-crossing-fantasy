@@ -7,6 +7,7 @@ import useCastAppearance from './use-cast-appearance'
 import useCastEmotion from './use-cast-emotion'
 import useCastState from './use-cast-state'
 import useCasts from './use-casts'
+import useLandscape from './use-landscape'
 import useLevel from './use-level'
 import useMoves from './use-moves'
 import useRules from './use-rules'
@@ -31,6 +32,7 @@ export {
   useCastEmotion,
   useCasts,
   useCastState,
+  useLandscape,
   useLevel,
   useMoves,
   useRules,

@@ -33,9 +33,7 @@ const dialog = ref(false)
       <template #prepend>
         <v-icon icon="$solve" />
       </template>
-      <v-card-actions
-        class="d-flex justify-center"
-      >
+      <v-card-actions class="d-flex justify-center">
         <v-btn
           prepend-icon="$solve"
           color="info"

@@ -8,7 +8,6 @@ const { scene } = storeToRefs(useSceneStore())
 const { load: loadScene, init: initScene, unload: unloadScene } = useSceneStore()
 const loading = ref(true)
 onMounted(async () => {
-  if(Array.isArray(route.params.id)) throw `id: ${route.params.id}`
   const id = parseInt(route.params.id)
   if(!scene.value || scene.value.id !== id) {
     const config = await loadRecord(id)
@@ -30,7 +29,7 @@ onUnmounted(async () => {
   <template v-if="!loading">
     <v-main @contextmenu.prevent>
       <PortraitToolbar />
-      <PuzzleStage />
+      <SceneStage />
       <PortraitMenu />
     </v-main>
     <SceneResultDialog />
