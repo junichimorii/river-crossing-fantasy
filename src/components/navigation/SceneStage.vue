@@ -15,19 +15,16 @@ const { landscape } = useLandscape(scene)
   >
     <SceneToolbar />
     <v-sheet
-      id="puzzle-container"
       :height="stageSize"
       class="d-flex justify-center align-start bg-transparent"
     >
       <v-sheet
-        id="puzzle-stage"
         :width="stageSize * 0.96"
         :height="stageSize"
         class="d-flex flex-column bg-transparent"
       >
         <!-- destination -->
         <v-sheet
-          id="stage-destination"
           :height="stageSize * 0.3"
           class="d-flex justify-end align-end order-1 bg-transparent"
         >
@@ -40,7 +37,6 @@ const { landscape } = useLandscape(scene)
         </v-sheet>
         <!-- river -->
         <v-sheet
-          id="stage-river"
           :height="stageSize * 0.45"
           class="d-flex justify-center align-start order-2 bg-transparent"
         >
@@ -55,9 +51,7 @@ const { landscape } = useLandscape(scene)
                 :state="cast"
               />
             </v-col>
-            <v-col
-              class="d-flex justify-center"
-            >
+            <v-col class="d-flex justify-center">
               <PuzzleCarrier
                 v-for="carrier in scene.carriers"
                 :key="carrier.id"
@@ -74,7 +68,6 @@ const { landscape } = useLandscape(scene)
         </v-sheet>
         <!-- origin -->
         <v-sheet
-          id="stage-origin"
           :width="stageSize * 0.96"
           :height="stageSize * 0.2"
           class="d-flex justify-start align-end order-3 bg-transparent"
