@@ -4,11 +4,13 @@ const { scene } = storeToRefs(useSceneStore())
 </script>
 
 <template>
-  <v-card class="overflow-y-auto">
-    <v-toolbar
-      :title="scene.title"
-      class="bg-transparent"
-    />
+  <v-card
+    :title="scene.title"
+    class="overflow-y-auto"
+  >
+    <template #append>
+      <slot name="append" />
+    </template>
     <slot name="top-action" />
     <v-divider />
     <v-card-text>

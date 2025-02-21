@@ -4,20 +4,17 @@ import { useSceneStore } from '@/stores/scene';
 const route = useRoute('/[id]')
 const router = useRouter()
 const { load: loadRecord } = useRecordsStore()
-const { scene } = storeToRefs(useSceneStore())
 const { load: loadScene, init: initScene, unload: unloadScene } = useSceneStore()
 const loading = ref(true)
+provide('init', initScene)
 onMounted(async () => {
-  const id = parseInt(route.params.id)
-  if(!scene.value || scene.value.id !== id) {
-    const config = await loadRecord(id)
-    if (!config) {
-      router.push({ path: '/home' })
-      return
-    }
-    await loadScene(config)
-    await initScene()
+  const config = await loadRecord(route.params.id)
+  if (!config) {
+    router.push({ path: '/home' })
+    return
   }
+  await loadScene(config)
+  await initScene()
   loading.value = false
 })
 onUnmounted(async () => {
@@ -26,12 +23,15 @@ onUnmounted(async () => {
 </script>
 
 <template>
-  <template v-if="!loading">
+  <v-skeleton-loader
+    :loading="loading"
+    type="image"
+  >
+    <PortraitToolbar />
     <v-main @contextmenu.prevent>
-      <PortraitToolbar />
       <SceneStage />
       <PortraitMenu />
     </v-main>
     <SceneResultDialog />
-  </template>
+  </v-skeleton-loader>
 </template>

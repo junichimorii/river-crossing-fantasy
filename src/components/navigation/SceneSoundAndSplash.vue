@@ -36,26 +36,14 @@ onUnmounted(async () => {
     <SceneNavigation class="opacity-90">
       <template #bottom-action>
         <v-card-actions>
-          <v-row
-            justify="center"
-            no-gutters
+          <v-btn
+            block
+            variant="elevated"
+            color="success"
+            @click.stop="dialog = false; play()"
           >
-            <v-col
-              cols="12"
-              md="6"
-              xl="4"
-            >
-              <v-btn
-                block
-                variant="elevated"
-                color="success"
-                size="x-large"
-                @click.stop="dialog = false; play()"
-              >
-                Start
-              </v-btn>
-            </v-col>
-          </v-row>
+            Start
+          </v-btn>
         </v-card-actions>
       </template>
     </SceneNavigation>

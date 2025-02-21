@@ -23,9 +23,10 @@ export const useRecordsStore = defineStore('records', () => {
 
   /** 指定されたIDのシーンを読み込む */
   const load = async (
-    id: number
+    id: number | string
   ) => {
-    const config = scenes.value.find(scene => scene.id === id)
+    const config = scenes.value.find(scene => scene.id === useToNumber(id).value)
+    if (!config) throw new Error()
     return config
   }
 

@@ -24,31 +24,23 @@ const dialog = ref(false)
     v-model="dialog"
     scrollable
     :retain-focus="false"
-    class="d-flex justify-center align-center"
   >
-    <v-card
-      flat
-      title="ルート探索"
-    >
+    <v-card title="ルート探索">
       <template #prepend>
         <v-icon icon="$solve" />
       </template>
-      <v-card-actions class="d-flex justify-center">
+      <template #append>
         <v-btn
-          prepend-icon="$solve"
-          color="info"
+          icon="$solve"
+          variant="text"
           @click.stop="solve()"
-        >
-          探索開始
-        </v-btn>
+        />
         <v-btn
-          prepend-icon="$close"
-          color="error"
-          @click.stop="dialog = false"
-        >
-          閉じる
-        </v-btn>
-      </v-card-actions>
+          icon="$close"
+          variant="text"
+          @click.stop="dialog=false"
+        />
+      </template>
       <v-alert
         v-if="!solved"
         type="error"
