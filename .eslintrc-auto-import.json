@@ -83,6 +83,7 @@
     "watchEffect": true,
     "watchPostEffect": true,
     "watchSyncEffect": true,
-    "useToNumber": true
+    "useToNumber": true,
+    "useRefHistory": true
   }
 }

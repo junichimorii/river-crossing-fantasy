@@ -26,7 +26,7 @@ export default defineConfig({
           'vue-router/auto': ['useRoute', 'useRouter'],
         },
         {
-          '@vueuse/core': [ 'usePointerSwipe', 'useScreenOrientation', 'useStorage', 'useSwipe', 'useToNumber', 'useTransition', 'useWindowSize', 'TransitionPresets' ],
+          '@vueuse/core': [ 'usePointerSwipe', 'useRefHistory', 'useScreenOrientation', 'useStorage', 'useSwipe', 'useToNumber', 'useTransition', 'useWindowSize', 'TransitionPresets' ],
         },
         {
           '@vueuse/sound': [ 'useSound' ]

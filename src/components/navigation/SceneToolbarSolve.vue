@@ -58,6 +58,7 @@ const dialog = ref(false)
               / 時間: {{ Array.from(moves).reduce((a, b) => a + b.value, 0) }}
             </span>
           </v-card-subtitle>
+          <SceneMoves :moves="moves" />
           <v-row no-gutters>
             <v-col
               v-for="(move, j) in moves"
@@ -87,7 +88,7 @@ const dialog = ref(false)
                     rounded
                     color="primary"
                   >
-                    {{ i + 1 }}
+                    {{ j + 1 }}
                   </v-chip>
                 </template>
                 <template #append>

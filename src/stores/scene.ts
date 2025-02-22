@@ -1,5 +1,6 @@
-import { useMoves, useScene } from '@/composables'
+import { useScene } from '@/composables'
 import type { CarrierState, CastState, Move, Scene, State } from '@/types'
+import { useRefHistory } from '@vueuse/core'
 
 /**
  * シーン（ステージ）管理
@@ -14,6 +15,8 @@ export const useSceneStore = defineStore('scene', () => {
     },
     sessionStorage,
   )
+
+  const { history, undo } = useRefHistory(state)
 
   /** シーンの設定 */
   const scene = ref<Scene>({
@@ -37,7 +40,6 @@ export const useSceneStore = defineStore('scene', () => {
   const disabled = ref(false)
 
   const { init: initScene } = useScene(state, scene)
-  const { init: initMoves } = useMoves(moves)
 
   /** シーンを読み込む */
   const load = async (
@@ -58,16 +60,18 @@ export const useSceneStore = defineStore('scene', () => {
   /** シーンの状態を初期化 */
   const init = async () => {
     await initScene()
-    await initMoves()
+    moves.value.clear()
   }
 
   return {
     state,
     scene,
     moves,
+    history,
     disabled,
     load,
     unload,
     init,
+    undo,
   }
 })

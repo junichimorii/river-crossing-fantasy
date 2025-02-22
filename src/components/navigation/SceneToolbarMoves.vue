@@ -2,7 +2,14 @@
 import { useMoves } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 const { scene, moves } = storeToRefs(useSceneStore())
-const { count, color } = useMoves(moves, scene)
+const { count } = useMoves(moves)
+/** カウンターの色 */
+const color = computed(() => scene
+  ? count.value <= scene.value.passing
+    ? 'success'
+    : 'error'
+  : 'black'
+)
 const dialog = ref(false)
 </script>
 

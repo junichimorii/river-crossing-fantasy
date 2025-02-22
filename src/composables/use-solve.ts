@@ -123,15 +123,14 @@ const useSolve = (
       }
       solution.reverse().slice(1).forEach(item => {
         const states: number[][] = JSON.parse(item[0])
-        const ids: number[] = JSON.parse(item[1])
+        const casts: number[] = JSON.parse(item[1])
         const previousStates: number[][] = JSON.parse(item[2])
         const distribution: number[][] = JSON.parse(item[3])
-        const casts: Cast[] = ids.map(id => scene.value.casts[id])
         const move: Move = {
-          casts: casts,
+          casts,
           origin: previousStates[0][0],
           destination: states[0][0],
-          value: Math.max(...casts.map(cast => cast.role.duration || 1))
+          value: Math.max(...casts.map(id => scene.value.casts[id].role.duration || 1))
         }
         moves.add(move)
         console.info(JSON.stringify({
@@ -166,7 +165,7 @@ const useSolve = (
 
   const parseMove = (
     move: Move
-  ) => JSON.stringify(move.casts.map(cast => cast.id))
+  ) => JSON.stringify(move.casts)
 
   const parseDistribution = (
     unreachers: Ref<Cast[]>,
