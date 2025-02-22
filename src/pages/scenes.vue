@@ -85,12 +85,7 @@ const headers = [
             variant="outlined"
             size="x-large"
           >
-            <v-avatar
-              tile
-              start
-            >
-              <PuzzleCastAvatar :state="cast" />
-            </v-avatar>
+            <PuzzleCastAvatar :state="cast" />
             <span class="text-caption">{{ cast.name }}</span>
             :
             <span class="text-caption">{{ cast.description }}</span>

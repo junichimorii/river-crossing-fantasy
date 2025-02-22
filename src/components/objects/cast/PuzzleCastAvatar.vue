@@ -11,14 +11,19 @@ const scale = computed(() => getScale(cast.value, cast.value.coord || -1))
 </script>
 
 <template>
-  <v-img
-    cover
-    :src="sprites[cast.appearance]"
-    lazy-src="@/assets/images/silhouette.webp"
-    aspect-ratio="1/2"
-    class="puzzle-cast"
-    :style="{ scale }"
+  <v-avatar
+    tile
+    start
   >
-    <slot />
-  </v-img>
+    <v-img
+      cover
+      :src="sprites[cast.appearance]"
+      lazy-src="@/assets/images/silhouette.webp"
+      aspect-ratio="1/2"
+      class="puzzle-cast"
+      :style="{ scale }"
+    >
+      <slot />
+    </v-img>
+  </v-avatar>
 </template>

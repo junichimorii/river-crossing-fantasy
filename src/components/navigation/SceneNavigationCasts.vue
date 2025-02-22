@@ -28,12 +28,10 @@ const { scene } = storeToRefs(useSceneStore())
           <span v-html="convert(getDescription(cast))" />
           <!-- eslint-enable -->
           <template #prepend>
-            <v-avatar
-              tile
+            <PuzzleCastAvatar
+              :state="cast"
               size="x-large"
-            >
-              <PuzzleCastAvatar :state="cast" />
-            </v-avatar>
+            />
           </template>
         </v-list-item>
       </v-col>

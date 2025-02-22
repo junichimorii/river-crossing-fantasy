@@ -3,15 +3,13 @@ import casts from '@/assets/images/casts';
 import landscapes from '@/assets/images/landscapes';
 import categories from '@/stores/category';
 import { useRecordsStore } from '@/stores/records';
+const goTo = useGoTo()
 const { scenes, latest } = storeToRefs(useRecordsStore())
 const items = computed(() => categories.map(category => Object.assign(category, {
   scenes: scenes.value.filter(scene => scene.category === category.id).sort((a, b) => a.order - b.order)
 })))
 onMounted(async () => {
-  document.getElementById(`s${latest.value}`)?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center'
-  })
+  goTo(`#s${latest.value}`)
 })
 </script>
 
@@ -77,5 +75,10 @@ onMounted(async () => {
       <v-divider class="my-4" />
       <AppFooter />
     </v-parallax>
+    <v-fab
+      app
+      icon="$collapse"
+      @click="goTo(0)"
+    />
   </v-main>
 </template>

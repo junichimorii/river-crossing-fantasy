@@ -25,6 +25,7 @@ declare module 'vue' {
     RecordsScore: typeof import('./components/home/RecordsScore.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SceneMoves: typeof import('./components/navigation/SceneMoves.vue')['default']
     SceneNavigation: typeof import('./components/navigation/SceneNavigation.vue')['default']
     SceneNavigationCasts: typeof import('./components/navigation/SceneNavigationCasts.vue')['default']
     SceneNavigationRules: typeof import('./components/navigation/SceneNavigationRules.vue')['default']

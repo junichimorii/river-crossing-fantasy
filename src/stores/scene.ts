@@ -15,13 +15,6 @@ export const useSceneStore = defineStore('scene', () => {
     sessionStorage,
   )
 
-  /** シーンの行動履歴 */
-  const moves = useStorage<Set<Move>>(
-    'RIVER_CROSSING_FANTASY_MOVES',
-    new Set<Move>(),
-    sessionStorage,
-  )
-
   /** シーンの設定 */
   const scene = ref<Scene>({
     id: 0,
@@ -36,6 +29,9 @@ export const useSceneStore = defineStore('scene', () => {
     carriers: [],
     casts: [],
   })
+
+  /** シーンの行動履歴 */
+  const moves = ref(new Set<Move>())
 
   /** 操作の有効／無効 */
   const disabled = ref(false)
@@ -52,13 +48,11 @@ export const useSceneStore = defineStore('scene', () => {
       carriers: [] as CarrierState[],
       casts: [] as CastState[],
     }
-    moves.value = new Set<Move>()
   }
 
   /** シーンの状態を消去 */
   const unload = async () => {
     state.value = null
-    moves.value = null
   }
 
   /** シーンの状態を初期化 */

@@ -8,7 +8,6 @@ const { count, isSucceeded, isFailed } = useMoves(moves)
 const score = ref(0)
 const overlay = computed(() => isSucceeded.value || isFailed.value)
 watch(isSucceeded, async () => {
-  /** ステージクリア */
   score.value = count.value <= scene.value.passing ? 2 : 1
   report(scene.value, score.value)
 })
@@ -17,10 +16,13 @@ watch(isSucceeded, async () => {
 <template>
   <v-dialog
     v-model="overlay"
+    scrollable
     persistent
     class="d-flex justify-center align-center"
   >
-    <v-card class="pa-6 opacity-90">
+    <v-card
+      class="overflow-y-auto opacity-90"
+    >
       <v-card-title
         v-if="isSucceeded"
         class="text-center text-success text-h5 text-sm-h3 py-4"
@@ -39,6 +41,9 @@ watch(isSucceeded, async () => {
           size="x-large"
         />
       </v-card-item>
+      <v-card-text>
+        <SceneMoves />
+      </v-card-text>
       <v-card-actions class="justify-center">
         <v-btn
           variant="elevated"

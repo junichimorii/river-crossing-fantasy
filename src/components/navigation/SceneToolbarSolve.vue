@@ -75,12 +75,10 @@ const dialog = ref(false)
                     variant="text"
                     class="pa-2"
                   >
-                    <v-avatar
-                      start
+                    <PuzzleCastAvatar
+                      :state="scene.casts[id]"
                       size="small"
-                    >
-                      <PuzzleCastAvatar :state="scene.casts[id]" />
-                    </v-avatar>
+                    />
                     <span class="text-caption">{{ scene.casts[id].name }}</span>
                   </v-chip>
                 </v-list-item-title>
