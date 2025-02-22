@@ -83,7 +83,7 @@ const useScene = (
     await crossed()
     // 履歴を追加
     const move: Move = {
-      casts: passengers.value[carrier.id],
+      casts: passengers.value[carrier.id].map(cast => cast.id),
       origin: castCoord(passengers.value[carrier.id][0]),
       destination: carrierCoord(carrier),
       value: getElapsedTime(carrier),

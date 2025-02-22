@@ -22,6 +22,7 @@ import {
   mdiMusicOff,
   mdiRestart,
   mdiSwapVertical,
+  mdiUndo,
   mdiVolumeHigh,
 } from '@mdi/js'
 const aliases: {
@@ -51,6 +52,7 @@ const aliases: {
   story: mdiBookOpenPageVariant,
   transportation: mdiSwapVertical,
   tips: mdiChatAlert,
+  undo: mdiUndo,
   volume: mdiVolumeHigh,
 }
 

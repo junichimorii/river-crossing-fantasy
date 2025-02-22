@@ -32,6 +32,7 @@ onUnmounted(async () => {
       <SceneStage />
       <PortraitMenu />
     </v-main>
+    <PortraitFooter />
     <SceneResultDialog />
   </v-skeleton-loader>
 </template>

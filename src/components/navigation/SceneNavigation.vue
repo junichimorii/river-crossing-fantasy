@@ -5,6 +5,7 @@ const { scene } = storeToRefs(useSceneStore())
 
 <template>
   <v-card
+    flat
     :title="scene.title"
     class="overflow-y-auto"
   >
@@ -19,7 +20,6 @@ const { scene } = storeToRefs(useSceneStore())
       <v-divider />
       <SettingsMenu />
     </v-card-text>
-    <v-divider />
     <slot name="bottom-action" />
   </v-card>
 </template>

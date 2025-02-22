@@ -15,31 +15,27 @@ export const useSceneStore = defineStore('scene', () => {
     sessionStorage,
   )
 
-  /** シーンの設定 */
-  const scene = useStorage<Scene>(
-    'RIVER_CROSSING_FANTASY_SCENE',
-    {
-      id: 0,
-      title: '',
-      category: 0,
-      order: 0,
-      rules: {
-        conditions: [],
-        transportation: '',
-      },
-      passing: 0,
-      carriers: [],
-      casts: [],
-    },
-    sessionStorage,
-  )
-
   /** シーンの行動履歴 */
   const moves = useStorage<Set<Move>>(
     'RIVER_CROSSING_FANTASY_MOVES',
     new Set<Move>(),
     sessionStorage,
   )
+
+  /** シーンの設定 */
+  const scene = ref<Scene>({
+    id: 0,
+    title: '',
+    category: 0,
+    order: 0,
+    rules: {
+      conditions: [],
+      transportation: '',
+    },
+    passing: 0,
+    carriers: [],
+    casts: [],
+  })
 
   /** 操作の有効／無効 */
   const disabled = ref(false)
@@ -61,7 +57,6 @@ export const useSceneStore = defineStore('scene', () => {
 
   /** シーンの状態を消去 */
   const unload = async () => {
-    scene.value = null
     state.value = null
     moves.value = null
   }

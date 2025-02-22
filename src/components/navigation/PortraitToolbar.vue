@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useSceneStore } from '@/stores/scene';
+const { scene } = storeToRefs(useSceneStore())
 const { isSupported, orientation } = useScreenOrientation()
 </script>
 
@@ -6,7 +8,6 @@ const { isSupported, orientation } = useScreenOrientation()
   <v-app-bar
     v-if="isSupported && orientation === 'portrait-primary'"
     app
-    title="River Crossing Fantasy"
-    class="decorated-header"
+    :title="scene.title"
   />
 </template>

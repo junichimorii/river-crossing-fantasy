@@ -11,6 +11,7 @@ declare module 'vue' {
     AppFooter: typeof import('./components/AppFooter.vue')['default']
     ListContainer: typeof import('./components/home/ListContainer.vue')['default']
     ListItem: typeof import('./components/home/ListItem.vue')['default']
+    PortraitFooter: typeof import('./components/navigation/PortraitFooter.vue')['default']
     PortraitMenu: typeof import('./components/navigation/PortraitMenu.vue')['default']
     PortraitToolbar: typeof import('./components/navigation/PortraitToolbar.vue')['default']
     PuzzleCarrier: typeof import('./components/objects/PuzzleCarrier.vue')['default']

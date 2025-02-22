@@ -52,8 +52,8 @@ const dialog = ref(false)
               <v-list-item-title>
                 <v-icon :icon="move.origin < move.destination ? '$inbound' : '$outbound'" />
                 <v-chip
-                  v-for="cast in move.casts"
-                  :key="cast.id"
+                  v-for="id in move.casts"
+                  :key="id"
                   variant="text"
                   class="pa-2"
                 >
@@ -61,9 +61,9 @@ const dialog = ref(false)
                     start
                     size="small"
                   >
-                    <PuzzleCastAvatar :state="cast" />
+                    <PuzzleCastAvatar :state="scene.casts[id]" />
                   </v-avatar>
-                  <span class="text-caption">{{ cast.name }}</span>
+                  <span class="text-caption">{{ scene.casts[id].name }}</span>
                 </v-chip>
               </v-list-item-title>
               <template #prepend>
