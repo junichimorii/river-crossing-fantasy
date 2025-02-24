@@ -20,9 +20,7 @@ watch(isSucceeded, async () => {
     persistent
     class="d-flex justify-center align-center"
   >
-    <v-card
-      class="overflow-y-auto opacity-90"
-    >
+    <v-card class="overflow-y-auto opacity-90">
       <v-card-title
         v-if="isSucceeded"
         class="text-center text-success text-h5 text-sm-h3 py-4"

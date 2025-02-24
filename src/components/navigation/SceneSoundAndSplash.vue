@@ -4,7 +4,6 @@ import { useSettingsStore } from '@/stores/settings';
 const { state: settings } = storeToRefs(useSettingsStore())
 const dialog = ref(false)
 const volume = computed(() => settings.value.sound.volume)
-const icon = computed(() => isPlaying.value ? '$sound' : '$mute')
 const { play, stop, isPlaying } = useSound(bgm, {
   loop: true,
   volume,
@@ -20,7 +19,7 @@ onUnmounted(async () => {
 
 <template>
   <v-btn
-    :icon="icon"
+    :icon="isPlaying ? '$sound' : '$mute'"
     variant="elevated"
     size="small"
     color="primary"
