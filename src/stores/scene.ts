@@ -1,5 +1,9 @@
 import { useScene } from '@/composables'
 import type { CarrierState, CastState, Move, Scene, State } from '@/types'
+export const defaultState: State = Object.freeze({
+  carriers: [] as CarrierState[],
+  casts: [] as CastState[],
+})
 
 /**
  * シーン（ステージ）管理
@@ -8,10 +12,7 @@ export const useSceneStore = defineStore('scene', () => {
   /** シーンの状態 */
   const state = useStorage<State>(
     'RIVER_CROSSING_FANTASY_STATE',
-    {
-      carriers: [] as CarrierState[],
-      casts: [] as CastState[],
-    },
+    structuredClone(defaultState),
     sessionStorage,
   )
 
@@ -43,10 +44,7 @@ export const useSceneStore = defineStore('scene', () => {
     config: Scene
   ) => {
     scene.value = config
-    state.value = {
-      carriers: [] as CarrierState[],
-      casts: [] as CastState[],
-    }
+    state.value = structuredClone(defaultState)
   }
 
   /** シーンの状態を消去 */
