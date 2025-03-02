@@ -16,7 +16,7 @@ const { scene } = storeToRefs(useSceneStore())
     <v-divider />
     <v-card-text>
       <SceneNavigationRules />
-      <SceneNavigationCasts />
+      <SceneNavigationCrews />
       <v-divider />
       <SettingsMenu />
     </v-card-text>

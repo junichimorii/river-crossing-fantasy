@@ -1,4 +1,4 @@
-import { useCastState } from '@/composables'
+import { useCrewState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -8,30 +8,30 @@ const useSceneMonophobia = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { coord: castCoord, boarding, feel } = useCastState(state)
+  const { coord: crewCoord, boarding, feel } = useCrewState(state)
 
   /** 孤独嫌いが登場するかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.monophobia)
+  const isValid = scene.value.crews.some(crew => crew.role.monophobia)
 
   /** 独りぼっちかどうか判定する */
   const test = async () => {
-    for await (const myself of scene.value.casts) {
+    for await (const myself of scene.value.crews) {
       if (!myself.role.monophobia) continue
-      const others = scene.value.casts.filter(cast => cast !== myself)
+      const others = scene.value.crews.filter(crew => crew !== myself)
       // 乗り物に乗っている
       if (boarding(myself) !== null) {
-        if (!others.some(cast => boarding(myself) === boarding(cast))) {
+        if (!others.some(crew => boarding(myself) === boarding(crew))) {
           feel(myself, 'scared')
-          for await (const cast of others) {
-            feel(cast, 'surprised')
+          for await (const crew of others) {
+            feel(crew, 'surprised')
           }
         }
       // 乗り物に乗っていない
       } else {
-        if (others.filter(cast => boarding(cast) === null && castCoord(myself) === castCoord(cast)).length === 0) {
+        if (others.filter(crew => boarding(crew) === null && crewCoord(myself) === crewCoord(crew)).length === 0) {
           feel(myself, 'scared')
-          for await (const cast of others) {
-            feel(cast, 'surprised')
+          for await (const crew of others) {
+            feel(crew, 'surprised')
           }
         }
       }

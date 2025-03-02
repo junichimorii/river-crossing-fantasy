@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import casts from '@/assets/images/casts';
+import crews from '@/assets/images/crews';
 import landscapes from '@/assets/images/landscapes';
 import categories from '@/stores/category';
 import { useRecordsStore } from '@/stores/records';
@@ -33,7 +33,7 @@ onMounted(async () => {
               to="/introduce"
               title="このゲームについて"
               subtitle="このゲームの紹介です。"
-              :prepend-avatar="casts.villager1"
+              :prepend-avatar="crews.villager1"
               lines="two"
               class="bg-white elevation-4 rounded opacity-90"
             />
@@ -47,7 +47,7 @@ onMounted(async () => {
               to="/recommend"
               title="おすすめパズル"
               subtitle="特におすすめしたい川渡りパズルを紹介しています。"
-              :prepend-avatar="casts.wizard1"
+              :prepend-avatar="crews.wizard1"
               lines="two"
               class="bg-white elevation-4 rounded opacity-90"
             />
@@ -68,7 +68,7 @@ onMounted(async () => {
             sm="6"
             xl="4"
           >
-            <ListContainer :category="category" />
+            <HomeListContainer :category="category" />
           </v-col>
         </v-row>
       </v-container>

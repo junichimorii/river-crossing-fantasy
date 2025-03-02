@@ -24,7 +24,7 @@ const scene: Scene = Object.freeze({
     capacity: 2,
     appearance: 'touch'
   }],
-  casts: [{
+  crews: [{
     id: 0,
     name: '盗賊',
     appearance: 'thief1',

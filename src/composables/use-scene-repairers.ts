@@ -1,4 +1,4 @@
-import { useCarrierState, useCastState } from '@/composables'
+import { useCarrierState, useCrewState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -9,21 +9,21 @@ const useSceneRepairers = (
   scene: Ref<Scene>,
 ) => {
   const { coord: carrierCoord } = useCarrierState(state)
-  const { coord: castCoord, feel } = useCastState(state)
+  const { coord: crewCoord, feel } = useCrewState(state)
 
   /** 乗り物の耐久性があるパズルかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.repairer)
+  const isValid = scene.value.crews.some(crew => crew.role.repairer)
 
   /** 乗り物が壊れないか判定する */
   const test = async () => {
-    const repairers = scene.value.casts.filter(cast => cast.role.repairer)
-    const others = scene.value.casts.filter(cast => !cast.role.repairer)
+    const repairers = scene.value.crews.filter(crew => crew.role.repairer)
+    const others = scene.value.crews.filter(crew => !crew.role.repairer)
     const isRepaired = scene.value.carriers.every(carrier =>
-      repairers.some(repairer => carrierCoord(carrier) === castCoord(repairer))
+      repairers.some(repairer => carrierCoord(carrier) === crewCoord(repairer))
     )
     if (isRepaired) return
-    for (const cast of repairers) feel(cast, 'surprised')
-    for (const cast of others) feel(cast, 'scared')
+    for (const crew of repairers) feel(crew, 'surprised')
+    for (const crew of others) feel(crew, 'scared')
   }
 
   return {

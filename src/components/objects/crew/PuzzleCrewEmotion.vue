@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { useAppearance, useCast, useCastEmotion } from '@/composables';
+import { useAppearance, useCrew, useCrewEmotion } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
-import type { Cast } from '@/types';
+import type { Crew } from '@/types';
 const props = defineProps<{
-  state: Cast
+  state: Crew
 }>()
-const { state: cast } = toRefs(props)
+const { state: crew } = toRefs(props)
 const { state: sceneState } = storeToRefs(useSceneStore())
 const { gridSize } = useAppearance()
-const { model, content, color } = useCastEmotion(sceneState, cast)
-const { isRower } = useCast()
-const offset = computed(() => gridSize.value * 0.1 * (isRower(cast.value) ? 1 : 2))
+const { model, content, color } = useCrewEmotion(sceneState, crew)
+const { isRower } = useCrew()
+const offset = computed(() => gridSize.value * 0.1 * (isRower(crew.value) ? 1 : 2))
 </script>
 
 <template>

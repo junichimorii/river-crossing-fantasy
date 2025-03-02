@@ -5,7 +5,7 @@ export interface State {
   /** ステージに登場する乗り物 */
   carriers: CarrierState[]
   /** ステージの登場人物 */
-  casts: CastState[]
+  crews: CrewState[]
 }
 
 /**
@@ -19,7 +19,7 @@ export interface CarrierState {
 /**
  * 登場人物の状態
  */
-export interface CastState {
+export interface CrewState {
   /** 登場人物の座標 */
   coord: number
   /** 乗っている乗り物 */

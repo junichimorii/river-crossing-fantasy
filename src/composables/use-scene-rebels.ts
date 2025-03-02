@@ -1,4 +1,4 @@
-import { useCastState, useCasts } from '@/composables'
+import { useCrewState, useCrews } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -8,29 +8,29 @@ const useSceneRebels = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { feel } = useCastState(state)
-  const { groups } = useCasts(state, scene)
+  const { feel } = useCrewState(state)
+  const { groups } = useCrews(state, scene)
 
   /** 半数以上を維持するパズルかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.rebel)
+  const isValid = scene.value.crews.some(crew => crew.role.rebel)
 
   /** 反乱が成功したかどうか判定する */
   const test = async () => {
-    for await (const casts of groups.value) {
-      const missionaries = casts.filter(cast => !cast.role.rebel)
+    for await (const crews of groups.value) {
+      const missionaries = crews.filter(crew => !crew.role.rebel)
       if (missionaries.length === 0) continue
-      const cannibals = casts.filter(cast => cast.role.rebel)
+      const cannibals = crews.filter(crew => crew.role.rebel)
       if (cannibals.length === 0) continue
       if (missionaries.length < cannibals.length) {
-        for (const cast of missionaries) feel(cast, 'scared')
-        for (const cast of cannibals) feel(cast, 'excited')
+        for (const crew of missionaries) feel(crew, 'scared')
+        for (const crew of cannibals) feel(crew, 'excited')
       }
     }
-    const missionaries = scene.value.casts.filter(cast => !cast.role.rebel)
-    if (missionaries.some(cast => state.value.casts[cast.id].emotions.length > 0)) {
-      for await (const cast of missionaries) {
-        if (state.value.casts[cast.id].emotions.length === 0) {
-          feel(cast, 'surprised')
+    const missionaries = scene.value.crews.filter(crew => !crew.role.rebel)
+    if (missionaries.some(crew => state.value.crews[crew.id].emotions.length > 0)) {
+      for await (const crew of missionaries) {
+        if (state.value.crews[crew.id].emotions.length === 0) {
+          feel(crew, 'surprised')
         }
       }
     }

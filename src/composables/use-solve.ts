@@ -1,5 +1,5 @@
-import { useCarrier, useCarrierState, useCasts, useScene } from '@/composables'
-import type { Carrier, CarrierState, Cast, CastState, Move, Scene, State } from '@/types'
+import { useCarrier, useCarrierState, useCrews, useScene } from '@/composables'
+import type { Carrier, CarrierState, Crew, CrewState, Move, Scene, State } from '@/types'
 interface ExtendedState extends State {
   count: number
 }
@@ -14,13 +14,13 @@ const useSolve = (
   const solutions = ref<Set<Move>[]>([])
   const state = ref<ExtendedState>({
     carriers: [] as CarrierState[],
-    casts: [] as CastState[],
+    crews: [] as CrewState[],
     count: 0,
   })
   const { coord, leave } = useCarrierState(state)
   const { isOperable } = useCarrier(state, scene)
-  const { isPeaceable, unreachers, reachers, halfways } = useCasts(state, scene)
-  const { init: initScene, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
+  const { isPeaceable, unreachers, reachers, halfways } = useCrews(state, scene)
+  const { init, pickUp, arrive, safetyConfirmation } = useScene(state, scene)
   // 時間制限のあるパズルかどうか
   const isNight = scene.value.landscape?.night
 
@@ -28,7 +28,7 @@ const useSolve = (
    * パズルを解く
    */
   const solve = async () => {
-    await initScene()
+    await init()
     solutions.value = []
     const history = await search()
     solved.value = await lookBack(history)
@@ -50,7 +50,7 @@ const useSolve = (
       const nextMoves = await generateMoves()
       for await (const move of nextMoves) {
         state.value = restore(currentState) as ExtendedState
-        const isAllPickedUp = await Promise.all(move.map(async cast => await pickUp(cast)))
+        const isAllPickedUp = await Promise.all(move.map(async crew => await pickUp(crew)))
         .then(results => !results.includes(false))
         if (!isAllPickedUp) continue
         if (!isNight) {
@@ -104,8 +104,8 @@ const useSolve = (
     const list: string[][] = Array.from(history)
     const finalStateList = list.filter(item => {
       const states: number[][] = JSON.parse(item[0])
-      const casts: number[] = states[1]
-      return casts.every((n, i) => n === -(scene.value.casts[i].coord || -1))
+      const crews: number[] = states[1]
+      return crews.every((n, i) => n === -(scene.value.crews[i].coord || -1))
     })
     if (finalStateList.length === 0) return false
     const min = Math.min(...finalStateList.map(state => JSON.parse(state[0])[2]))
@@ -123,14 +123,14 @@ const useSolve = (
       }
       solution.reverse().slice(1).forEach(item => {
         const states: number[][] = JSON.parse(item[0])
-        const casts: number[] = JSON.parse(item[1])
+        const crews: number[] = JSON.parse(item[1])
         const previousStates: number[][] = JSON.parse(item[2])
         const distribution: number[][] = JSON.parse(item[3])
         const move: Move = {
-          casts,
+          crews,
           origin: previousStates[0][0],
           destination: states[0][0],
-          value: Math.max(...casts.map(id => scene.value.casts[id].role.duration || 1))
+          value: Math.max(...crews.map(id => scene.value.crews[id].role.duration || 1))
         }
         moves.add(move)
         console.info(JSON.stringify({
@@ -159,22 +159,22 @@ const useSolve = (
     state: Ref<ExtendedState>
   ) => JSON.stringify([
     state.value.carriers.map(state => state.coord),
-    state.value.casts.map(state => state.coord),
+    state.value.crews.map(state => state.coord),
     state.value.count,
   ])
 
   const parseMove = (
     move: Move
-  ) => JSON.stringify(move.casts)
+  ) => JSON.stringify(move.crews)
 
   const parseDistribution = (
-    unreachers: Ref<Cast[]>,
-    reachers: Ref<Cast[]>,
-    halfways: Ref<Cast[]>
+    unreachers: Ref<Crew[]>,
+    reachers: Ref<Crew[]>,
+    halfways: Ref<Crew[]>
   ) => JSON.stringify([
-    unreachers.value.map(cast => cast.id),
-    reachers.value.map(cast => cast.id),
-    halfways.value.map(cast => cast.id)
+    unreachers.value.map(crew => crew.id),
+    reachers.value.map(crew => crew.id),
+    halfways.value.map(crew => crew.id)
   ])
 
   const restore  = (
@@ -186,7 +186,7 @@ const useSolve = (
           coord: state.coord,
         }
       }),
-      casts: currentState.casts.map(state => {
+      crews: currentState.crews.map(state => {
         return {
           coord: state.coord,
           boarding: state.boarding,
@@ -201,19 +201,19 @@ const useSolve = (
   const generateMoves = async () => {
     const capacity = scene.value.carriers.reduce((n, carrier) => n += carrier.capacity, 0)
     const combinations = await Promise.all(new Array(capacity).fill(0).map(async (n, i) => {
-      return await getCombinations(scene.value.casts, i + 1)
+      return await getCombinations(scene.value.crews, i + 1)
     }))
     .then(combinations => combinations.flat())
     return combinations
   }
 
   const getCombinations = async (
-    arr: Cast[],
+    arr: Crew[],
     len: number
   ) => {
-    const result: Cast[][] = []
+    const result: Crew[][] = []
     const combine = (
-      current: Cast[],
+      current: Crew[],
       start: number
     ) => {
       if (current.length === len) {

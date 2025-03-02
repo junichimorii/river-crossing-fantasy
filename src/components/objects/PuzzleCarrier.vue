@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/carriers';
-import { useAppearance, useCarrierAppearance, useCarrierState, useCasts, useScene } from '@/composables';
+import { useAppearance, useCarrierAppearance, useCarrierState, useCrews, useScene } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 import type { Carrier } from '@/types';
 const props = defineProps<{
@@ -11,7 +11,7 @@ const { state: sceneState, scene, moves, disabled } = storeToRefs(useSceneStore(
 const { stageSize } = useAppearance()
 const { width, height, aspectRatio } = useCarrierAppearance(carrier)
 const { coord } = useCarrierState(sceneState)
-const { passengers } = useCasts(sceneState, scene)
+const { passengers } = useCrews(sceneState, scene)
 const { arrive } = useScene(sceneState, scene)
 
 /** useTransitionで変化させるY座標 */
@@ -63,10 +63,10 @@ const finished = async () => {
         class="d-flex justify-center align-center bg-transparent"
         :height="height"
       >
-        <PuzzleCast
-          v-for="cast in passengers[carrier.id]"
-          :key="cast.id"
-          :state="cast"
+        <PuzzleCrew
+          v-for="crew in passengers[carrier.id]"
+          :key="crew.id"
+          :state="crew"
         />
       </v-sheet>
     </v-img>

@@ -1,32 +1,24 @@
 <script lang="ts" setup>
-import { useRecordsStore } from '@/stores/records';
 import { useSceneStore } from '@/stores/scene';
 const route = useRoute('/[id]')
 const router = useRouter()
-const { load: loadRecord } = useRecordsStore()
-const { load: loadScene, init: initScene, unload: unloadScene } = useSceneStore()
+const { load, init, unload } = useSceneStore()
 const loading = ref(true)
-provide('init', initScene)
+provide('init', init)
 onMounted(async () => {
-  const config = await loadRecord(route.params.id)
-  if (!config) {
+  await load(route.params.id).catch(() => {
     router.push({ path: '/home' })
-    return
-  }
-  await loadScene(config)
-  await initScene()
+  })
+  await init()
   loading.value = false
 })
 onUnmounted(async () => {
-  await unloadScene()
+  await unload()
 })
 </script>
 
 <template>
-  <v-skeleton-loader
-    :loading="loading"
-    type="image"
-  >
+  <v-skeleton-loader :loading="loading">
     <PortraitToolbar />
     <v-main @contextmenu.prevent>
       <SceneStage />

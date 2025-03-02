@@ -4,7 +4,7 @@
  */
 export interface Move {
   /** 移動した登場人物 */
-  casts: number[]
+  crews: number[]
   /** 出発地点の座標 */
   origin: number
   /** 到着地点の座標 */

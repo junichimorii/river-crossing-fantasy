@@ -1,4 +1,4 @@
-import { useCastState, useCasts } from '@/composables'
+import { useCrewState, useCrews } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -8,29 +8,29 @@ const useSceneWerewolves = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { feel } = useCastState(state)
-  const { groups } = useCasts(state, scene)
+  const { feel } = useCrewState(state)
+  const { groups } = useCrews(state, scene)
 
   /** 人狼が登場するパズルかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.werewolf)
+  const isValid = scene.value.crews.some(crew => crew.role.werewolf)
 
   /** 人狼による襲撃が成功したかどうか判定する */
   const test = async () => {
-    for await (const casts of groups.value) {
-      const villagers = casts.filter(cast => !cast.role.werewolf)
+    for await (const crews of groups.value) {
+      const villagers = crews.filter(crew => !crew.role.werewolf)
       if (villagers.length === 0) continue
-      const werewolves = casts.filter(cast => cast.role.werewolf)
+      const werewolves = crews.filter(crew => crew.role.werewolf)
       if (werewolves.length === 0) continue
       if (villagers.length <= werewolves.length) {
-        for (const cast of villagers) feel(cast, 'scared')
-        for (const cast of werewolves) feel(cast, 'excited')
+        for (const crew of villagers) feel(crew, 'scared')
+        for (const crew of werewolves) feel(crew, 'excited')
       }
     }
-    const villagers = scene.value.casts.filter(cast => !cast.role.werewolf)
-    if (villagers.some(cast => state.value.casts[cast.id].emotions.length > 0)) {
-      for await (const cast of villagers) {
-        if (state.value.casts[cast.id].emotions.length === 0) {
-          feel(cast, 'surprised')
+    const villagers = scene.value.crews.filter(crew => !crew.role.werewolf)
+    if (villagers.some(crew => state.value.crews[crew.id].emotions.length > 0)) {
+      for await (const crew of villagers) {
+        if (state.value.crews[crew.id].emotions.length === 0) {
+          feel(crew, 'surprised')
         }
       }
     }

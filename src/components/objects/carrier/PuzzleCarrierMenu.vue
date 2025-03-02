@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAppearance, useCarrier, useCarrierState, useCasts, useScene } from '@/composables';
+import { useAppearance, useCarrier, useCarrierState, useCrews, useScene } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 import type { Carrier } from '@/types';
 const props = defineProps<{
@@ -9,7 +9,7 @@ const { state: carrier } = toRefs(props)
 const { state: sceneState, scene, disabled } = storeToRefs(useSceneStore())
 const { coord } = useCarrierState(sceneState)
 const { isOperable } = useCarrier(sceneState, scene)
-const { isPeaceable } = useCasts(sceneState, scene)
+const { isPeaceable } = useCrews(sceneState, scene)
 const { leave } = useScene(sceneState, scene)
 const { gridSize } = useAppearance()
 /** 進行可能かどうか */

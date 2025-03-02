@@ -23,7 +23,7 @@ const { category } = toRefs(props)
     <v-card-text class="py-1">
       {{ category.description }}
     </v-card-text>
-    <ListItem
+    <HomeListItem
       v-for="scene in category.scenes"
       :key="scene.id"
       :scene="scene"

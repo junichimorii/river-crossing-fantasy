@@ -1,4 +1,4 @@
-import { useCastState } from '@/composables'
+import { useCrewState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -8,16 +8,16 @@ const useSceneMisanthrope = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { boarding, feel, isNeighboring } = useCastState(state)
+  const { boarding, feel, isNeighboring } = useCrewState(state)
 
   /** 人間嫌いが登場するかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.misanthrope)
+  const isValid = scene.value.crews.some(crew => crew.role.misanthrope)
 
   /** 人間と同乗しているかどうか判定する */
   const test = async () => {
     // 人間（亜人以外）
-    const humans = scene.value.casts.filter(cast => !cast.role.demihuman)
-    for await (const myself of scene.value.casts) {
+    const humans = scene.value.crews.filter(crew => !crew.role.demihuman)
+    for await (const myself of scene.value.crews) {
       if (!myself.role.misanthrope) continue
       if (boarding(myself) === null) continue
       for await (const human of humans) {

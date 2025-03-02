@@ -1,4 +1,4 @@
-import type { Carrier, Cast } from '@/types'
+import type { Carrier, Crew } from '@/types'
 
 /**
  * シーン
@@ -23,7 +23,7 @@ export interface Scene {
   /** 乗り物 */
   carriers: Carrier[]
   /** 登場人物 */
-  casts: Cast[]
+  crews: Crew[]
 }
 
 /**

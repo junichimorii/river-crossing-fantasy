@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useAppearance, useCasts, useLandscape } from '@/composables';
+import { useAppearance, useCrews, useLandscape } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 const { state, scene } = storeToRefs(useSceneStore())
 const { stageSize } = useAppearance()
-const { unreachers, reachers, halfways } = useCasts(state, scene)
+const { unreachers, reachers, halfways } = useCrews(state, scene)
 const { landscape } = useLandscape(scene)
 </script>
 
@@ -19,7 +19,7 @@ const { landscape } = useLandscape(scene)
       class="d-flex justify-center align-start bg-transparent"
     >
       <v-sheet
-        :width="stageSize * 0.96"
+        :width="stageSize"
         :height="stageSize"
         class="d-flex flex-column bg-transparent"
       >
@@ -28,10 +28,10 @@ const { landscape } = useLandscape(scene)
           :height="stageSize * 0.3"
           class="d-flex justify-end align-end order-1 bg-transparent"
         >
-          <PuzzleCast
-            v-for="cast in reachers"
-            :key="cast.id"
-            :state="cast"
+          <PuzzleCrew
+            v-for="crew in reachers"
+            :key="crew.id"
+            :state="crew"
             style="scale: 0.85 0.85"
           />
         </v-sheet>
@@ -45,10 +45,10 @@ const { landscape } = useLandscape(scene)
               :cols="scene.landscape?.island ? 8 : false"
               class="d-flex justify-end align-self-center"
             >
-              <PuzzleCast
-                v-for="cast in halfways"
-                :key="cast.id"
-                :state="cast"
+              <PuzzleCrew
+                v-for="crew in halfways"
+                :key="crew.id"
+                :state="crew"
               />
             </v-col>
             <v-col class="d-flex justify-center">
@@ -72,10 +72,10 @@ const { landscape } = useLandscape(scene)
           :height="stageSize * 0.2"
           class="d-flex justify-start align-end order-3 bg-transparent"
         >
-          <PuzzleCast
-            v-for="cast in unreachers"
-            :key="cast.id"
-            :state="cast"
+          <PuzzleCrew
+            v-for="crew in unreachers"
+            :key="crew.id"
+            :state="crew"
           />
         </v-sheet>
       </v-sheet>

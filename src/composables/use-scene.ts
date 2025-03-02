@@ -1,11 +1,11 @@
 import {
-  useCarrier, useCarrierState, useCastState, useCasts,
-  useSceneDiscord, useSceneFreespirited, useSceneMisanthrope, useScenePredators,
-  useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
+    useCarrier, useCarrierState, useCrewState, useCrews,
+    useSceneDiscord, useSceneFreespirited, useSceneMisanthrope, useScenePredators,
+    useSceneRebels, useSceneRepairers, useSceneSaint, useSceneWerewolves
 } from '@/composables'
 import { defaultState as defaultCarrierState } from '@/composables/use-carrier-state'
-import { defaultState as defaultCastState } from '@/composables/use-cast-state'
-import type { Bound, Carrier, Cast, Move, Scene, State } from '@/types'
+import { defaultState as defaultCrewState } from '@/composables/use-crew-state'
+import type { Bound, Carrier, Crew, Move, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの進行
@@ -16,8 +16,8 @@ const useScene = (
 ) => {
   const { coord: carrierCoord, leave: leaveCarrier  } = useCarrierState(state)
   const { getDestination, getElapsedTime, hasPassengers, isVacancy } = useCarrier(state, scene)
-  const { coord: castCoord, getOn, getOff, arrive: arriveCast, calmDown } = useCastState(state)
-  const { passengers, isPeaceable, isReached } = useCasts(state, scene)
+  const { coord: crewCoord, getOn, getOff, arrive: arriveCrew, calmDown } = useCrewState(state)
+  const { passengers, isPeaceable, isReached } = useCrews(state, scene)
 
   // 不仲な者達が登場するパズル
   const { isValid: hasDiscord, test: catfight } = useSceneDiscord(state, scene)
@@ -39,30 +39,30 @@ const useScene = (
   /** シーンの状態を初期化 */
   const init = async () => {
     state.value.carriers = scene.value.carriers.map(() => structuredClone(defaultCarrierState))
-    state.value.casts = scene.value.casts.map(() => structuredClone(defaultCastState))
-    state.value.casts.forEach((cast, i) => cast.coord = scene.value.casts[i].coord || cast.coord)
+    state.value.crews = scene.value.crews.map(() => structuredClone(defaultCrewState))
+    state.value.crews.forEach((crew, i) => crew.coord = scene.value.crews[i].coord || crew.coord)
   }
 
   /** 搭乗可能な乗り物（空席があり、登場人物と同じ岸）がないか問い合わせる */
   const reserve = async (
-    cast: Cast,
-  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === castCoord(cast)) && isVacancy(carrier, cast))
+    crew: Crew,
+  ) => scene.value.carriers.find(carrier => (carrierCoord(carrier) === crewCoord(crew)) && isVacancy(carrier, crew))
 
   /** 乗り物に登場人物を乗せる */
   const pickUp = async (
-    cast: Cast,
+    crew: Crew,
   ) => {
-    const carrier = await reserve(cast)
+    const carrier = await reserve(crew)
     if (carrier === undefined) return false
-    getOn(cast, carrier)
+    getOn(crew, carrier)
     return true
   }
 
   /** 乗り物から登場人物を降ろす */
   const dropOff = async (
-    cast: Cast,
+    crew: Crew,
   ) => {
-    getOff(cast)
+    getOff(crew)
   }
 
   /** 出発する */
@@ -83,15 +83,15 @@ const useScene = (
     await crossed()
     // 履歴を追加
     const move: Move = {
-      casts: passengers.value[carrier.id].map(cast => cast.id),
-      origin: castCoord(passengers.value[carrier.id][0]),
+      crews: passengers.value[carrier.id].map(crew => crew.id),
+      origin: crewCoord(passengers.value[carrier.id][0]),
       destination: carrierCoord(carrier),
       value: getElapsedTime(carrier),
     }
     // 登場人物を乗り物から降ろす
-    for await (const cast of passengers.value[carrier.id]) {
-      arriveCast(cast, carrier)
-      getOff(cast)
+    for await (const crew of passengers.value[carrier.id]) {
+      arriveCrew(crew, carrier)
+      getOff(crew)
     }
     // 安否確認
     await safetyConfirmation()
@@ -114,8 +114,8 @@ const useScene = (
 
   /** 安否確認 */
   const safetyConfirmation = async () => {
-    for await (const cast of scene.value.casts) {
-      calmDown(cast)
+    for await (const crew of scene.value.crews) {
+      calmDown(crew)
     }
     // 敵と保護者が登場するパズルの成否判定
     if (hasPredators) {

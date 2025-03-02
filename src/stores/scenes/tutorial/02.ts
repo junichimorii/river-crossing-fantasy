@@ -20,7 +20,7 @@ const scene: Scene = Object.freeze({
     capacity: 2,
     appearance: 'raft2'
   }],
-  casts: [{
+  crews: [{
     id: 0,
     name: '戦士',
     appearance: 'fighter1',

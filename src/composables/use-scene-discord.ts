@@ -1,4 +1,4 @@
-import { useCastState, useCasts } from '@/composables'
+import { useCrewState, useCrews } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -8,21 +8,21 @@ const useSceneDiscord = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { feel, isNeighboring } = useCastState(state)
-  const { groups } = useCasts(state, scene)
+  const { feel, isNeighboring } = useCrewState(state)
+  const { groups } = useCrews(state, scene)
 
   /** 不仲な者達が登場するパズルかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.discord)
+  const isValid = scene.value.crews.some(crew => crew.role.discord)
 
   /** 不仲の対象と二人きりかどうか判定する */
   const test = async () => {
-    for await (const casts of groups.value) {
+    for await (const crews of groups.value) {
       /** 各地点において二人きりでない場合は判定しない */
-      if (casts.length !== 2) continue
-      for await (const myself of casts) {
+      if (crews.length !== 2) continue
+      for await (const myself of crews) {
         if (!myself.role.discord) continue
         for await (const discordId of myself.role.discord) {
-          const discord = scene.value.casts[discordId]
+          const discord = scene.value.crews[discordId]
           // 不仲な者と隣接している
           if (isNeighboring(myself, discord)) {
             feel(myself, 'excited')

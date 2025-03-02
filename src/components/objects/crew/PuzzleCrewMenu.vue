@@ -1,30 +1,30 @@
 <script lang="ts" setup>
-import { useCastState } from '@/composables';
+import { useCrewState } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
-import type { Cast } from '@/types';
+import type { Crew } from '@/types';
 const props = defineProps<{
-  state: Cast
+  state: Crew
   isSwiping: boolean
 }>()
-const { state: cast, isSwiping } = toRefs(props)
+const { state: crew, isSwiping } = toRefs(props)
 const { state: sceneState, disabled } = storeToRefs(useSceneStore())
-const { coord, boarding } = useCastState(sceneState)
+const { coord, boarding } = useCrewState(sceneState)
 
 /** 行動範囲に関するプロパティ */
 const bound = computed(() =>
   // 乗り物の上から向こう岸に降りる or 手前の岸から乗り物に乗る時、上方向に移動できる
-  (boarding(cast.value) !== null && coord(cast.value) > 0)
-  || (boarding(cast.value) === null && coord(cast.value) < 0)
+  (boarding(crew.value) !== null && coord(crew.value) > 0)
+  || (boarding(crew.value) === null && coord(crew.value) < 0)
     ? 'inbound'
     // 乗り物の上から手前の岸に降りる or 向こう岸から乗り物に乗る時、下方向に移動できる
-    : (boarding(cast.value) !== null && coord(cast.value) < 0)
-    || (boarding(cast.value) === null && coord(cast.value) > 0)
+    : (boarding(crew.value) !== null && coord(crew.value) < 0)
+    || (boarding(crew.value) === null && coord(crew.value) > 0)
       ? 'outbound'
       // 乗り物の上から中州に降りる時、左方向に移動できる
-      : (boarding(cast.value) !== null && coord(cast.value) === 0)
+      : (boarding(crew.value) !== null && coord(crew.value) === 0)
         ? 'stopover'
         // 中州から乗り物に乗る時、右方向に移動できる
-        : (boarding(cast.value) === null && coord(cast.value) === 0)
+        : (boarding(crew.value) === null && coord(crew.value) === 0)
           ? 'resume'
           : 'none'
 )

@@ -1,33 +1,33 @@
-import { useCastState } from '@/composables'
+import { useCrewState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
  * 川渡りパズル
  */
-const useCasts = (
+const useCrews = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { coord, boarding } = useCastState(state)
+  const { coord, boarding } = useCrewState(state)
   /** 出発地点の登場人物 */
   const unreachers = computed(() =>
-    scene.value.casts.filter(cast => boarding(cast) === null && coord(cast) < 0)
+    scene.value.crews.filter(crew => boarding(crew) === null && coord(crew) < 0)
   )
 
   /** 到着地点の登場人物 */
   const reachers = computed(() =>
-    scene.value.casts.filter(cast => boarding(cast) === null && coord(cast) > 0)
+    scene.value.crews.filter(crew => boarding(crew) === null && coord(crew) > 0)
   )
 
   /** 中間地点の登場人物 */
   const halfways = computed(() =>
-    scene.value.casts.filter(cast => boarding(cast) === null && coord(cast) === 0)
+    scene.value.crews.filter(crew => boarding(crew) === null && coord(crew) === 0)
   )
 
   /** 乗員 */
   const passengers = computed(() => {
     const carriers = scene.value.carriers.map(carrier => carrier.id)
-    return carriers.map(carrier => scene.value.casts.filter(cast => boarding(cast) === carrier))
+    return carriers.map(carrier => scene.value.crews.filter(crew => boarding(crew) === carrier))
   })
 
   /** 各地点の登場人物 */
@@ -39,16 +39,16 @@ const useCasts = (
   ])
 
   /** すべての登場人物が安全な状態どうか */
-  const isPeaceable = computed(() => state.value.casts.every(castState => castState.emotions.length === 0))
+  const isPeaceable = computed(() => state.value.crews.every(crewState => crewState.emotions.length === 0))
 
   /** すべての登場人物が出発地点にいるかどうか */
-  const isUnreach = computed(() => state.value.casts.every((castState, i) =>
-    castState.boarding === null && castState.coord === (scene.value.casts[i].coord || -1)
+  const isUnreach = computed(() => state.value.crews.every((crewState, i) =>
+    crewState.boarding === null && crewState.coord === (scene.value.crews[i].coord || -1)
   ))
 
   /** すべての登場人物が到着地点にいるかどうか */
-  const isReached = computed(() => state.value.casts.every((castState, i) =>
-    castState.boarding === null && castState.coord === -(scene.value.casts[i].coord || -1)
+  const isReached = computed(() => state.value.crews.every((crewState, i) =>
+    crewState.boarding === null && crewState.coord === -(scene.value.crews[i].coord || -1)
   ))
 
   return {
@@ -62,5 +62,5 @@ const useCasts = (
     isReached,
   }
 }
-export default useCasts
-export type UseCastsReturn = ReturnType<typeof useCasts>
+export default useCrews
+export type UseCrewsReturn = ReturnType<typeof useCrews>

@@ -1,7 +1,7 @@
 /**
  * 登場人物
  */
-export interface Cast {
+export interface Crew {
   /** 登場人物のID */
   id: number
   /** 登場人物の名前 */

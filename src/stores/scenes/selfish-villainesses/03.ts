@@ -18,7 +18,7 @@ const scene: Scene = Object.freeze({
     capacity: 2,
     appearance: 'raft2'
   }],
-  casts: [{
+  crews: [{
     id: 0,
     name: '青家令嬢',
     description: '他家の令嬢と二人きりになることを嫌う。',

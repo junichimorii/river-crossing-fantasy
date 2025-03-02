@@ -13,7 +13,7 @@ const headers = [
   { key: 'rules.conditions', title:'conditions', width: '12%' },
   { key: 'rules.transportation', title:'transportation', width: '12%' },
   { key: 'rules.tips', title:'tips', width: '16%' },
-  { key: 'casts', title:'casts', width: '24%' },
+  { key: 'crews', title:'crews', width: '24%' },
 ]
 </script>
 
@@ -78,17 +78,17 @@ const headers = [
           />
           <!-- eslint-enable -->
         </template>
-        <template #[`item.casts`]="{ value }">
+        <template #[`item.crews`]="{ value }">
           <v-chip
-            v-for="cast in value"
-            :key="cast.id"
+            v-for="crew in value"
+            :key="crew.id"
             variant="outlined"
             size="x-large"
           >
-            <PuzzleCastAvatar :state="cast" />
-            <span class="text-caption">{{ cast.name }}</span>
+            <PuzzleCrewAvatar :state="crew" />
+            <span class="text-caption">{{ crew.name }}</span>
             :
-            <span class="text-caption">{{ cast.description }}</span>
+            <span class="text-caption">{{ crew.description }}</span>
           </v-chip>
         </template>
       </v-data-table>

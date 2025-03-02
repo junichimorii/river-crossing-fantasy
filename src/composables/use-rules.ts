@@ -19,7 +19,7 @@ const useRules = (
   /** 移動手段 */
   const getTransportation = (
     scene: Scene
-  ) => `${getCapacity(scene)}${getCastSuffix(scene)}${getRowerSuffix(scene)}${getLandscapeSuffix(scene)}`
+  ) => `${getCapacity(scene)}${getCrewSuffix(scene)}${getRowerSuffix(scene)}${getLandscapeSuffix(scene)}`
 
   /** 定員 */
   const getCapacity = (
@@ -29,22 +29,22 @@ const useRules = (
     ? carrier.capacity >= 2
       ? `吊り橋の人数制限は${carrier.capacity}人まで。`
       : ''
-    : scene.casts.some(cast => cast.role.weight)
+    : scene.crews.some(crew => crew.role.weight)
       ? `${carrier.capacity}人乗り、重量制限${carrier.capacity.toFixed(1)}人分の筏（いかだ）が1艘（そう）。`
       : `${carrier.capacity}人乗りの筏（いかだ）が1艘（そう）。`
   ).join('')
 
   /** ステージの登場人物による条件 */
-  const getCastSuffix = (
+  const getCrewSuffix = (
     scene: Scene
-  ) => scene.casts.some(cast => cast.role.repairer)
+  ) => scene.crews.some(crew => crew.role.repairer)
     ? 'ただし1回乗る度に修理が必要。'
     : ''
 
   /** ステージの登場人物による条件 */
   const getRowerSuffix = (
     scene: Scene
-  ) => scene.casts.every(cast => cast.role.rower)
+  ) => scene.crews.every(crew => crew.role.rower)
     ? '全員が筏（いかだ）を漕（こ）げる。'
     : ''
 

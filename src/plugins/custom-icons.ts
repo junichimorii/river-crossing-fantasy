@@ -28,7 +28,7 @@ const aliases: {
   [name: string]: string
 }
  = {
-  casts: mdiAccountMultiple,
+  crews: mdiAccountMultiple,
   conditions: mdiLockOpen,
   home: mdiHome,
   inbound: mdiArrowUp,

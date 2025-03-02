@@ -1,4 +1,4 @@
-import { useCastState } from '@/composables'
+import { useCrewState } from '@/composables'
 import type { Scene, State } from '@/types'
 
 /**
@@ -8,20 +8,20 @@ const useScenePredators = (
   state: Ref<State>,
   scene: Ref<Scene>,
 ) => {
-  const { feel, isNeighboring } = useCastState(state)
+  const { feel, isNeighboring } = useCrewState(state)
 
   /** 敵と保護者が登場するパズルかどうか */
-  const isValid = scene.value.casts.some(cast => cast.role.predators)
+  const isValid = scene.value.crews.some(crew => crew.role.predators)
 
   /** 敵の捕食が成功したかどうか判定する */
   const test = async () => {
-    for await (const myself of scene.value.casts) {
+    for await (const myself of scene.value.crews) {
       if (!myself.role.predators) continue
       for await (const my of myself.role.predators) {
-        const predator = scene.value.casts[my.predator]
+        const predator = scene.value.crews[my.predator]
         // 敵と隣接している
         if (isNeighboring(myself, predator)) {
-          const guardian = scene.value.casts[my.guardian]
+          const guardian = scene.value.crews[my.guardian]
           // 保護者が近くにいない
           if (!isNeighboring(myself, guardian)) {
             feel(myself, 'scared')

@@ -26,10 +26,10 @@ const { level } = useLevel(scene)
       <!-- eslint-enable -->
     </v-list-item-subtitle>
     <div>
-      <PuzzleCastAvatar
-        v-for="cast in scene.casts"
-        :key="cast.id"
-        :state="cast"
+      <PuzzleCrewAvatar
+        v-for="crew in scene.crews"
+        :key="crew.id"
+        :state="crew"
       />
     </div>
     <!-- eslint-disable vue/no-v-html -->

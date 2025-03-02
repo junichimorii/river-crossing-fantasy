@@ -20,7 +20,7 @@ const scene: Scene = Object.freeze({
     capacity: 2,
     appearance: 'raft2'
   }],
-  casts: [{
+  crews: [{
     id: 0,
     name: '魔獣A',
     description: '魔獣使いの数より多くなると反乱を起こす。',

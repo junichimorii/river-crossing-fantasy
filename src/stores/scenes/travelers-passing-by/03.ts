@@ -19,7 +19,7 @@ const scene: Scene = Object.freeze({
     capacity: 2,
     appearance: 'raft2'
   }],
-  casts: [{
+  crews: [{
     id: 0,
     name: '青国騎士',
     description: '他国の騎士が目を離すとその国の王女を襲う。',

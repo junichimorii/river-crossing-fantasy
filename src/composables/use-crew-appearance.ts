@@ -3,7 +3,7 @@ import { useAppearance } from '@/composables'
 /**
  * 川渡りパズルの登場人物の外観
  */
-const useCastAppearance = () => {
+const useCrewAppearance = () => {
   const { gridSize } = useAppearance()
   /** 幅（登場人物の幅 * 登場人物の人数 + 登場人物の幅 / 2）  */
   const width = computed(() => gridSize.value)
@@ -20,5 +20,5 @@ const useCastAppearance = () => {
     aspectRatio,
   }
 }
-export default useCastAppearance
-export type UseCastAppearanceReturn = ReturnType<typeof useCastAppearance>
+export default useCrewAppearance
+export type UseCrewAppearanceReturn = ReturnType<typeof useCrewAppearance>

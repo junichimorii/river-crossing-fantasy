@@ -1,5 +1,5 @@
-import { useCarrierState, useCast, useCastState } from '@/composables'
-import type { Bound, Carrier, Cast, Scene, State } from '@/types'
+import { useCarrierState, useCrew, useCrewState } from '@/composables'
+import type { Bound, Carrier, Crew, Scene, State } from '@/types'
 
 /**
  * 川渡りパズルの乗り物
@@ -9,8 +9,8 @@ const useCarrier = (
   scene: Ref<Scene>,
 ) => {
   const { coord } = useCarrierState(state)
-  const { boarding, diseased } = useCastState(state)
-  const { isRower, getWeight, getDuration } = useCast()
+  const { boarding, diseased } = useCrewState(state)
+  const { isRower, getWeight, getDuration } = useCrew()
 
   /** 乗り物の行先を算出 */
   const getDestination = (
@@ -28,29 +28,29 @@ const useCarrier = (
   const getElapsedTime = (
     carrier: Carrier
   ) => getPassengers(carrier).length > 0
-    ? Math.max(...getPassengers(carrier).map(cast => getDuration(cast)))
+    ? Math.max(...getPassengers(carrier).map(crew => getDuration(crew)))
     : 1
 
   /** 積載重量を算出 */
   const getLoad = (
     carrier: Carrier
-  ) => getPassengers(carrier).reduce((weight, cast) => weight + getWeight(cast), 0)
+  ) => getPassengers(carrier).reduce((weight, crew) => weight + getWeight(crew), 0)
 
   /** 乗り物に乗っている登場人物 */
   const getPassengers = (
     carrier: Carrier
-  ) => scene.value.casts.filter(cast => boarding(cast) === carrier.id)
+  ) => scene.value.crews.filter(crew => boarding(crew) === carrier.id)
 
   /** 乗り物に乗っている筏を漕げる登場人物 */
   const getRowers = (
     carrier: Carrier
-  ) => getPassengers(carrier).filter(cast =>
+  ) => getPassengers(carrier).filter(crew =>
     // 聖女が同乗しているか
-    getPassengers(carrier).some(cast => cast.role.saint)
+    getPassengers(carrier).some(crew => crew.role.saint)
       // 聖女が同乗している場合、筏を漕げる人物全員
-      ? isRower(cast)
+      ? isRower(crew)
       // 聖女が同乗していない場合、筏を漕げる状態異常でない人物全員
-      : isRower(cast) && !diseased(cast)
+      : isRower(crew) && !diseased(crew)
   )
 
   /** 乗員がいるかどうか */
@@ -66,8 +66,8 @@ const useCarrier = (
   /** 空席があるかどうか */
   const isVacancy = (
     carrier: Carrier,
-    cast: Cast,
-  ) => (getLoad(carrier) + getWeight(cast)) <= carrier.capacity
+    crew: Crew,
+  ) => (getLoad(carrier) + getWeight(crew)) <= carrier.capacity
 
   return {
     getDestination,
