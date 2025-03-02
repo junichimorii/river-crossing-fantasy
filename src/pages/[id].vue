@@ -1,10 +1,17 @@
 <script lang="ts" setup>
+import { useScene } from '@/composables';
 import { useSceneStore } from '@/stores/scene';
 const route = useRoute('/[id]')
 const router = useRouter()
-const { load, init, unload } = useSceneStore()
+const { load, unload, clear } = useSceneStore()
+const { state, scene } = storeToRefs(useSceneStore())
+const { init: initScene } = useScene(state, scene)
 const loading = ref(true)
-provide('init', init)
+const init = async () => {
+  await initScene()
+  await nextTick()
+  await clear()
+}
 onMounted(async () => {
   await load(route.params.id).catch(() => {
     router.push({ path: '/home' })
@@ -15,6 +22,7 @@ onMounted(async () => {
 onUnmounted(async () => {
   await unload()
 })
+provide('init', init)
 </script>
 
 <template>

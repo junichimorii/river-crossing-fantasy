@@ -1,4 +1,3 @@
-import { useScene } from '@/composables'
 import type { CarrierState, CrewState, Move, Scene, State } from '@/types'
 import * as _scenes from './scenes'
 export const defaultState: State = Object.freeze({
@@ -41,8 +40,6 @@ export const useSceneStore = defineStore('scene', () => {
   /** シーン一覧 */
   const scenes = computed(() => Object.values(_scenes))
 
-  const { init: initScene } = useScene(state, scene)
-
   /** 指定されたIDのシーンを読み込む */
   const load = async (
     id: number | string
@@ -58,9 +55,8 @@ export const useSceneStore = defineStore('scene', () => {
     state.value = null
   }
 
-  /** シーンの状態を初期化 */
-  const init = async () => {
-    await initScene()
+  /** シーンの行動履歴を消去 */
+  const clear = async () => {
     moves.value.clear()
   }
 
@@ -71,6 +67,6 @@ export const useSceneStore = defineStore('scene', () => {
     disabled,
     load,
     unload,
-    init,
+    clear,
   }
 })
