@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import sprites from '@/assets/images/landscapes';
-import { bt03, ec03, mm02, pg09, tp01, tu01 } from '@/stores/scenes';
-const scenes = [ tu01, pg09, ec03, mm02, bt03, tp01 ]
+import { bt03, ec03, mm02, pg10, tp01, tu01 } from '@/stores/scenes';
+const scenes = [ tu01, pg10, ec03, mm02, bt03, tp01 ]
 </script>
 
 <template>
@@ -26,7 +26,7 @@ const scenes = [ tu01, pg09, ec03, mm02, bt03, tp01 ]
             sm="6"
             xl="4"
           >
-            <AppListItem
+            <HomeListItem
               tips
               :scene="scene"
               class="bg-white elevation-4 rounded opacity-90"
